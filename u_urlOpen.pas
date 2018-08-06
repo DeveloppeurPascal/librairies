@@ -31,7 +31,8 @@ begin
  Intent := TJIntent.Create;
  Intent.setAction(TJIntent.JavaClass.ACTION_VIEW);
  Intent.setData(StrToJURI(URL));
- SharedActivity.startActivity(Intent);
+ // SharedActivity.startActivity(Intent);
+ tandroidhelper.Activity.startActivity(Intent);
 {$ELSEIF Defined(MSWINDOWS)}
  ShellExecute(0, 'OPEN', PWideChar(URL), nil, nil, SW_SHOWNORMAL);
 {$ELSEIF Defined(IOS)}
