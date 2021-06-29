@@ -78,10 +78,12 @@ begin
   folder := TPath.Combine(TPath.GetDocumentsPath, app_name);
   if not tdirectory.Exists(folder) then
     tdirectory.CreateDirectory(folder);
-{$IFDEF DEBUG}
+{$IF Defined(DEBUG)}
   filename := app_name + '-debug.par';
-{$ELSE}
+{$ELSE if Defined(RELEASE)}
   filename := app_name + '.par';
+{$ELSE}
+{$MESSAGE FATAIL 'setup problem'}
 {$ENDIF}
   result := TPath.Combine(folder, filename);
 end;
