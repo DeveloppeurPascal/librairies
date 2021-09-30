@@ -16,6 +16,10 @@ Vous ne pouvez pas diffuser ces sources en vous en attribuant la paternité ni s
 
 -----
 
+Vous pouvez [soutenir les projets sur lesquels je travaille](https://vasur.fr/sponsoropensource) et en profiter pour accéder à tout ce que je fais en ligne. Chaque abonnement compte pour me donner du temps pour travailer sur ces projets open source et produire les articles et les vidéos auxquels vous aurez accès depuis [Zone Abo](https://zone-abo.fr), [Serial Streameur](https://serialstreameur.fr) et [Apprendre Delphi](https://apprendre-delphi.fr).
+
+-----
+
 Ce projet fait partie du "DevPas Components Pack" qui permet d'installer tous mes composants et librairies en une fois.
 https://github.com/DeveloppeurPascal/DevPas-Components-Pack
 
