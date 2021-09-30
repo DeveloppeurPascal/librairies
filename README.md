@@ -16,6 +16,11 @@ Vous ne pouvez pas diffuser ces sources en vous en attribuant la paternité ni s
 
 -----
 
+Ce projet fait partie du "DevPas Components Pack" qui permet d'installer tous mes composants et librairies en une fois.
+https://github.com/DeveloppeurPascal/DevPas-Components-Pack
+
+-----
+
 Si vous ne connaissez pas Delphi et le langage Pascal, profitez de la version Academic (pour les étudiants, enseignants et établissements d'enseignement) ou Community Edition (gratuite pour une utilisation personnelle) disponibles chez Embarcadero (rubrique "outils gratuits").
 En entreprise vous pouvez aussi tester Delphi avec la version d'évaluation.
 https://www.embarcadero.com/products/delphi
