@@ -43,6 +43,7 @@ interface
 
 type
   tParams = class(TObject)
+  public
     class procedure save;
     class procedure load;
     class function getValue(key: string; default: string): string; overload;
@@ -56,6 +57,7 @@ type
     class procedure setValue(key: string; value: integer); overload;
     class procedure setValue(key: string; value: single); overload;
     class procedure setValue(key: string; value: TDateTime); overload;
+    class procedure setFolderName(AFolderName: string; AReload: boolean = true);
   end;
 
 implementation
@@ -67,23 +69,27 @@ uses
 var
   paramChanged: boolean;
   paramList: TJSONObject;
+  FolderName: string;
 
-function getParamsFileName: string;
+function getParamsFileName(ACreateFolder: boolean = false): string;
 var
   folder: string;
   filename: string;
   app_name: string;
 begin
   app_name := TPath.GetFileNameWithoutExtension(paramstr(0));
-  folder := TPath.Combine(TPath.GetDocumentsPath, app_name);
-  if not tdirectory.Exists(folder) then
+  if FolderName.isempty then
+    folder := TPath.Combine(TPath.GetDocumentsPath, app_name)
+  else
+    folder := FolderName;
+  if ACreateFolder and (not tdirectory.Exists(folder)) then
     tdirectory.CreateDirectory(folder);
 {$IF Defined(DEBUG)}
   filename := app_name + '-debug.par';
 {$ELSE if Defined(RELEASE)}
   filename := app_name + '.par';
 {$ELSE}
-{$MESSAGE FATAIL 'setup problem'}
+{$MESSAGE FATAL 'setup problem'}
 {$ENDIF}
   result := TPath.Combine(folder, filename);
 end;
@@ -188,7 +194,7 @@ var
 begin
   if (paramChanged) then
   begin
-    filename := getParamsFileName;
+    filename := getParamsFileName(true);
     if assigned(paramList) and (paramList.Count > 0) then
       tfile.WriteAllText(filename, paramList.ToJSON, TEncoding.UTF8)
     else if tfile.Exists(filename) then
@@ -257,8 +263,16 @@ begin
   end;
 end;
 
+class procedure tParams.setFolderName(AFolderName: string; AReload: boolean);
+begin
+  FolderName := AFolderName;
+  if AReload then
+    load;
+end;
+
 initialization
 
+FolderName := '';
 paramChanged := false;
 paramList := TJSONObject.Create;
 tParams.load;
