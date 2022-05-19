@@ -42,8 +42,26 @@ begin
   Memo1.Lines.Add('Edit1Text=' + Edit1.Text);
 end;
 
+procedure initParamsFile;
+var
+  NewFolder, Oldfolder, FileName: string;
+begin
+  Oldfolder := tpath.Combine(tpath.GetPicturesPath, 'temp');
+  NewFolder := tpath.Combine(tpath.GetDocumentsPath, 'temp');
+  FileName := tpath.GetFileName(tParams.getFilePath);
+
+  // Move actual Pictures/Temp parameter file to new Documents/Temp parameter file
+  if tfile.Exists(tpath.Combine(Oldfolder, FileName)) then
+  begin
+    tParams.setFolderName(Oldfolder);
+    tParams.MoveToFilePath(tpath.Combine(NewFolder, FileName), true, true);
+  end
+  else
+    tParams.setFolderName(NewFolder);
+end;
+
 initialization
 
-tParams.setFolderName(tpath.combine(tpath.GetPicturesPath, 'temp'));
+initParamsFile;
 
 end.
