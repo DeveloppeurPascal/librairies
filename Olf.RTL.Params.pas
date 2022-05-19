@@ -323,12 +323,11 @@ var
   filename: string;
   app_name: string;
 begin
+  app_name := TPath.GetFileNameWithoutExtension(paramstr(0));
+
   // get filename
   if FFileName.IsEmpty then
   begin
-    app_name := TPath.GetFileNameWithoutExtension(paramstr(0));
-    if ACreateFolder and (not tdirectory.Exists(folder)) then
-      tdirectory.CreateDirectory(folder);
 {$IF Defined(DEBUG)}
     filename := app_name + '-debug.par';
 {$ELSE if Defined(RELEASE)}
@@ -338,11 +337,15 @@ begin
 {$ENDIF} end
   else
     filename := FFileName;
+
   // get folder name
   if FFolderName.IsEmpty then
     folder := TPath.Combine(TPath.GetDocumentsPath, app_name)
   else
     folder := FFolderName;
+  if ACreateFolder and (not tdirectory.Exists(folder)) then
+    tdirectory.CreateDirectory(folder);
+
   // get file path
   result := TPath.Combine(folder, filename);
 end;
