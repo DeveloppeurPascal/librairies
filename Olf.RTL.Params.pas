@@ -323,11 +323,6 @@ var
   filename: string;
   app_name: string;
 begin
-  // get folder name
-  if FFolderName.IsEmpty then
-    folder := TPath.Combine(TPath.GetDocumentsPath, app_name)
-  else
-    folder := FFolderName;
   // get filename
   if FFileName.IsEmpty then
   begin
@@ -343,6 +338,11 @@ begin
 {$ENDIF} end
   else
     filename := FFileName;
+  // get folder name
+  if FFolderName.IsEmpty then
+    folder := TPath.Combine(TPath.GetDocumentsPath, app_name)
+  else
+    folder := FFolderName;
   // get file path
   result := TPath.Combine(folder, filename);
 end;
