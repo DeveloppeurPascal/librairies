@@ -105,7 +105,7 @@
             <Form>Form1</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\..\uParam.pas"/>
+        <DCCReference Include="..\..\Olf.RTL.Params.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

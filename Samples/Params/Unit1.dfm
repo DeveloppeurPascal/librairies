@@ -21,10 +21,6 @@ object Form1: TForm1
     Lines.Strings = (
       'Memo1')
     TabOrder = 0
-    ExplicitLeft = 232
-    ExplicitTop = 200
-    ExplicitWidth = 185
-    ExplicitHeight = 89
   end
   object Panel1: TPanel
     Left = 0
@@ -38,9 +34,6 @@ object Form1: TForm1
     Padding.Right = 5
     Padding.Bottom = 5
     TabOrder = 1
-    ExplicitLeft = 232
-    ExplicitTop = 224
-    ExplicitWidth = 185
     object Edit1: TEdit
       Left = 6
       Top = 6
@@ -49,9 +42,6 @@ object Form1: TForm1
       Align = alClient
       TabOrder = 0
       Text = 'Edit1'
-      ExplicitLeft = 48
-      ExplicitTop = 18
-      ExplicitWidth = 121
       ExplicitHeight = 23
     end
     object Button1: TButton
@@ -63,9 +53,6 @@ object Form1: TForm1
       Caption = 'Button1'
       TabOrder = 1
       OnClick = Button1Click
-      ExplicitLeft = 48
-      ExplicitTop = 16
-      ExplicitHeight = 25
     end
   end
 end

@@ -28,7 +28,7 @@ implementation
 
 {$R *.dfm}
 
-uses uParam, System.IOUtils;
+uses System.IOUtils, Olf.RTL.Params;
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin

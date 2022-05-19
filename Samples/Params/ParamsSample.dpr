@@ -3,7 +3,7 @@ program ParamsSample;
 uses
   Vcl.Forms,
   Unit1 in 'Unit1.pas' {Form1},
-  uParam in '..\..\uParam.pas';
+  Olf.RTL.Params in '..\..\Olf.RTL.Params.pas';
 
 {$R *.res}
 
