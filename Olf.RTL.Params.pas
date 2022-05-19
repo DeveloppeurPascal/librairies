@@ -181,7 +181,11 @@ type
     /// If set to True, save actual values to the parameter file.
     /// If set to false, just move the parameter file to it's new folder/filename.
     /// </param>
-    procedure MoveToFilePath(ANewFilePath: string; ASave: boolean = true);
+    /// <param name="ACreateFolder">
+    /// If set to True, create the folder of file parameter if it doesn't exists.
+    /// </param>
+    procedure MoveToFilePath(ANewFilePath: string; ASave: boolean = true;
+      ACreateFolder: boolean = False);
     /// <summary>
     /// Return the absolute path to the parameter file (drive+folder+file name+extension)
     /// </summary>
@@ -292,10 +296,18 @@ type
     /// <summary>
     /// Move actual parameter file to the new file.
     /// </summary>
-    /// <param name="AFilePath">
+    /// <param name="ANewFilePath">
     /// Absolute file path (drive+folder+file name+extension) to the parameter file you want to use.
     /// </param>
-    class procedure MoveToFilePath(AFilePath: string);
+    /// <param name="ASave">
+    /// If set to True, save actual values to the parameter file.
+    /// If set to false, just move the parameter file to it's new folder/filename.
+    /// </param>
+    /// <param name="ACreateFolder">
+    /// If set to True, create the folder of file parameter if it doesn't exists.
+    /// </param>
+    class procedure MoveToFilePath(ANewFilePath: string; ASave: boolean = true;
+      ACreateFolder: boolean = False);
     /// <summary>
     /// Return the absolute path to the parameter file (drive+folder+file name+extension)
     /// </summary>
@@ -485,13 +497,21 @@ begin
   end;
 end;
 
-procedure TParamsFile.MoveToFilePath(ANewFilePath: string; ASave: boolean);
+procedure TParamsFile.MoveToFilePath(ANewFilePath: string; ASave: boolean;
+  ACreateFolder: boolean);
 var
   oldFilePath: string;
+  NewPath: string;
 begin
   oldFilePath := getFilePath;
   if (oldFilePath <> ANewFilePath) then
   begin
+    NewPath := TPath.GetDirectoryName(ANewFilePath);
+    if not tdirectory.Exists(NewPath) then
+      if ACreateFolder then
+        tdirectory.CreateDirectory(NewPath)
+      else
+        raise Exception.Create('Folder "' + NewPath + '" doesn''t exist.');
     tfile.Move(oldFilePath, ANewFilePath);
     setFilePath(ANewFilePath, False);
     if ASave then
@@ -592,6 +612,8 @@ begin
   else
   begin
     FFolderName := TPath.GetDirectoryName(AFilePath);
+    if not tdirectory.Exists(FFolderName) then
+      raise Exception.Create('Folder "' + FFolderName + '" doesn''t exist.');
     FFileName := TPath.GetFileName(AFilePath);
   end;
   if AReload then
@@ -662,9 +684,10 @@ begin
   DefaultParamsFile.Load;
 end;
 
-class procedure TParams.MoveToFilePath(AFilePath: string);
+class procedure TParams.MoveToFilePath(ANewFilePath: string; ASave: boolean;
+  ACreateFolder: boolean);
 begin
-  DefaultParamsFile.MoveToFilePath(AFilePath);
+  DefaultParamsFile.MoveToFilePath(ANewFilePath, ASave, ACreateFolder);
 end;
 
 class procedure TParams.Save;
