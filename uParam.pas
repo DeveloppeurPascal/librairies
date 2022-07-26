@@ -30,7 +30,7 @@ unit uParam;
   https://github.com/DeveloppeurPascal/librairies
 
   Find explanations on
-  https://www.developpeur-pascal.fr/p/_5007-plutot-ini-ou-json-pour-stocker-vos-parametres.html
+  https://developpeur-pascal.fr/plutot-ini-ou-json-pour-stocker-vos-parametres.html
 
   Liste des mises à jour :
   => 11/05/2020, Patrick Prémartin :
