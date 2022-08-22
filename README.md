@@ -1,39 +1,21 @@
-# librairies
-Unités et composants réutilisables, boite à outils pour Delphi
+# My toolbox for Delphi projects
 
-Vous trouverez ici des unités contenant des procédures, fonctions, composants et classes utilisés dans mes projets. Ils peuvent également vous servir dans les vôtres.
+This repository contains functions, procedures and classes to use in Delphi projects (console, VCL, FireMonkey and others). It's my "everything reuseable things" toolbox.
 
-Ces sources seront mis à jour en fonction de mes besoins et de vos suggestions ou demandes.
+To know how to use those units and their features, look at samples in the "[DeveloppeurPascal/librairies-samples-and-tests](https://github.com/DeveloppeurPascal/librairies-samples-and-tests)" repository.
 
-Les sources présents ici sont liés au blog https://developpeur-pascal.fr et sont expliqués à travers ses nombreux articles de programmation en Pascal Object avec Delphi.
-
-Ces fichiers sont fournis en l'état, sans aucune garantie.
-En utilisant ces sources vous en acceptez toute responsabilité quant aux conséquences d'un éventuel dysfonctionnement, d'un piratage ou de pertes de données.
-
-Sauf mention contraire je reste le propriétaire des droits intellectuels concernant ces fichiers.
-Vous n'avez pas le droit de les revendre mais pouvez les utiliser dans vos projets personnels ou commerciaux.
-Vous ne pouvez pas diffuser ces sources en vous en attribuant la paternité ni sans mettre un lien vers ce compte GitHub ou le site https://developpeur-pascal.fr.
+Some features are [explained on my blog](https://developpeur-pascal.fr/librairies-publiques.html) or [live coded](https://serialstreameur.fr/librairies-et-composants.html).
 
 -----
 
-Vous pouvez [soutenir les projets sur lesquels je travaille](https://vasur.fr/sponsoropensource) et en profiter pour accéder à tout ce que je fais en ligne. Chaque abonnement compte pour me donner du temps pour travailer sur ces projets open source et produire les articles et les vidéos auxquels vous aurez accès depuis [Zone Abo](https://zone-abo.fr), [Serial Streameur](https://serialstreameur.fr) et [Apprendre Delphi](https://apprendre-delphi.fr).
+This project is part of "[DeveloppeurPascal/DevPas-Components-Pack](https://github.com/DeveloppeurPascal/DevPas-Components-Pack)" wich include all my public components and librairies projects for Delphi developers (sometimes also useable for Pascal/Object Pascal coders outside Delphi).
 
 -----
 
-Ce projet fait partie du "DevPas Components Pack" qui permet d'installer tous mes composants et librairies en une fois.
-https://github.com/DeveloppeurPascal/DevPas-Components-Pack
+It's also part of "[DeveloppeurPascal/_AllProjects](https://github.com/DeveloppeurPascal/_AllProjects)" repository wich installs all my GitHub content as submodules in subfolders.
 
 -----
 
-Si vous ne connaissez pas Delphi et le langage Pascal, profitez de la version Academic (pour les étudiants, enseignants et établissements d'enseignement) ou Community Edition (gratuite pour une utilisation personnelle) disponibles chez Embarcadero (rubrique "outils gratuits").
-En entreprise vous pouvez aussi tester Delphi avec la version d'évaluation.
-https://www.embarcadero.com/products/delphi
+If you don't know [Delphi](https://www.embarcadero.com/products/delphi), look at [this learning resources directory](https://delphi-resources.developpeur-pascal.fr/index-en.html) and try my preferred IDE and programing language. A Community Edition and a Trial edition are available for free to download from [Embarcadero Technologies](https://www.embarcadero.com).
 
-Cette formation en ligne gratuite vous apprendra les bases de la programmation avec le Pascal et Delphi même si vous n'avez jamais appris à programmer :
-https://apprendre-delphi.fr/apprendre-la-programmation-avec-delphi/
-
-Des conférences en ligne et des webinaires (points techniques sur des sujets précis) sont organisés régulièrement. Consultez [le planning de ces webinaires](https://developpeur-pascal.fr/webinaires.html) et regardez les [rediffusions des webinaires Delphi](https://serialstreameur.fr/webinaires-delphi.php).
-
-Des sessions de [live coding sur Twitch](https://www.twitch.tv/patrickpremartin) ou [la chaîne YouTube Developpeur Pascal](https://www.youtube.com/channel/UCk_LmkBB90jdEdmfF77W6qQ) sont également organisées régulièrement. Pour Twitch vous pouvez consulter [le planning hebdomadaire](https://www.twitch.tv/patrickpremartin/schedule). Vous pouvez aussi vous reporter à [cet article](https://developpeur-pascal.fr/livestreams-de-codage-en-direct-avec-delphi.html). Pour les rediffusions de tout ça, rendez-vous simplement dans la [rubrique live coding](https://serialstreameur.fr/live-coding.php) de [Serial Streameur](https://serialstreameur.fr/) où vous trouverez de nombreuses vidéos en français à destination des développeurs de logiciels, applications mobiles, sites web et jeux vidéo.
-
-Enfin, si vous préférez la lecture à la vidéo, vous trouverez tous les livres récents publiés sur Delphi et le langage Pascal sur [Delphi Books](https://delphi-books.com)
+You'll also find training courses to learn Delphi and Pascal language in French on [Apprendre Delphi](https://apprendre-delphi.fr) and [resources in other languages on this directory](https://delphi-resources.developpeur-pascal.fr/).
