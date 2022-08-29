@@ -16,20 +16,26 @@ type
 
   TOlfFMXTextImageFrame = class(TFrame)
   private
-    FTexte: string;
-    FFonte: TCustomImageList;
+    FText: string;
+    FFont: TCustomImageList;
     FOnGetImageIndexOfUnknowChar: TOlfFMXTIFOnGetImageIndexOfUnknowChar;
-    procedure SetFonte(const Value: TCustomImageList);
-    procedure SetTexte(const Value: string);
+    FLetterSpacing: single;
+    FSpaceWidth, FRealSpaceWidth: single;
+    procedure SetFont(const Value: TCustomImageList);
+    procedure SetText(const Value: string);
     procedure SetOnGetImageIndexOfUnknowChar(const Value
       : TOlfFMXTIFOnGetImageIndexOfUnknowChar);
+    procedure SetLetterSpacing(const Value: single);
+    procedure SetSpaceWidth(const Value: single);
   protected
     function AjoutImageEtRetourneLargeur(AImages: TCustomImageList;
       AImageIndex: TImageIndex; AX: single): single;
     procedure RefreshTexte;
   public
-    property Fonte: TCustomImageList read FFonte write SetFonte;
-    property Texte: string read FTexte write SetTexte;
+    property Font: TCustomImageList read FFont write SetFont;
+    property Text: string read FText write SetText;
+    property SpaceWidth: single read FSpaceWidth write SetSpaceWidth;
+    property LetterSpacing: single read FLetterSpacing write SetLetterSpacing;
     property OnGetImageIndexOfUnknowChar: TOlfFMXTIFOnGetImageIndexOfUnknowChar
       read FOnGetImageIndexOfUnknowChar write SetOnGetImageIndexOfUnknowChar;
     constructor Create(AOwner: TComponent); override;
@@ -81,18 +87,21 @@ constructor TOlfFMXTextImageFrame.Create(AOwner: TComponent);
 begin
   inherited;
   name := '';
-  FFonte := nil;
-  FTexte := '';
+  FFont := nil;
+  FText := '';
+  FLetterSpacing := 0;
+  FSpaceWidth := 0;
+  FRealSpaceWidth := 0;
   FOnGetImageIndexOfUnknowChar := nil;
 end;
 
 function TOlfFMXTextImageFrame.getImageIndexOfChar(AChar: string): integer;
 begin
   result := 0;
-  while (result < FFonte.Count) and
-    (FFonte.Destination[result].Layers[0].Name <> AChar) do
+  while (result < FFont.Count) and
+    (FFont.Destination[result].Layers[0].Name <> AChar) do
     inc(result);
-  if (result >= FFonte.Count) then
+  if (result >= FFont.Count) then
     result := -1;
 end;
 
@@ -107,13 +116,44 @@ begin
       children[i].Free;
 
   x := 0;
-  if assigned(FFonte) and (FTexte.Length > 0) then
-    for i := 0 to FTexte.Length - 1 do
+  if assigned(FFont) and (FText.Length > 0) then
+    for i := 0 to FText.Length - 1 do
     begin
-      idx := getImageIndexOfChar(FTexte.Chars[i]);
+      idx := getImageIndexOfChar(FText.Chars[i]);
       if (idx < 0) and assigned(FOnGetImageIndexOfUnknowChar) then
-        idx := FOnGetImageIndexOfUnknowChar(self, FTexte.Chars[i]);
-      x := x + AjoutImageEtRetourneLargeur(FFonte, idx, x);
+        idx := FOnGetImageIndexOfUnknowChar(self, FText.Chars[i]);
+      if (idx >= 0) then
+        x := x + AjoutImageEtRetourneLargeur(FFont, idx, x) + FLetterSpacing
+      else if (FText.Chars[i] = ' ') then
+      begin
+        if (FRealSpaceWidth < 1) then
+        begin
+          idx := getImageIndexOfChar('.');
+          if (idx < 0) and assigned(FOnGetImageIndexOfUnknowChar) then
+            idx := FOnGetImageIndexOfUnknowChar(self, '.');
+          if (idx >= 0) then
+            FRealSpaceWidth := RetourneLargeur(FFont, idx);
+
+          idx := getImageIndexOfChar('i');
+          if (idx < 0) and assigned(FOnGetImageIndexOfUnknowChar) then
+            idx := FOnGetImageIndexOfUnknowChar(self, 'i');
+          if (idx >= 0) then
+            FRealSpaceWidth := RetourneLargeur(FFont, idx);
+
+          idx := getImageIndexOfChar('I');
+          if (idx < 0) and assigned(FOnGetImageIndexOfUnknowChar) then
+            idx := FOnGetImageIndexOfUnknowChar(self, 'I');
+          if (idx >= 0) then
+            FRealSpaceWidth := RetourneLargeur(FFont, idx);
+
+          idx := getImageIndexOfChar('1');
+          if (idx < 0) and assigned(FOnGetImageIndexOfUnknowChar) then
+            idx := FOnGetImageIndexOfUnknowChar(self, '1');
+          if (idx >= 0) then
+            FRealSpaceWidth := RetourneLargeur(FFont, idx);
+        end;
+        x := x + FRealSpaceWidth;
+      end;
     end;
 
   Width := x;
@@ -135,11 +175,17 @@ begin
   end;
 end;
 
-procedure TOlfFMXTextImageFrame.SetFonte(const Value: TCustomImageList);
+procedure TOlfFMXTextImageFrame.SetFont(const Value: TCustomImageList);
 begin
-  FFonte := Value;
-  if (FTexte.Length > 0) then
+  FFont := Value;
+  FRealSpaceWidth := FSpaceWidth;
+  if (FText.Length > 0) then
     RefreshTexte;
+end;
+
+procedure TOlfFMXTextImageFrame.SetLetterSpacing(const Value: single);
+begin
+  FLetterSpacing := Value;
 end;
 
 procedure TOlfFMXTextImageFrame.SetOnGetImageIndexOfUnknowChar
@@ -148,10 +194,16 @@ begin
   FOnGetImageIndexOfUnknowChar := Value;
 end;
 
-procedure TOlfFMXTextImageFrame.SetTexte(const Value: string);
+procedure TOlfFMXTextImageFrame.SetSpaceWidth(const Value: single);
 begin
-  FTexte := Value;
-  if not assigned(FFonte) then
+  FSpaceWidth := Value;
+  FRealSpaceWidth := FSpaceWidth;
+end;
+
+procedure TOlfFMXTextImageFrame.SetText(const Value: string);
+begin
+  FText := Value;
+  if not assigned(FFont) then
     exit;
   RefreshTexte;
 end;
