@@ -1,3 +1,5 @@
-- renammed Texte and Fonte properties,
-- added SpaceWidth and LetterSpacing (#13) properties,
-- managed SPACE character even if it's not in the font TImageList (#12)
+# 20220829 - [DeveloppeurPascal](https://github.com/DeveloppeurPascal)
+
+* renammed Texte and Fonte properties,
+* added SpaceWidth and LetterSpacing (#13) properties,
+* managed SPACE character even if it's not in the font TImageList (#12)

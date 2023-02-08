@@ -1,2 +1,4 @@
-- display graphical text from characters in an image list
-- moved TODOs to GitHub issues https://github.com/DeveloppeurPascal/lib…
+# 20220829 - [DeveloppeurPascal](https://github.com/DeveloppeurPascal)
+
+* display graphical text from characters in an image list
+* moved TODOs to GitHub issues https://github.com/DeveloppeurPascal/librairies/issues
