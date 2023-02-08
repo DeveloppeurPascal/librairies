@@ -2,7 +2,9 @@ unit f_operation_en_cours;
 
 interface
 
-Procedure oec_Ouverture (nb_operation: cardinal);
+uses System.Classes, Vcl.Controls, Vcl.ComCtrls;
+
+Procedure oec_Ouverture(nb_operation: cardinal);
 Procedure oec_Operation_Suivante;
 Procedure oec_Fermeture;
 
@@ -11,8 +13,7 @@ implementation
 {$R *.DFM}
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ComCtrls;
+  Windows, Messages, SysUtils, Graphics, Forms, Dialogs;
 
 type
   Tfrm = class(TForm)
@@ -26,9 +27,10 @@ type
 var
   frm: Tfrm;
 
-Procedure oec_Ouverture (nb_operation: cardinal);
+Procedure oec_Ouverture(nb_operation: cardinal);
 begin
-  if (frm = nil) then frm := Tfrm.Create (Nil);
+  if (frm = nil) then
+    frm := Tfrm.Create(Nil);
   try
     frm.ProgressBar1.Min := 0;
     frm.ProgressBar1.Max := nb_operation;
@@ -45,7 +47,8 @@ end;
 
 Procedure oec_Operation_Suivante;
 begin
-  if (frm = nil) then oec_Ouverture (0);
+  if (frm = nil) then
+    oec_Ouverture(0);
   try
     frm.ProgressBar1.StepIt;
   except
@@ -59,7 +62,8 @@ end;
 
 Procedure oec_Fermeture;
 begin
-  if (frm = nil) then oec_Ouverture (0);
+  if (frm = nil) then
+    oec_Ouverture(0);
   try
     frm.Hide;
   except
@@ -72,14 +76,16 @@ begin
 end;
 
 initialization
-  frm := nil;
+
+frm := nil;
 
 finalization
-  if (frm <> nil)
-  then
-    begin
-      frm.Free;
-      frm := nil;
-    end;
-  {endif}
+
+if (frm <> nil) then
+begin
+  frm.Free;
+  frm := nil;
+end;
+
+{ endif }
 end.
