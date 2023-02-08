@@ -1,0 +1,8 @@
+# 20230208 - [DeveloppeurPascal](https://github.com/DeveloppeurPascal)
+
+* replace MIT liense by AGPL license
+* added Olf.RTL.Language.pas unit to get current language code of the operating system
+* deprecated u-langue.pas unit, use Olf.RTL.Language.pas instead
+* updated old change log files
+* updated README.md and LISEZMOI.md files
+* updated f_operation.pas unit during [PhotoAlbumGenerator](https://github.com/DeveloppeurPascal/photo-album-generator) upgrade to Delphi 11.2 Alexandria
