@@ -3,22 +3,28 @@ unit Olf.RTL.Streams;
 interface
 
 uses
+  System.SysUtils,
   System.Classes;
 
-procedure SaveStringToStream(AString: string; AStream: TStream);
-function LoadStringFromStream(AStream: TStream): string;
+procedure SaveStringToStream(AString: string; AStream: TStream); overload;
+procedure SaveStringToStream(AString: string; AStream: TStream; AEncoding: TEncoding); overload;
+
+function LoadStringFromStream(AStream: TStream): string; overload;
+function LoadStringFromStream(AStream: TStream; AEncoding: TEncoding): string; overload;
 
 implementation
 
-uses
-  System.SysUtils;
-
 procedure SaveStringToStream(AString: string; AStream: TStream);
+begin
+  SaveStringToStream(AString, AStream, TEncoding.UTF8);
+end;
+
+procedure SaveStringToStream(AString: string; AStream: TStream; AEncoding: TEncoding);
 var
   StrLen: int64; // typeof(System.Classes.TStream.size)
   StrStream: TStringStream;
 begin
-  StrStream := TStringStream.Create(AString, tencoding.utf8);
+  StrStream := TStringStream.Create(AString, AEncoding);
   try
     StrLen := StrStream.Size;
     AStream.write(StrLen, sizeof(StrLen));
@@ -33,6 +39,11 @@ begin
 end;
 
 function LoadStringFromStream(AStream: TStream): string;
+begin
+  Result := LoadStringFromStream(AStream, TEncoding.UTF8);
+end;
+
+function LoadStringFromStream(AStream: TStream; AEncoding: TEncoding): string;
 var
   StrLen: int64; // typeof(System.Classes.TStream.size)
   StrStream: TStringStream;
@@ -40,7 +51,7 @@ begin
   AStream.Read(StrLen, sizeof(StrLen));
   if (StrLen > 0) then
   begin
-    StrStream := TStringStream.Create;
+    StrStream := TStringStream.Create('', AEncoding);
     try
       StrStream.CopyFrom(AStream, StrLen);
       result := StrStream.DataString;
