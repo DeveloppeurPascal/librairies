@@ -6,9 +6,8 @@ unit uKeyboardSpecialKeyTest;
 
   Liste des modifications :
   04/04/2017, Patrick Prémartin (Olf Software) : version Windows/Mac du programme (utilisable en VCL et Firemonkey)
+  28/08/2023, pprem : updated for iOS/Android and Linux
 }
-
-// (c) Patrick Prémartin / Olf Software 07/2017
 
 interface
 
@@ -133,10 +132,13 @@ begin
 {$IF Defined(MSWINDOWS)}
   result := isWindowsDown(Position);
 {$ELSEIF Defined(IOS)}
+result := false;
 {$ELSEIF Defined(MACOS)}
   result := isKeyDown(tKeyboardSpecialKeyTestKeycode.command, Position);
 {$ELSEIF Defined(ANDROID)}
+result := false;
 {$ELSEIF Defined(LINUX)}
+result := false;
 {$ENDIF}
 end;
 
@@ -158,10 +160,13 @@ begin
 {$IF Defined(MSWINDOWS)}
   result := isKeyDown(tKeyboardSpecialKeyTestKeycode.windows, Position);
 {$ELSEIF Defined(IOS)}
+result := false;
 {$ELSEIF Defined(MACOS)}
   result := isCommandDown(Position);
 {$ELSEIF Defined(ANDROID)}
+result := false;
 {$ELSEIF Defined(LINUX)}
+result := false;
 {$ENDIF}
 end;
 
