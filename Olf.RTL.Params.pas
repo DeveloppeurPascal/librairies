@@ -51,6 +51,8 @@ unit Olf.RTL.Params;
   *     ajout de la classe TParamsFile pour rendre possible la manipulation de plusieurs fichiers de paramètres si on en a besoin
   *     ajout de MoveToFilePath() pour déplacer le fichier de paramètres actuel
   *     ajout de setValue et getValue pour des TJSONValue et ses descendants
+  => 31/12/2023, Patrick Prémartin :
+  *     ajout d'une variante "cardinal" du getValue() et SetValue()
 }
 interface
 
@@ -105,6 +107,10 @@ type
     /// </summary>
     function getValue(key: string; default: boolean = False): boolean; overload;
     /// <summary>
+    /// Get the cardinal value for key parameter with zero as default value
+    /// </summary>
+    function getValue(key: string; default: cardinal = 0): cardinal; overload;
+    /// <summary>
     /// Get the integer value for key parameter with zero as default value
     /// </summary>
     function getValue(key: string; default: integer = 0): integer; overload;
@@ -129,6 +135,10 @@ type
     /// Set the value for key parameter as boolean
     /// </summary>
     procedure setValue(key: string; value: boolean); overload;
+    /// <summary>
+    /// Set the value for key parameter as cardinal
+    /// </summary>
+    procedure setValue(key: string; value: cardinal); overload;
     /// <summary>
     /// Set the value for key parameter as integer
     /// </summary>
@@ -230,6 +240,11 @@ type
     class function getValue(key: string; default: integer = 0)
       : integer; overload;
     /// <summary>
+    /// Get the cardinal value for key parameter with zero as default value
+    /// </summary>
+    class function getValue(key: string; default: cardinal = 0)
+      : integer; overload;
+    /// <summary>
     /// Get the single value for key parameter with zero as default value
     /// </summary>
     class function getValue(key: string; default: single = 0): single; overload;
@@ -255,6 +270,10 @@ type
     /// Set the value for key parameter as integer
     /// </summary>
     class procedure setValue(key: string; value: integer); overload;
+    /// <summary>
+    /// Set the value for key parameter as cardinal
+    /// </summary>
+    class procedure setValue(key: string; value: cardinal); overload;
     /// <summary>
     /// Set the value for key parameter as single
     /// </summary>
@@ -378,6 +397,18 @@ begin
     FParamList.RemovePair(key).Free;
   FParamList.AddPair(key, value);
   FParamChanged := true;
+end;
+
+procedure TParamsFile.setValue(key: string; value: cardinal);
+var
+  jsonvalue: TJSONNumber;
+begin
+  jsonvalue := TJSONNumber.Create(value);
+  try
+    setParamValue(key, jsonvalue);
+  except
+    jsonvalue.Free;
+  end;
 end;
 
 function TParamsFile.getValue(key: string; default: boolean): boolean;
@@ -634,6 +665,17 @@ begin
     result := default;
 end;
 
+function TParamsFile.getValue(key: string; default: cardinal): cardinal;
+var
+  jsonvalue: TJSONValue;
+begin
+  jsonvalue := getParamValue(key);
+  if assigned(jsonvalue) then
+    result := jsonvalue.value.ToInt64
+  else
+    result := default;
+end;
+
 procedure TParamsFile.setValue(key: string; value: TJSONValue);
 begin
   setParamValue(key, value);
@@ -740,7 +782,17 @@ begin
   result := DefaultParamsFile.getValue(key, default);
 end;
 
+class function TParams.getValue(key: string; default: cardinal): integer;
+begin
+  result := DefaultParamsFile.getValue(key, default);
+end;
+
 class procedure TParams.setValue(key: string; value: TJSONValue);
+begin
+  DefaultParamsFile.setValue(key, value);
+end;
+
+class procedure TParams.setValue(key: string; value: cardinal);
 begin
   DefaultParamsFile.setValue(key, value);
 end;
