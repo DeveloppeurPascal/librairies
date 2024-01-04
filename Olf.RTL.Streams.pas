@@ -1,5 +1,16 @@
 unit Olf.RTL.Streams;
 
+// *****************************************************************************
+// * Delphi and PAscal libraries
+// * (c) Patrick Prémartin
+// *****************************************************************************
+//
+// This unit is distributed under AGPL v3 license.
+// Please check it's repository for the terms of use and updates at
+// https://github.com/DeveloppeurPascal/librairies
+//
+// This file was updated on the 2023-08-28
+
 interface
 
 uses
