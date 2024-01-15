@@ -1,16 +1,5 @@
 unit Olf.RTL.Streams;
 
-// *****************************************************************************
-// * Delphi and PAscal libraries
-// * (c) Patrick Prémartin
-// *****************************************************************************
-//
-// This unit is distributed under AGPL v3 license.
-// Please check it's repository for the terms of use and updates at
-// https://github.com/DeveloppeurPascal/librairies
-//
-// This file was updated on the 2023-08-28
-
 interface
 
 uses
@@ -18,10 +7,16 @@ uses
   System.Classes;
 
 procedure SaveStringToStream(AString: string; AStream: TStream); overload;
-procedure SaveStringToStream(AString: string; AStream: TStream; AEncoding: TEncoding); overload;
+procedure SaveStringToStream(AString: string; AStream: TStream;
+  AEncoding: TEncoding); overload;
 
 function LoadStringFromStream(AStream: TStream): string; overload;
-function LoadStringFromStream(AStream: TStream; AEncoding: TEncoding): string; overload;
+function LoadStringFromStream(AStream: TStream; AEncoding: TEncoding)
+  : string; overload;
+
+function LoadSubStreamFromStream(const AFromStream, AToSubStream
+  : TStream): boolean;
+procedure SaveSubStreamToStream(const AFromSubStream, AToStream: TStream);
 
 implementation
 
@@ -30,7 +25,8 @@ begin
   SaveStringToStream(AString, AStream, TEncoding.UTF8);
 end;
 
-procedure SaveStringToStream(AString: string; AStream: TStream; AEncoding: TEncoding);
+procedure SaveStringToStream(AString: string; AStream: TStream;
+  AEncoding: TEncoding);
 var
   StrLen: int64; // typeof(System.Classes.TStream.size)
   StrStream: TStringStream;
@@ -65,13 +61,46 @@ begin
     StrStream := TStringStream.Create('', AEncoding);
     try
       StrStream.CopyFrom(AStream, StrLen);
-      result := StrStream.DataString;
+      Result := StrStream.DataString;
     finally
       StrStream.Free;
     end;
   end
   else
-    result := '';
+    Result := '';
+end;
+
+function LoadSubStreamFromStream(const AFromStream, AToSubStream
+  : TStream): boolean;
+var
+  Size: int64;
+begin
+  if not assigned(AFromStream) then
+    raise exception.Create('Need a FromStream instance !');
+  if not assigned(AToSubStream) then
+    raise exception.Create('Need a ToStream instance !');
+
+  Result := (AFromStream.ReadData(Size) = sizeof(Size));
+  if Result then
+    AToSubStream.CopyFrom(AFromStream, Size);
+end;
+
+procedure SaveSubStreamToStream(const AFromSubStream, AToStream: TStream);
+var
+  Size: int64;
+begin
+  if not assigned(AFromSubStream) then
+    raise exception.Create('Need a FromStream instance !');
+  if not assigned(AToStream) then
+    raise exception.Create('Need a ToStream instance !');
+
+  Size := AFromSubStream.Size;
+  AToStream.WriteData(Size);
+  if (Size > 0) then
+  begin
+    AFromSubStream.Position := 0;
+    AToStream.CopyFrom(AFromSubStream, Size);
+  end;
 end;
 
 end.
