@@ -16,7 +16,7 @@ uses
 
 uses
   winapi.Windows,
-  Win.Registry;
+  System.Win.Registry;
 
 const
   CRegKey = 'Software\Microsoft\Windows\CurrentVersion\Themes\Personalize';
@@ -40,7 +40,7 @@ begin
   else
     result := true;
 {$ELSE}
-  // inspired from WindowsDarkMode.pas from https://github.com/checkdigits/delphidarkmode
+  // inspired by unit WindowsDarkMode.pas from Ian Barker at https://github.com/checkdigits/delphidarkmode
   reg := TRegistry.Create(KEY_READ);
   try
     reg.RootKey := HKEY_CURRENT_USER;
