@@ -20,18 +20,26 @@ begin
   if not assigned(AToStream) then
     raise exception.create('Need an existing stream to save the bitmap !');
 
-  ms := TMemoryStream.create;
-  try
-    ABitmap.SaveToStream(ms);
-    size := ms.size;
+  if not assigned(ABitmap) then
+  begin
+    size := 0;
     AToStream.WriteData(size);
-    if (size > 0) then
-    begin
-      ms.Position := 0;
-      AToStream.CopyFrom(ms, size);
+  end
+  else
+  begin
+    ms := TMemoryStream.create;
+    try
+      ABitmap.SaveToStream(ms);
+      size := ms.size;
+      AToStream.WriteData(size);
+      if (size > 0) then
+      begin
+        ms.Position := 0;
+        AToStream.CopyFrom(ms, size);
+      end;
+    finally
+      ms.free;
     end;
-  finally
-    ms.free;
   end;
 end;
 
@@ -52,7 +60,8 @@ begin
       ms.CopyFrom(AFromStream, size);
       ms.Position := 0;
       result := TBitmap.create;
-      result.LoadFromStream(ms);
+      if (size > 0) then
+        result.LoadFromStream(ms);
     end;
   finally
     ms.free;
