@@ -213,6 +213,13 @@ type
     /// </remarks>
     procedure setFilePath(AFilePath: string; AReload: boolean = true);
     /// <summary>
+    /// Initialise the folder&filename with a new default tree:
+    /// => "Documents / Editor / Software" for DEBUG and iOS
+    /// => "AppData (HomePath) / Editor / Software" in RELEASE (except iOS)
+    /// </summary>
+    procedure InitDefaultFileNameV2(Const AEditor, ASoftware: string;
+      AReload: boolean = true);
+    /// <summary>
     /// Move actual parameter file to the new file.
     /// </summary>
     /// <param name="ANewFilePath">
@@ -409,6 +416,13 @@ type
     /// </remarks>
     class procedure setFilePath(AFilePath: string; AReload: boolean = true);
     /// <summary>
+    /// Initialise the folder&filename with a new default tree:
+    /// => "Documents / Editor / Software" for DEBUG and iOS
+    /// => "AppData (HomePath) / Editor / Software" in RELEASE (except iOS)
+    /// </summary>
+    class procedure InitDefaultFileNameV2(Const AEditor, ASoftware: string;
+      AReload: boolean = true);
+    /// <summary>
     /// Move actual parameter file to the new file.
     /// </summary>
     /// <param name="ANewFilePath">
@@ -487,7 +501,7 @@ uses
 
 { TParamsFile }
 
-function TParamsFile.getParamsFileName(ACreateFolder: boolean = False): string;
+function TParamsFile.getParamsFileName(ACreateFolder: boolean): string;
 var
   folder: string;
   filename: string;
@@ -500,10 +514,10 @@ begin
   begin
 {$IF Defined(DEBUG)}
     filename := app_name + '-debug.par';
-{$ELSE if Defined(RELEASE)}
+{$ELSE IF Defined(RELEASE)}
     filename := app_name + '.par';
 {$ELSE}
-{$MESSAGE FATAL 'setup problem'}
+{$MESSAGE FATAL 'not implemented'}
 {$ENDIF} end
   else
     filename := FFileName;
@@ -876,6 +890,39 @@ begin
     result := default;
 end;
 
+procedure TParamsFile.InitDefaultFileNameV2(const AEditor, ASoftware: string;
+  AReload: boolean);
+var
+  folder: string;
+begin
+  if AEditor.IsEmpty and ASoftware.IsEmpty then
+    raise Exception.Create('Needs at least an Editor or Software name.');
+
+{$IF Defined(DEBUG) or Defined(IOS)}
+  folder := TPath.GetDocumentsPath;
+{$ELSE IF Defined(RELEASE)}
+  folder := TPath.GetHomePath;
+{$ELSE}
+{$MESSAGE FATAL 'not implemented'}
+{$ENDIF}
+  //
+  if not AEditor.IsEmpty then
+{$IFDEF DEBUG}
+    folder := TPath.Combine(folder, AEditor + '-DEBUG');
+{$ELSE}
+    folder := TPath.Combine(folder, AEditor);
+{$ENDIF}
+  //
+  if not ASoftware.IsEmpty then
+{$IFDEF DEBUG}
+    folder := TPath.Combine(folder, ASoftware + '-DEBUG');
+{$ELSE}
+    folder := TPath.Combine(folder, ASoftware);
+{$ENDIF}
+  //
+  setFolderName(folder, AReload);
+end;
+
 function TParamsFile.getValue(key: string; default: cardinal): cardinal;
 var
   jsonvalue: TJSONValue;
@@ -1071,6 +1118,12 @@ end;
 class function TParams.getValue(key: string; default: TJSONValue): TJSONValue;
 begin
   result := DefaultParamsFile.getValue(key, default);
+end;
+
+class procedure TParams.InitDefaultFileNameV2(const AEditor, ASoftware: string;
+  AReload: boolean);
+begin
+  DefaultParamsFile.InitDefaultFileNameV2(AEditor, ASoftware, AReload);
 end;
 
 class function TParams.getValue(key: string; default: cardinal): integer;
