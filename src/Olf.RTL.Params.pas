@@ -60,6 +60,7 @@ uses
   System.JSON;
 
 type
+
   /// <summary>
   /// TParamsFile work as an instance of a settings file.
   /// You can have more than one instance for more than 1 settings file.
@@ -354,7 +355,10 @@ type
 implementation
 
 uses
-  System.Generics.collections, System.IOUtils, System.SysUtils, System.Classes;
+  System.Generics.collections,
+  System.IOUtils,
+  System.SysUtils,
+  System.Classes;
 
 { TParamsFile }
 
