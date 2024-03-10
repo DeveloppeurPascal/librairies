@@ -60,6 +60,10 @@ uses
   System.JSON;
 
 type
+  /// <summary>
+  /// TParamsFile work as an instance of a settings file.
+  /// You can have more than one instance for more than 1 settings file.
+  /// </summary>
   TParamsFile = class(TObject)
   private
     FParamChanged: boolean;
@@ -214,6 +218,12 @@ type
     function AsJSONObject(AClone: boolean = true): TJSONObject;
   end;
 
+  /// <summary>
+  /// Use TParams with its class methods if you only want to manage one settings file. If you need more than 1 file to store your settings in the same project, crreate instances of TParamsFile instead of using TParams.
+  /// </summary>
+  /// <remarks>
+  /// TParams is here for compatibility with old projects.
+  /// </remarks>
   TParams = class(TObject)
   public
     /// <summary>
