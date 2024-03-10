@@ -60,6 +60,16 @@ uses
   System.JSON;
 
 type
+  TParamsFile = class;
+
+  /// <summary>
+  /// Method signature for load/save events in TParamsFile
+  /// </summary>
+  TParamsLoadSaveEvent = procedure(Const AParamsFile: TParamsFile) of object;
+  /// <summary>
+  /// Procedure signature for load/save events in TParamsFile
+  /// </summary>
+  TParamsLoadSaveProc = reference to procedure(Const AParamsFile: TParamsFile);
 
   /// <summary>
   /// TParamsFile work as an instance of a settings file.
@@ -71,10 +81,26 @@ type
     FParamList: TJSONObject;
     FFolderName: string;
     FFileName: string;
+    FonAfterSaveEvent: TParamsLoadSaveEvent;
+    FonBeforeLoadEvent: TParamsLoadSaveEvent;
+    FonBeforeSaveEvent: TParamsLoadSaveEvent;
+    FonAfterLoadEvent: TParamsLoadSaveEvent;
+    FonAfterSaveProc: TParamsLoadSaveProc;
+    FonBeforeLoadProc: TParamsLoadSaveProc;
+    FonBeforeSaveProc: TParamsLoadSaveProc;
+    FonAfterLoadProc: TParamsLoadSaveProc;
+    procedure SetonAfterLoadEvent(const Value: TParamsLoadSaveEvent);
+    procedure SetonAfterSaveEvent(const Value: TParamsLoadSaveEvent);
+    procedure SetonBeforeLoadEvent(const Value: TParamsLoadSaveEvent);
+    procedure SetonBeforeSaveEvent(const Value: TParamsLoadSaveEvent);
+    procedure SetonAfterLoadProc(const Value: TParamsLoadSaveProc);
+    procedure SetonAfterSaveProc(const Value: TParamsLoadSaveProc);
+    procedure SetonBeforeLoadProc(const Value: TParamsLoadSaveProc);
+    procedure SetonBeforeSaveProc(const Value: TParamsLoadSaveProc);
   protected
     function getParamsFileName(ACreateFolder: boolean = False): string;
     function getParamValue(key: string): TJSONValue;
-    procedure setParamValue(key: string; value: TJSONValue);
+    procedure setParamValue(key: string; Value: TJSONValue);
   public
     /// <summary>
     /// Class constructor wich just initialize private fields.
@@ -135,31 +161,31 @@ type
     /// <summary>
     /// Set the value for key parameter as string
     /// </summary>
-    procedure setValue(key, value: string); overload;
+    procedure setValue(key, Value: string); overload;
     /// <summary>
     /// Set the value for key parameter as boolean
     /// </summary>
-    procedure setValue(key: string; value: boolean); overload;
+    procedure setValue(key: string; Value: boolean); overload;
     /// <summary>
     /// Set the value for key parameter as cardinal
     /// </summary>
-    procedure setValue(key: string; value: cardinal); overload;
+    procedure setValue(key: string; Value: cardinal); overload;
     /// <summary>
     /// Set the value for key parameter as integer
     /// </summary>
-    procedure setValue(key: string; value: integer); overload;
+    procedure setValue(key: string; Value: integer); overload;
     /// <summary>
     /// Set the value for key parameter as single
     /// </summary>
-    procedure setValue(key: string; value: single); overload;
+    procedure setValue(key: string; Value: single); overload;
     /// <summary>
     /// Set the value for key parameter as TDateTime
     /// </summary>
-    procedure setValue(key: string; value: TDateTime); overload;
+    procedure setValue(key: string; Value: TDateTime); overload;
     /// <summary>
     /// Set the value for key parameter as TJSONValue
     /// </summary>
-    procedure setValue(key: string; value: TJSONValue); overload;
+    procedure setValue(key: string; Value: TJSONValue); overload;
     /// <summary>
     /// Change the folder where is the parameter file.
     /// </summary>
@@ -217,6 +243,40 @@ type
     /// If set to False, the result is a reference to the internal JSON object. All changes are made to it. Don't destroy it or you'll have Access Violation exception.
     /// </param>
     function AsJSONObject(AClone: boolean = true): TJSONObject;
+    /// <summary>
+    /// Called before loading the settings file.
+    /// </summary>
+    /// <remarks>
+    /// Also called for Cancel operation (which reload the file).
+    /// </remarks>
+    property onBeforeLoadEvent: TParamsLoadSaveEvent read FonBeforeLoadEvent
+      write SetonBeforeLoadEvent;
+    property onBeforeLoadProc: TParamsLoadSaveProc read FonBeforeLoadProc
+      write SetonBeforeLoadProc;
+    /// <summary>
+    /// Called after loading the settings file
+    /// </summary>
+    /// <remarks>
+    /// Also called for Cancel operation (which reload the file).
+    /// </remarks>
+    property onAfterLoadEvent: TParamsLoadSaveEvent read FonAfterLoadEvent
+      write SetonAfterLoadEvent;
+    property onAfterLoadProc: TParamsLoadSaveProc read FonAfterLoadProc
+      write SetonAfterLoadProc;
+    /// <summary>
+    /// Called before saving the settings file
+    /// </summary>
+    property onBeforeSaveEvent: TParamsLoadSaveEvent read FonBeforeSaveEvent
+      write SetonBeforeSaveEvent;
+    property onBeforeSaveProc: TParamsLoadSaveProc read FonBeforeSaveProc
+      write SetonBeforeSaveProc;
+    /// <summary>
+    /// Called after saving the settings file
+    /// </summary>
+    property onAfterSaveEvent: TParamsLoadSaveEvent read FonAfterSaveEvent
+      write SetonAfterSaveEvent;
+    property onAfterSaveProc: TParamsLoadSaveProc read FonAfterSaveProc
+      write SetonAfterSaveProc;
   end;
 
   /// <summary>
@@ -226,6 +286,31 @@ type
   /// TParams is here for compatibility with old projects.
   /// </remarks>
   TParams = class(TObject)
+  private
+    class procedure SetonAfterLoadEvent(const Value
+      : TParamsLoadSaveEvent); static;
+    class procedure SetonAfterLoadProc(const Value
+      : TParamsLoadSaveProc); static;
+    class procedure SetonAfterSaveEvent(const Value
+      : TParamsLoadSaveEvent); static;
+    class procedure SetonAfterSaveProc(const Value
+      : TParamsLoadSaveProc); static;
+    class procedure SetonBeforeLoadEvent(const Value
+      : TParamsLoadSaveEvent); static;
+    class procedure SetonBeforeLoadProc(const Value
+      : TParamsLoadSaveProc); static;
+    class procedure SetonBeforeSaveEvent(const Value
+      : TParamsLoadSaveEvent); static;
+    class procedure SetonBeforeSaveProc(const Value
+      : TParamsLoadSaveProc); static;
+    class function GetonAfterLoadEvent: TParamsLoadSaveEvent; static;
+    class function GetonAfterLoadProc: TParamsLoadSaveProc; static;
+    class function GetonAfterSaveEvent: TParamsLoadSaveEvent; static;
+    class function GetonAfterSaveProc: TParamsLoadSaveProc; static;
+    class function GetonBeforeLoadEvent: TParamsLoadSaveEvent; static;
+    class function GetonBeforeLoadProc: TParamsLoadSaveProc; static;
+    class function GetonBeforeSaveEvent: TParamsLoadSaveEvent; static;
+    class function GetonBeforeSaveProc: TParamsLoadSaveProc; static;
   public
     /// <summary>
     /// Save current parameters to actual parameter file
@@ -272,31 +357,31 @@ type
     /// <summary>
     /// Set the value for key parameter as string
     /// </summary>
-    class procedure setValue(key, value: string); overload;
+    class procedure setValue(key, Value: string); overload;
     /// <summary>
     /// Set the value for key parameter as boolean
     /// </summary>
-    class procedure setValue(key: string; value: boolean); overload;
+    class procedure setValue(key: string; Value: boolean); overload;
     /// <summary>
     /// Set the value for key parameter as integer
     /// </summary>
-    class procedure setValue(key: string; value: integer); overload;
+    class procedure setValue(key: string; Value: integer); overload;
     /// <summary>
     /// Set the value for key parameter as cardinal
     /// </summary>
-    class procedure setValue(key: string; value: cardinal); overload;
+    class procedure setValue(key: string; Value: cardinal); overload;
     /// <summary>
     /// Set the value for key parameter as single
     /// </summary>
-    class procedure setValue(key: string; value: single); overload;
+    class procedure setValue(key: string; Value: single); overload;
     /// <summary>
     /// Set the value for key parameter as TDateTime
     /// </summary>
-    class procedure setValue(key: string; value: TDateTime); overload;
+    class procedure setValue(key: string; Value: TDateTime); overload;
     /// <summary>
     /// Set the value for key parameter as TJSONValue
     /// </summary>
-    class procedure setValue(key: string; value: TJSONValue); overload;
+    class procedure setValue(key: string; Value: TJSONValue); overload;
     /// <summary>
     /// Change the folder where is the parameter file.
     /// </summary>
@@ -350,6 +435,46 @@ type
     /// Return the current parameters as a JSON object
     /// </summary>
     class function AsJSONObject: TJSONObject;
+    /// <summary>
+    /// Called before loading the settings file
+    /// </summary>
+    /// <remarks>
+    /// Also called for Cancel operation (which reload the file).
+    /// </remarks>
+    class property onBeforeLoadEvent: TParamsLoadSaveEvent
+      read GetonBeforeLoadEvent write SetonBeforeLoadEvent;
+    class property onBeforeLoadProc: TParamsLoadSaveProc
+      read GetonBeforeLoadProc write SetonBeforeLoadProc;
+    /// <summary>
+    /// Called after loading the settings file
+    /// </summary>
+    /// <remarks>
+    /// Also called for Cancel operation (which reload the file).
+    /// </remarks>
+    class property onAfterLoadEvent: TParamsLoadSaveEvent
+      read GetonAfterLoadEvent write SetonAfterLoadEvent;
+    class property onAfterLoadProc: TParamsLoadSaveProc read GetonAfterLoadProc
+      write SetonAfterLoadProc;
+    /// <summary>
+    /// Called before saving the settings file
+    /// </summary>
+    /// <remarks>
+    /// The finalization of this unit calls the TParams.Save. If you have a BeforeSaveEvent or BeforeEventProc, beware of potential access violation by using something perhaps already destroyed.
+    /// </remarks>
+    class property onBeforeSaveEvent: TParamsLoadSaveEvent
+      read GetonBeforeSaveEvent write SetonBeforeSaveEvent;
+    class property onBeforeSaveProc: TParamsLoadSaveProc
+      read GetonBeforeSaveProc write SetonBeforeSaveProc;
+    /// <summary>
+    /// Called after saving the settings file
+    /// </summary>
+    /// <remarks>
+    /// The finalization of this unit calls the TParams.Save. If you have a BeforeSaveEvent or BeforeEventProc, beware of potential access violation by using something perhaps already destroyed.
+    /// </remarks>
+    class property onAfterSaveEvent: TParamsLoadSaveEvent
+      read GetonAfterSaveEvent write SetonAfterSaveEvent;
+    class property onAfterSaveProc: TParamsLoadSaveProc read GetonAfterSaveProc
+      write SetonAfterSaveProc;
   end;
 
 implementation
@@ -403,21 +528,21 @@ begin
       result := FParamList.getValue(key);
 end;
 
-procedure TParamsFile.setParamValue(key: string; value: TJSONValue);
+procedure TParamsFile.setParamValue(key: string; Value: TJSONValue);
 begin
   if not assigned(FParamList) then
     FParamList := TJSONObject.Create
   else if (FParamList.Count > 0) and (nil <> FParamList.getValue(key)) then
     FParamList.RemovePair(key).Free;
-  FParamList.AddPair(key, value);
+  FParamList.AddPair(key, Value);
   FParamChanged := true;
 end;
 
-procedure TParamsFile.setValue(key: string; value: cardinal);
+procedure TParamsFile.setValue(key: string; Value: cardinal);
 var
   jsonvalue: TJSONNumber;
 begin
-  jsonvalue := TJSONNumber.Create(value);
+  jsonvalue := TJSONNumber.Create(Value);
   try
     setParamValue(key, jsonvalue);
   except
@@ -431,7 +556,7 @@ var
 begin
   jsonvalue := getParamValue(key);
   if assigned(jsonvalue) then
-    result := jsonvalue.value.ToBoolean
+    result := jsonvalue.Value.ToBoolean
   else
     result := default;
 end;
@@ -442,7 +567,7 @@ var
 begin
   jsonvalue := getParamValue(key);
   if assigned(jsonvalue) then
-    result := jsonvalue.value
+    result := jsonvalue.Value
   else
     result := default;
 end;
@@ -453,7 +578,7 @@ var
 begin
   jsonvalue := getParamValue(key);
   if assigned(jsonvalue) then
-    result := jsonvalue.value.ToInteger
+    result := jsonvalue.Value.ToInteger
   else
     result := default;
 end;
@@ -464,7 +589,7 @@ var
 begin
   jsonvalue := getParamValue(key);
   if assigned(jsonvalue) then
-    result := jsonvalue.value.ToSingle
+    result := jsonvalue.Value.ToSingle
   else
     result := default;
 end;
@@ -482,8 +607,18 @@ end;
 constructor TParamsFile.Create;
 begin
   FFolderName := '';
+  FFileName := '';
   FParamChanged := False;
   FParamList := TJSONObject.Create;
+
+  FonAfterSaveEvent := nil;
+  FonBeforeLoadEvent := nil;
+  FonBeforeSaveEvent := nil;
+  FonAfterLoadEvent := nil;
+  FonAfterSaveProc := nil;
+  FonBeforeLoadProc := nil;
+  FonBeforeSaveProc := nil;
+  FonAfterLoadProc := nil;
 end;
 
 procedure TParamsFile.Cancel;
@@ -516,7 +651,7 @@ var
 begin
   jsonvalue := getParamValue(key);
   if assigned(jsonvalue) then
-    result := strToDateTime(jsonvalue.value)
+    result := strToDateTime(jsonvalue.Value)
   else
     result := default;
 end;
@@ -526,6 +661,12 @@ var
   filename: string;
   buffer: tStringStream;
 begin
+  // Call the Before Load event if it exists
+  if assigned(onBeforeLoadProc) then
+    onBeforeLoadProc(self);
+  if assigned(onBeforeLoadEvent) then
+    onBeforeLoadEvent(self);
+  // Load the file and its settings
   filename := getParamsFileName;
   if tfile.Exists(filename) then
   begin
@@ -540,6 +681,11 @@ begin
       buffer.Free;
     end;
   end;
+  // Call the After Load event if it exists
+  if assigned(onAfterLoadProc) then
+    onAfterLoadProc(self);
+  if assigned(onAfterLoadEvent) then
+    onAfterLoadEvent(self);
 end;
 
 procedure TParamsFile.MoveToFilePath(ANewFilePath: string; ASave: boolean;
@@ -568,6 +714,12 @@ procedure TParamsFile.Save;
 var
   filename: string;
 begin
+  // Call the Before Save event if it exists
+  if assigned(onBeforeSaveProc) then
+    onBeforeSaveProc(self);
+  if assigned(onBeforeSaveEvent) then
+    onBeforeSaveEvent(self);
+  // Save the settings if anything has changed in this file since previous Save or Load operation
   if (FParamChanged) then
   begin
     filename := getParamsFileName(true);
@@ -577,13 +729,18 @@ begin
       tfile.Delete(filename);
     FParamChanged := False;
   end;
+  // Call the After Save event if it exists
+  if assigned(onAfterSaveProc) then
+    onAfterSaveProc(self);
+  if assigned(onAfterSaveEvent) then
+    onAfterSaveEvent(self);
 end;
 
-procedure TParamsFile.setValue(key: string; value: single);
+procedure TParamsFile.setValue(key: string; Value: single);
 var
   jsonvalue: TJSONNumber;
 begin
-  jsonvalue := TJSONNumber.Create(value);
+  jsonvalue := TJSONNumber.Create(Value);
   try
     setParamValue(key, jsonvalue);
   except
@@ -591,11 +748,11 @@ begin
   end;
 end;
 
-procedure TParamsFile.setValue(key: string; value: TDateTime);
+procedure TParamsFile.setValue(key: string; Value: TDateTime);
 var
   jsonvalue: TJSONString;
 begin
-  jsonvalue := TJSONString.Create(DateTimeToStr(value));
+  jsonvalue := TJSONString.Create(DateTimeToStr(Value));
   try
     setParamValue(key, jsonvalue);
   except
@@ -611,11 +768,11 @@ begin
     result := '';
 end;
 
-procedure TParamsFile.setValue(key, value: string);
+procedure TParamsFile.setValue(key, Value: string);
 var
   jsonvalue: TJSONString;
 begin
-  jsonvalue := TJSONString.Create(value);
+  jsonvalue := TJSONString.Create(Value);
   try
     setParamValue(key, jsonvalue);
   except
@@ -623,11 +780,11 @@ begin
   end;
 end;
 
-procedure TParamsFile.setValue(key: string; value: boolean);
+procedure TParamsFile.setValue(key: string; Value: boolean);
 var
   jsonvalue: TJSONBool;
 begin
-  jsonvalue := TJSONBool.Create(value);
+  jsonvalue := TJSONBool.Create(Value);
   try
     setParamValue(key, jsonvalue);
   except
@@ -635,11 +792,11 @@ begin
   end;
 end;
 
-procedure TParamsFile.setValue(key: string; value: integer);
+procedure TParamsFile.setValue(key: string; Value: integer);
 var
   jsonvalue: TJSONNumber;
 begin
-  jsonvalue := TJSONNumber.Create(value);
+  jsonvalue := TJSONNumber.Create(Value);
   try
     setParamValue(key, jsonvalue);
   except
@@ -672,6 +829,46 @@ begin
     Load;
 end;
 
+procedure TParamsFile.SetonAfterLoadEvent(const Value: TParamsLoadSaveEvent);
+begin
+  FonAfterLoadEvent := Value;
+end;
+
+procedure TParamsFile.SetonAfterLoadProc(const Value: TParamsLoadSaveProc);
+begin
+  FonAfterLoadProc := Value;
+end;
+
+procedure TParamsFile.SetonAfterSaveEvent(const Value: TParamsLoadSaveEvent);
+begin
+  FonAfterSaveEvent := Value;
+end;
+
+procedure TParamsFile.SetonAfterSaveProc(const Value: TParamsLoadSaveProc);
+begin
+  FonAfterSaveProc := Value;
+end;
+
+procedure TParamsFile.SetonBeforeLoadEvent(const Value: TParamsLoadSaveEvent);
+begin
+  FonBeforeLoadEvent := Value;
+end;
+
+procedure TParamsFile.SetonBeforeLoadProc(const Value: TParamsLoadSaveProc);
+begin
+  FonBeforeLoadProc := Value;
+end;
+
+procedure TParamsFile.SetonBeforeSaveEvent(const Value: TParamsLoadSaveEvent);
+begin
+  FonBeforeSaveEvent := Value;
+end;
+
+procedure TParamsFile.SetonBeforeSaveProc(const Value: TParamsLoadSaveProc);
+begin
+  FonBeforeSaveProc := Value;
+end;
+
 function TParamsFile.getValue(key: string; default: TJSONValue): TJSONValue;
 begin
   result := getParamValue(key);
@@ -685,14 +882,14 @@ var
 begin
   jsonvalue := getParamValue(key);
   if assigned(jsonvalue) then
-    result := jsonvalue.value.ToInt64
+    result := jsonvalue.Value.ToInt64
   else
     result := default;
 end;
 
-procedure TParamsFile.setValue(key: string; value: TJSONValue);
+procedure TParamsFile.setValue(key: string; Value: TJSONValue);
 begin
-  setParamValue(key, value);
+  setParamValue(key, Value);
 end;
 
 { TParams }
@@ -708,6 +905,46 @@ end;
 class function TParams.getFilePath: string;
 begin
   result := DefaultParamsFile.getFilePath;
+end;
+
+class function TParams.GetonAfterLoadEvent: TParamsLoadSaveEvent;
+begin
+  result := DefaultParamsFile.onAfterLoadEvent;
+end;
+
+class function TParams.GetonAfterLoadProc: TParamsLoadSaveProc;
+begin
+  result := DefaultParamsFile.onAfterLoadProc;
+end;
+
+class function TParams.GetonAfterSaveEvent: TParamsLoadSaveEvent;
+begin
+  result := DefaultParamsFile.onAfterSaveEvent;
+end;
+
+class function TParams.GetonAfterSaveProc: TParamsLoadSaveProc;
+begin
+  result := DefaultParamsFile.onAfterSaveProc;
+end;
+
+class function TParams.GetonBeforeLoadEvent: TParamsLoadSaveEvent;
+begin
+  result := DefaultParamsFile.onBeforeLoadEvent;
+end;
+
+class function TParams.GetonBeforeLoadProc: TParamsLoadSaveProc;
+begin
+  result := DefaultParamsFile.onBeforeLoadProc;
+end;
+
+class function TParams.GetonBeforeSaveEvent: TParamsLoadSaveEvent;
+begin
+  result := DefaultParamsFile.onBeforeSaveEvent;
+end;
+
+class function TParams.GetonBeforeSaveProc: TParamsLoadSaveProc;
+begin
+  result := DefaultParamsFile.onBeforeSaveProc;
 end;
 
 class function TParams.getValue(key: string; default: integer): integer;
@@ -761,29 +998,69 @@ begin
   DefaultParamsFile.setFolderName(AFolderName, AReload);
 end;
 
-class procedure TParams.setValue(key: string; value: boolean);
+class procedure TParams.SetonAfterLoadEvent(const Value: TParamsLoadSaveEvent);
 begin
-  DefaultParamsFile.setValue(key, value);
+  DefaultParamsFile.onAfterLoadEvent := Value;
 end;
 
-class procedure TParams.setValue(key, value: string);
+class procedure TParams.SetonAfterLoadProc(const Value: TParamsLoadSaveProc);
 begin
-  DefaultParamsFile.setValue(key, value);
+  DefaultParamsFile.onAfterLoadProc := Value;
 end;
 
-class procedure TParams.setValue(key: string; value: TDateTime);
+class procedure TParams.SetonAfterSaveEvent(const Value: TParamsLoadSaveEvent);
 begin
-  DefaultParamsFile.setValue(key, value);
+  DefaultParamsFile.onAfterSaveEvent := Value;
 end;
 
-class procedure TParams.setValue(key: string; value: single);
+class procedure TParams.SetonAfterSaveProc(const Value: TParamsLoadSaveProc);
 begin
-  DefaultParamsFile.setValue(key, value);
+  DefaultParamsFile.onAfterSaveProc := Value;
 end;
 
-class procedure TParams.setValue(key: string; value: integer);
+class procedure TParams.SetonBeforeLoadEvent(const Value: TParamsLoadSaveEvent);
 begin
-  DefaultParamsFile.setValue(key, value);
+  DefaultParamsFile.onBeforeLoadEvent := Value;
+end;
+
+class procedure TParams.SetonBeforeLoadProc(const Value: TParamsLoadSaveProc);
+begin
+  DefaultParamsFile.onBeforeLoadProc := Value;
+end;
+
+class procedure TParams.SetonBeforeSaveEvent(const Value: TParamsLoadSaveEvent);
+begin
+  DefaultParamsFile.onBeforeSaveEvent := Value;
+end;
+
+class procedure TParams.SetonBeforeSaveProc(const Value: TParamsLoadSaveProc);
+begin
+  DefaultParamsFile.onBeforeSaveProc := Value;
+end;
+
+class procedure TParams.setValue(key: string; Value: boolean);
+begin
+  DefaultParamsFile.setValue(key, Value);
+end;
+
+class procedure TParams.setValue(key, Value: string);
+begin
+  DefaultParamsFile.setValue(key, Value);
+end;
+
+class procedure TParams.setValue(key: string; Value: TDateTime);
+begin
+  DefaultParamsFile.setValue(key, Value);
+end;
+
+class procedure TParams.setValue(key: string; Value: single);
+begin
+  DefaultParamsFile.setValue(key, Value);
+end;
+
+class procedure TParams.setValue(key: string; Value: integer);
+begin
+  DefaultParamsFile.setValue(key, Value);
 end;
 
 class function TParams.ToJSON: string;
@@ -801,14 +1078,14 @@ begin
   result := DefaultParamsFile.getValue(key, default);
 end;
 
-class procedure TParams.setValue(key: string; value: TJSONValue);
+class procedure TParams.setValue(key: string; Value: TJSONValue);
 begin
-  DefaultParamsFile.setValue(key, value);
+  DefaultParamsFile.setValue(key, Value);
 end;
 
-class procedure TParams.setValue(key: string; value: cardinal);
+class procedure TParams.setValue(key: string; Value: cardinal);
 begin
-  DefaultParamsFile.setValue(key, value);
+  DefaultParamsFile.setValue(key, Value);
 end;
 
 initialization
