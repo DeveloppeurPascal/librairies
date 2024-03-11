@@ -16,22 +16,22 @@ uses
   system.classes;
 
 type
-  TChecksumVerifParamList = class(TStrings)
-    function addParam(ch: string): TChecksumVerifParamList;
+  TOlfChecksumVerifParamList = class(TStrings)
+    function addParam(ch: string): TOlfChecksumVerifParamList;
   end;
 
-  ChecksumVerif = class
+  TOlfChecksumVerif = class
   private
     class function get(param: string; key1: string; key2: string; key3: string;
       key4: string; key5: string; isPublic: boolean): string; overload;
   public
-    class function get(param: TChecksumVerifParamList; key1: string = '';
+    class function get(param: TOlfChecksumVerifParamList; key1: string = '';
       key2: string = ''; key3: string = ''; key4: string = '';
       key5: string = ''): string; overload;
     class function get(param: string; key1: string = ''; key2: string = '';
       key3: string = ''; key4: string = ''; key5: string = ''): string;
       overload;
-    class function check(verif: string; param: TChecksumVerifParamList;
+    class function check(verif: string; param: TOlfChecksumVerifParamList;
       key1: string = ''; key2: string = ''; key3: string = '';
       key4: string = ''; key5: string = ''): boolean; overload;
     class function check(verif: string; param: string; key1: string = '';
@@ -39,12 +39,21 @@ type
       key5: string = ''): boolean; overload;
   end;
 
+  /// <summary>
+  /// For compatibility with existing code only. Use "TOlfChecksumVerifParamList" instead.
+  /// </summary>
+  TChecksumVerifParamList = TOlfChecksumVerifParamList;
+  /// <summary>
+  /// For compatibility with existing code only. Use "TOlfChecksumVerif" instead.
+  /// </summary>
+  ChecksumVerif = TOlfChecksumVerif;
+
 implementation
 
 uses
   u_md5;
 
-class function ChecksumVerif.get(param: string; key1: string; key2: string;
+class function TOlfChecksumVerif.get(param: string; key1: string; key2: string;
   key3: string; key4: string; key5: string; isPublic: boolean): string;
 var
   verif: string;
@@ -56,7 +65,7 @@ begin
     result := verif;
 end;
 
-class function ChecksumVerif.get(param: TChecksumVerifParamList;
+class function TOlfChecksumVerif.get(param: TOlfChecksumVerifParamList;
   key1: string = ''; key2: string = ''; key3: string = ''; key4: string = '';
   key5: string = ''): string;
 var
@@ -72,15 +81,15 @@ begin
   param.Free;
 end;
 
-class function ChecksumVerif.get(param: string; key1: string = '';
+class function TOlfChecksumVerif.get(param: string; key1: string = '';
   key2: string = ''; key3: string = ''; key4: string = '';
   key5: string = ''): string;
 begin
   result := get(param, key1, key2, key3, key4, key5, true);
 end;
 
-class function ChecksumVerif.check(verif: string;
-  param: TChecksumVerifParamList; key1: string = ''; key2: string = '';
+class function TOlfChecksumVerif.check(verif: string;
+  param: TOlfChecksumVerifParamList; key1: string = ''; key2: string = '';
   key3: string = ''; key4: string = ''; key5: string = ''): boolean;
 var
   i: integer;
@@ -94,7 +103,7 @@ begin
   result := check(verif, ch, key1, key2, key3, key4, key5);
 end;
 
-class function ChecksumVerif.check(verif: string; param: string;
+class function TOlfChecksumVerif.check(verif: string; param: string;
   key1: string = ''; key2: string = ''; key3: string = ''; key4: string = '';
   key5: string = ''): boolean;
 var
@@ -104,9 +113,10 @@ begin
   result := 0 < pos(verif, verif_);
 end;
 
-{ TChecksumVerifParamList }
+{ TOlfChecksumVerifParamList }
 
-function TChecksumVerifParamList.addParam(ch: string): TChecksumVerifParamList;
+function TOlfChecksumVerifParamList.addParam(ch: string)
+  : TOlfChecksumVerifParamList;
 begin
   add(ch);
   result := self;
