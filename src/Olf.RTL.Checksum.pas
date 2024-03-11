@@ -2,6 +2,16 @@ unit Olf.RTL.Checksum;
 
 interface
 
+// This unit calculates checksums.
+//
+// If you work between Delphi and Delphi (or Pascal) projects, you can use this
+// file. It has been explained at
+// https://developpeur-pascal.fr/calculer-et-verifier-un-checksum-pour-dialoguer-avec-l-exterieur.html
+//
+// If you send things to a web server with PHP, you can generate a checksum or
+// test it with the code explained at
+// https://trucs-de-developpeur-web.fr/calculer-et-verifier-un-checksum-pour-dialoguer-avec-l-exterieur.html
+
 uses
   system.classes;
 
@@ -31,7 +41,8 @@ type
 
 implementation
 
-uses u_md5;
+uses
+  u_md5;
 
 class function ChecksumVerif.get(param: string; key1: string; key2: string;
   key3: string; key4: string; key5: string; isPublic: boolean): string;
@@ -68,9 +79,9 @@ begin
   result := get(param, key1, key2, key3, key4, key5, true);
 end;
 
-class function ChecksumVerif.check(verif: string; param: TChecksumVerifParamList;
-  key1: string = ''; key2: string = ''; key3: string = ''; key4: string = '';
-  key5: string = ''): boolean;
+class function ChecksumVerif.check(verif: string;
+  param: TChecksumVerifParamList; key1: string = ''; key2: string = '';
+  key3: string = ''; key4: string = ''; key5: string = ''): boolean;
 var
   i: integer;
   ch: string;
