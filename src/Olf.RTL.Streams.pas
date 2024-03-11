@@ -14,6 +14,12 @@ function LoadStringFromStream(AStream: TStream): string; overload;
 function LoadStringFromStream(AStream: TStream; AEncoding: TEncoding)
   : string; overload;
 
+type
+  IOlfLoadSaveStreamWithSize = interface
+    procedure SaveToStreamWithSize(Const AStream: TStream);
+    procedure LoadFromStreamWithSize(Const AStream: TStream);
+  end;
+
 function LoadSubStreamFromStream(const AFromStream, AToSubStream
   : TStream): boolean;
 procedure SaveSubStreamToStream(const AFromSubStream, AToStream: TStream);
