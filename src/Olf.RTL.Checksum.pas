@@ -109,8 +109,13 @@ class function TOlfChecksumVerif.check(verif: string; param: string;
 var
   verif_: string;
 begin
-  verif_ := get(param, key1, key2, key3, key4, key5, false);
-  result := 0 < pos(verif, verif_);
+  if '' = verif then
+    result := false
+  else
+  begin
+    verif_ := get(param, key1, key2, key3, key4, key5, false);
+    result := 0 < pos(verif, verif_);
+  end;
 end;
 
 { TOlfChecksumVerifParamList }
