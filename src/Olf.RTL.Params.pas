@@ -336,6 +336,10 @@ type
     /// Default value is false.
     /// </summary>
     property PortableMode: boolean read FPortableMode write SetPortableMode;
+    /// <summary>
+    /// Retire une clé des paramètres
+    /// </summary>
+    procedure Remove(key: string);
   end;
 
   /// <summary>
@@ -575,6 +579,10 @@ type
     /// </summary>
     class property PortableMode: boolean read GetPortableMode
       write SetPortableMode;
+    /// <summary>
+    /// Retire une clé des paramètres
+    /// </summary>
+    class procedure Remove(key: string);
   end;
 
 implementation
@@ -842,6 +850,15 @@ begin
     setFilePath(ANewFilePath, False);
     if ASave then
       Save;
+  end;
+end;
+
+procedure TParamsFile.Remove(key: string);
+begin
+  if (FParamList.Count > 0) and (nil <> FParamList.getValue(key)) then
+  begin
+    FParamList.RemovePair(key).Free;
+    FParamChanged := true;
   end;
 end;
 
@@ -1218,6 +1235,11 @@ class procedure TParams.MoveToFilePath(ANewFilePath: string; ASave: boolean;
   ACreateFolder: boolean);
 begin
   DefaultParamsFile.MoveToFilePath(ANewFilePath, ASave, ACreateFolder);
+end;
+
+class procedure TParams.Remove(key: string);
+begin
+  DefaultParamsFile.Remove(key);
 end;
 
 class procedure TParams.Save;
