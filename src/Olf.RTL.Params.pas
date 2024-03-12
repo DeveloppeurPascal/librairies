@@ -57,6 +57,7 @@ unit Olf.RTL.Params;
 interface
 
 uses
+  System.Classes,
   System.JSON;
 
 type
@@ -70,6 +71,24 @@ type
   /// Procedure signature for load/save events in TParamsFile
   /// </summary>
   TParamsLoadSaveProc = reference to procedure(Const AParamsFile: TParamsFile);
+
+  /// <summary>
+  /// Method signature for the crypt event in TParamsFile
+  /// </summary>
+  TParamsCryptEvent = function(Const AParams: string): TStream of object;
+  /// <summary>
+  /// Procedure signature for the crypt event in TParamsFile
+  /// </summary>
+  TParamsCryptProc = reference to function(Const AParams: string): TStream;
+
+  /// <summary>
+  /// Method signature for the decrypt event in TParamsFile
+  /// </summary>
+  TParamsDecryptEvent = function(Const AStream: TStream): string of object;
+  /// <summary>
+  /// Procedure signature for the decrypt event in TParamsFile
+  /// </summary>
+  TParamsDecryptProc = reference to function(Const AStream: TStream): string;
 
   /// <summary>
   /// TParamsFile work as an instance of a settings file.
@@ -89,6 +108,10 @@ type
     FonBeforeLoadProc: TParamsLoadSaveProc;
     FonBeforeSaveProc: TParamsLoadSaveProc;
     FonAfterLoadProc: TParamsLoadSaveProc;
+    FonDecryptEvent: TParamsDecryptEvent;
+    FonDecryptProc: TParamsDecryptProc;
+    FonCryptEvent: TParamsCryptEvent;
+    FonCryptProc: TParamsCryptProc;
     procedure SetonAfterLoadEvent(const Value: TParamsLoadSaveEvent);
     procedure SetonAfterSaveEvent(const Value: TParamsLoadSaveEvent);
     procedure SetonBeforeLoadEvent(const Value: TParamsLoadSaveEvent);
@@ -97,6 +120,10 @@ type
     procedure SetonAfterSaveProc(const Value: TParamsLoadSaveProc);
     procedure SetonBeforeLoadProc(const Value: TParamsLoadSaveProc);
     procedure SetonBeforeSaveProc(const Value: TParamsLoadSaveProc);
+    procedure SetonCryptEvent(const Value: TParamsCryptEvent);
+    procedure SetonCryptProc(const Value: TParamsCryptProc);
+    procedure SetonDecryptEvent(const Value: TParamsDecryptEvent);
+    procedure SetonDecryptProc(const Value: TParamsDecryptProc);
   protected
     function getParamsFileName(ACreateFolder: boolean = False): string;
     function getParamValue(key: string): TJSONValue;
@@ -284,6 +311,24 @@ type
       write SetonAfterSaveEvent;
     property onAfterSaveProc: TParamsLoadSaveProc read FonAfterSaveProc
       write SetonAfterSaveProc;
+    /// <summary>
+    /// Called before saving the parameters in a file (and after onBeforeSave).
+    /// If crypted, the file is saved as a binary format.
+    /// If uncrypted, the file is saved as a JSON text file.
+    /// </summary>
+    property onCryptEvent: TParamsCryptEvent read FonCryptEvent
+      write SetonCryptEvent;
+    property onCryptProc: TParamsCryptProc read FonCryptProc
+      write SetonCryptProc;
+    /// <summary>
+    /// Called after loading the parameters from a file (and before onAfterLoad).
+    /// If crypted, the file is saved as a binary format.
+    /// If uncrypted, the file is saved as a JSON text file.
+    /// </summary>
+    property onDecryptEvent: TParamsDecryptEvent read FonDecryptEvent
+      write SetonDecryptEvent;
+    property onDecryptProc: TParamsDecryptProc read FonDecryptProc
+      write SetonDecryptProc;
   end;
 
   /// <summary>
@@ -318,6 +363,14 @@ type
     class function GetonBeforeLoadProc: TParamsLoadSaveProc; static;
     class function GetonBeforeSaveEvent: TParamsLoadSaveEvent; static;
     class function GetonBeforeSaveProc: TParamsLoadSaveProc; static;
+    class function GetonCryptEvent: TParamsCryptEvent; static;
+    class function GetonCryptProc: TParamsCryptProc; static;
+    class function GetonDecryptEvent: TParamsDecryptEvent; static;
+    class function GetonDecryptProc: TParamsDecryptProc; static;
+    class procedure SetonCryptEvent(const Value: TParamsCryptEvent); static;
+    class procedure SetonCryptProc(const Value: TParamsCryptProc); static;
+    class procedure SetonDecryptEvent(const Value: TParamsDecryptEvent); static;
+    class procedure SetonDecryptProc(const Value: TParamsDecryptProc); static;
   public
     /// <summary>
     /// Save current parameters to actual parameter file
@@ -489,6 +542,24 @@ type
       read GetonAfterSaveEvent write SetonAfterSaveEvent;
     class property onAfterSaveProc: TParamsLoadSaveProc read GetonAfterSaveProc
       write SetonAfterSaveProc;
+    /// <summary>
+    /// Called before saving the parameters in a file (and after onBeforeSave).
+    /// If crypted, the file is saved as a binary format.
+    /// If uncrypted, the file is saved as a JSON text file.
+    /// </summary>
+    class property onCryptEvent: TParamsCryptEvent read GetonCryptEvent
+      write SetonCryptEvent;
+    class property onCryptProc: TParamsCryptProc read GetonCryptProc
+      write SetonCryptProc;
+    /// <summary>
+    /// Called after loading the parameters from a file (and before onAfterLoad).
+    /// If crypted, the file is saved as a binary format.
+    /// If uncrypted, the file is saved as a JSON text file.
+    /// </summary>
+    class property onDecryptEvent: TParamsDecryptEvent read GetonDecryptEvent
+      write SetonDecryptEvent;
+    class property onDecryptProc: TParamsDecryptProc read GetonDecryptProc
+      write SetonDecryptProc;
   end;
 
 implementation
@@ -496,55 +567,61 @@ implementation
 uses
   System.Generics.collections,
   System.IOUtils,
-  System.SysUtils,
-  System.Classes;
+  System.SysUtils;
 
 { TParamsFile }
 
 function TParamsFile.getParamsFileName(ACreateFolder: boolean): string;
 var
-  folder: string;
-  filename: string;
-  app_name: string;
+  Folder: string;
+  FileName: string;
+  AppName: string;
+  Extension: string;
 begin
-  app_name := TPath.GetFileNameWithoutExtension(paramstr(0));
+  AppName := TPath.GetFileNameWithoutExtension(paramstr(0));
+
+  if Assigned(onCryptEvent) or Assigned(onCryptProc) or Assigned(onDecryptEvent)
+    or Assigned(onDecryptProc) then
+    Extension := '.parc'
+  else
+    Extension := '.par';
 
   // get filename
   if FFileName.IsEmpty then
   begin
 {$IF Defined(DEBUG)}
-    filename := app_name + '-debug.par';
+    FileName := AppName + '-debug' + Extension;
 {$ELSE IF Defined(RELEASE)}
-    filename := app_name + '.par';
+    FileName := app_name + Extension;
 {$ELSE}
 {$MESSAGE FATAL 'not implemented'}
 {$ENDIF} end
   else
-    filename := FFileName;
+    FileName := FFileName;
 
   // get folder name
   if FFolderName.IsEmpty then
-    folder := TPath.Combine(TPath.GetDocumentsPath, app_name)
+    Folder := TPath.Combine(TPath.GetDocumentsPath, AppName)
   else
-    folder := FFolderName;
-  if ACreateFolder and (not tdirectory.Exists(folder)) then
-    tdirectory.CreateDirectory(folder);
+    Folder := FFolderName;
+  if ACreateFolder and (not tdirectory.Exists(Folder)) then
+    tdirectory.CreateDirectory(Folder);
 
   // get file path
-  result := TPath.Combine(folder, filename);
+  result := TPath.Combine(Folder, FileName);
 end;
 
 function TParamsFile.getParamValue(key: string): TJSONValue;
 begin
   result := nil;
-  if assigned(FParamList) then
+  if Assigned(FParamList) then
     if (FParamList.Count > 0) then
       result := FParamList.getValue(key);
 end;
 
 procedure TParamsFile.setParamValue(key: string; Value: TJSONValue);
 begin
-  if not assigned(FParamList) then
+  if not Assigned(FParamList) then
     FParamList := TJSONObject.Create
   else if (FParamList.Count > 0) and (nil <> FParamList.getValue(key)) then
     FParamList.RemovePair(key).Free;
@@ -569,7 +646,7 @@ var
   jsonvalue: TJSONValue;
 begin
   jsonvalue := getParamValue(key);
-  if assigned(jsonvalue) then
+  if Assigned(jsonvalue) then
     result := jsonvalue.Value.ToBoolean
   else
     result := default;
@@ -580,7 +657,7 @@ var
   jsonvalue: TJSONValue;
 begin
   jsonvalue := getParamValue(key);
-  if assigned(jsonvalue) then
+  if Assigned(jsonvalue) then
     result := jsonvalue.Value
   else
     result := default;
@@ -591,7 +668,7 @@ var
   jsonvalue: TJSONValue;
 begin
   jsonvalue := getParamValue(key);
-  if assigned(jsonvalue) then
+  if Assigned(jsonvalue) then
     result := jsonvalue.Value.ToInteger
   else
     result := default;
@@ -602,7 +679,7 @@ var
   jsonvalue: TJSONValue;
 begin
   jsonvalue := getParamValue(key);
-  if assigned(jsonvalue) then
+  if Assigned(jsonvalue) then
     result := jsonvalue.Value.ToSingle
   else
     result := default;
@@ -610,7 +687,7 @@ end;
 
 function TParamsFile.AsJSONObject(AClone: boolean): TJSONObject;
 begin
-  if not assigned(FParamList) then
+  if not Assigned(FParamList) then
     result := nil
   else if AClone then
     result := FParamList.Clone as TJSONObject
@@ -649,7 +726,7 @@ end;
 destructor TParamsFile.Destroy;
 begin
   Save;
-  if assigned(FParamList) then
+  if Assigned(FParamList) then
     FreeAndNil(FParamList);
   inherited;
 end;
@@ -664,7 +741,7 @@ var
   jsonvalue: TJSONValue;
 begin
   jsonvalue := getParamValue(key);
-  if assigned(jsonvalue) then
+  if Assigned(jsonvalue) then
     result := strToDateTime(jsonvalue.Value)
   else
     result := default;
@@ -672,33 +749,44 @@ end;
 
 procedure TParamsFile.Load;
 var
-  filename: string;
+  FileName: string;
   buffer: tStringStream;
+  fs: TFileStream;
+  JSON: string;
 begin
   // Call the Before Load event if it exists
-  if assigned(onBeforeLoadProc) then
+  if Assigned(onBeforeLoadProc) then
     onBeforeLoadProc(self);
-  if assigned(onBeforeLoadEvent) then
+  if Assigned(onBeforeLoadEvent) then
     onBeforeLoadEvent(self);
   // Load the file and its settings
-  filename := getParamsFileName;
-  if tfile.Exists(filename) then
+  FileName := getParamsFileName;
+  if tfile.Exists(FileName) then
   begin
-    if assigned(FParamList) then
+    if Assigned(FParamList) then
       FreeAndNil(FParamList);
-    buffer := tStringStream.Create(tfile.ReadAllText(filename, TEncoding.UTF8),
-      TEncoding.UTF8);
-    try
-      FParamList := TJSONObject.Create;
-      FParamList.Parse(buffer.Bytes, 0);
-    finally
-      buffer.Free;
-    end;
+    if Assigned(onDecryptEvent) or Assigned(onDecryptProc) then
+    begin
+      fs := TFileStream.Create(FileName, fmOpenRead);
+      try
+        if Assigned(onDecryptEvent) then
+          JSON := onDecryptEvent(fs)
+        else if Assigned(onDecryptProc) then
+          JSON := onDecryptEvent(fs)
+        else
+          JSON := '';
+      finally
+        fs.Free;
+      end;
+    end
+    else
+      JSON := tfile.ReadAllText(FileName, TEncoding.UTF8);
+    FParamList := TJSONObject.ParseJSONValue(JSON) as TJSONObject;
   end;
   // Call the After Load event if it exists
-  if assigned(onAfterLoadProc) then
+  if Assigned(onAfterLoadProc) then
     onAfterLoadProc(self);
-  if assigned(onAfterLoadEvent) then
+  if Assigned(onAfterLoadEvent) then
     onAfterLoadEvent(self);
 end;
 
@@ -726,27 +814,49 @@ end;
 
 procedure TParamsFile.Save;
 var
-  filename: string;
+  FileName: string;
+  cs: TStream;
+  fs: TFileStream;
 begin
   // Call the Before Save event if it exists
-  if assigned(onBeforeSaveProc) then
+  if Assigned(onBeforeSaveProc) then
     onBeforeSaveProc(self);
-  if assigned(onBeforeSaveEvent) then
+  if Assigned(onBeforeSaveEvent) then
     onBeforeSaveEvent(self);
   // Save the settings if anything has changed in this file since previous Save or Load operation
   if (FParamChanged) then
   begin
-    filename := getParamsFileName(true);
-    if assigned(FParamList) and (FParamList.Count > 0) then
-      tfile.WriteAllText(filename, FParamList.ToJSON, TEncoding.UTF8)
-    else if tfile.Exists(filename) then
-      tfile.Delete(filename);
+    FileName := getParamsFileName(true);
+    if Assigned(FParamList) and (FParamList.Count > 0) then
+    begin
+      cs := nil;
+      if Assigned(onCryptEvent) then
+        cs := onCryptEvent(FParamList.ToJSON)
+      else if Assigned(onCryptProc) then
+        cs := onCryptProc(FParamList.ToJSON)
+      else
+        tfile.WriteAllText(FileName, FParamList.ToJSON, TEncoding.UTF8);
+      if Assigned(cs) then
+        try
+          fs := TFileStream.Create(FileName, fmOpenWrite + fmCreate);
+          try
+            cs.position := 0;
+            fs.CopyFrom(cs);
+          finally
+            fs.Free;
+          end;
+        finally
+          cs.Free;
+        end;
+    end
+    else if tfile.Exists(FileName) then
+      tfile.Delete(FileName);
     FParamChanged := False;
   end;
   // Call the After Save event if it exists
-  if assigned(onAfterSaveProc) then
+  if Assigned(onAfterSaveProc) then
     onAfterSaveProc(self);
-  if assigned(onAfterSaveEvent) then
+  if Assigned(onAfterSaveEvent) then
     onAfterSaveEvent(self);
 end;
 
@@ -776,7 +886,7 @@ end;
 
 function TParamsFile.ToJSON: string;
 begin
-  if assigned(FParamList) then
+  if Assigned(FParamList) then
     result := FParamList.ToJSON
   else
     result := '';
@@ -883,44 +993,64 @@ begin
   FonBeforeSaveProc := Value;
 end;
 
+procedure TParamsFile.SetonCryptEvent(const Value: TParamsCryptEvent);
+begin
+  FonCryptEvent := Value;
+end;
+
+procedure TParamsFile.SetonCryptProc(const Value: TParamsCryptProc);
+begin
+  FonCryptProc := Value;
+end;
+
+procedure TParamsFile.SetonDecryptEvent(const Value: TParamsDecryptEvent);
+begin
+  FonDecryptEvent := Value;
+end;
+
+procedure TParamsFile.SetonDecryptProc(const Value: TParamsDecryptProc);
+begin
+  FonDecryptProc := Value;
+end;
+
 function TParamsFile.getValue(key: string; default: TJSONValue): TJSONValue;
 begin
   result := getParamValue(key);
-  if not assigned(result) then
+  if not Assigned(result) then
     result := default;
 end;
 
 procedure TParamsFile.InitDefaultFileNameV2(const AEditor, ASoftware: string;
   AReload: boolean);
 var
-  folder: string;
+  Folder: string;
 begin
   if AEditor.IsEmpty and ASoftware.IsEmpty then
     raise Exception.Create('Needs at least an Editor or Software name.');
 
 {$IF Defined(DEBUG) or Defined(IOS)}
-  folder := TPath.GetDocumentsPath;
+  Folder := TPath.GetDocumentsPath;
 {$ELSE IF Defined(RELEASE)}
-  folder := TPath.GetHomePath;
+  Folder := TPath.GetHomePath;
 {$ELSE}
 {$MESSAGE FATAL 'not implemented'}
 {$ENDIF}
   //
   if not AEditor.IsEmpty then
 {$IFDEF DEBUG}
-    folder := TPath.Combine(folder, AEditor + '-DEBUG');
+    Folder := TPath.Combine(Folder, AEditor + '-DEBUG');
 {$ELSE}
-    folder := TPath.Combine(folder, AEditor);
+    Folder := TPath.Combine(Folder, AEditor);
 {$ENDIF}
   //
   if not ASoftware.IsEmpty then
 {$IFDEF DEBUG}
-    folder := TPath.Combine(folder, ASoftware + '-DEBUG');
+    Folder := TPath.Combine(Folder, ASoftware + '-DEBUG');
 {$ELSE}
-    folder := TPath.Combine(folder, ASoftware);
+    Folder := TPath.Combine(Folder, ASoftware);
 {$ENDIF}
   //
-  setFolderName(folder, AReload);
+  setFolderName(Folder, AReload);
 end;
 
 function TParamsFile.getValue(key: string; default: cardinal): cardinal;
@@ -928,7 +1058,7 @@ var
   jsonvalue: TJSONValue;
 begin
   jsonvalue := getParamValue(key);
-  if assigned(jsonvalue) then
+  if Assigned(jsonvalue) then
     result := jsonvalue.Value.ToInt64
   else
     result := default;
@@ -992,6 +1122,26 @@ end;
 class function TParams.GetonBeforeSaveProc: TParamsLoadSaveProc;
 begin
   result := DefaultParamsFile.onBeforeSaveProc;
+end;
+
+class function TParams.GetonCryptEvent: TParamsCryptEvent;
+begin
+  result := DefaultParamsFile.onCryptEvent;
+end;
+
+class function TParams.GetonCryptProc: TParamsCryptProc;
+begin
+  result := DefaultParamsFile.onCryptProc
+end;
+
+class function TParams.GetonDecryptEvent: TParamsDecryptEvent;
+begin
+  result := DefaultParamsFile.onDecryptEvent;
+end;
+
+class function TParams.GetonDecryptProc: TParamsDecryptProc;
+begin
+  result := DefaultParamsFile.FonDecryptProc
 end;
 
 class function TParams.getValue(key: string; default: integer): integer;
@@ -1085,6 +1235,26 @@ begin
   DefaultParamsFile.onBeforeSaveProc := Value;
 end;
 
+class procedure TParams.SetonCryptEvent(const Value: TParamsCryptEvent);
+begin
+  DefaultParamsFile.onCryptEvent := Value;
+end;
+
+class procedure TParams.SetonCryptProc(const Value: TParamsCryptProc);
+begin
+  DefaultParamsFile.onCryptProc := Value;
+end;
+
+class procedure TParams.SetonDecryptEvent(const Value: TParamsDecryptEvent);
+begin
+  DefaultParamsFile.onDecryptEvent := Value;
+end;
+
+class procedure TParams.SetonDecryptProc(const Value: TParamsDecryptProc);
+begin
+  DefaultParamsFile.onDecryptProc := Value;
+end;
+
 class procedure TParams.setValue(key: string; Value: boolean);
 begin
   DefaultParamsFile.setValue(key, Value);
@@ -1149,7 +1319,7 @@ TParams.Load;
 finalization
 
 TParams.Save;
-if assigned(DefaultParamsFile) then
+if Assigned(DefaultParamsFile) then
   FreeAndNil(DefaultParamsFile);
 
 end.
