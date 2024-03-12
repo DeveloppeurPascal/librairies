@@ -7,7 +7,7 @@ unit u_scores;
   Find the original source code on
   https://github.com/DeveloppeurPascal/librairies
 
-	This file is deprecated. Use Gamolf.RTL.Scores.pas from https://github.com/DeveloppeurPascal/FMXGameEngine instead.
+	This file is deprecated. Use Gamolf.RTL.Scores.pas from https://github.com/DeveloppeurPascal/Delphi-Game-Engine instead.
 }
 interface
 
@@ -15,7 +15,7 @@ implementation
 
 initialization
 
-{$MESSAGE FATAL 'This file is deprecated. Use Gamolf.RTL.Scores.pas from https://github.com/DeveloppeurPascal/FMXGameEngine instead.'}
+{$MESSAGE FATAL 'This file is deprecated. Use Gamolf.RTL.Scores.pas from https://github.com/DeveloppeurPascal/Delphi-Game-Engine instead.'}
 
 finalization
 
