@@ -57,9 +57,13 @@ end;
 function TOlfCryptDecrypt.Crypt(const AStream: TStream): TStream;
 var
   Key1, Key2: byte;
-  idxKey: uint64;
+  KeyIndex: uint64;
+  KeyLength: uint64;
+  oc, od: byte;
 begin
-  if (length(FKeys) = 0) then
+  KeyLength := length(FKeys);
+
+  if (KeyLength = 0) then
     raise exception.Create('Need a private key to crypt !');
 
   if not assigned(AStream) then
@@ -67,13 +71,71 @@ begin
   else
   begin
     result := tmemorystream.Create;
-    // TODO : à compléter
+    Key1 := 0;
+    KeyIndex := 0;
+    Key2 := FKeys[KeyIndex];
+    AStream.position := 0;
+    while (AStream.position < AStream.Size) do
+    begin
+      if (1 <> AStream.Read(od, 1)) then
+        raise exception.Create('Can''t read a new byte.');
+
+      oc := (od xor Key1) xor Key2;
+
+      if (1 <> result.write(oc, 1)) then
+        raise exception.Create('Can''t write encrypted byte.');
+
+      if (KeyIndex + 1 < KeyLength) then
+        inc(KeyIndex)
+      else
+        KeyIndex := 0;
+
+      Key1 := od;
+      Key2 := FKeys[KeyIndex];
+    end;
   end;
 end;
 
 function TOlfCryptDecrypt.Decrypt(const AStream: TStream): TStream;
+var
+  Key1, Key2: byte;
+  KeyIndex: uint64;
+  KeyLength: uint64;
+  oc, od: byte;
 begin
-  // TODO : à compléter
+  KeyLength := length(FKeys);
+
+  if (KeyLength = 0) then
+    raise exception.Create('Need a private key to crypt !');
+
+  if not assigned(AStream) then
+    result := nil
+  else
+  begin
+    result := tmemorystream.Create;
+    Key1 := 0;
+    KeyIndex := 0;
+    Key2 := FKeys[KeyIndex];
+    AStream.position := 0;
+    while (AStream.position < AStream.Size) do
+    begin
+      if (1 <> AStream.Read(oc, 1)) then
+        raise exception.Create('Can''t read a new byte.');
+
+      od := (oc xor Key1) xor Key2;
+
+      if (1 <> result.write(od, 1)) then
+        raise exception.Create('Can''t write decrypted byte.');
+
+      if (KeyIndex + 1 < KeyLength) then
+        inc(KeyIndex)
+      else
+        KeyIndex := 0;
+
+      Key1 := od;
+      Key2 := FKeys[KeyIndex];
+    end;
+  end;
 end;
 
 procedure TOlfCryptDecrypt.SetKeys(const Value: TByteDynArray);
