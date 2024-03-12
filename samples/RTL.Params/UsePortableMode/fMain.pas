@@ -14,7 +14,10 @@ uses
   FMX.Graphics,
   FMX.Dialogs,
   FMX.Controls.Presentation,
-  FMX.StdCtrls, FMX.Memo.Types, FMX.ScrollBox, FMX.Memo;
+  FMX.StdCtrls,
+  FMX.Memo.Types,
+  FMX.ScrollBox,
+  FMX.Memo;
 
 type
   TForm1 = class(TForm)
