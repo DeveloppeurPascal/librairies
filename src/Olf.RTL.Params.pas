@@ -112,6 +112,7 @@ type
     FonDecryptProc: TParamsDecryptProc;
     FonCryptEvent: TParamsCryptEvent;
     FonCryptProc: TParamsCryptProc;
+    FPortableMode: boolean;
     procedure SetonAfterLoadEvent(const Value: TParamsLoadSaveEvent);
     procedure SetonAfterSaveEvent(const Value: TParamsLoadSaveEvent);
     procedure SetonBeforeLoadEvent(const Value: TParamsLoadSaveEvent);
@@ -124,6 +125,7 @@ type
     procedure SetonCryptProc(const Value: TParamsCryptProc);
     procedure SetonDecryptEvent(const Value: TParamsDecryptEvent);
     procedure SetonDecryptProc(const Value: TParamsDecryptProc);
+    procedure SetPortableMode(const Value: boolean);
   protected
     function getParamsFileName(ACreateFolder: boolean = False): string;
     function getParamValue(key: string): TJSONValue;
@@ -329,6 +331,11 @@ type
       write SetonDecryptEvent;
     property onDecryptProc: TParamsDecryptProc read FonDecryptProc
       write SetonDecryptProc;
+    /// <summary>
+    /// Portable mode : if true nothing is saved nor loaded.
+    /// Default value is false.
+    /// </summary>
+    property PortableMode: boolean read FPortableMode write SetPortableMode;
   end;
 
   /// <summary>
@@ -371,6 +378,8 @@ type
     class procedure SetonCryptProc(const Value: TParamsCryptProc); static;
     class procedure SetonDecryptEvent(const Value: TParamsDecryptEvent); static;
     class procedure SetonDecryptProc(const Value: TParamsDecryptProc); static;
+    class function GetPortableMode: boolean; static;
+    class procedure SetPortableMode(const Value: boolean); static;
   public
     /// <summary>
     /// Save current parameters to actual parameter file
@@ -560,6 +569,12 @@ type
       write SetonDecryptEvent;
     class property onDecryptProc: TParamsDecryptProc read GetonDecryptProc
       write SetonDecryptProc;
+    /// <summary>
+    /// Portable mode : if true nothing is done on the storage.
+    /// Default value is false.
+    /// </summary>
+    class property PortableMode: boolean read GetPortableMode
+      write SetPortableMode;
   end;
 
 implementation
@@ -604,7 +619,8 @@ begin
     Folder := TPath.Combine(TPath.GetDocumentsPath, AppName)
   else
     Folder := FFolderName;
-  if ACreateFolder and (not tdirectory.Exists(Folder)) then
+  if ACreateFolder and (not tdirectory.Exists(Folder)) and (not FPortableMode)
+  then
     tdirectory.CreateDirectory(Folder);
 
   // get file path
@@ -627,6 +643,11 @@ begin
     FParamList.RemovePair(key).Free;
   FParamList.AddPair(key, Value);
   FParamChanged := true;
+end;
+
+procedure TParamsFile.SetPortableMode(const Value: boolean);
+begin
+  FPortableMode := Value;
 end;
 
 procedure TParamsFile.setValue(key: string; Value: cardinal);
@@ -710,6 +731,13 @@ begin
   FonBeforeLoadProc := nil;
   FonBeforeSaveProc := nil;
   FonAfterLoadProc := nil;
+
+  FonCryptEvent := nil;
+  FonCryptProc := nil;
+  FonDecryptEvent := nil;
+  FonDecryptProc := nil;
+
+  FPortableMode := False;
 end;
 
 procedure TParamsFile.Cancel;
@@ -759,30 +787,35 @@ begin
     onBeforeLoadProc(self);
   if Assigned(onBeforeLoadEvent) then
     onBeforeLoadEvent(self);
+
   // Load the file and its settings
-  FileName := getParamsFileName;
-  if tfile.Exists(FileName) then
+  if not FPortableMode then
   begin
-    if Assigned(FParamList) then
-      FreeAndNil(FParamList);
-    if Assigned(onDecryptEvent) or Assigned(onDecryptProc) then
+    FileName := getParamsFileName;
+    if tfile.Exists(FileName) then
     begin
-      fs := TFileStream.Create(FileName, fmOpenRead);
-      try
-        if Assigned(onDecryptEvent) then
-          JSON := onDecryptEvent(fs)
-        else if Assigned(onDecryptProc) then
-          JSON := onDecryptEvent(fs)
-        else
-          JSON := '';
-      finally
-        fs.Free;
-      end;
-    end
-    else
-      JSON := tfile.ReadAllText(FileName, TEncoding.UTF8);
-    FParamList := TJSONObject.ParseJSONValue(JSON) as TJSONObject;
+      if Assigned(FParamList) then
+        FreeAndNil(FParamList);
+      if Assigned(onDecryptEvent) or Assigned(onDecryptProc) then
+      begin
+        fs := TFileStream.Create(FileName, fmOpenRead);
+        try
+          if Assigned(onDecryptEvent) then
+            JSON := onDecryptEvent(fs)
+          else if Assigned(onDecryptProc) then
+            JSON := onDecryptEvent(fs)
+          else
+            JSON := '';
+        finally
+          fs.Free;
+        end;
+      end
+      else
+        JSON := tfile.ReadAllText(FileName, TEncoding.UTF8);
+      FParamList := TJSONObject.ParseJSONValue(JSON) as TJSONObject;
+    end;
   end;
+
   // Call the After Load event if it exists
   if Assigned(onAfterLoadProc) then
     onAfterLoadProc(self);
@@ -801,7 +834,7 @@ begin
   begin
     NewPath := TPath.GetDirectoryName(ANewFilePath);
     if not tdirectory.Exists(NewPath) then
-      if ACreateFolder then
+      if ACreateFolder and (not FPortableMode) then
         tdirectory.CreateDirectory(NewPath)
       else
         raise Exception.Create('Folder "' + NewPath + '" doesn''t exist.');
@@ -823,8 +856,9 @@ begin
     onBeforeSaveProc(self);
   if Assigned(onBeforeSaveEvent) then
     onBeforeSaveEvent(self);
+
   // Save the settings if anything has changed in this file since previous Save or Load operation
-  if (FParamChanged) then
+  if FParamChanged and (not FPortableMode) then
   begin
     FileName := getParamsFileName(true);
     if Assigned(FParamList) and (FParamList.Count > 0) then
@@ -853,6 +887,7 @@ begin
       tfile.Delete(FileName);
     FParamChanged := False;
   end;
+
   // Call the After Save event if it exists
   if Assigned(onAfterSaveProc) then
     onAfterSaveProc(self);
@@ -1144,6 +1179,11 @@ begin
   result := DefaultParamsFile.FonDecryptProc
 end;
 
+class function TParams.GetPortableMode: boolean;
+begin
+  result := DefaultParamsFile.PortableMode;
+end;
+
 class function TParams.getValue(key: string; default: integer): integer;
 begin
   result := DefaultParamsFile.getValue(key, default);
@@ -1253,6 +1293,11 @@ end;
 class procedure TParams.SetonDecryptProc(const Value: TParamsDecryptProc);
 begin
   DefaultParamsFile.onDecryptProc := Value;
+end;
+
+class procedure TParams.SetPortableMode(const Value: boolean);
+begin
+  DefaultParamsFile.PortableMode := Value;
 end;
 
 class procedure TParams.setValue(key: string; Value: boolean);
