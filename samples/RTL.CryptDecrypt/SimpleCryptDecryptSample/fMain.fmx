@@ -34,8 +34,8 @@ object Form1: TForm1
     Size.Width = 630.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 1
-    Text = 'Button1'
+    TabOrder = 2
+    Text = 'use a TOlfCryptDecrypt instance'
     TextSettings.Trimming = None
     OnClick = Button1Click
   end
@@ -48,10 +48,26 @@ object Form1: TForm1
     Margins.Right = 5.000000000000000000
     Margins.Bottom = 5.000000000000000000
     Size.Width = 630.000000000000000000
-    Size.Height = 406.000000000000000000
+    Size.Height = 374.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 2
+    TabOrder = 3
     Viewport.Width = 626.000000000000000000
-    Viewport.Height = 402.000000000000000000
+    Viewport.Height = 370.000000000000000000
+  end
+  object Button2: TButton
+    Align = Top
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 69.000000000000000000
+    Size.Width = 630.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Text = 'use the TOlfCryptDecrypt class'
+    TextSettings.Trimming = None
+    OnClick = Button2Click
   end
 end
