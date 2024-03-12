@@ -25,8 +25,12 @@ type
   protected
   public
     property Keys: TByteDynArray read FKeys write SetKeys;
-    function Crypt(Const AStream: TStream): TStream;
-    function Decrypt(Const AStream: TStream): TStream;
+    function Crypt(Const AStream: TStream): TStream; overload;
+    class function Crypt(Const AStream: TStream; Const AKeys: TByteDynArray)
+      : TStream; overload;
+    function Decrypt(Const AStream: TStream): TStream; overload;
+    class function Decrypt(Const AStream: TStream; Const AKeys: TByteDynArray)
+      : TStream; overload;
     constructor Create; overload;
     constructor Create(Const AKeys: TByteDynArray); overload;
   end;
@@ -48,20 +52,15 @@ begin
     FKeys[i] := AKeys[i];
 end;
 
-constructor TOlfCryptDecrypt.Create;
-begin
-  inherited;
-  setlength(FKeys, 0);
-end;
-
-function TOlfCryptDecrypt.Crypt(const AStream: TStream): TStream;
+class function TOlfCryptDecrypt.Crypt(const AStream: TStream;
+  const AKeys: TByteDynArray): TStream;
 var
   Key1, Key2: byte;
   KeyIndex: uint64;
   KeyLength: uint64;
   oc, od: byte;
 begin
-  KeyLength := length(FKeys);
+  KeyLength := length(AKeys);
 
   if (KeyLength = 0) then
     raise exception.Create('Need a private key to crypt !');
@@ -73,7 +72,7 @@ begin
     result := tmemorystream.Create;
     Key1 := 0;
     KeyIndex := 0;
-    Key2 := FKeys[KeyIndex];
+    Key2 := AKeys[KeyIndex];
     AStream.position := 0;
     while (AStream.position < AStream.Size) do
     begin
@@ -91,19 +90,41 @@ begin
         KeyIndex := 0;
 
       Key1 := od;
-      Key2 := FKeys[KeyIndex];
+      Key2 := AKeys[KeyIndex];
     end;
   end;
 end;
 
+constructor TOlfCryptDecrypt.Create;
+begin
+  inherited;
+  setlength(FKeys, 0);
+end;
+
+function TOlfCryptDecrypt.Crypt(const AStream: TStream): TStream;
+begin
+  result := Crypt(AStream, FKeys);
+end;
+
 function TOlfCryptDecrypt.Decrypt(const AStream: TStream): TStream;
+begin
+  result := Decrypt(AStream, FKeys);
+end;
+
+procedure TOlfCryptDecrypt.SetKeys(const Value: TByteDynArray);
+begin
+  FKeys := Value;
+end;
+
+class function TOlfCryptDecrypt.Decrypt(const AStream: TStream;
+  const AKeys: TByteDynArray): TStream;
 var
   Key1, Key2: byte;
   KeyIndex: uint64;
   KeyLength: uint64;
   oc, od: byte;
 begin
-  KeyLength := length(FKeys);
+  KeyLength := length(AKeys);
 
   if (KeyLength = 0) then
     raise exception.Create('Need a private key to crypt !');
@@ -115,7 +136,7 @@ begin
     result := tmemorystream.Create;
     Key1 := 0;
     KeyIndex := 0;
-    Key2 := FKeys[KeyIndex];
+    Key2 := AKeys[KeyIndex];
     AStream.position := 0;
     while (AStream.position < AStream.Size) do
     begin
@@ -133,14 +154,9 @@ begin
         KeyIndex := 0;
 
       Key1 := od;
-      Key2 := FKeys[KeyIndex];
+      Key2 := AKeys[KeyIndex];
     end;
   end;
-end;
-
-procedure TOlfCryptDecrypt.SetKeys(const Value: TByteDynArray);
-begin
-  FKeys := Value;
 end;
 
 end.
