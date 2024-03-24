@@ -25,14 +25,22 @@ type
   protected
   public
     property Keys: TByteDynArray read FKeys write SetKeys;
-    function Crypt(Const AStream: TStream): TStream; overload;
-    class function Crypt(Const AStream: TStream; Const AKeys: TByteDynArray)
+    function XORCrypt(Const AStream: TStream): TStream; overload;
+    class function XORCrypt(Const AStream: TStream; Const AKeys: TByteDynArray)
       : TStream; overload;
-    function Decrypt(Const AStream: TStream): TStream; overload;
-    class function Decrypt(Const AStream: TStream; Const AKeys: TByteDynArray)
-      : TStream; overload;
+    function XORDecrypt(Const AStream: TStream): TStream; overload;
+    class function XORDecrypt(Const AStream: TStream;
+      Const AKeys: TByteDynArray): TStream; overload;
     constructor Create; overload;
     constructor Create(Const AKeys: TByteDynArray); overload;
+    function Crypt(Const AStream: TStream): TStream; overload;
+      deprecated 'Use XORCrypt()';
+    class function Crypt(Const AStream: TStream; Const AKeys: TByteDynArray)
+      : TStream; overload; deprecated 'Use XORCrypt()';
+    function Decrypt(Const AStream: TStream): TStream; overload;
+      deprecated 'Use XORDecrypt()';
+    class function Decrypt(Const AStream: TStream; Const AKeys: TByteDynArray)
+      : TStream; overload; deprecated 'Use XORDecrypt()';
   end;
 
 implementation
@@ -52,7 +60,29 @@ begin
     FKeys[i] := AKeys[i];
 end;
 
+function TOlfCryptDecrypt.Crypt(const AStream: TStream): TStream;
+begin
+  result := XORCrypt(AStream);
+end;
+
 class function TOlfCryptDecrypt.Crypt(const AStream: TStream;
+  const AKeys: TByteDynArray): TStream;
+begin
+  result := XORCrypt(AStream, AKeys);
+end;
+
+function TOlfCryptDecrypt.Decrypt(const AStream: TStream): TStream;
+begin
+  result := XORDecrypt(AStream)
+end;
+
+class function TOlfCryptDecrypt.Decrypt(const AStream: TStream;
+  const AKeys: TByteDynArray): TStream;
+begin
+  result := XORDecrypt(AStream, AKeys);
+end;
+
+class function TOlfCryptDecrypt.XORCrypt(const AStream: TStream;
   const AKeys: TByteDynArray): TStream;
 var
   Key1, Key2: byte;
@@ -101,14 +131,14 @@ begin
   setlength(FKeys, 0);
 end;
 
-function TOlfCryptDecrypt.Crypt(const AStream: TStream): TStream;
+function TOlfCryptDecrypt.XORCrypt(const AStream: TStream): TStream;
 begin
-  result := Crypt(AStream, FKeys);
+  result := XORCrypt(AStream, FKeys);
 end;
 
-function TOlfCryptDecrypt.Decrypt(const AStream: TStream): TStream;
+function TOlfCryptDecrypt.XORDecrypt(const AStream: TStream): TStream;
 begin
-  result := Decrypt(AStream, FKeys);
+  result := XORDecrypt(AStream, FKeys);
 end;
 
 procedure TOlfCryptDecrypt.SetKeys(const Value: TByteDynArray);
@@ -116,7 +146,7 @@ begin
   FKeys := Value;
 end;
 
-class function TOlfCryptDecrypt.Decrypt(const AStream: TStream;
+class function TOlfCryptDecrypt.XORDecrypt(const AStream: TStream;
   const AKeys: TByteDynArray): TStream;
 var
   Key1, Key2: byte;
