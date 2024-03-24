@@ -84,7 +84,7 @@ begin
     try
       Memo1.lines.add('ss.size=' + ss.size.tostring);
       ShowStreamContent('ss', ss);
-      cs := crypt.crypt(ss);
+      cs := crypt.XORCrypt(ss);
       Memo1.lines.add('cs.size=' + cs.size.tostring);
       ShowStreamContent('cs', cs);
     finally
@@ -92,7 +92,7 @@ begin
     end;
 
     // Uncrypt the string
-    dcs := crypt.Decrypt(cs);
+    dcs := crypt.XORDecrypt(cs);
     Memo1.lines.add('dcs.size=' + dcs.size.tostring);
     ShowStreamContent('dcs', dcs);
     cs.free;
@@ -148,7 +148,7 @@ begin
   try
     Memo1.lines.add('ss.size=' + ss.size.tostring);
     ShowStreamContent('ss', ss);
-    cs := TOlfCryptDecrypt.crypt(ss, key);
+    cs := TOlfCryptDecrypt.XORCrypt(ss, key);
     Memo1.lines.add('cs.size=' + cs.size.tostring);
     ShowStreamContent('cs', cs);
   finally
@@ -156,7 +156,7 @@ begin
   end;
 
   // Uncrypt the string
-  dcs := TOlfCryptDecrypt.Decrypt(cs, key);
+  dcs := TOlfCryptDecrypt.XORDecrypt(cs, key);
   Memo1.lines.add('dcs.size=' + dcs.size.tostring);
   ShowStreamContent('dcs', dcs);
   cs.free;
