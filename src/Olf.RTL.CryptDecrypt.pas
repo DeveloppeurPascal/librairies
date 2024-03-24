@@ -25,14 +25,24 @@ type
   protected
   public
     property Keys: TByteDynArray read FKeys write SetKeys;
+
     function XORCrypt(Const AStream: TStream): TStream; overload;
     class function XORCrypt(Const AStream: TStream; Const AKeys: TByteDynArray)
       : TStream; overload;
     function XORDecrypt(Const AStream: TStream): TStream; overload;
     class function XORDecrypt(Const AStream: TStream;
       Const AKeys: TByteDynArray): TStream; overload;
+
+    function SwapCrypt(Const AStream: TStream): TStream; overload;
+    class function SwapCrypt(Const AStream: TStream; Const AKeys: TByteDynArray)
+      : TStream; overload;
+    function SwapDecrypt(Const AStream: TStream): TStream; overload;
+    class function SwapDecrypt(Const AStream: TStream;
+      Const AKeys: TByteDynArray): TStream; overload;
+
     constructor Create; overload;
     constructor Create(Const AKeys: TByteDynArray); overload;
+
     function Crypt(Const AStream: TStream): TStream; overload;
       deprecated 'Use XORCrypt()';
     class function Crypt(Const AStream: TStream; Const AKeys: TByteDynArray)
@@ -144,6 +154,76 @@ end;
 procedure TOlfCryptDecrypt.SetKeys(const Value: TByteDynArray);
 begin
   FKeys := Value;
+end;
+
+function TOlfCryptDecrypt.SwapCrypt(const AStream: TStream): TStream;
+begin
+  result := SwapCrypt(AStream, FKeys);
+end;
+
+class function TOlfCryptDecrypt.SwapCrypt(const AStream: TStream;
+  const AKeys: TByteDynArray): TStream;
+var
+  oc, od: byte;
+begin
+  if (length(AKeys) <> 256) then
+    raise exception.Create('Need a 256 bytes private key to crypt !');
+
+  if not assigned(AStream) then
+    result := nil
+  else
+  begin
+    result := tmemorystream.Create;
+    AStream.position := 0;
+    while (AStream.position < AStream.Size) do
+    begin
+      if (1 <> AStream.Read(od, 1)) then
+        raise exception.Create('Can''t read a new byte.');
+
+      oc := AKeys[ord(od)];
+
+      if (1 <> result.write(oc, 1)) then
+        raise exception.Create('Can''t write encrypted byte.');
+    end;
+  end;
+end;
+
+function TOlfCryptDecrypt.SwapDecrypt(const AStream: TStream): TStream;
+begin
+  result := SwapDecrypt(AStream, FKeys);
+end;
+
+class function TOlfCryptDecrypt.SwapDecrypt(const AStream: TStream;
+  const AKeys: TByteDynArray): TStream;
+var
+  oc, od: byte;
+  ReverseKey: TByteDynArray;
+  i: integer;
+begin
+  if (length(AKeys) <> 256) then
+    raise exception.Create('Need a 256 bytes private key to decrypt !');
+
+  if not assigned(AStream) then
+    result := nil
+  else
+  begin
+    setlength(ReverseKey, length(AKeys));
+    for i := 0 to length(AKeys) - 1 do
+      ReverseKey[AKeys[i]] := i;
+
+    result := tmemorystream.Create;
+    AStream.position := 0;
+    while (AStream.position < AStream.Size) do
+    begin
+      if (1 <> AStream.Read(oc, 1)) then
+        raise exception.Create('Can''t read a new byte.');
+
+      od := ReverseKey[ord(oc)];
+
+      if (1 <> result.write(od, 1)) then
+        raise exception.Create('Can''t write encrypted byte.');
+    end;
+  end;
 end;
 
 class function TOlfCryptDecrypt.XORDecrypt(const AStream: TStream;
