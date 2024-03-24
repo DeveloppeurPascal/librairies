@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{76B4B781-AADB-4DF7-8CC4-3FB41E209820}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="FMX\FMXEmptyBitmapSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="VCL\VCLEmptyBitmapSample.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="FMXEmptyBitmapSample">
+        <MSBuild Projects="FMX\FMXEmptyBitmapSample.dproj"/>
+    </Target>
+    <Target Name="FMXEmptyBitmapSample:Clean">
+        <MSBuild Projects="FMX\FMXEmptyBitmapSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FMXEmptyBitmapSample:Make">
+        <MSBuild Projects="FMX\FMXEmptyBitmapSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="VCLEmptyBitmapSample">
+        <MSBuild Projects="VCL\VCLEmptyBitmapSample.dproj"/>
+    </Target>
+    <Target Name="VCLEmptyBitmapSample:Clean">
+        <MSBuild Projects="VCL\VCLEmptyBitmapSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VCLEmptyBitmapSample:Make">
+        <MSBuild Projects="VCL\VCLEmptyBitmapSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="FMXEmptyBitmapSample;VCLEmptyBitmapSample"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="FMXEmptyBitmapSample:Clean;VCLEmptyBitmapSample:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="FMXEmptyBitmapSample:Make;VCLEmptyBitmapSample:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
