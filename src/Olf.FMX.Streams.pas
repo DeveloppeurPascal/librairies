@@ -20,7 +20,7 @@ begin
   if not assigned(AToStream) then
     raise exception.create('Need an existing stream to save the bitmap !');
 
-  if not assigned(ABitmap) then
+  if not assigned(ABitmap) or (ABitmap.Width = 0) or (ABitmap.Height = 0) then
   begin
     size := 0;
     AToStream.WriteData(size);
