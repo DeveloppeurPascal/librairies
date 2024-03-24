@@ -6,6 +6,8 @@
 * renommage de TOlfCryptDecrypt.Decrypt en TOlfCryptDecrypt.XORDecrypt
 * mise à jour du projet de démo utilisant ces fonctions de chiffrement
 * mise à jour de l'ordre de tabulation dans l'écran du projet de test de XORCrypt/XORDecrypt
+* ajout d'un algorithme de chiffrement par permutation
+* ajout d'un exemple d'utilisation de l'algorithme de chiffrement par permutation
 
 ## Sur l'unité u_MD5
 
