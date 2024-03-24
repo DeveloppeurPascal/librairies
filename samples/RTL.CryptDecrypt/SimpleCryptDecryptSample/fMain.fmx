@@ -34,7 +34,7 @@ object Form1: TForm1
     Size.Width = 630.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 2
+    TabOrder = 1
     Text = 'use a TOlfCryptDecrypt instance'
     TextSettings.Trimming = None
     OnClick = Button1Click
@@ -65,7 +65,7 @@ object Form1: TForm1
     Size.Width = 630.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 1
+    TabOrder = 2
     Text = 'use the TOlfCryptDecrypt class'
     TextSettings.Trimming = None
     OnClick = Button2Click
