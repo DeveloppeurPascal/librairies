@@ -12,6 +12,7 @@ interface
 uses Olf.RTL.Language;
 
 function GetOSLangID: String;
+  deprecated 'Use Olf.RTL.Language.GetCurrentLanguageISOCode instead';
 
 implementation
 
