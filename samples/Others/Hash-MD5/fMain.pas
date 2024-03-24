@@ -56,4 +56,8 @@ begin
   Edit1.text := 'A record that implements the MD5 hash type.';
 end;
 
+initialization
+
+ReportMemoryLeaksOnShutdown := true;
+
 end.
