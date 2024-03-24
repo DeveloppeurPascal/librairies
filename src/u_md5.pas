@@ -34,7 +34,7 @@ begin
   with TIdHashMessageDigest5.Create do
   begin
     ch := HashStringAsHex(AString);
-    DisposeOf;
+    Free;
   end;
   result := ch.ToLower;
 {$ENDIF}
