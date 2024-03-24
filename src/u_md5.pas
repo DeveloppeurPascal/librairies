@@ -3,25 +3,41 @@ unit u_md5;
 interface
 
 /// <summary>Get MD5 code from a string</summary>
-/// <param name="S">String to encode</param>
-/// <returns>The function return the MD5 of the S string.</returns>
-function MD5(S: String): String;
+/// <param name="AString">String to encode</param>
+/// <returns>The function return the MD5 of the AString string.</returns>
+/// <remarks>
+/// Before Delphi 10 Seattle this function uses IdHashMessageDigest from Iny.
+/// Since Delphi 10 Seattle it uses System.Hash.THashMD5 from Embarcadero.
+/// </remarks>
+function MD5(const AString: String): String;
 
 implementation
 
 uses
-  IdHashMessageDigest, System.SysUtils;
+{$IF CompilerVersion>=30.0}
+  System.Hash,
+{$ELSE}
+  IdHashMessageDigest,
+{$ENDIF}
+  System.SysUtils;
 
-function MD5(S: String): String;
+function MD5(const AString: String): String;
+{$IF CompilerVersion>=30.0}
+{$ELSE}
 var
   ch: string;
+{$ENDIF}
 begin
+{$IF CompilerVersion>=30.0}
+  result := THashMD5.GetHashString(AString).ToLower;
+{$ELSE}
   with TIdHashMessageDigest5.Create do
   begin
-    ch := HashStringAsHex(S);
+    ch := HashStringAsHex(AString);
     DisposeOf;
   end;
   result := ch.ToLower;
+{$ENDIF}
 end;
 
 end.
