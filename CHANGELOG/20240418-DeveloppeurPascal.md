@@ -7,3 +7,5 @@
 * ajout du lien vers [le générateur de clés Swap](https://swapkeysgenerator.olfsoftware.fr/) dans les commentaires liés à ce type de chiffrement
 * ajout de l'unité Olf.RTL.GenRandomID pour créer des ID alphanumériques aléatoires en utilisant chiffres, lettres en minuscules et majuscules
 * ajout d'un projet d'exemple pour montrer comment se servir du générateur d'ID aléatoires
+* paramétrage de la taille par défaut des ID générés par Olf.RTL.GenRandomID.TOlfRandomIDGenerator
+* ajout de contrôle de taille et de cohérence sur les générateurs d'ID dans Olf.RTL.GenRandomID.TOlfRandomIDGenerator
