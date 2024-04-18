@@ -786,7 +786,6 @@ end;
 procedure TParamsFile.Load;
 var
   FileName: string;
-  buffer: tStringStream;
   fs: TFileStream;
   JSON: string;
 begin
