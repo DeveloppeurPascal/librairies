@@ -37,22 +37,38 @@ type
     /// <summary>
     /// use XOR operand to crypt a buffer with the keys buffer property
     /// </summary>
+    /// <remarks>
+    /// You can use the program at https://xorkeysgenerator.olfsoftware.fr/ to
+    /// generate a compatible XOR keys buffer.
+    /// </remarks>
     function XORCrypt(Const AStream: TStream): TStream; overload;
 
     /// <summary>
     /// use XOR operand to crypt a buffer with a keys buffer
     /// </summary>
+    /// <remarks>
+    /// You can use the program at https://xorkeysgenerator.olfsoftware.fr/ to
+    /// generate a compatible XOR keys buffer.
+    /// </remarks>
     class function XORCrypt(Const AStream: TStream; Const AKeys: TByteDynArray)
       : TStream; overload;
 
     /// <summary>
     /// use XOR operand to decrypt a buffer with the keys buffer property
     /// </summary>
+    /// <remarks>
+    /// You can use the program at https://xorkeysgenerator.olfsoftware.fr/ to
+    /// generate a compatible XOR keys buffer.
+    /// </remarks>
     function XORDecrypt(Const AStream: TStream): TStream; overload;
 
     /// <summary>
     /// use XOR operand to decrypt a buffer with a keys buffer
     /// </summary>
+    /// <remarks>
+    /// You can use the program at https://xorkeysgenerator.olfsoftware.fr/ to
+    /// generate a compatible XOR keys buffer.
+    /// </remarks>
     class function XORDecrypt(Const AStream: TStream;
       Const AKeys: TByteDynArray): TStream; overload;
 
