@@ -75,22 +75,38 @@ type
     /// <summary>
     /// exchange bytes between a buffer to crypt and the property key
     /// </summary>
+    /// <remarks>
+    /// You can use the program at https://swapkeysgenerator.olfsoftware.fr/ to
+    /// generate a compatible Swap keys buffer.
+    /// </remarks>
     function SwapCrypt(Const AStream: TStream): TStream; overload;
 
     /// <summary>
     /// exchange bytes between a buffer to crypt and the key parameter
     /// </summary>
+    /// <remarks>
+    /// You can use the program at https://swapkeysgenerator.olfsoftware.fr/ to
+    /// generate a compatible Swap keys buffer.
+    /// </remarks>
     class function SwapCrypt(Const AStream: TStream; Const AKeys: TByteDynArray)
       : TStream; overload;
 
     /// <summary>
     /// exchange bytes between a buffer to uncrypt and the property key
     /// </summary>
+    /// <remarks>
+    /// You can use the program at https://swapkeysgenerator.olfsoftware.fr/ to
+    /// generate a compatible Swap keys buffer.
+    /// </remarks>
     function SwapDecrypt(Const AStream: TStream): TStream; overload;
 
     /// <summary>
     /// exchange bytes between a buffer to uncrypt and the key parameter
     /// </summary>
+    /// <remarks>
+    /// You can use the program at https://swapkeysgenerator.olfsoftware.fr/ to
+    /// generate a compatible Swap keys buffer.
+    /// </remarks>
     class function SwapDecrypt(Const AStream: TStream;
       Const AKeys: TByteDynArray): TStream; overload;
 
