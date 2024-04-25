@@ -383,4 +383,8 @@ begin
   end;
 end;
 
+initialization
+
+randomize;
+
 end.
