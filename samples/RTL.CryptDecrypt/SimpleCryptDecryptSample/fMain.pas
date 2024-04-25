@@ -62,10 +62,7 @@ begin
     raise exception.create('Please give me a string to crypt/decrypt.');
 
   // Init the private key
-  KeyToString := 'Key :';
   key := TOlfCryptDecrypt.GenXORKey(random(length(s) + 1));
-  for i := 0 to length(key) - 1 do
-    KeyToString := KeyToString + ' ' + key[i].tostring;
   // nb := random(length(s) + 1);
   // setlength(key, nb);
   // for i := 0 to nb - 1 do
@@ -76,6 +73,9 @@ begin
   // key[0] := random(255);
   // KeyToString := KeyToString + ' ' + key[i].tostring;
   // end;
+  KeyToString := '';
+  for i := 0 to length(key) - 1 do
+    KeyToString := KeyToString + ' ' + key[i].tostring;
   Memo1.lines.add('key : ' + KeyToString);
 
   crypt := TOlfCryptDecrypt.create(key);
@@ -131,18 +131,21 @@ begin
   if s.isempty then
     raise exception.create('Please give me a string to crypt/decrypt.');
 
-  // Init the private key
-  KeyToString := 'Key :';
-  nb := random(length(s) + 1);
-  setlength(key, nb);
-  for i := 0 to nb - 1 do
-  begin
-    key[i] := random(255);
-    if (i = 0) then
-      while (key[0] in [0, 255]) do
-        key[0] := random(255);
+  key := TOlfCryptDecrypt.GenXORKey(random(length(s) + 1));
+  // nb := random(length(s) + 1);
+  // setlength(key, nb);
+  // for i := 0 to nb - 1 do
+  // begin
+  // key[i] := random(255);
+  // if (i = 0) then
+  // while (key[0] in [0, 255]) do
+  // key[0] := random(255);
+  // KeyToString := KeyToString + ' ' + key[i].tostring;
+  // end;
+  KeyToString := '';
+  for i := 0 to length(key) - 1 do
     KeyToString := KeyToString + ' ' + key[i].tostring;
-  end;
+  Memo1.lines.add('key : ' + KeyToString);
 
   Memo1.lines.add(s);
   Memo1.lines.add('s.length=' + s.length.tostring);
