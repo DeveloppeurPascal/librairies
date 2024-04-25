@@ -116,6 +116,11 @@ type
       Const AKeys: TByteDynArray): TStream; overload;
 
     /// <summary>
+    /// Export a key as an array of 256 random bytes
+    /// </summary>
+    class function GenSwapKey: TByteDynArray;
+
+    /// <summary>
     /// Create an instance of TOlfCryptDecrypt class
     /// </summary>
     constructor Create; overload;
@@ -153,6 +158,7 @@ type
 implementation
 
 uses
+  System.Generics.Collections,
   System.SysUtils;
 
 { TOlfCryptDecrypt }
@@ -187,6 +193,28 @@ class function TOlfCryptDecrypt.Decrypt(const AStream: TStream;
   const AKeys: TByteDynArray): TStream;
 begin
   result := XORDecrypt(AStream, AKeys);
+end;
+
+class function TOlfCryptDecrypt.GenSwapKey: TByteDynArray;
+var
+  i: integer;
+  nb: integer;
+  Bytes: TList<byte>;
+begin
+  setlength(result, 256);
+  Bytes := TList<byte>.Create;
+  try
+    for i := 0 to 255 do
+      Bytes.add(i);
+    for i := 0 to 255 do
+    begin
+      nb := random(Bytes.count);
+      result[i] := Bytes[nb];
+      Bytes.Delete(nb);
+    end;
+  finally
+    Bytes.free;
+  end;
 end;
 
 class function TOlfCryptDecrypt.GenXORKey(const Size: word): TByteDynArray;
