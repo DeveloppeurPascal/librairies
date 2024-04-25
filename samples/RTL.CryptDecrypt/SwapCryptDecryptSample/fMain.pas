@@ -61,20 +61,26 @@ begin
     raise exception.create('Please give me a string to crypt/decrypt.');
 
   // Init the private key
-  setlength(key, 256);
-  Bytes := TList<byte>.create;
-  try
-    for i := 0 to 255 do
-      Bytes.add(i);
-    for i := 0 to 255 do
-    begin
-      nb := random(Bytes.count);
-      key[i] := Bytes[nb];
-      Bytes.Delete(nb);
-    end;
-  finally
-    Bytes.free;
-  end;
+  key := TOlfCryptDecrypt.GenSwapKey;
+  // setlength(key, 256);
+  // Bytes := TList<byte>.create;
+  // try
+  // for i := 0 to 255 do
+  // Bytes.add(i);
+  // for i := 0 to 255 do
+  // begin
+  // nb := random(Bytes.count);
+  // key[i] := Bytes[nb];
+  // Bytes.Delete(nb);
+  // end;
+  // finally
+  // Bytes.free;
+  // end;
+
+  KeyToString := '';
+  for i := 0 to length(key) - 1 do
+    KeyToString := KeyToString + ' ' + key[i].tostring;
+  Memo1.lines.add('key : ' + KeyToString);
 
   Memo1.lines.add(s);
   Memo1.lines.add('s.length=' + s.length.tostring);
