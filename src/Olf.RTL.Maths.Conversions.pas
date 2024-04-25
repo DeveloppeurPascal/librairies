@@ -40,19 +40,22 @@ begin
 
   result := '';
   nb := ANumber;
-  while (nb > 0) do
-  begin
-    reste := nb mod ABase;
-    case reste of
-      0 .. 9: // base 2 à base 10
-        result := reste.ToString + result;
-      1 + 9 .. 26 + 9: // base 11 à base 36
-        result := chr(reste - 1 - 9 + ord('A')) + result;
-      26 + 9 + 1 .. 26 + 9 + 26: // base 37 à base 62
-        result := chr(reste - 26 - 9 - 1 + ord('a')) + result;
+  if nb = 0 then
+    result := '0'
+  else
+    while (nb > 0) do
+    begin
+      reste := nb mod ABase;
+      case reste of
+        0 .. 9: // base 2 à base 10
+          result := reste.ToString + result;
+        1 + 9 .. 26 + 9: // base 11 à base 36
+          result := chr(reste - 1 - 9 + ord('A')) + result;
+        26 + 9 + 1 .. 26 + 9 + 26: // base 37 à base 62
+          result := chr(reste - 26 - 9 - 1 + ord('a')) + result;
+      end;
+      nb := nb div ABase;
     end;
-    nb := nb div ABase;
-  end;
 end;
 
 class function TOlfNumberConversion.Base36ToDecimal(Const ANumber
