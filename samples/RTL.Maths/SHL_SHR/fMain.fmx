@@ -1,0 +1,116 @@
+object Form2: TForm2
+  Left = 0
+  Top = 0
+  Caption = 'Form2'
+  ClientHeight = 480
+  ClientWidth = 640
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object Memo1: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Align = Client
+    Size.Width = 640.000000000000000000
+    Size.Height = 430.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Viewport.Width = 636.000000000000000000
+    Viewport.Height = 426.000000000000000000
+  end
+  object GridPanelLayout1: TGridPanelLayout
+    Align = Top
+    Size.Width = 640.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    ColumnCollection = <
+      item
+        Value = 33.000000000000000000
+      end
+      item
+        Value = 34.000000000000000000
+      end
+      item
+        Value = 33.000000000000000000
+      end>
+    ControlCollection = <
+      item
+        Column = 0
+        Control = Edit1
+        Row = 0
+        RowSpan = 2
+      end
+      item
+        Column = 1
+        Control = btnSHL
+        Row = 0
+      end
+      item
+        Column = 1
+        Control = btnSHR
+        Row = 1
+      end
+      item
+        Column = 2
+        Control = Edit2
+        Row = 0
+        RowSpan = 2
+      end>
+    RowCollection = <
+      item
+        Value = 50.000000000000000000
+      end
+      item
+        Value = 50.000000000000000000
+      end
+      item
+        SizeStyle = Auto
+      end
+      item
+        SizeStyle = Auto
+      end>
+    object Edit1: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = VertCenter
+      TabOrder = 0
+      Position.Y = 14.000000000000000000
+      Size.Width = 211.199996948242200000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TextPrompt = 'give a binary number'
+    end
+    object btnSHL: TButton
+      Align = Client
+      Size.Width = 217.599990844726600000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'btnSHL'
+      TextSettings.Trimming = None
+      OnClick = btnSHLClick
+    end
+    object btnSHR: TButton
+      Align = Client
+      Size.Width = 217.599990844726600000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'btnSHR'
+      TextSettings.Trimming = None
+      OnClick = btnSHRClick
+    end
+    object Edit2: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = VertCenter
+      TabOrder = 3
+      Position.X = 428.799987792968800000
+      Position.Y = 14.000000000000000000
+      Size.Width = 211.200012207031300000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TextPrompt = 'number used in SHL/SGHR operation'
+    end
+  end
+end
