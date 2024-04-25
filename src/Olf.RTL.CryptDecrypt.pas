@@ -25,14 +25,22 @@ type
   /// </remarks>
   TOlfCryptDecrypt = class
   private
-    FKeys: TByteDynArray;
-    procedure SetKeys(const Value: TByteDynArray);
+    FIntegerKeys: TIntegerDynArray;
+    FByteKeys: TByteDynArray;
+    procedure SetByteKeys(const Value: TByteDynArray);
+    procedure SetIntegerKeys(const Value: TIntegerDynArray);
   protected
   public
     /// <summary>
     /// buffer of bytes used as a key by Crypt/Decrypt functions
     /// </summary>
-    property Keys: TByteDynArray read FKeys write SetKeys;
+    property ByteKeys: TByteDynArray read FByteKeys write SetByteKeys;
+
+    /// <summary>
+    /// buffer of integers used as a key by Crypt/Decrypt functions
+    /// </summary>
+    property IntegerKeys: TIntegerDynArray read FIntegerKeys
+      write SetIntegerKeys;
 
     /// <summary>
     /// use XOR operand to crypt a buffer with the keys buffer property
@@ -120,15 +128,28 @@ type
     /// </summary>
     class function GenSwapKey: TByteDynArray;
 
+    function ShiftCrypt(Const AStream: TStream): TStream; overload;
+    class function ShiftCrypt(Const AStream: TStream;
+      const AKeys: TIntegerDynArray): TStream; overload;
+    function ShiftDecrypt(Const AStream: TStream): TStream; overload;
+    class function ShiftDecrypt(Const AStream: TStream;
+      const AKeys: TIntegerDynArray): TStream; overload;
+    class function GenShiftKey(Const Size: word): TIntegerDynArray;
+
     /// <summary>
     /// Create an instance of TOlfCryptDecrypt class
     /// </summary>
     constructor Create; overload;
 
     /// <summary>
-    /// Create an instance of TOlfCryptDecrypt class and fill its key buffer
+    /// Create an instance of TOlfCryptDecrypt class and fill its key buffer as bytes
     /// </summary>
     constructor Create(Const AKeys: TByteDynArray); overload;
+
+    /// <summary>
+    /// Create an instance of TOlfCryptDecrypt class and fill its key buffer as integers
+    /// </summary>
+    constructor Create(Const AKeys: TIntegerDynArray); overload;
 
     /// <summary>
     /// DEPRECATED - internally use XORCrypt
@@ -168,14 +189,24 @@ var
   i: uint64;
 begin
   Create;
-  setlength(FKeys, length(AKeys));
+  setlength(FByteKeys, length(AKeys));
   for i := 0 to length(AKeys) - 1 do
-    FKeys[i] := AKeys[i];
+    FByteKeys[i] := AKeys[i];
 end;
 
 function TOlfCryptDecrypt.Crypt(const AStream: TStream): TStream;
 begin
   result := XORCrypt(AStream);
+end;
+
+constructor TOlfCryptDecrypt.Create(const AKeys: TIntegerDynArray);
+var
+  i: uint64;
+begin
+  Create;
+  setlength(FIntegerKeys, length(AKeys));
+  for i := 0 to length(AKeys) - 1 do
+    FIntegerKeys[i] := AKeys[i];
 end;
 
 class function TOlfCryptDecrypt.Crypt(const AStream: TStream;
@@ -193,6 +224,20 @@ class function TOlfCryptDecrypt.Decrypt(const AStream: TStream;
   const AKeys: TByteDynArray): TStream;
 begin
   result := XORDecrypt(AStream, AKeys);
+end;
+
+class function TOlfCryptDecrypt.GenShiftKey(const Size: word): TIntegerDynArray;
+var
+  i: word;
+begin
+  if Size < 1 then
+    raise exception.Create('The size must be greater than 0.');
+
+  setlength(result, Size);
+  for i := 0 to Size - 1 do
+    repeat
+      result[i] := random(7 + 7 + 1) - 7;
+    until result[i] <> 0;
 end;
 
 class function TOlfCryptDecrypt.GenSwapKey: TByteDynArray;
@@ -280,27 +325,138 @@ end;
 constructor TOlfCryptDecrypt.Create;
 begin
   inherited;
-  setlength(FKeys, 0);
+  setlength(FIntegerKeys, 0);
+  setlength(FByteKeys, 0);
 end;
 
 function TOlfCryptDecrypt.XORCrypt(const AStream: TStream): TStream;
 begin
-  result := XORCrypt(AStream, FKeys);
+  result := XORCrypt(AStream, FByteKeys);
 end;
 
 function TOlfCryptDecrypt.XORDecrypt(const AStream: TStream): TStream;
 begin
-  result := XORDecrypt(AStream, FKeys);
+  result := XORDecrypt(AStream, FByteKeys);
 end;
 
-procedure TOlfCryptDecrypt.SetKeys(const Value: TByteDynArray);
+procedure TOlfCryptDecrypt.SetByteKeys(const Value: TByteDynArray);
 begin
-  FKeys := Value;
+  FByteKeys := Value;
+end;
+
+procedure TOlfCryptDecrypt.SetIntegerKeys(const Value: TIntegerDynArray);
+begin
+  FIntegerKeys := Value;
+end;
+
+class function TOlfCryptDecrypt.ShiftCrypt(const AStream: TStream;
+  const AKeys: TIntegerDynArray): TStream;
+var
+  KeyIndex: uint64;
+  KeyLength: uint64;
+  oc, od: byte;
+  w, wo: word;
+  ShiftValue: byte;
+  LostBit: byte;
+begin
+  KeyLength := length(AKeys);
+
+  if (KeyLength = 0) then
+    raise exception.Create('Need a private key to crypt !');
+
+  if not assigned(AStream) then
+    result := nil
+  else
+  begin
+    result := tmemorystream.Create;
+    KeyIndex := 0;
+    AStream.position := 0;
+    while (AStream.position < AStream.Size) do
+    begin
+      if (1 <> AStream.Read(od, 1)) then
+        raise exception.Create('Can''t read a new byte.');
+
+      ShiftValue := abs(AKeys[KeyIndex]) mod 8;
+      wo := od;
+      if AKeys[KeyIndex] = 0 then
+        w := od
+      else if AKeys[KeyIndex] > 0 then
+        w := wo shl ShiftValue
+      else
+        w := wo shl (8 - ShiftValue); // SHR inversé
+      oc := (w mod 256) + (w div 256);
+
+      if (1 <> result.write(oc, 1)) then
+        raise exception.Create('Can''t write encrypted byte.');
+
+      if (KeyIndex + 1 < KeyLength) then
+        inc(KeyIndex)
+      else
+        KeyIndex := 0;
+    end;
+  end;
+end;
+
+function TOlfCryptDecrypt.ShiftCrypt(const AStream: TStream): TStream;
+begin
+  result := ShiftCrypt(AStream, FIntegerKeys);
+end;
+
+function TOlfCryptDecrypt.ShiftDecrypt(const AStream: TStream): TStream;
+begin
+  result := ShiftDecrypt(AStream, FIntegerKeys);
+end;
+
+class function TOlfCryptDecrypt.ShiftDecrypt(const AStream: TStream;
+  const AKeys: TIntegerDynArray): TStream;
+var
+  KeyIndex: uint64;
+  KeyLength: uint64;
+  oc, od: byte;
+  w, wo: word;
+  ShiftValue: byte;
+begin
+  KeyLength := length(AKeys);
+
+  if (KeyLength = 0) then
+    raise exception.Create('Need a private key to crypt !');
+
+  if not assigned(AStream) then
+    result := nil
+  else
+  begin
+    result := tmemorystream.Create;
+    KeyIndex := 0;
+    AStream.position := 0;
+    while (AStream.position < AStream.Size) do
+    begin
+      if (1 <> AStream.Read(od, 1)) then
+        raise exception.Create('Can''t read a new byte.');
+
+      ShiftValue := abs(AKeys[KeyIndex]) mod 8;
+      wo := od;
+      if AKeys[KeyIndex] = 0 then
+        w := wo
+      else if AKeys[KeyIndex] < 0 then
+        w := wo shl ShiftValue
+      else
+        w := wo shl (8 - ShiftValue); // SHR inversé
+      oc := (w mod 256) + (w div 256);
+
+      if (1 <> result.write(oc, 1)) then
+        raise exception.Create('Can''t write encrypted byte.');
+
+      if (KeyIndex + 1 < KeyLength) then
+        inc(KeyIndex)
+      else
+        KeyIndex := 0;
+    end;
+  end;
 end;
 
 function TOlfCryptDecrypt.SwapCrypt(const AStream: TStream): TStream;
 begin
-  result := SwapCrypt(AStream, FKeys);
+  result := SwapCrypt(AStream, FByteKeys);
 end;
 
 class function TOlfCryptDecrypt.SwapCrypt(const AStream: TStream;
@@ -332,7 +488,7 @@ end;
 
 function TOlfCryptDecrypt.SwapDecrypt(const AStream: TStream): TStream;
 begin
-  result := SwapDecrypt(AStream, FKeys);
+  result := SwapDecrypt(AStream, FByteKeys);
 end;
 
 class function TOlfCryptDecrypt.SwapDecrypt(const AStream: TStream;
