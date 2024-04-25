@@ -73,6 +73,11 @@ type
       Const AKeys: TByteDynArray): TStream; overload;
 
     /// <summary>
+    /// Export a key as an array of random bytes
+    /// </summary>
+    class function GenXORKey(Const Size: word): TByteDynArray;
+
+    /// <summary>
     /// exchange bytes between a buffer to crypt and the property key
     /// </summary>
     /// <remarks>
@@ -182,6 +187,23 @@ class function TOlfCryptDecrypt.Decrypt(const AStream: TStream;
   const AKeys: TByteDynArray): TStream;
 begin
   result := XORDecrypt(AStream, AKeys);
+end;
+
+class function TOlfCryptDecrypt.GenXORKey(const Size: word): TByteDynArray;
+var
+  i: word;
+begin
+  if Size < 1 then
+    raise exception.Create('The size must be greater than 0.');
+
+  setlength(result, Size);
+  for i := 0 to Size - 1 do
+  begin
+    result[i] := random(256);
+    if (i = 0) then
+      while (result[0] in [0, 255]) do
+        result[0] := random(255);
+  end;
 end;
 
 class function TOlfCryptDecrypt.XORCrypt(const AStream: TStream;
