@@ -136,6 +136,14 @@ type
       const AKeys: TIntegerDynArray): TStream; overload;
     class function GenShiftKey(Const Size: word): TIntegerDynArray;
 
+    function IDBCrypt(Const AStream: TStream): TStream; overload;
+    class function IDBCrypt(Const AStream: TStream;
+      const AKeys: TIntegerDynArray): TStream; overload;
+    function IDBDecrypt(Const AStream: TStream): TStream; overload;
+    class function IDBDecrypt(Const AStream: TStream;
+      const AKeys: TIntegerDynArray): TStream; overload;
+    class function GenIDBKey(Const Size: word): TIntegerDynArray;
+
     /// <summary>
     /// Create an instance of TOlfCryptDecrypt class
     /// </summary>
@@ -226,6 +234,20 @@ begin
   result := XORDecrypt(AStream, AKeys);
 end;
 
+class function TOlfCryptDecrypt.GenIDBKey(const Size: word): TIntegerDynArray;
+var
+  i: word;
+begin
+  if Size < 1 then
+    raise exception.Create('The size must be greater than 0.');
+
+  setlength(result, Size);
+  for i := 0 to Size - 1 do
+    repeat
+      result[i] := random(255 + 255 + 1) - 255;
+    until result[i] <> 0;
+end;
+
 class function TOlfCryptDecrypt.GenShiftKey(const Size: word): TIntegerDynArray;
 var
   i: word;
@@ -276,6 +298,108 @@ begin
     if (i = 0) then
       while (result[0] in [0, 255]) do
         result[0] := random(255);
+  end;
+end;
+
+class function TOlfCryptDecrypt.IDBCrypt(const AStream: TStream;
+  const AKeys: TIntegerDynArray): TStream;
+var
+  KeyIndex: uint64;
+  KeyLength: uint64;
+  oc, od: byte;
+  IncDecValue: integer;
+begin
+  KeyLength := length(AKeys);
+
+  if (KeyLength = 0) then
+    raise exception.Create('Need a private key to crypt !');
+
+  if not assigned(AStream) then
+    result := nil
+  else
+  begin
+    result := tmemorystream.Create;
+    KeyIndex := 0;
+    AStream.position := 0;
+    while (AStream.position < AStream.Size) do
+    begin
+      if (1 <> AStream.Read(od, 1)) then
+        raise exception.Create('Can''t read a new byte.');
+
+      IncDecValue := AKeys[KeyIndex] + od;
+
+      while IncDecValue > 255 do
+        dec(IncDecValue, 255);
+
+      while IncDecValue < 0 do
+        inc(IncDecValue, 255);
+
+      oc := IncDecValue;
+
+      if (1 <> result.write(oc, 1)) then
+        raise exception.Create('Can''t write encrypted byte.');
+
+      if (KeyIndex + 1 < KeyLength) then
+        inc(KeyIndex)
+      else
+        KeyIndex := 0;
+    end;
+  end;
+end;
+
+function TOlfCryptDecrypt.IDBCrypt(const AStream: TStream): TStream;
+begin
+  result := IDBCrypt(AStream, FIntegerKeys);
+end;
+
+function TOlfCryptDecrypt.IDBDecrypt(const AStream: TStream): TStream;
+begin
+  result := IDBDecrypt(AStream, FIntegerKeys);
+end;
+
+class function TOlfCryptDecrypt.IDBDecrypt(const AStream: TStream;
+  const AKeys: TIntegerDynArray): TStream;
+var
+  KeyIndex: uint64;
+  KeyLength: uint64;
+  oc, od: byte;
+  IncDecValue: integer;
+begin
+  KeyLength := length(AKeys);
+
+  if (KeyLength = 0) then
+    raise exception.Create('Need a private key to crypt !');
+
+  if not assigned(AStream) then
+    result := nil
+  else
+  begin
+    result := tmemorystream.Create;
+    KeyIndex := 0;
+    AStream.position := 0;
+    while (AStream.position < AStream.Size) do
+    begin
+      if (1 <> AStream.Read(od, 1)) then
+        raise exception.Create('Can''t read a new byte.');
+
+      IncDecValue := od - AKeys[KeyIndex];
+
+      while IncDecValue > 255 do
+        dec(IncDecValue, 255);
+
+      while IncDecValue < 0 do
+        inc(IncDecValue, 255);
+
+      oc := IncDecValue;
+
+      if (1 <> result.write(oc, 1)) then
+        raise exception.Create('Can''t write encrypted byte.');
+
+      if (KeyIndex + 1 < KeyLength) then
+        inc(KeyIndex)
+      else
+        KeyIndex := 0;
+    end;
   end;
 end;
 
@@ -357,7 +481,6 @@ var
   oc, od: byte;
   w, wo: word;
   ShiftValue: byte;
-  LostBit: byte;
 begin
   KeyLength := length(AKeys);
 
