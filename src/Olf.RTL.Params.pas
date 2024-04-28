@@ -810,7 +810,7 @@ begin
           if Assigned(onDecryptEvent) then
             JSON := onDecryptEvent(fs)
           else if Assigned(onDecryptProc) then
-            JSON := onDecryptEvent(fs)
+            JSON := onDecryptProc(fs)
           else
             JSON := '';
         finally
