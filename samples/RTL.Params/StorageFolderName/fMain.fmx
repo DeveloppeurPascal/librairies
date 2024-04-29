@@ -79,10 +79,90 @@ object frmMain: TfrmMain
     Margins.Right = 5.000000000000000000
     Margins.Bottom = 5.000000000000000000
     Size.Width = 630.000000000000000000
-    Size.Height = 342.000000000000000000
+    Size.Height = 310.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 4
     Viewport.Width = 626.000000000000000000
-    Viewport.Height = 338.000000000000000000
+    Viewport.Height = 306.000000000000000000
+  end
+  object GridPanelLayout1: TGridPanelLayout
+    Align = Top
+    Position.Y = 128.000000000000000000
+    Size.Width = 640.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    ColumnCollection = <
+      item
+        Value = 33.000000000000000000
+      end
+      item
+        Value = 34.000000000000000000
+      end
+      item
+        Value = 33.000000000000000000
+      end>
+    ControlCollection = <
+      item
+        Column = 0
+        Control = btnCreateParamFile
+        Row = 0
+      end
+      item
+        Column = 2
+        Control = btnDeleteParamFile
+        Row = 0
+      end
+      item
+        Column = 1
+        Control = btnClear
+        Row = 0
+      end>
+    RowCollection = <
+      item
+        Value = 100.000000000000000000
+      end>
+    object btnCreateParamFile: TButton
+      Align = Client
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 201.199996948242200000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'btnCreateParamFile'
+      TextSettings.Trimming = None
+      OnClick = btnCreateParamFileClick
+    end
+    object btnDeleteParamFile: TButton
+      Align = Client
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 201.200012207031300000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'btnDeleteParamFile'
+      TextSettings.Trimming = None
+      OnClick = btnDeleteParamFileClick
+    end
+    object btnClear: TButton
+      Align = Client
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 207.599990844726600000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'btnClear'
+      TextSettings.Trimming = None
+      OnClick = btnClearClick
+    end
   end
 end
