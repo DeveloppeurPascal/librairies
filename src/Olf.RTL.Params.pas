@@ -615,7 +615,7 @@ begin
 {$IF Defined(DEBUG)}
     FileName := AppName + '-debug' + Extension;
 {$ELSE IF Defined(RELEASE)}
-    FileName := app_name + Extension;
+    FileName := AppName + Extension;
 {$ELSE}
 {$MESSAGE FATAL 'not implemented'}
 {$ENDIF} end
