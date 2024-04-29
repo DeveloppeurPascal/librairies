@@ -49,7 +49,7 @@ type
     /// You can use the program at https://xorkeysgenerator.olfsoftware.fr/ to
     /// generate a compatible XOR keys buffer.
     /// </remarks>
-    function XORCrypt(Const AStream: TStream): TStream; overload;
+    function XORCrypt(Const AStream: TStream): TMemoryStream; overload;
 
     /// <summary>
     /// use XOR operand to crypt a buffer with a keys buffer
@@ -59,7 +59,7 @@ type
     /// generate a compatible XOR keys buffer.
     /// </remarks>
     class function XORCrypt(Const AStream: TStream; Const AKeys: TByteDynArray)
-      : TStream; overload;
+      : TMemoryStream; overload;
 
     /// <summary>
     /// use XOR operand to decrypt a buffer with the keys buffer property
@@ -68,7 +68,7 @@ type
     /// You can use the program at https://xorkeysgenerator.olfsoftware.fr/ to
     /// generate a compatible XOR keys buffer.
     /// </remarks>
-    function XORDecrypt(Const AStream: TStream): TStream; overload;
+    function XORDecrypt(Const AStream: TStream): TMemoryStream; overload;
 
     /// <summary>
     /// use XOR operand to decrypt a buffer with a keys buffer
@@ -78,7 +78,7 @@ type
     /// generate a compatible XOR keys buffer.
     /// </remarks>
     class function XORDecrypt(Const AStream: TStream;
-      Const AKeys: TByteDynArray): TStream; overload;
+      Const AKeys: TByteDynArray): TMemoryStream; overload;
 
     /// <summary>
     /// Export a key as an array of random bytes
@@ -92,7 +92,7 @@ type
     /// You can use the program at https://swapkeysgenerator.olfsoftware.fr/ to
     /// generate a compatible Swap keys buffer.
     /// </remarks>
-    function SwapCrypt(Const AStream: TStream): TStream; overload;
+    function SwapCrypt(Const AStream: TStream): TMemoryStream; overload;
 
     /// <summary>
     /// exchange bytes between a buffer to crypt and the key parameter
@@ -102,7 +102,7 @@ type
     /// generate a compatible Swap keys buffer.
     /// </remarks>
     class function SwapCrypt(Const AStream: TStream; Const AKeys: TByteDynArray)
-      : TStream; overload;
+      : TMemoryStream; overload;
 
     /// <summary>
     /// exchange bytes between a buffer to uncrypt and the property key
@@ -111,7 +111,7 @@ type
     /// You can use the program at https://swapkeysgenerator.olfsoftware.fr/ to
     /// generate a compatible Swap keys buffer.
     /// </remarks>
-    function SwapDecrypt(Const AStream: TStream): TStream; overload;
+    function SwapDecrypt(Const AStream: TStream): TMemoryStream; overload;
 
     /// <summary>
     /// exchange bytes between a buffer to uncrypt and the key parameter
@@ -121,27 +121,27 @@ type
     /// generate a compatible Swap keys buffer.
     /// </remarks>
     class function SwapDecrypt(Const AStream: TStream;
-      Const AKeys: TByteDynArray): TStream; overload;
+      Const AKeys: TByteDynArray): TMemoryStream; overload;
 
     /// <summary>
     /// Export a key as an array of 256 random bytes
     /// </summary>
     class function GenSwapKey: TByteDynArray;
 
-    function ShiftCrypt(Const AStream: TStream): TStream; overload;
+    function ShiftCrypt(Const AStream: TStream): TMemoryStream; overload;
     class function ShiftCrypt(Const AStream: TStream;
-      const AKeys: TIntegerDynArray): TStream; overload;
-    function ShiftDecrypt(Const AStream: TStream): TStream; overload;
+      const AKeys: TIntegerDynArray): TMemoryStream; overload;
+    function ShiftDecrypt(Const AStream: TStream): TMemoryStream; overload;
     class function ShiftDecrypt(Const AStream: TStream;
-      const AKeys: TIntegerDynArray): TStream; overload;
+      const AKeys: TIntegerDynArray): TMemoryStream; overload;
     class function GenShiftKey(Const Size: word): TIntegerDynArray;
 
-    function IDBCrypt(Const AStream: TStream): TStream; overload;
+    function IDBCrypt(Const AStream: TStream): TMemoryStream; overload;
     class function IDBCrypt(Const AStream: TStream;
-      const AKeys: TIntegerDynArray): TStream; overload;
-    function IDBDecrypt(Const AStream: TStream): TStream; overload;
+      const AKeys: TIntegerDynArray): TMemoryStream; overload;
+    function IDBDecrypt(Const AStream: TStream): TMemoryStream; overload;
     class function IDBDecrypt(Const AStream: TStream;
-      const AKeys: TIntegerDynArray): TStream; overload;
+      const AKeys: TIntegerDynArray): TMemoryStream; overload;
     class function GenIDBKey(Const Size: word): TIntegerDynArray;
 
     /// <summary>
@@ -302,7 +302,7 @@ begin
 end;
 
 class function TOlfCryptDecrypt.IDBCrypt(const AStream: TStream;
-  const AKeys: TIntegerDynArray): TStream;
+  const AKeys: TIntegerDynArray): TMemoryStream;
 var
   KeyIndex: uint64;
   KeyLength: uint64;
@@ -318,7 +318,7 @@ begin
     result := nil
   else
   begin
-    result := tmemorystream.Create;
+    result := TMemoryStream.Create;
     KeyIndex := 0;
     AStream.position := 0;
     while (AStream.position < AStream.Size) do
@@ -347,18 +347,18 @@ begin
   end;
 end;
 
-function TOlfCryptDecrypt.IDBCrypt(const AStream: TStream): TStream;
+function TOlfCryptDecrypt.IDBCrypt(const AStream: TStream): TMemoryStream;
 begin
   result := IDBCrypt(AStream, FIntegerKeys);
 end;
 
-function TOlfCryptDecrypt.IDBDecrypt(const AStream: TStream): TStream;
+function TOlfCryptDecrypt.IDBDecrypt(const AStream: TStream): TMemoryStream;
 begin
   result := IDBDecrypt(AStream, FIntegerKeys);
 end;
 
 class function TOlfCryptDecrypt.IDBDecrypt(const AStream: TStream;
-  const AKeys: TIntegerDynArray): TStream;
+  const AKeys: TIntegerDynArray): TMemoryStream;
 var
   KeyIndex: uint64;
   KeyLength: uint64;
@@ -374,7 +374,7 @@ begin
     result := nil
   else
   begin
-    result := tmemorystream.Create;
+    result := TMemoryStream.Create;
     KeyIndex := 0;
     AStream.position := 0;
     while (AStream.position < AStream.Size) do
@@ -404,7 +404,7 @@ begin
 end;
 
 class function TOlfCryptDecrypt.XORCrypt(const AStream: TStream;
-  const AKeys: TByteDynArray): TStream;
+  const AKeys: TByteDynArray): TMemoryStream;
 var
   Key1, Key2: byte;
   KeyIndex: uint64;
@@ -420,7 +420,7 @@ begin
     result := nil
   else
   begin
-    result := tmemorystream.Create;
+    result := TMemoryStream.Create;
     Key1 := 0;
     KeyIndex := 0;
     Key2 := AKeys[KeyIndex];
@@ -453,12 +453,12 @@ begin
   setlength(FByteKeys, 0);
 end;
 
-function TOlfCryptDecrypt.XORCrypt(const AStream: TStream): TStream;
+function TOlfCryptDecrypt.XORCrypt(const AStream: TStream): TMemoryStream;
 begin
   result := XORCrypt(AStream, FByteKeys);
 end;
 
-function TOlfCryptDecrypt.XORDecrypt(const AStream: TStream): TStream;
+function TOlfCryptDecrypt.XORDecrypt(const AStream: TStream): TMemoryStream;
 begin
   result := XORDecrypt(AStream, FByteKeys);
 end;
@@ -474,7 +474,7 @@ begin
 end;
 
 class function TOlfCryptDecrypt.ShiftCrypt(const AStream: TStream;
-  const AKeys: TIntegerDynArray): TStream;
+  const AKeys: TIntegerDynArray): TMemoryStream;
 var
   KeyIndex: uint64;
   KeyLength: uint64;
@@ -491,7 +491,7 @@ begin
     result := nil
   else
   begin
-    result := tmemorystream.Create;
+    result := TMemoryStream.Create;
     KeyIndex := 0;
     AStream.position := 0;
     while (AStream.position < AStream.Size) do
@@ -520,18 +520,18 @@ begin
   end;
 end;
 
-function TOlfCryptDecrypt.ShiftCrypt(const AStream: TStream): TStream;
+function TOlfCryptDecrypt.ShiftCrypt(const AStream: TStream): TMemoryStream;
 begin
   result := ShiftCrypt(AStream, FIntegerKeys);
 end;
 
-function TOlfCryptDecrypt.ShiftDecrypt(const AStream: TStream): TStream;
+function TOlfCryptDecrypt.ShiftDecrypt(const AStream: TStream): TMemoryStream;
 begin
   result := ShiftDecrypt(AStream, FIntegerKeys);
 end;
 
 class function TOlfCryptDecrypt.ShiftDecrypt(const AStream: TStream;
-  const AKeys: TIntegerDynArray): TStream;
+  const AKeys: TIntegerDynArray): TMemoryStream;
 var
   KeyIndex: uint64;
   KeyLength: uint64;
@@ -548,7 +548,7 @@ begin
     result := nil
   else
   begin
-    result := tmemorystream.Create;
+    result := TMemoryStream.Create;
     KeyIndex := 0;
     AStream.position := 0;
     while (AStream.position < AStream.Size) do
@@ -577,13 +577,13 @@ begin
   end;
 end;
 
-function TOlfCryptDecrypt.SwapCrypt(const AStream: TStream): TStream;
+function TOlfCryptDecrypt.SwapCrypt(const AStream: TStream): TMemoryStream;
 begin
   result := SwapCrypt(AStream, FByteKeys);
 end;
 
 class function TOlfCryptDecrypt.SwapCrypt(const AStream: TStream;
-  const AKeys: TByteDynArray): TStream;
+  const AKeys: TByteDynArray): TMemoryStream;
 var
   oc, od: byte;
 begin
@@ -594,7 +594,7 @@ begin
     result := nil
   else
   begin
-    result := tmemorystream.Create;
+    result := TMemoryStream.Create;
     AStream.position := 0;
     while (AStream.position < AStream.Size) do
     begin
@@ -609,13 +609,13 @@ begin
   end;
 end;
 
-function TOlfCryptDecrypt.SwapDecrypt(const AStream: TStream): TStream;
+function TOlfCryptDecrypt.SwapDecrypt(const AStream: TStream): TMemoryStream;
 begin
   result := SwapDecrypt(AStream, FByteKeys);
 end;
 
 class function TOlfCryptDecrypt.SwapDecrypt(const AStream: TStream;
-  const AKeys: TByteDynArray): TStream;
+  const AKeys: TByteDynArray): TMemoryStream;
 var
   oc, od: byte;
   ReverseKey: TByteDynArray;
@@ -632,7 +632,7 @@ begin
     for i := 0 to length(AKeys) - 1 do
       ReverseKey[AKeys[i]] := i;
 
-    result := tmemorystream.Create;
+    result := TMemoryStream.Create;
     AStream.position := 0;
     while (AStream.position < AStream.Size) do
     begin
@@ -648,7 +648,7 @@ begin
 end;
 
 class function TOlfCryptDecrypt.XORDecrypt(const AStream: TStream;
-  const AKeys: TByteDynArray): TStream;
+  const AKeys: TByteDynArray): TMemoryStream;
 var
   Key1, Key2: byte;
   KeyIndex: uint64;
@@ -664,7 +664,7 @@ begin
     result := nil
   else
   begin
-    result := tmemorystream.Create;
+    result := TMemoryStream.Create;
     Key1 := 0;
     KeyIndex := 0;
     Key2 := AKeys[KeyIndex];
