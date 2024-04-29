@@ -159,6 +159,17 @@ type
     /// </summary>
     procedure Cancel;
     /// <summary>
+    /// Delete the file where settings are stored.
+    /// </summary>
+    /// <remarks>
+    /// WARNING !!! No rollback. Deleting the file can't be canceled.
+    /// </remarks>
+    procedure Delete;
+    /// <summary>
+    /// Clear current parameters list
+    /// </summary>
+    procedure Clear;
+    /// <summary>
     /// Get the string value for key parameter with an empty string as default value
     /// </summary>
     function getValue(key: string; default: string = ''): string; overload;
@@ -393,6 +404,21 @@ type
     /// Load parameters from actual parameter file
     /// </summary>
     class procedure Load;
+    /// <summary>
+    /// Cancel current changes and reload previous saved values
+    /// </summary>
+    class procedure Cancel;
+    /// <summary>
+    /// Delete the file where settings are stored.
+    /// </summary>
+    /// <remarks>
+    /// WARNING !!! No rollback. Deleting the file can't be canceled.
+    /// </remarks>
+    class procedure Delete;
+    /// <summary>
+    /// Clear current parameters list
+    /// </summary>
+    class procedure Clear;
     /// <summary>
     /// Get the string value for key parameter with an empty string as default value
     /// </summary>
@@ -753,10 +779,22 @@ begin
   Load;
 end;
 
+procedure TParamsFile.Clear;
+begin
+  FParamList.Free;
+  FParamList := TJSONObject.Create;
+end;
+
 constructor TParamsFile.Create(AFilePath: string);
 begin
   Create;
   setFilePath(AFilePath, true);
+end;
+
+procedure TParamsFile.Delete;
+begin
+  if tfile.Exists(getFilePath) then
+    tfile.Delete(getFilePath);
 end;
 
 destructor TParamsFile.Destroy;
@@ -1128,6 +1166,21 @@ var
 class function TParams.AsJSONObject: TJSONObject;
 begin
   result := DefaultParamsFile.AsJSONObject(true);
+end;
+
+class procedure TParams.Cancel;
+begin
+  DefaultParamsFile.Cancel;
+end;
+
+class procedure TParams.Clear;
+begin
+  DefaultParamsFile.Clear;
+end;
+
+class procedure TParams.Delete;
+begin
+  DefaultParamsFile.Delete;
 end;
 
 class function TParams.getFilePath: string;
