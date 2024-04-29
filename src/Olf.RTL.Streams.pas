@@ -24,7 +24,12 @@ function LoadSubStreamFromStream(const AFromStream, AToSubStream
   : TStream): boolean;
 procedure SaveSubStreamToStream(const AFromSubStream, AToStream: TStream);
 
+function DumpStream(const Stream: TStream; HexaDump: boolean = true): string;
+
 implementation
+
+uses
+  Olf.RTL.Maths.Conversions;
 
 procedure SaveStringToStream(AString: string; AStream: TStream);
 begin
@@ -106,6 +111,32 @@ begin
   begin
     AFromSubStream.Position := 0;
     AToStream.CopyFrom(AFromSubStream, Size);
+  end;
+end;
+
+function DumpStream(const Stream: TStream; HexaDump: boolean): string;
+var
+  o: byte;
+  Sortie: boolean;
+begin
+  Result := '';
+  if assigned(Stream) then
+  begin
+    Stream.Position := 0;
+    Sortie := false;
+    while (Stream.Position < Stream.Size) and (not Sortie) do
+    begin
+      Sortie := sizeof(o) <> Stream.Read(o, sizeof(o));
+      if not Sortie then
+      begin
+        if not Result.IsEmpty then
+          Result := Result + ', ';
+        if HexaDump then
+          Result := Result + TOlfNumberConversion.DecimalToHexadecimal(o, true)
+        else
+          Result := Result + o.tostring;
+      end;
+    end;
   end;
 end;
 
