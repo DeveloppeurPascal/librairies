@@ -15,7 +15,8 @@ type
     class function BinaryToDecimal(Const ANumber: string): uint64;
     class function DecimalToOctal(Const ANumber: uint64): string;
     class function OctalToDecimal(Const ANumber: string): uint64;
-    class function DecimalToHexadecimal(Const ANumber: uint64): string;
+    class function DecimalToHexadecimal(Const ANumber: uint64;
+      Const WithLeftZero: boolean = false): string;
     class function HexadecimalToDecimal(Const ANumber: string): uint64;
     class function DecimalToBase36(Const ANumber: uint64): string;
     class function Base36ToDecimal(Const ANumber: string): uint64;
@@ -106,10 +107,12 @@ begin
   result := FromDecimalToBaseXX(ANumber, 10);
 end;
 
-class function TOlfNumberConversion.DecimalToHexadecimal(Const ANumber
-  : uint64): string;
+class function TOlfNumberConversion.DecimalToHexadecimal(Const ANumber: uint64;
+  Const WithLeftZero: boolean): string;
 begin
   result := FromDecimalToBaseXX(ANumber, 16);
+  if WithLeftZero and (result.Length mod 2 = 1) then
+    result := '0' + result;
 end;
 
 class function TOlfNumberConversion.DecimalToOctal(Const ANumber
