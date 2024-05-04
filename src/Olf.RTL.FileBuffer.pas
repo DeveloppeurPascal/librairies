@@ -1,4 +1,4 @@
-unit Olf.RTL.FileBuffer;
+﻿unit Olf.RTL.FileBuffer;
 
 interface
 
@@ -58,8 +58,8 @@ begin
     raise Exception.Create('No stream to copy from.');
   if (sizeof(Size) <> AStream.Read(Size, sizeof(Size))) then
     raise Exception.Create('Wrong stream format.');
-  if (Size > 0) then
-    FFileInMemory.CopyFrom(AStream, Size); // TODO : vérifier que le buffer lu est bien de la bonne taille
+  if (Size > 0) and (Size <> FFileInMemory.CopyFrom(AStream, Size)) then
+    raise Exception.Create('Copy incomplete.');
 end;
 
 procedure TOlfFileBuffer.SaveToFile(const AFileName: string);
@@ -80,7 +80,8 @@ begin
   if (Size > 0) then
   begin
     FFileInMemory.Position := 0;
-    AStream.CopyFrom(FFileInMemory); // TODO : vérifier que le buffer écrit est bien de la bonne taille
+    if (Size <> AStream.CopyFrom(FFileInMemory)) then
+      raise Exception.Create('Copy incomplete.');
   end;
 end;
 
