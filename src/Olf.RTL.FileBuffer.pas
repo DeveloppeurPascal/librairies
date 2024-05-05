@@ -17,6 +17,7 @@ type
     procedure LoadFromFile(Const AFileName: string);
     procedure SaveToStream(Const AStream: TStream);
     procedure LoadFromStream(Const AStream: TStream);
+    function Size: int64;
   end;
 
 implementation
@@ -83,6 +84,11 @@ begin
     if (Size <> AStream.CopyFrom(FFileInMemory)) then
       raise Exception.Create('Copy incomplete.');
   end;
+end;
+
+function TOlfFileBuffer.Size: int64;
+begin
+  result := FFileInMemory.Size;
 end;
 
 end.
