@@ -9,34 +9,33 @@ procedure url_Open_In_Browser(URL: string);
 implementation
 
 uses
- System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants
 {$IF Defined(IOS)}
-macapi.helpers, iOSapi.Foundation, FMX.Helpers.iOS;
+    , macapi.helpers, iOSapi.Foundation, FMX.helpers.iOS
 {$ELSEIF Defined(ANDROID)}
- Androidapi.JNI.GraphicsContentViewText,
- Androidapi.Helpers;
+    , Androidapi.JNI.GraphicsContentViewText, Androidapi.helpers
 {$ELSEIF Defined(MACOS)}
-  Posix.Stdlib;
+    , Posix.Stdlib
 {$ELSEIF Defined(MSWINDOWS)}
- Winapi.ShellAPI, Winapi.Windows;
-{$ENDIF}
+    , Winapi.ShellAPI, Winapi.Windows
+{$ENDIF};
 
 procedure url_Open_In_Browser(URL: string);
 {$IF Defined(ANDROID)}
 var
- Intent: JIntent;
+  Intent: JIntent;
 {$ENDIF}
 begin
 {$IF Defined(ANDROID)}
- Intent := TJIntent.Create;
- Intent.setAction(TJIntent.JavaClass.ACTION_VIEW);
- Intent.setData(StrToJURI(URL));
- // SharedActivity.startActivity(Intent);
- tandroidhelper.Activity.startActivity(Intent);
+  Intent := TJIntent.Create;
+  Intent.setAction(TJIntent.JavaClass.ACTION_VIEW);
+  Intent.setData(StrToJURI(URL));
+  // SharedActivity.startActivity(Intent);
+  tandroidhelper.Activity.startActivity(Intent);
 {$ELSEIF Defined(MSWINDOWS)}
- ShellExecute(0, 'OPEN', PWideChar(URL), nil, nil, SW_SHOWNORMAL);
+  ShellExecute(0, 'OPEN', PWideChar(URL), nil, nil, SW_SHOWNORMAL);
 {$ELSEIF Defined(IOS)}
- SharedApplication.OpenURL(StrToNSUrl(Url));
+  SharedApplication.OpenURL(StrToNSUrl(URL));
 {$ELSEIF Defined(MACOS)}
   _system(PAnsiChar('open ' + AnsiString(URL)));
 {$ENDIF}
