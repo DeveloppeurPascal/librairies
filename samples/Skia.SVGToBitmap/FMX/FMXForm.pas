@@ -36,13 +36,24 @@ begin
 end;
 
 procedure TForm2.Timer1Timer(Sender: TObject);
+var
+  bmp: tbitmap;
 begin
   Timer1.tag := Timer1.tag + 1;
   if (Timer1.tag >= length(SVGSampleImages)) then
     Timer1.tag := 0;
 
-  Image1.Bitmap.Assign(SVGToBitmap(trunc(Image1.Width), trunc(Image1.Height),
-    SVGSampleImages[Timer1.tag], Image1.Bitmap.BitmapScale));
+  bmp := SVGToBitmap(trunc(Image1.Width), trunc(Image1.Height),
+    SVGSampleImages[Timer1.tag], Image1.Bitmap.BitmapScale);
+  try
+    Image1.Bitmap.Assign(bmp);
+  finally
+    bmp.free;
+  end;
 end;
+
+initialization
+
+ReportMemoryLeaksOnShutdown := true;
 
 end.
