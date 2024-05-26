@@ -24,6 +24,7 @@ object Form1: TForm1
     ExplicitHeight = 105
   end
   object Timer1: TTimer
+    Interval = 100
     OnTimer = Timer1Timer
     Left = 304
     Top = 224
