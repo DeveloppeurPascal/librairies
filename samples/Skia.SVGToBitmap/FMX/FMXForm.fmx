@@ -24,6 +24,7 @@ object Form2: TForm2
     WrapMode = Original
   end
   object Timer1: TTimer
+    Interval = 100
     OnTimer = Timer1Timer
     Left = 304
     Top = 224
