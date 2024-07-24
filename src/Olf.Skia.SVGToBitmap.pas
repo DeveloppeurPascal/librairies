@@ -102,6 +102,16 @@ type
     class function Bitmap(Const FromList, AtIndex: word;
       const Width, Height: integer; const BitmapScale: single = 1)
       : TBitmap; overload;
+
+    /// <summary>
+    /// Get a bitmap from the SVG in "FromList" list at "AtIndex" with specified sizes.
+    /// </summary>
+    /// <remarks>
+    /// If the bitmap doesn't exist in the cache, it's added to it after drawing.
+    /// If the bitmap already exists in the cache, you get a reference to it.
+    ///
+    /// The margins values must be decimal values between 0 and 100 (as a percent).
+    /// </remarks>
     class function Bitmap(Const FromList, AtIndex: word;
       const Width, Height: integer; const MarginTop: single;
       const MarginRight: single; const MarginBottom: single;
@@ -117,6 +127,16 @@ type
     /// </remarks>
     class function Bitmap(Const AtIndex: word; const Width, Height: integer;
       const BitmapScale: single = 1): TBitmap; overload;
+
+    /// <summary>
+    /// Get a bitmap from the SVG in default list at "AtIndex" with specified sizes.
+    /// </summary>
+    /// <remarks>
+    /// If the bitmap doesn't exist in the cache, it's added to it after drawing.
+    /// If the bitmap already exists in the cache, you get a reference to it.
+    ///
+    /// The margins values must be decimal values between 0 and 100 (as a percent).
+    /// </remarks>
     class function Bitmap(Const AtIndex: word; const Width, Height: integer;
       const MarginTop: single; const MarginRight: single;
       const MarginBottom: single; const MarginLeft: single;
@@ -129,6 +149,14 @@ type
     class function BitmapWithNoCache(const FromList, AtIndex: word;
       const Width, Height: integer; const BitmapScale: single = 1)
       : TBitmap; overload;
+
+    /// <summary>
+    /// Get a bitmap from the SVG in "FromList" list at "AtIndex" with specified sizes.
+    /// No cache is used, the bitmap is drawn each time you call this function.
+    /// </summary>
+    /// <remarks>
+    /// The margins values must be decimal values between 0 and 100 (as a percent).
+    /// </remarks>
     class function BitmapWithNoCache(const FromList, AtIndex: word;
       const Width, Height: integer; const MarginTop: single;
       const MarginRight: single; const MarginBottom: single;
@@ -142,6 +170,14 @@ type
     class function BitmapWithNoCache(const AtIndex: word;
       const Width, Height: integer; const BitmapScale: single = 1)
       : TBitmap; overload;
+
+    /// <summary>
+    /// Get a bitmap from the SVG in default list at "AtIndex" with specified sizes.
+    /// No cache is used, the bitmap is drawn each time you call this function.
+    /// </summary>
+    /// <remarks>
+    /// The margins values must be decimal values between 0 and 100 (as a percent).
+    /// </remarks>
     class function BitmapWithNoCache(const AtIndex: word;
       const Width, Height: integer; const MarginTop: single;
       const MarginRight: single; const MarginBottom: single;
@@ -165,6 +201,39 @@ type
     class function Count(const FromList: word = 0): NativeInt;
   end;
 
+  /// <summary>
+  /// Returns a transparent bitmap drawn by Skia4Delphi library from a SVG source.
+  /// </summary>
+  /// <param name="Width">
+  /// Logical width of the target bitmap. Its real width will be calculated ith the BitmapScale (in a FireMonkey project).
+  /// </param>
+  /// <param name="Height">
+  /// Logical height of the target bitmap. Its real height will be calculated ith the BitmapScale (in a FireMonkey project).
+  /// </param>
+  /// <param name="SVGSource">
+  /// XML source code of the SVG  as string.
+  /// No CSS content allowed. Check default Adobe Illustrator settings if you have exports problems.
+  /// </param>
+  /// <param name="BitmapScale">
+  /// Only used in FireMonkey projects. The BitmapScale is used to calculate the real bitmap size from logical given size.
+  /// Default value is 1.
+  /// </param>
+  /// <param name="MarginTop">
+  /// Margin top used to calculate the real SVG size and position in the final bitmap.
+  /// It's a decimal value between 0 and 100, used as a percent of the bitmap height.
+  /// </param>
+  /// <param name="MarginRight">
+  /// Margin right used to calculate the real SVG size and position in the final bitmap.
+  /// It's a decimal value between 0 and 100, used as a percent of the bitmap width.
+  /// </param>
+  /// <param name="MarginBottom">
+  /// Margin bottom used to calculate the real SVG size and position in the final bitmap.
+  /// It's a decimal value between 0 and 100, used as a percent of the bitmap height.
+  /// </param>
+  /// <param name="MarginLeft">
+  /// Margin left used to calculate the real SVG size and position in the final bitmap.
+  /// It's a decimal value between 0 and 100, used as a percent of the bitmap width.
+  /// </param>
 function SVGToBitmap(Const Width, Height: integer;
   Const SVGSource: string{$IF Defined(FRAMEWORK_FMX)};
   Const BitmapScale: single = 1{$ENDIF}; const MarginTop: single = 0;
@@ -265,12 +334,15 @@ var
   SVGWidth, SVGHeight: integer;
   bmp: TBitmap;
 begin
+  result := nil;
   SVGWidth := round(Width * (100 - MarginLeft - MarginRight) / 100);
   SVGHeight := round(Height * (100 - MarginTop - MarginBottom) / 100);
 {$IF Defined(FRAMEWORK_FMX)}
   bmp := TBitmap.Create(trunc(SVGWidth * BitmapScale),
-    trunc(SVGHeight * BitmapScale)); {$ELSE}
-  bmp := TBitmap.Create(trunc(SVGWidth), trunc(SVGHeight)); {$ENDIF}
+    trunc(SVGHeight * BitmapScale));
+{$ELSE}
+  bmp := TBitmap.Create(trunc(SVGWidth), trunc(SVGHeight));
+{$ENDIF}
   try
 {$IF Defined(FRAMEWORK_FMX)}
     bmp.BitmapScale := BitmapScale;
@@ -284,15 +356,55 @@ begin
         try
           LSvgBrush.Source := SVGSource;
           LSvgBrush.WrapMode := TSkSvgWrapMode.Fit;
-          LSvgBrush.Render(ACanvas, RectF(0, 0, Width, Height), 1);
+          LSvgBrush.Render(ACanvas, RectF(0, 0, SVGWidth, SVGHeight), 1);
         finally
           LSvgBrush.Free;
         end;
-      end);
-    result := bmp;
-  except
-    result.Free;
-    result := nil;
+      end, false);
+
+    if (MarginTop = 0) and (MarginRight = 0) and (MarginBottom = 0) and
+      (MarginLeft = 0) then
+      result := bmp
+    else
+    begin
+{$IF Defined(FRAMEWORK_FMX)}
+      result := TBitmap.Create(round(Width * BitmapScale),
+        round(Height * BitmapScale));
+      try
+        result.BitmapScale := BitmapScale;
+        result.Clear(0);
+        result.canvas.BeginScene;
+        try
+          result.canvas.DrawBitmap(bmp, bmp.BoundsF,
+            trectf.Create((result.Width * MarginLeft / 100) / BitmapScale,
+            (result.Height * MarginTop / 100) / BitmapScale,
+            (bmp.Width + result.Width * MarginLeft / 100) / BitmapScale,
+            (bmp.Height + result.Height * MarginTop / 100) / BitmapScale), 1);
+        finally
+          result.canvas.EndScene;
+        end;
+      except
+        result.Free;
+        result := nil;
+      end;
+{$ELSE}
+      result := TBitmap.Create(round(Width), round(Height));
+      try
+        result.canvas.CopyRect
+          (trect.Create(round(result.Width * MarginLeft / 100),
+          round(result.Height * MarginTop / 100),
+          round(bmp.Width + result.Width * MarginLeft / 100),
+          round(bmp.Height + result.Height * MarginTop / 100)), bmp.canvas,
+          bmp.canvas.ClipRect);
+      except
+        result.Free;
+        result := nil;
+      end;
+{$ENDIF}
+    end;
+  finally
+    if result <> bmp then
+      bmp.Free;
   end;
 end;
 
