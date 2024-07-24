@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{8138FDA4-AF3A-494F-BD18-D82D63E6E060}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="VCL\VCLSVGToBitmapSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="FMX\FMXSVGToBitmapSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="VCL_With_SVGList\VCLShowSVGFromBitmapSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="FMX_With_SVGList\FMXShowSVGFromBitmapSample.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="VCLSVGToBitmapSample">
+        <MSBuild Projects="VCL\VCLSVGToBitmapSample.dproj"/>
+    </Target>
+    <Target Name="VCLSVGToBitmapSample:Clean">
+        <MSBuild Projects="VCL\VCLSVGToBitmapSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VCLSVGToBitmapSample:Make">
+        <MSBuild Projects="VCL\VCLSVGToBitmapSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FMXSVGToBitmapSample">
+        <MSBuild Projects="FMX\FMXSVGToBitmapSample.dproj"/>
+    </Target>
+    <Target Name="FMXSVGToBitmapSample:Clean">
+        <MSBuild Projects="FMX\FMXSVGToBitmapSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FMXSVGToBitmapSample:Make">
+        <MSBuild Projects="FMX\FMXSVGToBitmapSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="VCLShowSVGFromBitmapSample">
+        <MSBuild Projects="VCL_With_SVGList\VCLShowSVGFromBitmapSample.dproj"/>
+    </Target>
+    <Target Name="VCLShowSVGFromBitmapSample:Clean">
+        <MSBuild Projects="VCL_With_SVGList\VCLShowSVGFromBitmapSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VCLShowSVGFromBitmapSample:Make">
+        <MSBuild Projects="VCL_With_SVGList\VCLShowSVGFromBitmapSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FMXShowSVGFromBitmapSample">
+        <MSBuild Projects="FMX_With_SVGList\FMXShowSVGFromBitmapSample.dproj"/>
+    </Target>
+    <Target Name="FMXShowSVGFromBitmapSample:Clean">
+        <MSBuild Projects="FMX_With_SVGList\FMXShowSVGFromBitmapSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FMXShowSVGFromBitmapSample:Make">
+        <MSBuild Projects="FMX_With_SVGList\FMXShowSVGFromBitmapSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="VCLSVGToBitmapSample;FMXSVGToBitmapSample;VCLShowSVGFromBitmapSample;FMXShowSVGFromBitmapSample"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="VCLSVGToBitmapSample:Clean;FMXSVGToBitmapSample:Clean;VCLShowSVGFromBitmapSample:Clean;FMXShowSVGFromBitmapSample:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="VCLSVGToBitmapSample:Make;FMXSVGToBitmapSample:Make;VCLShowSVGFromBitmapSample:Make;FMXShowSVGFromBitmapSample:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
