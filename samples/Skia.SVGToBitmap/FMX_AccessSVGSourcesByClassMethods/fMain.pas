@@ -72,6 +72,8 @@ begin
     img.Bitmap.Assign(TOlfSVGBitmapList.Bitmap(ord(SVGIndex), round(img.Width),
       round(img.height), Image1.Bitmap.BitmapScale));
   end;
+
+  ShowMessage(TOlfSVGBitmapList.Count.tostring);
 end;
 
 procedure TForm5.FormCreate(Sender: TObject);
