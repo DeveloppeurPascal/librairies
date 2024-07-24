@@ -311,8 +311,8 @@
             <Form>Form2</Form>
             <FormType>fmx</FormType>
         </DCCReference>
-        <DCCReference Include="..\SampleImages\USVGSampleImages.pas"/>
         <DCCReference Include="..\..\..\src\Olf.Skia.SVGToBitmap.pas"/>
+        <DCCReference Include="..\_CursorSVGSamples\USVGCursorSVGSamples.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

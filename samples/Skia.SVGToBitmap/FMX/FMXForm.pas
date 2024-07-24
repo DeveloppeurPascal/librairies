@@ -3,9 +3,17 @@ unit FMXForm;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes,
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
   System.Variants,
-  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects;
+  FMX.Types,
+  FMX.Controls,
+  FMX.Forms,
+  FMX.Graphics,
+  FMX.Dialogs,
+  FMX.Objects;
 
 type
   TForm2 = class(TForm)
@@ -27,8 +35,8 @@ implementation
 {$R *.fmx}
 
 uses
-  USVGSampleImages,
-  Olf.Skia.SVGToBitmap;
+  Olf.Skia.SVGToBitmap,
+  USVGCursorSVGSamples;
 
 procedure TForm2.FormCreate(Sender: TObject);
 begin
@@ -40,11 +48,11 @@ var
   bmp: tbitmap;
 begin
   Timer1.tag := Timer1.tag + 1;
-  if (Timer1.tag >= length(SVGSampleImages)) then
+  if (Timer1.tag >= length(SVGCursorSVGSamples)) then
     Timer1.tag := 0;
 
   bmp := SVGToBitmap(trunc(Image1.Width), trunc(Image1.Height),
-    SVGSampleImages[Timer1.tag], Image1.Bitmap.BitmapScale);
+    SVGCursorSVGSamples[Timer1.tag], Image1.Bitmap.BitmapScale);
   try
     Image1.Bitmap.Assign(bmp);
   finally
