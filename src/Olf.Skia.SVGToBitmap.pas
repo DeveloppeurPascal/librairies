@@ -39,7 +39,7 @@ type
     /// It doesn't change others SVG indexes, it's internally stored in a dictionary, not a list.
     /// If an item exists at this position, the AddItemAt() is refused.
     /// </remarks>
-    class function AddItemAt(Const ToList, AtIndex: word; const SVG: string)
+    class function AddItemAt(Const ToList, AtIndex: word; const SVG: String)
       : boolean; overload;
 
     /// <summary>
@@ -59,9 +59,22 @@ type
       : word; overload;
 
     /// <summary>
+    /// Add all items from an array of SVG sources to the list "ToList" and
+    /// return the index of the first added item
+    /// </summary>
+    class function AddItem(Const ToList: word; const SVGArray: array of String)
+      : word; overload;
+
+    /// <summary>
     /// Add a SVG source to the default list and return it's index
     /// </summary>
     class function AddItem(const SVG: string): word; overload;
+
+    /// <summary>
+    /// Add all items from an array of SVG sources to the default list and
+    /// return the index of the first added item
+    /// </summary>
+    class function AddItem(const SVGArray: array of string): word; overload;
 
     /// <summary>
     /// Remove the SVG "AtIndex" from the "FromList" list
@@ -349,6 +362,24 @@ end;
 class function TOlfSVGBitmapList.AddItem(const SVG: string): word;
 begin
   result := AddItem(CDefaultListIndex, SVG);
+end;
+
+class function TOlfSVGBitmapList.AddItem(const SVGArray: array of string): word;
+begin
+  result := AddItem(CDefaultListIndex, SVGArray);
+end;
+
+class function TOlfSVGBitmapList.AddItem(const ToList: word;
+const SVGArray: array of String): word;
+var
+  i: integer;
+begin
+  result := 0;
+  for i := 0 to length(SVGArray) - 1 do
+    if i = 0 then
+      result := AddItem(ToList, SVGArray[i])
+    else
+      AddItem(ToList, SVGArray[i]);
 end;
 
 class function TOlfSVGBitmapList.AddItemAt(AtIndex: word;
