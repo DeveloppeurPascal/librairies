@@ -67,7 +67,7 @@ begin
     img.Parent := FlowLayout1;
     img.Width := 64;
     img.height := 64;
-    img.WrapMode := TImageWrapMode.Fit;
+    img.WrapMode := TImageWrapMode.Original;
     img.Bitmap.Assign(TOlfSVGBitmapList.Bitmap(SVGIndex +
       tSVGCursorSVGSamples.Tag, round(img.Width), round(img.height),
       Image1.Bitmap.BitmapScale));
@@ -78,18 +78,64 @@ procedure TForm6.btnShowPipesClick(Sender: TObject);
 var
   SVGIndex: integer;
   img: TImage;
+  MargeHaut, MargeBas, MargeGauche, MargeDroite: single;
 begin
   for SVGIndex := 0 to length(SVGPipesSVGSamples) - 1 do
   // TODO : replace length by TSVGPipesSVGSamples.Count() method
   begin
+    MargeHaut := 0;
+    MargeDroite := 0;
+    MargeBas := 0;
+    MargeGauche := 0;
+    case SVGIndex + tSVGPipesSVGSamples.Tag of
+      tSVGPipesSVGSamples.PipeDb:
+        begin
+          MargeHaut := 100 * ((117.55 - 87.9) / 117.55);
+          MargeGauche := 100 * ((117.55 - 88.05) / 117.55);
+        end;
+      tSVGPipesSVGSamples.PipeGb:
+        begin
+          MargeHaut := 100 * ((117.55 - 88.05) / 117.55);
+          MargeDroite := 100 * ((117.55 - 87.9) / 117.55);
+        end;
+      tSVGPipesSVGSamples.PipeGd:
+        begin
+          MargeHaut := 100 * ((117.55 - 58.6) / 117.55) / 2;
+          MargeBas := 100 * ((117.55 - 58.6) / 117.55) / 2;
+        end;
+      tSVGPipesSVGSamples.PipeGdb:
+        MargeHaut := 100 * ((117.55 - 88.05) / 117.55);
+      tSVGPipesSVGSamples.PipeHb:
+        begin
+          MargeDroite := 100 * ((117.55 - 58.6) / 117.55) / 2;
+          MargeGauche := 100 * ((117.55 - 58.6) / 117.55) / 2;
+        end;
+      tSVGPipesSVGSamples.PipeHd:
+        begin
+          MargeBas := 100 * ((117.55 - 87.9) / 117.55);
+          MargeGauche := 100 * ((117.55 - 88.05) / 117.55);
+        end;
+      tSVGPipesSVGSamples.PipeHdb:
+        MargeGauche := 100 * ((117.55 - 88.05) / 117.55);
+      tSVGPipesSVGSamples.PipeHg:
+        begin
+          MargeDroite := 100 * ((117.55 - 87.9) / 117.55);
+          MargeBas := 100 * ((117.55 - 88.05) / 117.55);
+        end;
+      tSVGPipesSVGSamples.PipeHgb:
+        MargeDroite := 100 * ((117.55 - 87.9) / 117.55);
+      tSVGPipesSVGSamples.PipeHgd:
+        MargeBas := 100 * ((117.55 - 87.9) / 117.55);
+    end;
+
     img := TImage.Create(self);
     img.Parent := FlowLayout1;
     img.Width := 64;
     img.height := 64;
-    img.WrapMode := TImageWrapMode.Fit;
+    img.WrapMode := TImageWrapMode.Original;
     img.Bitmap.Assign(TOlfSVGBitmapList.Bitmap(SVGIndex +
-      tSVGPipesSVGSamples.Tag, round(img.Width), round(img.height),
-      Image1.Bitmap.BitmapScale));
+      tSVGPipesSVGSamples.Tag, round(img.Width), round(img.height), MargeHaut,
+      MargeDroite, MargeBas, MargeGauche, Image1.Bitmap.BitmapScale));
   end;
 end;
 
