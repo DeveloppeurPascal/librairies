@@ -148,7 +148,9 @@ type
 
 function SVGToBitmap(Const Width, Height: integer;
   Const SVGSource: string{$IF Defined(FRAMEWORK_FMX)};
-  Const BitmapScale: single = 1{$ENDIF}): TBitmap;
+  Const BitmapScale: single = 1{$ENDIF}; const MarginTop: single = 0;
+  const MarginRight: single = 0; const MarginBottom: single = 0;
+  const MarginLeft: single = 0): TBitmap;
 
 implementation
 
@@ -232,17 +234,24 @@ var
 
 function SVGToBitmap(Const Width, Height: integer;
   Const SVGSource: string{$IF Defined(FRAMEWORK_FMX)};
-  Const BitmapScale: single{$ENDIF}): TBitmap;
+  Const BitmapScale: single{$ENDIF}; const MarginTop: single;
+  const MarginRight: single; const MarginBottom: single;
+  const MarginLeft: single): TBitmap;
+var
+  SVGWidth, SVGHeight: integer;
+  bmp: TBitmap;
 begin
+  SVGWidth := round(Width * (100 - MarginLeft - MarginRight) / 100);
+  SVGHeight := round(Height * (100 - MarginTop - MarginBottom) / 100);
 {$IF Defined(FRAMEWORK_FMX)}
-  result := TBitmap.Create(trunc(Width * BitmapScale),
-    trunc(Height * BitmapScale)); {$ELSE}
-  result := TBitmap.Create(trunc(Width), trunc(Height)); {$ENDIF}
+  bmp := TBitmap.Create(trunc(SVGWidth * BitmapScale),
+    trunc(SVGHeight * BitmapScale)); {$ELSE}
+  bmp := TBitmap.Create(trunc(SVGWidth), trunc(SVGHeight)); {$ENDIF}
   try
 {$IF Defined(FRAMEWORK_FMX)}
-    result.BitmapScale := BitmapScale;
+    bmp.BitmapScale := BitmapScale;
 {$ENDIF}
-    result.SkiaDraw(
+    bmp.SkiaDraw(
       procedure(const ACanvas: ISKCanvas)
       var
         LSvgBrush: TSkSvgBrush;
@@ -250,11 +259,13 @@ begin
         LSvgBrush := TSkSvgBrush.Create;
         try
           LSvgBrush.Source := SVGSource;
+          LSvgBrush.WrapMode := TSkSvgWrapMode.Fit;
           LSvgBrush.Render(ACanvas, RectF(0, 0, Width, Height), 1);
         finally
           LSvgBrush.Free;
         end;
       end);
+    result := bmp;
   except
     result.Free;
     result := nil;
