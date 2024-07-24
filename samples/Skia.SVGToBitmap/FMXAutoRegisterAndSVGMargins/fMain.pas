@@ -50,6 +50,9 @@ procedure TForm6.btnRegisterSVGListsClick(Sender: TObject);
 begin
   tSVGPipesSVGSamples.Tag := TOlfSVGBitmapList.Additem(SVGPipesSVGSamples);
   tSVGCursorSVGSamples.Tag := TOlfSVGBitmapList.Additem(SVGCursorSVGSamples);
+  btnRegisterSVGLists.Visible := false;
+  btnShowCursors.Visible := true;
+  btnShowPipes.Visible := true;
 end;
 
 procedure TForm6.btnShowCursorsClick(Sender: TObject);
@@ -93,6 +96,9 @@ end;
 procedure TForm6.FormCreate(Sender: TObject);
 begin
   Image1.Visible := false;
+  btnRegisterSVGLists.Visible := true;
+  btnShowCursors.Visible := false;
+  btnShowPipes.Visible := false;
 end;
 
 initialization
