@@ -3,9 +3,17 @@ unit fMain;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes,
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
   System.Variants,
-  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects;
+  FMX.Types,
+  FMX.Controls,
+  FMX.Forms,
+  FMX.Graphics,
+  FMX.Dialogs,
+  FMX.Objects;
 
 type
   TForm4 = class(TForm)
@@ -27,14 +35,16 @@ implementation
 
 {$R *.fmx}
 
-uses Olf.Skia.SVGToBitmap, USVGSampleImages;
+uses
+  Olf.Skia.SVGToBitmap,
+  USVGCursorSVGSamples;
 
 procedure TForm4.FormCreate(Sender: TObject);
 var
   i: integer;
 begin
-  for i := 0 to length(SVGSampleImages) - 1 do
-    TOlfSVGBitmapList.AddItemAt(i, SVGSampleImages[i]);
+  for i := 0 to length(SVGCursorSVGSamples) - 1 do
+    TOlfSVGBitmapList.AddItemAt(i, SVGCursorSVGSamples[i]);
 
   Timer1.tag := -1;
 end;
@@ -47,7 +57,7 @@ end;
 procedure TForm4.Timer1Timer(Sender: TObject);
 begin
   Timer1.tag := Timer1.tag + 1;
-  if (Timer1.tag >= length(SVGSampleImages)) then
+  if (Timer1.tag >= length(SVGCursorSVGSamples)) then
     Timer1.tag := 0;
 
   Image1.Bitmap.Assign(TOlfSVGBitmapList.Bitmap(Timer1.tag, trunc(Image1.Width),

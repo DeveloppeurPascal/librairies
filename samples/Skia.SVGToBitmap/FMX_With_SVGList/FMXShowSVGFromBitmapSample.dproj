@@ -311,8 +311,8 @@
             <Form>Form4</Form>
             <FormType>fmx</FormType>
         </DCCReference>
-        <DCCReference Include="..\SampleImages\USVGSampleImages.pas"/>
         <DCCReference Include="..\..\..\src\Olf.Skia.SVGToBitmap.pas"/>
+        <DCCReference Include="..\_CursorSVGSamples\USVGCursorSVGSamples.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -363,6 +363,12 @@
                         <RemoteDir>.\</RemoteDir>
                         <Operation>0</Operation>
                         <RemoteName>sk4d.dll</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\delphi_PROJECTICNS.icns" Configuration="Debug" Class="ProjectOSXResource">
+                    <Platform Name="OSX64">
+                        <RemoteName>FMXShowSVGFromBitmapSample.icns</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -609,6 +615,29 @@
                         <RemoteDir>.\</RemoteDir>
                         <Operation>0</Operation>
                         <RemoteName>sk4d.dll</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="OSX64\Debug\FMXShowSVGFromBitmapSample.dSYM" Configuration="Debug" Class="ProjectOSXDebug">
+                    <Platform Name="OSX64">
+                        <RemoteName>FMXShowSVGFromBitmapSample</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="OSX64\Debug\FMXShowSVGFromBitmapSample.entitlements" Configuration="Debug" Class="ProjectOSXEntitlements">
+                    <Platform Name="OSX64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="OSX64\Debug\FMXShowSVGFromBitmapSample.info.plist" Configuration="Debug" Class="ProjectOSXInfoPList">
+                    <Platform Name="OSX64">
+                        <RemoteName>Info.plist</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="OSX64\Debug\FMXShowSVGFromBitmapSample" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="OSX64">
+                        <RemoteName>FMXShowSVGFromBitmapSample</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -1595,11 +1624,9 @@
             <Platforms>
                 <Platform value="Android">True</Platform>
                 <Platform value="Android64">True</Platform>
-                <Platform value="iOSDevice32">False</Platform>
                 <Platform value="iOSDevice64">True</Platform>
                 <Platform value="iOSSimARM64">True</Platform>
                 <Platform value="Linux64">True</Platform>
-                <Platform value="OSX32">False</Platform>
                 <Platform value="OSX64">True</Platform>
                 <Platform value="OSXARM64">True</Platform>
                 <Platform value="Win32">True</Platform>

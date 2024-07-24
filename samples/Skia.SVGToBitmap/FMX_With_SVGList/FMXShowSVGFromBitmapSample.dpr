@@ -5,8 +5,8 @@ uses
   FMX.Forms,
   FMX.Skia,
   fMain in 'fMain.pas' {Form4},
-  USVGSampleImages in '..\SampleImages\USVGSampleImages.pas',
-  Olf.Skia.SVGToBitmap in '..\..\..\src\Olf.Skia.SVGToBitmap.pas';
+  Olf.Skia.SVGToBitmap in '..\..\..\src\Olf.Skia.SVGToBitmap.pas',
+  USVGCursorSVGSamples in '..\_CursorSVGSamples\USVGCursorSVGSamples.pas';
 
 {$R *.res}
 
