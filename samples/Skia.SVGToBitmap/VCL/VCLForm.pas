@@ -35,7 +35,7 @@ implementation
 
 uses
   Olf.Skia.SVGToBitmap,
-  USVGSampleImages;
+  USVGCursorSVGSamples;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
@@ -47,11 +47,11 @@ var
   bmp: TBitmap;
 begin
   Timer1.tag := Timer1.tag + 1;
-  if (Timer1.tag >= length(SVGSampleImages)) then
+  if (Timer1.tag >= length(SVGCursorSVGSamples)) then
     Timer1.tag := 0;
 
   bmp := SVGToBitmap(trunc(Image1.Width), trunc(Image1.Height),
-    SVGSampleImages[Timer1.tag]);
+    SVGCursorSVGSamples[Timer1.tag]);
   try
     Image1.picture.Bitmap.Assign(bmp);
   finally

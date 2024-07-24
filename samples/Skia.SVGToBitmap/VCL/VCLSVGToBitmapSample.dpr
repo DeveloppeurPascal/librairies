@@ -3,8 +3,8 @@ program VCLSVGToBitmapSample;
 uses
   Vcl.Forms,
   VCLForm in 'VCLForm.pas' {Form1},
-  USVGSampleImages in '..\SampleImages\USVGSampleImages.pas',
-  Olf.Skia.SVGToBitmap in '..\..\..\src\Olf.Skia.SVGToBitmap.pas';
+  Olf.Skia.SVGToBitmap in '..\..\..\src\Olf.Skia.SVGToBitmap.pas',
+  USVGCursorSVGSamples in '..\_CursorSVGSamples\USVGCursorSVGSamples.pas';
 
 {$R *.res}
 
