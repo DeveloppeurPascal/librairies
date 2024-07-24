@@ -4,7 +4,7 @@ uses
   Vcl.Forms,
   fMain in 'fMain.pas' {Form3},
   Olf.Skia.SVGToBitmap in '..\..\..\src\Olf.Skia.SVGToBitmap.pas',
-  USVGSampleImages in '..\SampleImages\USVGSampleImages.pas';
+  USVGCursorSVGSamples in '..\_CursorSVGSamples\USVGCursorSVGSamples.pas';
 
 {$R *.res}
 

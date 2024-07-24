@@ -36,14 +36,14 @@ implementation
 
 uses
   Olf.Skia.SVGToBitmap,
-  USVGSampleImages;
+  USVGCursorSVGSamples;
 
 procedure TForm3.FormCreate(Sender: TObject);
 var
   i: integer;
 begin
-  for i := 0 to length(SVGSampleImages) - 1 do
-    TOlfSVGBitmapList.AddItemAt(i, SVGSampleImages[i]);
+  for i := 0 to length(SVGCursorSVGSamples) - 1 do
+    TOlfSVGBitmapList.AddItemAt(i, SVGCursorSVGSamples[i]);
 
   Timer1.tag := -1;
 end;
@@ -56,7 +56,7 @@ end;
 procedure TForm3.Timer1Timer(Sender: TObject);
 begin
   Timer1.tag := Timer1.tag + 1;
-  if (Timer1.tag >= length(SVGSampleImages)) then
+  if (Timer1.tag >= length(SVGCursorSVGSamples)) then
     Timer1.tag := 0;
 
   Image1.picture.Bitmap.Assign(TOlfSVGBitmapList.Bitmap(Timer1.tag,
