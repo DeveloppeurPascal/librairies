@@ -102,6 +102,11 @@ type
     class function Bitmap(Const FromList, AtIndex: word;
       const Width, Height: integer; const BitmapScale: single = 1)
       : TBitmap; overload;
+    class function Bitmap(Const FromList, AtIndex: word;
+      const Width, Height: integer; const MarginTop: single;
+      const MarginRight: single; const MarginBottom: single;
+      const MarginLeft: single; const BitmapScale: single = 1)
+      : TBitmap; overload;
 
     /// <summary>
     /// Get a bitmap from the SVG in default list at "AtIndex" with specified sizes.
@@ -112,6 +117,10 @@ type
     /// </remarks>
     class function Bitmap(Const AtIndex: word; const Width, Height: integer;
       const BitmapScale: single = 1): TBitmap; overload;
+    class function Bitmap(Const AtIndex: word; const Width, Height: integer;
+      const MarginTop: single; const MarginRight: single;
+      const MarginBottom: single; const MarginLeft: single;
+      const BitmapScale: single = 1): TBitmap; overload;
 
     /// <summary>
     /// Get a bitmap from the SVG in "FromList" list at "AtIndex" with specified sizes.
@@ -120,6 +129,11 @@ type
     class function BitmapWithNoCache(const FromList, AtIndex: word;
       const Width, Height: integer; const BitmapScale: single = 1)
       : TBitmap; overload;
+    class function BitmapWithNoCache(const FromList, AtIndex: word;
+      const Width, Height: integer; const MarginTop: single;
+      const MarginRight: single; const MarginBottom: single;
+      const MarginLeft: single; const BitmapScale: single = 1)
+      : TBitmap; overload;
 
     /// <summary>
     /// Get a bitmap from the SVG in default list at "AtIndex" with specified sizes.
@@ -127,6 +141,11 @@ type
     /// </summary>
     class function BitmapWithNoCache(const AtIndex: word;
       const Width, Height: integer; const BitmapScale: single = 1)
+      : TBitmap; overload;
+    class function BitmapWithNoCache(const AtIndex: word;
+      const Width, Height: integer; const MarginTop: single;
+      const MarginRight: single; const MarginBottom: single;
+      const MarginLeft: single; const BitmapScale: single = 1)
       : TBitmap; overload;
 
     /// <summary>
@@ -197,7 +216,8 @@ type
   public
     constructor Create;
     function Bitmap(const Width, Height: integer; const BitmapScale: single;
-      const SVG: string): TBitmap;
+      const SVG: string; const MarginTop: single; const MarginRight: single;
+      const MarginBottom: single; const MarginLeft: single): TBitmap;
     destructor Destroy; override;
   end;
 
@@ -209,7 +229,11 @@ type
   public
     constructor Create(const SVG: string);
     function Bitmap(const Width, Height: integer; const BitmapScale: single;
-      const WithCache: boolean = true): TBitmap;
+      const WithCache: boolean = true): TBitmap; overload;
+    function Bitmap(const Width, Height: integer; const MarginTop: single;
+      const MarginRight: single; const MarginBottom: single;
+      const MarginLeft: single; const BitmapScale: single;
+      const WithCache: boolean = true): TBitmap; overload;
     destructor Destroy; override;
     procedure ClearCache;
   end;
@@ -288,27 +312,15 @@ end;
 class function TOlfSVGBitmapList.Bitmap(const FromList, AtIndex: word;
 const Width, Height: integer; const BitmapScale: single): TBitmap;
 begin
-  if not SVGList.ContainsKey(FromList) then
-    raise exception.Create('This list doesn''t exist.');
-
-  if not SVGList[FromList].ContainsKey(AtIndex) then
-    raise exception.Create('This item doesn''t exist.');
-
-  result := SVGList[FromList][AtIndex].Bitmap(Width, Height, BitmapScale, true);
+  result := Bitmap(FromList, AtIndex, Width, Height, 0, 0, 0, 0, BitmapScale);
 end;
 
 class function TOlfSVGBitmapList.BitmapWithNoCache(const FromList,
   AtIndex: word; const Width, Height: integer;
 const BitmapScale: single): TBitmap;
 begin
-  if not SVGList.ContainsKey(FromList) then
-    raise exception.Create('This list doesn''t exist.');
-
-  if not SVGList[FromList].ContainsKey(AtIndex) then
-    raise exception.Create('This item doesn''t exist.');
-
-  result := SVGList[FromList][AtIndex].Bitmap(Width, Height,
-    BitmapScale, false);
+  result := BitmapWithNoCache(FromList, AtIndex, Width, Height, 0, 0, 0, 0,
+    BitmapScale);
 end;
 
 class procedure TOlfSVGBitmapList.ClearAll;
@@ -424,6 +436,50 @@ begin
     BitmapScale);
 end;
 
+class function TOlfSVGBitmapList.Bitmap(const FromList, AtIndex: word;
+const Width, Height: integer; const MarginTop, MarginRight, MarginBottom,
+  MarginLeft, BitmapScale: single): TBitmap;
+begin
+  if not SVGList.ContainsKey(FromList) then
+    raise exception.Create('This list doesn''t exist.');
+
+  if not SVGList[FromList].ContainsKey(AtIndex) then
+    raise exception.Create('This item doesn''t exist.');
+
+  result := SVGList[FromList][AtIndex].Bitmap(Width, Height, MarginTop,
+    MarginRight, MarginBottom, MarginLeft, BitmapScale, true);
+end;
+
+class function TOlfSVGBitmapList.Bitmap(const AtIndex: word;
+const Width, Height: integer; const MarginTop, MarginRight, MarginBottom,
+  MarginLeft, BitmapScale: single): TBitmap;
+begin
+  result := Bitmap(CDefaultListIndex, AtIndex, Width, Height, MarginTop,
+    MarginRight, MarginBottom, MarginLeft, BitmapScale);
+end;
+
+class function TOlfSVGBitmapList.BitmapWithNoCache(const FromList,
+  AtIndex: word; const Width, Height: integer; const MarginTop, MarginRight,
+  MarginBottom, MarginLeft, BitmapScale: single): TBitmap;
+begin
+  if not SVGList.ContainsKey(FromList) then
+    raise exception.Create('This list doesn''t exist.');
+
+  if not SVGList[FromList].ContainsKey(AtIndex) then
+    raise exception.Create('This item doesn''t exist.');
+
+  result := SVGList[FromList][AtIndex].Bitmap(Width, Height, MarginTop,
+    MarginRight, MarginBottom, MarginLeft, BitmapScale, false);
+end;
+
+class function TOlfSVGBitmapList.BitmapWithNoCache(const AtIndex: word;
+const Width, Height: integer; const MarginTop, MarginRight, MarginBottom,
+  MarginLeft, BitmapScale: single): TBitmap;
+begin
+  result := BitmapWithNoCache(CDefaultListIndex, AtIndex, Width, Height,
+    MarginTop, MarginRight, MarginBottom, MarginLeft, BitmapScale);
+end;
+
 { TBitmapScaleList }
 
 constructor TBitmapScaleList.Create;
@@ -448,7 +504,9 @@ end;
 { TBMPCache }
 
 function TBMPCache.Bitmap(const Width, Height: integer;
-const BitmapScale: single; const SVG: string): TBitmap;
+const BitmapScale: single; const SVG: string; const MarginTop: single;
+const MarginRight: single; const MarginBottom: single;
+const MarginLeft: single): TBitmap;
 begin
   if not FWithList.ContainsKey(Width) then
     FWithList.Add(Width, THeightList.Create);
@@ -461,10 +519,11 @@ begin
 
   if not assigned(FWithList[Width][Height][BitmapScale]) then
 {$IF Defined(FRAMEWORK_VCL)}
-    FWithList[Width][Height][BitmapScale] := SVGToBitmap(Width, Height, SVG)
+    FWithList[Width][Height][BitmapScale] := SVGToBitmap(Width, Height, SVG,
+      MarginTop, MarginRight, MarginBottom, MarginLeft)
 {$ELSEIF Defined(FRAMEWORK_FMX)}
     FWithList[Width][Height][BitmapScale] := SVGToBitmap(Width, Height, SVG,
-      BitmapScale)
+      BitmapScale, MarginTop, MarginRight, MarginBottom, MarginLeft)
 {$ENDIF};
 
   result := FWithList[Width][Height][BitmapScale];
@@ -487,13 +546,23 @@ end;
 function TItem.Bitmap(const Width, Height: integer; const BitmapScale: single;
 const WithCache: boolean): TBitmap;
 begin
+  result := Bitmap(Width, Height, 0, 0, 0, 0, BitmapScale, WithCache);
+end;
+
+function TItem.Bitmap(const Width, Height: integer;
+const MarginTop, MarginRight, MarginBottom, MarginLeft, BitmapScale: single;
+const WithCache: boolean): TBitmap;
+begin
   if WithCache then
-    result := FBMPCache.Bitmap(Width, Height, BitmapScale, FSVG)
+    result := FBMPCache.Bitmap(Width, Height, BitmapScale, FSVG, MarginTop,
+      MarginRight, MarginBottom, MarginLeft)
   else
 {$IF Defined(FRAMEWORK_VCL)}
-    result := SVGToBitmap(Width, Height, FSVG)
+    result := SVGToBitmap(Width, Height, FSVG, MarginTop, MarginRight,
+      MarginBottom, MarginLeft)
 {$ELSEIF Defined(FRAMEWORK_FMX)}
-      result := SVGToBitmap(Width, Height, FSVG, BitmapScale)
+      result := SVGToBitmap(Width, Height, FSVG, BitmapScale, MarginTop,
+      MarginRight, MarginBottom, MarginLeft)
 {$ENDIF};
 end;
 
