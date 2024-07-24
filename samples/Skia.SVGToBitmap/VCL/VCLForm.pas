@@ -51,7 +51,7 @@ begin
     Timer1.tag := 0;
 
   bmp := SVGToBitmap(trunc(Image1.Width), trunc(Image1.Height),
-    SVGCursorSVGSamples[Timer1.tag]);
+    SVGCursorSVGSamples[Timer1.tag],25,25,0,0);
   try
     Image1.picture.Bitmap.Assign(bmp);
   finally
