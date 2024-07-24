@@ -46,7 +46,7 @@ procedure TForm5.Button1Click(Sender: TObject);
 var
   SVGIndex: TSVGCursorSVGSamplesIndex;
   img: TImage;
-  bmp: TBitmap;
+  // bmp: TBitmap;
 begin
   Button1.visible := false;
 
@@ -66,9 +66,11 @@ begin
     img.Width := 64;
     img.height := 64;
     img.WrapMode := TImageWrapMode.Fit;
-    bmp := TOlfSVGBitmapList.Bitmap(ord(SVGIndex), round(img.Width),
-      round(img.height), Image1.Bitmap.BitmapScale);
-    img.Bitmap.Assign(bmp);
+    // bmp := TOlfSVGBitmapList.Bitmap(ord(SVGIndex), round(img.Width),
+    // round(img.height), Image1.Bitmap.BitmapScale);
+    // img.Bitmap.Assign(bmp);
+    img.Bitmap.Assign(TOlfSVGBitmapList.Bitmap(ord(SVGIndex), round(img.Width),
+      round(img.height), Image1.Bitmap.BitmapScale));
   end;
 end;
 
@@ -76,5 +78,9 @@ procedure TForm5.FormCreate(Sender: TObject);
 begin
   Image1.visible := false;
 end;
+
+initialization
+
+ReportMemoryLeaksOnShutdown := true;
 
 end.
