@@ -126,6 +126,11 @@ type
     /// Delete the bitmap's cache.
     /// </summary>
     class procedure ClearCache;
+
+    /// <summary>
+    /// Return the number of items in the specified list or the default list
+    /// </summary>
+    class function Count(const FromList: word = 0): NativeInt;
   end;
 
 function SVGToBitmap(Const Width, Height: integer;
@@ -294,6 +299,14 @@ var
 begin
   for ItemsList in SVGList.Values do
     ItemsList.ClearCache;
+end;
+
+class function TOlfSVGBitmapList.Count(const FromList: word): NativeInt;
+begin
+  if not SVGList.ContainsKey(FromList) then
+    raise exception.Create('This list doesn''t exist.');
+
+  result := SVGList[FromList].Count;
 end;
 
 class procedure TOlfSVGBitmapList.DeleteItem(const FromList, AtIndex: word);
