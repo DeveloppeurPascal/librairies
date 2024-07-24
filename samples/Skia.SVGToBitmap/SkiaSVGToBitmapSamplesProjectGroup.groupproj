@@ -15,6 +15,12 @@
         <Projects Include="FMX_With_SVGList\FMXShowSVGFromBitmapSample.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="FMX_AccessSVGSourcesByClassMethods\FMXSVGClassTest.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="FMXAutoRegisterAndSVGMargins\FMXAutoRegisterAndSVGMarginsSample.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -59,14 +65,32 @@
     <Target Name="FMXShowSVGFromBitmapSample:Make">
         <MSBuild Projects="FMX_With_SVGList\FMXShowSVGFromBitmapSample.dproj" Targets="Make"/>
     </Target>
+    <Target Name="FMXSVGClassTest">
+        <MSBuild Projects="FMX_AccessSVGSourcesByClassMethods\FMXSVGClassTest.dproj"/>
+    </Target>
+    <Target Name="FMXSVGClassTest:Clean">
+        <MSBuild Projects="FMX_AccessSVGSourcesByClassMethods\FMXSVGClassTest.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FMXSVGClassTest:Make">
+        <MSBuild Projects="FMX_AccessSVGSourcesByClassMethods\FMXSVGClassTest.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FMXAutoRegisterAndSVGMarginsSample">
+        <MSBuild Projects="FMXAutoRegisterAndSVGMargins\FMXAutoRegisterAndSVGMarginsSample.dproj"/>
+    </Target>
+    <Target Name="FMXAutoRegisterAndSVGMarginsSample:Clean">
+        <MSBuild Projects="FMXAutoRegisterAndSVGMargins\FMXAutoRegisterAndSVGMarginsSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FMXAutoRegisterAndSVGMarginsSample:Make">
+        <MSBuild Projects="FMXAutoRegisterAndSVGMargins\FMXAutoRegisterAndSVGMarginsSample.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="VCLSVGToBitmapSample;FMXSVGToBitmapSample;VCLShowSVGFromBitmapSample;FMXShowSVGFromBitmapSample"/>
+        <CallTarget Targets="VCLSVGToBitmapSample;FMXSVGToBitmapSample;VCLShowSVGFromBitmapSample;FMXShowSVGFromBitmapSample;FMXSVGClassTest;FMXAutoRegisterAndSVGMarginsSample"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="VCLSVGToBitmapSample:Clean;FMXSVGToBitmapSample:Clean;VCLShowSVGFromBitmapSample:Clean;FMXShowSVGFromBitmapSample:Clean"/>
+        <CallTarget Targets="VCLSVGToBitmapSample:Clean;FMXSVGToBitmapSample:Clean;VCLShowSVGFromBitmapSample:Clean;FMXShowSVGFromBitmapSample:Clean;FMXSVGClassTest:Clean;FMXAutoRegisterAndSVGMarginsSample:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="VCLSVGToBitmapSample:Make;FMXSVGToBitmapSample:Make;VCLShowSVGFromBitmapSample:Make;FMXShowSVGFromBitmapSample:Make"/>
+        <CallTarget Targets="VCLSVGToBitmapSample:Make;FMXSVGToBitmapSample:Make;VCLShowSVGFromBitmapSample:Make;FMXShowSVGFromBitmapSample:Make;FMXSVGClassTest:Make;FMXAutoRegisterAndSVGMarginsSample:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
