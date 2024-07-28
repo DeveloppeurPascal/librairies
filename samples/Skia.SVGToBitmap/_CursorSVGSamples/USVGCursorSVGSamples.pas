@@ -2,7 +2,7 @@ unit USVGCursorSVGSamples;
 
 // ****************************************
 // * SVG from folder :
-// * C:\Users\patrickpremartin\Documents\Embarcadero\Studio\Projets\___librairies-et-composants\librairies\samples\Skia.SVGToBitmap\_CursorSVGSamples\uSVGCursorSVGSamples.pas
+// * C:\Users\patrickpremartin\Documents\Embarcadero\Studio\Projets\___librairies-et-composants\librairies\samples\Skia.SVGToBitmap\_CursorSVGSamples\USVGCursorSVGSamples.pas
 // ****************************************
 //
 // This file contains a list of contants and 
@@ -12,7 +12,7 @@ unit USVGCursorSVGSamples;
 // ****************************************
 // File generator : SVG Folder to Delphi Unit (1.0)
 // Website : https://svgfolder2delphiunit.olfsoftware.fr/
-// Generation date : 24/07/2024 10:46:56
+// Generation date : 28/07/2024 14:31:46
 //
 // Don't do any change on this file.
 // They will be erased by next generation !
@@ -71,6 +71,7 @@ type
     class property TagString: string read FTagString write SetTagString;
     class function SVG(const Index: Integer): string; overload;
     class function SVG(const Index: TSVGCursorSVGSamplesIndex) : string; overload;
+    class function Count : Integer;
     class constructor Create;
   end;
 
@@ -121,7 +122,7 @@ end;
 
 class function TSVGCursorSVGSamples.SVG(const Index: Integer): string;
 begin
-  if (index < length(SVGCursorSVGSamples)) then
+  if (index < Count) then
     result := SVGCursorSVGSamples[index]
   else
     raise Exception.Create('SVG not found. Index out of range.');
@@ -130,6 +131,11 @@ end;
 class function TSVGCursorSVGSamples.SVG(const Index : TSVGCursorSVGSamplesIndex): string;
 begin
   result := SVG(ord(index));
+end;
+
+class function TSVGCursorSVGSamples.Count: Integer;
+begin
+  result := length(SVGCursorSVGSamples);
 end;
 
 initialization
