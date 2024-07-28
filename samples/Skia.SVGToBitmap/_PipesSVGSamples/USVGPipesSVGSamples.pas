@@ -2,7 +2,7 @@ unit USVGPipesSVGSamples;
 
 // ****************************************
 // * SVG from folder :
-// * C:\Users\patrickpremartin\Documents\Embarcadero\Studio\Projets\___librairies-et-composants\librairies\samples\Skia.SVGToBitmap\_PipesSVGSamples\uSVGPipesSVGSamples.pas
+// * C:\Users\patrickpremartin\Documents\Embarcadero\Studio\Projets\___librairies-et-composants\librairies\samples\Skia.SVGToBitmap\_PipesSVGSamples\USVGPipesSVGSamples.pas
 // ****************************************
 //
 // This file contains a list of contants and 
@@ -12,7 +12,7 @@ unit USVGPipesSVGSamples;
 // ****************************************
 // File generator : SVG Folder to Delphi Unit (1.0)
 // Website : https://svgfolder2delphiunit.olfsoftware.fr/
-// Generation date : 24/07/2024 10:47:05
+// Generation date : 28/07/2024 14:32:00
 //
 // Don't do any change on this file.
 // They will be erased by next generation !
@@ -80,6 +80,7 @@ type
     class property TagString: string read FTagString write SetTagString;
     class function SVG(const Index: Integer): string; overload;
     class function SVG(const Index: TSVGPipesSVGSamplesIndex) : string; overload;
+    class function Count : Integer;
     class constructor Create;
   end;
 
@@ -130,7 +131,7 @@ end;
 
 class function TSVGPipesSVGSamples.SVG(const Index: Integer): string;
 begin
-  if (index < length(SVGPipesSVGSamples)) then
+  if (index < Count) then
     result := SVGPipesSVGSamples[index]
   else
     raise Exception.Create('SVG not found. Index out of range.');
@@ -139,6 +140,11 @@ end;
 class function TSVGPipesSVGSamples.SVG(const Index : TSVGPipesSVGSamplesIndex): string;
 begin
   result := SVG(ord(index));
+end;
+
+class function TSVGPipesSVGSamples.Count: Integer;
+begin
+  result := length(SVGPipesSVGSamples);
 end;
 
 initialization
