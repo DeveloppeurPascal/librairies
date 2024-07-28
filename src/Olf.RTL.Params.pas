@@ -351,6 +351,7 @@ type
     /// Retire une clé des paramètres
     /// </summary>
     procedure Remove(key: string);
+    function HasChanged: boolean;
   end;
 
   /// <summary>
@@ -609,6 +610,7 @@ type
     /// Retire une clé des paramètres
     /// </summary>
     class procedure Remove(key: string);
+    class function HasChanged: boolean;
   end;
 
 implementation
@@ -1109,6 +1111,11 @@ begin
     result := default;
 end;
 
+function TParamsFile.HasChanged: boolean;
+begin
+  result := FParamChanged;
+end;
+
 procedure TParamsFile.InitDefaultFileNameV2(const AEditor, ASoftware: string;
   AReload: boolean);
 var
@@ -1407,6 +1414,11 @@ end;
 class function TParams.getValue(key: string; default: TJSONValue): TJSONValue;
 begin
   result := DefaultParamsFile.getValue(key, default);
+end;
+
+class function TParams.HasChanged: boolean;
+begin
+  result := DefaultParamsFile.HasChanged;
 end;
 
 class procedure TParams.InitDefaultFileNameV2(const AEditor, ASoftware: string;
