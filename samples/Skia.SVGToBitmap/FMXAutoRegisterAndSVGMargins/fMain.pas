@@ -15,7 +15,8 @@ uses
   FMX.Dialogs,
   FMX.Layouts,
   FMX.Controls.Presentation,
-  FMX.StdCtrls, FMX.Objects;
+  FMX.StdCtrls,
+  FMX.Objects;
 
 type
   TForm6 = class(TForm)
@@ -60,8 +61,7 @@ var
   SVGIndex: integer;
   img: TImage;
 begin
-  for SVGIndex := 0 to length(SVGCursorSVGSamples) - 1 do
-  // TODO : replace length by TSVGCursorSVGSamples.Count() method
+  for SVGIndex := 0 to tSVGCursorSVGSamples.Count - 1 do
   begin
     img := TImage.Create(self);
     img.Parent := FlowLayout1;
@@ -80,8 +80,7 @@ var
   img: TImage;
   MargeHaut, MargeBas, MargeGauche, MargeDroite: single;
 begin
-  for SVGIndex := 0 to length(SVGPipesSVGSamples) - 1 do
-  // TODO : replace length by TSVGPipesSVGSamples.Count() method
+  for SVGIndex := 0 to tSVGPipesSVGSamples.Count - 1 do
   begin
     MargeHaut := 0;
     MargeDroite := 0;
