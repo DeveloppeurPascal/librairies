@@ -1,4 +1,4 @@
-unit Olf.Skia.SVGToBitmap;
+﻿unit Olf.Skia.SVGToBitmap;
 
 interface
 
@@ -342,6 +342,7 @@ begin
     trunc(SVGHeight * BitmapScale));
 {$ELSE}
   bmp := TBitmap.Create(trunc(SVGWidth), trunc(SVGHeight));
+  bmp.transparent := true;
 {$ENDIF}
   try
 {$IF Defined(FRAMEWORK_FMX)}
@@ -360,7 +361,7 @@ begin
         finally
           LSvgBrush.Free;
         end;
-      end, false);
+      end, true);
 
     if (MarginTop = 0) and (MarginRight = 0) and (MarginBottom = 0) and
       (MarginLeft = 0) then
@@ -390,6 +391,7 @@ begin
 {$ELSE}
       result := TBitmap.Create(round(Width), round(Height));
       try
+        result.transparent := true;
         result.canvas.CopyRect
           (trect.Create(round(result.Width * MarginLeft / 100),
           round(result.Height * MarginTop / 100),
