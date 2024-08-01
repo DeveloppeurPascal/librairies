@@ -1,6 +1,6 @@
 # Ma boite à outils pour projets Delphi
 
-[This page in english.](README.md)
+[This page in English.](README.md)
 
 Ce dépôt de code contient des fonctions, procédures et classes à utiliser dans des projets Delphi (console, VCL, FireMonkey et autres). C'est un peu ma boite à outils fourre tout d'éléments réutilisables.
 
