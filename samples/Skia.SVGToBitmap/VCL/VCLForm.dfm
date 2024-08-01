@@ -18,6 +18,7 @@ object Form1: TForm1
     Width = 624
     Height = 441
     Align = alClient
+    Transparent = True
     ExplicitLeft = 272
     ExplicitTop = 192
     ExplicitWidth = 105
