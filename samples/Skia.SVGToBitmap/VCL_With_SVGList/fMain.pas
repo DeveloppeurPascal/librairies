@@ -59,7 +59,10 @@ begin
   if (Timer1.tag >= length(SVGCursorSVGSamples)) then
     Timer1.tag := 0;
 
-  Image1.picture.Bitmap.Assign(TOlfSVGBitmapList.Bitmap(Timer1.tag,
+  // clear the bitmap to avoid previous image on it
+  Image1.Picture.Bitmap.SetSize(0, 0);
+  // copy the non transparent part of the SVG to current bitmap
+  Image1.Picture.Bitmap.Assign(TOlfSVGBitmapList.Bitmap(Timer1.tag,
     trunc(Image1.Width), trunc(Image1.Height)));
 end;
 
