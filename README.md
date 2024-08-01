@@ -4,21 +4,27 @@
 
 This repository contains functions, procedures and classes to use in Delphi projects (console, VCL, FireMonkey and others). It's my "everything reuseable things" toolbox.
 
-To know how to use those units and their features, look at samples in the "[DeveloppeurPascal/librairies-samples-and-tests](https://github.com/DeveloppeurPascal/librairies-samples-and-tests)" repository.
+The units to be used in your projects can be found in the "src" folder. Some features are [explained on my blog](https://developpeur-pascal.fr/librairies-publiques.html) or [have been coded live on Twitch](https://serialstreameur.fr/librairies-et-composants.html).
 
-Some features are [explained on my blog](https://developpeur-pascal.fr/librairies-publiques.html) or [live coded](https://serialstreameur.fr/librairies-et-composants.html).
+Examples of use in the form of VCL or FireMonkey projects are available in the "samples" subfolder.
+
+Many projects using this library are available as open source on [my GitHub account](https://github.com/DeveloppeurPascal/). Have a look in particular at the projects listed on [this repository](https://github.com/DeveloppeurPascal/DevPas-WorkingPrograms-Pack) or [this one](https://github.com/DeveloppeurPascal/DevPas-Games-Pack). More generic Delphi projects examples are [visible here](https://github.com/DeveloppeurPascal/Delphi-samples).
 
 This code repository contains a project developed in Object Pascal language under Delphi. You don't know what Delphi is and where to download it ? You'll learn more [on this web site](https://delphi-resources.developpeur-pascal.fr/).
-
-This project is part of "[DeveloppeurPascal/DevPas-Components-Pack](https://github.com/DeveloppeurPascal/DevPas-Components-Pack)" wich include all my public components and librairies projects for Delphi developers (sometimes also useable for Pascal/Object Pascal coders outside Delphi).
-
-It's also part of "[DeveloppeurPascal/_AllProjects](https://github.com/DeveloppeurPascal/_AllProjects)" repository wich installs all my GitHub content as submodules in subfolders.
 
 ## Source code installation
 
 To download this code repository, we recommend using "git", but you can also download a ZIP file directly from [its GitHub repository](https://github.com/DeveloppeurPascal/librairies).
 
 This project does not use dependencies in the form of sub-modules. If you download a ZIP file from GitHub you should have everything you need to use these units.
+
+## Compatibility
+
+As an [Embarcadero MVP](https://www.embarcadero.com/resources/partners/mvp-directory), I benefit from the latest versions of [Delphi](https://www.embarcadero.com/products/delphi) and [C++ Builder](https://www.embarcadero.com/products/cbuilder) in [RAD Studio](https://www.embarcadero.com/products/rad-studio) as soon as they are released. I therefore work with these versions.
+
+Normally, my libraries and components should also run on at least the current version of [Delphi Community Edition](https://www.embarcadero.com/products/delphi/starter).
+
+There's no guarantee of compatibility with earlier versions, even though I try to keep my code clean and avoid using too many of the new ways of writing in it (type inference, inline var and multiline strings).
 
 ## License to use this code repository and its contents
 
