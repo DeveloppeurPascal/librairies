@@ -18,8 +18,6 @@ To download this code repository, we recommend using "git", but you can also dow
 
 This project does not use dependencies in the form of sub-modules. If you download a ZIP file from GitHub you should have everything you need to use these units.
 
-If you detect any anomalies on earlier versions, please don't hesitate to [report them](https://github.com/DeveloppeurPascal/librairies/issues) so that I can test and try to correct or provide a workaround.
-
 ## Compatibility
 
 As an [Embarcadero MVP](https://www.embarcadero.com/resources/partners/mvp-directory), I benefit from the latest versions of [Delphi](https://www.embarcadero.com/products/delphi) and [C++ Builder](https://www.embarcadero.com/products/cbuilder) in [RAD Studio](https://www.embarcadero.com/products/rad-studio) as soon as they are released. I therefore work with these versions.
@@ -27,6 +25,8 @@ As an [Embarcadero MVP](https://www.embarcadero.com/resources/partners/mvp-direc
 Normally, my libraries and components should also run on at least the current version of [Delphi Community Edition](https://www.embarcadero.com/products/delphi/starter).
 
 There's no guarantee of compatibility with earlier versions, even though I try to keep my code clean and avoid using too many of the new ways of writing in it (type inference, inline var and multiline strings).
+
+If you detect any anomalies on earlier versions, please don't hesitate to [report them](https://github.com/DeveloppeurPascal/librairies/issues) so that I can test and try to correct or provide a workaround.
 
 ## License to use this code repository and its contents
 
