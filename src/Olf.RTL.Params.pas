@@ -27,13 +27,13 @@
 /// ***************************************************************************
 ///
 /// Author(s) :
-///      Patrick PREMARTIN
+/// Patrick PREMARTIN
 ///
 /// Site :
-///      https://developpeur-pascal.fr/librairies-publiques.html
+/// https://developpeur-pascal.fr/librairies-publiques.html
 ///
 /// Project site :
-///      https://github.com/DeveloppeurPascal/librairies
+/// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
 /// File last update : 03/08/2024 22:01:37
@@ -847,7 +847,11 @@ begin
         end;
       end
       else
-        JSON := tfile.ReadAllText(FileName, TEncoding.UTF8);
+        try
+          JSON := tfile.ReadAllText(FileName, TEncoding.UTF8);
+        except
+          JSON := '';
+        end;
       FParamList := TJSONObject.ParseJSONValue(JSON) as TJSONObject;
     end;
   end;
