@@ -27,13 +27,13 @@
 /// ***************************************************************************
 ///
 /// Author(s) :
-///      Patrick PREMARTIN
+/// Patrick PREMARTIN
 ///
 /// Site :
-///      https://developpeur-pascal.fr/librairies-publiques.html
+/// https://developpeur-pascal.fr/librairies-publiques.html
 ///
 /// Project site :
-///      https://github.com/DeveloppeurPascal/librairies
+/// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
 /// File last update : 28/05/2024 12:19:15
@@ -223,7 +223,9 @@ begin
             DeploymentNode := BorlandProjectNode.ChildNodes.FindNode
               ('Deployment');
             if assigned(DeploymentNode) and DeploymentNode.HasAttribute
-              ('Version') and (DeploymentNode.Attributes['Version'] = 4) then
+              ('Version') and ((DeploymentNode.Attributes['Version'] = 4) or
+              (DeploymentNode.Attributes['Version']
+              = 5 (* Delphi 12.2 Athens *) )) then
               // TODO : prendre en charge autres versions du déploiement en XE (bof, mais why not) et 10.x
               for i := 0 to DeploymentNode.ChildNodes.Count - 1 do
               begin
@@ -336,7 +338,9 @@ begin
           DeploymentNode := BorlandProjectNode.ChildNodes.FindNode
             ('Deployment');
           if assigned(DeploymentNode) and DeploymentNode.HasAttribute('Version')
-            and (DeploymentNode.Attributes['Version'] = 4) then
+            and ((DeploymentNode.Attributes['Version'] = 4) or
+            (DeploymentNode.Attributes['Version'] = 5 (* Delphi 12.2 Athens *) ))
+          then
             // TODO : prendre en charge autres versions du déploiement en XE (bof, mais why not) et 10.x
             for i := 0 to DeploymentNode.ChildNodes.Count - 1 do
             begin
