@@ -30,14 +30,14 @@
 /// Patrick PREMARTIN
 ///
 /// Site :
-/// https://developpeur-pascal.fr/librairies-publiques.html
+/// https://librairies.developpeur-pascal.fr
 ///
 /// Project site :
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 28/05/2024 12:19:15
-/// Signature : a835438cf9e7bdc59558f00bee737ba13907dc20
+/// File last update : 2024-09-18T09:30:16.000+02:00
+/// Signature : afbfa1d133884e028b049ad88cd22e266a451028
 /// ***************************************************************************
 /// </summary>
 
