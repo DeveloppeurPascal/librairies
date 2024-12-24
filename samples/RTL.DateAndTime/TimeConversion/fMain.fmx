@@ -1,0 +1,72 @@
+object frmMain: TfrmMain
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 429
+  ClientWidth = 429
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object edtHH: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 0
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    TextPrompt = 'HH (hours)'
+  end
+  object edtMM: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 1
+    Position.X = 116.000000000000000000
+    Position.Y = 8.000000000000000000
+    TextPrompt = 'MM (minuts)'
+  end
+  object edtSS: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 2
+    Position.X = 224.000000000000000000
+    Position.Y = 8.000000000000000000
+    TextPrompt = 'SS (seconds)'
+  end
+  object edtSeconds: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 4
+    Position.X = 8.000000000000000000
+    Position.Y = 38.000000000000000000
+    Size.Width = 316.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TextPrompt = 'Seconds'
+  end
+  object btnFromHHMMSS: TButton
+    Position.X = 336.000000000000000000
+    Position.Y = 8.000000000000000000
+    TabOrder = 3
+    Text = 'btnFromHHMMSS'
+    TextSettings.Trimming = None
+    OnClick = btnFromHHMMSSClick
+  end
+  object btnFromSeconds: TButton
+    Position.X = 336.000000000000000000
+    Position.Y = 40.000000000000000000
+    TabOrder = 5
+    Text = 'btnFromSeconds'
+    TextSettings.Trimming = None
+    OnClick = btnFromSecondsClick
+  end
+  object mmoResult: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    ReadOnly = True
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    Position.X = 8.000000000000000000
+    Position.Y = 68.000000000000000000
+    Size.Width = 413.000000000000000000
+    Size.Height = 353.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 6
+    Viewport.Width = 409.000000000000000000
+    Viewport.Height = 349.000000000000000000
+  end
+end
