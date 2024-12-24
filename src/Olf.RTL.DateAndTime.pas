@@ -27,17 +27,17 @@
 /// ***************************************************************************
 ///
 /// Author(s) :
-///      Patrick PREMARTIN
+/// Patrick PREMARTIN
 ///
 /// Site :
-///      https://developpeur-pascal.fr/librairies-publiques.html
+/// https://librairies.developpeur-pascal.fr
 ///
 /// Project site :
-///      https://github.com/DeveloppeurPascal/librairies
+/// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 28/05/2024 12:19:15
-/// Signature : 1a5e646852e58ab3ed0d5a4b60e376e825b3c173
+/// File last update : 2024-12-24T16:38:20.000+01:00
+/// Signature : 270697843f1dd344c80089e7462791e4f3a04441
 /// ***************************************************************************
 /// </summary>
 
@@ -108,6 +108,11 @@ function DateTimeToString14(Const ADateTime: TDateTime): string; overload;
 function SecToHMS(Const Valeur_En_secondes: Integer): String; overload;
 procedure SecToHMS(Const Valeur_En_secondes: Integer;
   var HH, MM, SS: Integer); overload;
+
+/// <summary>
+/// Converti une valeur en secondes vers son équivalent en "HH:MM:SS"
+/// </summary>
+function SecToTime(Const Valeur_En_secondes: Integer): String; overload;
 
 /// <summary>
 /// Converti une valeur HMS (xxH xxM xxS) en son équivalent en secondes
@@ -257,6 +262,26 @@ begin
   SS := SS - HH * SecsPerHour;
   MM := SS div SecsPerMin;
   SS := SS - MM * SecsPerMin;
+end;
+
+function SecToTime(Const Valeur_En_secondes: Integer): String;
+var
+  h, m, s: Integer;
+begin
+  SecToHMS(Valeur_En_secondes, h, m, s);
+  Result := '';
+  if (h < 10) then
+    Result := Result + '0' + h.ToString + ':'
+  else
+    Result := Result + h.ToString + ':';
+  if (m < 10) then
+    Result := Result + '0' + m.ToString + ':'
+  else
+    Result := Result + m.ToString + ':';
+  if (s < 10) then
+    Result := Result + '0' + s.ToString
+  else
+    Result := Result + s.ToString;
 end;
 
 function HMSToSec(Const Valeur_En_HMS: String): Integer;
