@@ -36,8 +36,8 @@
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 2025-01-13T18:42:30.000+01:00
-/// Signature : 17863fb3b899a1042e79967b9094d3ded8eb506d
+/// File last update : 2025-01-13T19:07:56.000+01:00
+/// Signature : 9dcbad2ae43a457b82f8ac57c09a1b411c14c611
 /// ***************************************************************************
 /// </summary>
 
@@ -154,7 +154,7 @@ type
     /// <remarks>
     /// WARNING !!! No rollback. Deleting the file can't be canceled.
     /// </remarks>
-    procedure Delete;
+    procedure Delete(const ClearMemoryToo: boolean = true);
     /// <summary>
     /// Clear current parameters list
     /// </summary>
@@ -424,7 +424,7 @@ type
     /// <remarks>
     /// WARNING !!! No rollback. Deleting the file can't be canceled.
     /// </remarks>
-    class procedure Delete;
+    class procedure Delete(const ClearMemoryToo: boolean = true);
     /// <summary>
     /// Clear current parameters list
     /// </summary>
@@ -837,11 +837,14 @@ begin
   setFilePath(AFilePath, true);
 end;
 
-procedure TParamsFile.Delete;
+procedure TParamsFile.Delete(const ClearMemoryToo: boolean);
 begin
   if (FBeginUpdateLevel > 0) then
     raise exception.Create
       ('Can''t delete the settings in a BeginUpdate/EndUpdate block !');
+
+  if ClearMemoryToo then
+    Clear;
 
   if tfile.Exists(getFilePath) then
     tfile.Delete(getFilePath);
@@ -1260,9 +1263,9 @@ begin
   DefaultParamsFile.Clear;
 end;
 
-class procedure TParams.Delete;
+class procedure TParams.Delete(const ClearMemoryToo: boolean);
 begin
-  DefaultParamsFile.Delete;
+  DefaultParamsFile.Delete(ClearMemoryToo);
 end;
 
 class procedure TParams.EndUpdate(const AutoSaveChanges: boolean);
