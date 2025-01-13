@@ -36,8 +36,8 @@
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 2025-01-13T18:56:52.000+01:00
-/// Signature : a1764544379dfa459d8cd733d45e7bebe7713ebc
+/// File last update : 2025-01-13T19:08:18.000+01:00
+/// Signature : 5ec5841f1a91a785dbe818f1293fcb300c9166a1
 /// ***************************************************************************
 /// </summary>
 
@@ -102,27 +102,28 @@ procedure TfrmMain.AddLog(const txt: string);
 begin
   if not txt.isempty then
     Memo1.lines.add(txt);
-  Memo1.lines.add(TParams.ToJSON);
+  Memo1.lines.add('HasChanged=' + tparams.HasChanged.tostring);
+  Memo1.lines.add(tparams.ToJSON);
   Memo1.GoToTextEnd;
 end;
 
 procedure TfrmMain.btnBeginUpdateClick(Sender: TObject);
 begin
   AddLog('BeginUpdate');
-  TParams.BeginUpdate;
+  tparams.BeginUpdate;
 end;
 
 procedure TfrmMain.btnCancelClick(Sender: TObject);
 begin
   AddLog('Cancel (= reload)');
-  TParams.Cancel;
+  tparams.Cancel;
   AddLog('');
 end;
 
 procedure TfrmMain.btnClearParamsClick(Sender: TObject);
 begin
   AddLog('Clear');
-  TParams.Clear;
+  tparams.Clear;
   AddLog('');
 end;
 
@@ -132,34 +133,36 @@ var
 begin
   AddLog('Create some params');
   for i := 1 to 10 do
-    TParams.setValue('key' + random(50).ToString, random(512));
+    tparams.setValue('key' + random(50).tostring, random(512));
   AddLog('');
 end;
 
 procedure TfrmMain.btnDeleteParamsClick(Sender: TObject);
 begin
-  AddLog('Delete the file');
-  TParams.Delete;
+  AddLog('Deleted the file and cleared the memory');
+  tparams.Delete;
   AddLog('');
 end;
 
 procedure TfrmMain.btnEndUpdateClick(Sender: TObject);
 begin
   AddLog('EndUpdate');
-  TParams.EndUpdate;
+  tparams.EndUpdate;
+  AddLog('');
 end;
 
 procedure TfrmMain.btnLoadParamsClick(Sender: TObject);
 begin
   AddLog('Load');
-  TParams.Load;
+  tparams.Load;
   AddLog('');
 end;
 
 procedure TfrmMain.btnSaveParamsClick(Sender: TObject);
 begin
   AddLog('Save');
-  TParams.save;
+  tparams.save;
+  AddLog('');
 end;
 
 end.
