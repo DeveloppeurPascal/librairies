@@ -36,8 +36,8 @@
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 2025-01-13T19:07:56.000+01:00
-/// Signature : 9dcbad2ae43a457b82f8ac57c09a1b411c14c611
+/// File last update : 2025-01-13T19:18:44.000+01:00
+/// Signature : 56a942ce9a088e822726e43e8b61de9ec16279a0
 /// ***************************************************************************
 /// </summary>
 
@@ -690,20 +690,30 @@ end;
 
 function TParamsFile.getParamValue(key: string): TJSONValue;
 begin
-  result := nil;
-  if Assigned(FParamList) then
-    if (FParamList.Count > 0) then
-      result := FParamList.getValue(key);
+  System.TMonitor.Enter(Self);
+  try
+    result := nil;
+    if Assigned(FParamList) then
+      if (FParamList.Count > 0) then
+        result := FParamList.getValue(key);
+  finally
+    System.TMonitor.Exit(Self);
+  end;
 end;
 
 procedure TParamsFile.setParamValue(key: string; Value: TJSONValue);
 begin
-  if not Assigned(FParamList) then
-    FParamList := TJSONObject.Create
-  else if (FParamList.Count > 0) and (nil <> FParamList.getValue(key)) then
-    FParamList.RemovePair(key).Free;
-  FParamList.AddPair(key, Value);
-  FParamChanged := true;
+  System.TMonitor.Enter(Self);
+  try
+    if not Assigned(FParamList) then
+      FParamList := TJSONObject.Create
+    else if (FParamList.Count > 0) and (nil <> FParamList.getValue(key)) then
+      FParamList.RemovePair(key).Free;
+    FParamList.AddPair(key, Value);
+    FParamChanged := true;
+  finally
+    System.TMonitor.Exit(Self);
+  end;
 end;
 
 procedure TParamsFile.SetPortableMode(const Value: boolean);
@@ -769,12 +779,17 @@ end;
 
 function TParamsFile.AsJSONObject(AClone: boolean): TJSONObject;
 begin
-  if not Assigned(FParamList) then
-    result := nil
-  else if AClone then
-    result := FParamList.Clone as TJSONObject
-  else
-    result := FParamList;
+  System.TMonitor.Enter(Self);
+  try
+    if not Assigned(FParamList) then
+      result := nil
+    else if AClone then
+      result := FParamList.Clone as TJSONObject
+    else
+      result := FParamList;
+  finally
+    System.TMonitor.Exit(Self);
+  end;
 end;
 
 constructor TParamsFile.Create;
@@ -827,8 +842,13 @@ begin
     raise exception.Create
       ('Can''t clear the settings in a BeginUpdate/EndUpdate block !');
 
-  FParamList.Free;
-  FParamList := TJSONObject.Create;
+  System.TMonitor.Enter(Self);
+  try
+    FParamList.Free;
+    FParamList := TJSONObject.Create;
+  finally
+    System.TMonitor.Exit(Self);
+  end;
 end;
 
 constructor TParamsFile.Create(AFilePath: string);
@@ -897,9 +917,9 @@ begin
 
   // Call the Before Load event if it exists
   if Assigned(onBeforeLoadProc) then
-    onBeforeLoadProc(self);
+    onBeforeLoadProc(Self);
   if Assigned(onBeforeLoadEvent) then
-    onBeforeLoadEvent(self);
+    onBeforeLoadEvent(Self);
 
   // Load the file and its settings
   if not FPortableMode then
@@ -935,9 +955,9 @@ begin
 
   // Call the After Load event if it exists
   if Assigned(onAfterLoadProc) then
-    onAfterLoadProc(self);
+    onAfterLoadProc(Self);
   if Assigned(onAfterLoadEvent) then
-    onAfterLoadEvent(self);
+    onAfterLoadEvent(Self);
 end;
 
 procedure TParamsFile.MoveToFilePath(ANewFilePath: string; ASave: boolean;
@@ -964,10 +984,15 @@ end;
 
 procedure TParamsFile.Remove(key: string);
 begin
-  if (FParamList.Count > 0) and (nil <> FParamList.getValue(key)) then
-  begin
-    FParamList.RemovePair(key).Free;
-    FParamChanged := true;
+  System.TMonitor.Enter(Self);
+  try
+    if (FParamList.Count > 0) and (nil <> FParamList.getValue(key)) then
+    begin
+      FParamList.RemovePair(key).Free;
+      FParamChanged := true;
+    end;
+  finally
+    System.TMonitor.Exit(Self);
   end;
 end;
 
@@ -978,50 +1003,55 @@ var
   fs: TFileStream;
 begin
   if (FBeginUpdateLevel > 0) then
-    exit;
+    Exit;
 
   // Call the Before Save event if it exists
   if Assigned(onBeforeSaveProc) then
-    onBeforeSaveProc(self);
+    onBeforeSaveProc(Self);
   if Assigned(onBeforeSaveEvent) then
-    onBeforeSaveEvent(self);
+    onBeforeSaveEvent(Self);
 
   // Save the settings if anything has changed in this file since previous Save or Load operation
   if FParamChanged and (not FPortableMode) then
   begin
-    FileName := getParamsFileName(true);
-    if Assigned(FParamList) and (FParamList.Count > 0) then
-    begin
-      cs := nil;
-      if Assigned(onCryptEvent) then
-        cs := onCryptEvent(FParamList.ToJSON)
-      else if Assigned(onCryptProc) then
-        cs := onCryptProc(FParamList.ToJSON)
-      else
-        tfile.WriteAllText(FileName, FParamList.ToJSON, TEncoding.UTF8);
-      if Assigned(cs) then
-        try
-          fs := TFileStream.Create(FileName, fmOpenWrite + fmCreate);
+    System.TMonitor.Enter(Self);
+    try
+      FileName := getParamsFileName(true);
+      if Assigned(FParamList) and (FParamList.Count > 0) then
+      begin
+        cs := nil;
+        if Assigned(onCryptEvent) then
+          cs := onCryptEvent(FParamList.ToJSON)
+        else if Assigned(onCryptProc) then
+          cs := onCryptProc(FParamList.ToJSON)
+        else
+          tfile.WriteAllText(FileName, FParamList.ToJSON, TEncoding.UTF8);
+        if Assigned(cs) then
           try
-            cs.position := 0;
-            fs.CopyFrom(cs);
+            fs := TFileStream.Create(FileName, fmOpenWrite + fmCreate);
+            try
+              cs.position := 0;
+              fs.CopyFrom(cs);
+            finally
+              fs.Free;
+            end;
           finally
-            fs.Free;
+            cs.Free;
           end;
-        finally
-          cs.Free;
-        end;
-    end
-    else if tfile.Exists(FileName) then
-      tfile.Delete(FileName);
-    FParamChanged := False;
+      end
+      else if tfile.Exists(FileName) then
+        tfile.Delete(FileName);
+      FParamChanged := False;
+    finally
+      System.TMonitor.Exit(Self);
+    end;
   end;
 
   // Call the After Save event if it exists
   if Assigned(onAfterSaveProc) then
-    onAfterSaveProc(self);
+    onAfterSaveProc(Self);
   if Assigned(onAfterSaveEvent) then
-    onAfterSaveEvent(self);
+    onAfterSaveEvent(Self);
 end;
 
 procedure TParamsFile.setValue(key: string; Value: single);
@@ -1050,10 +1080,15 @@ end;
 
 function TParamsFile.ToJSON: string;
 begin
-  if Assigned(FParamList) then
-    result := FParamList.ToJSON
-  else
-    result := '';
+  System.TMonitor.Enter(Self);
+  try
+    if Assigned(FParamList) then
+      result := FParamList.ToJSON
+    else
+      result := '';
+  finally
+    System.TMonitor.Exit(Self);
+  end;
 end;
 
 procedure TParamsFile.setValue(key, Value: string);
