@@ -3,7 +3,7 @@
 ///
 /// Librairies pour Delphi
 ///
-/// Copyright 1990-2024 Patrick Prémartin under AGPL 3.0 license.
+/// Copyright 1990-2025 Patrick Prémartin under AGPL 3.0 license.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -36,8 +36,8 @@
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 2024-12-24T16:38:20.000+01:00
-/// Signature : 270697843f1dd344c80089e7462791e4f3a04441
+/// File last update : 2025-01-13T18:10:42.000+01:00
+/// Signature : 3170f577bffd83a31cee415c3cfc1fb47b9e432a
 /// ***************************************************************************
 /// </summary>
 
@@ -108,17 +108,22 @@ function DateTimeToString14(Const ADateTime: TDateTime): string; overload;
 function SecToHMS(Const Valeur_En_secondes: Integer): String; overload;
 procedure SecToHMS(Const Valeur_En_secondes: Integer;
   var HH, MM, SS: Integer); overload;
+function SecToHMS(Const Valeur_En_secondes: Int64): String; overload;
+procedure SecToHMS(Const Valeur_En_secondes: Int64;
+  var HH, MM, SS: Int64); overload;
 
 /// <summary>
 /// Converti une valeur en secondes vers son équivalent en "HH:MM:SS"
 /// </summary>
 function SecToTime(Const Valeur_En_secondes: Integer): String; overload;
+function SecToTime(Const Valeur_En_secondes: Int64): String; overload;
 
 /// <summary>
 /// Converti une valeur HMS (xxH xxM xxS) en son équivalent en secondes
 /// </summary>
-function HMSToSec(Const Valeur_En_HMS: String): Integer; overload;
 function HMSToSec(Const HH, MM, SS: Integer): Integer; overload;
+function HMSToSec(Const Valeur_En_HMS: String): Int64; overload;
+function HMSToSec(Const HH, MM, SS: Int64): Int64; overload;
 
 implementation
 
@@ -255,7 +260,30 @@ begin
     Result := Result + s.ToString + 'S ';
 end;
 
+function SecToHMS(Const Valeur_En_secondes: Int64): String;
+var
+  h, m, s: Int64;
+begin
+  SecToHMS(Valeur_En_secondes, h, m, s);
+  Result := '';
+  if (h > 0) then
+    Result := Result + h.ToString + 'H ';
+  if (m > 0) then
+    Result := Result + m.ToString + 'M ';
+  if (s > 0) or (Valeur_En_secondes = 0) then
+    Result := Result + s.ToString + 'S ';
+end;
+
 procedure SecToHMS(Const Valeur_En_secondes: Integer; var HH, MM, SS: Integer);
+begin
+  SS := Valeur_En_secondes;
+  HH := SS div SecsPerHour;
+  SS := SS - HH * SecsPerHour;
+  MM := SS div SecsPerMin;
+  SS := SS - MM * SecsPerMin;
+end;
+
+procedure SecToHMS(Const Valeur_En_secondes: Int64; var HH, MM, SS: Int64);
 begin
   SS := Valeur_En_secondes;
   HH := SS div SecsPerHour;
@@ -284,7 +312,27 @@ begin
     Result := Result + s.ToString;
 end;
 
-function HMSToSec(Const Valeur_En_HMS: String): Integer;
+function SecToTime(Const Valeur_En_secondes: Int64): String;
+var
+  h, m, s: Int64;
+begin
+  SecToHMS(Valeur_En_secondes, h, m, s);
+  Result := '';
+  if (h < 10) then
+    Result := Result + '0' + h.ToString + ':'
+  else
+    Result := Result + h.ToString + ':';
+  if (m < 10) then
+    Result := Result + '0' + m.ToString + ':'
+  else
+    Result := Result + m.ToString + ':';
+  if (s < 10) then
+    Result := Result + '0' + s.ToString
+  else
+    Result := Result + s.ToString;
+end;
+
+function HMSToSec(Const Valeur_En_HMS: String): Int64;
 var
   ch: string;
   i: Integer;
@@ -294,7 +342,7 @@ begin
   i := ch.IndexOf('H');
   if (i > 0) then
   begin
-    Result := Result + ch.Substring(0, i).tointeger * SecsPerHour;
+    Result := Result + ch.Substring(0, i).toint64 * SecsPerHour;
     ch := ch.Substring(i + 1);
   end;
   i := ch.IndexOf('M');
@@ -309,6 +357,11 @@ begin
 end;
 
 function HMSToSec(Const HH, MM, SS: Integer): Integer;
+begin
+  Result := HH * SecsPerHour + MM * SecsPerMin + SS;
+end;
+
+function HMSToSec(Const HH, MM, SS: Int64): Int64;
 begin
   Result := HH * SecsPerHour + MM * SecsPerMin + SS;
 end;
