@@ -12,6 +12,7 @@ object frmMain: TfrmMain
   object Memo1: TMemo
     Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
     DataDetectorTypes = []
+    TextSettings.WordWrap = True
     Align = Client
     Size.Width = 895.000000000000000000
     Size.Height = 343.000000000000000000
@@ -82,7 +83,7 @@ object frmMain: TfrmMain
         Value = 24.979150676310350000
       end
       item
-        Value = 25.006634247041450000
+        Value = 25.006634247041440000
       end
       item
         Value = 25.000000000000000000
