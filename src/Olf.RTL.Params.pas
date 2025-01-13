@@ -3,7 +3,7 @@
 ///
 /// Librairies pour Delphi
 ///
-/// Copyright 1990-2024 Patrick Prémartin under AGPL 3.0 license.
+/// Copyright 1990-2025 Patrick Prémartin under AGPL 3.0 license.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -36,8 +36,8 @@
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 2024-09-01T12:15:52.000+02:00
-/// Signature : c819414595644557f395b467d37cbaced51c7231
+/// File last update : 2025-01-13T18:42:30.000+01:00
+/// Signature : 17863fb3b899a1042e79967b9094d3ded8eb506d
 /// ***************************************************************************
 /// </summary>
 
@@ -85,6 +85,7 @@ type
   /// </summary>
   TParamsFile = class(TObject)
   private
+    FBeginUpdateLevel: integer;
     FParamChanged: boolean;
     FParamList: TJSONObject;
     FFolderName: string;
@@ -340,7 +341,26 @@ type
     /// Retire une clé des paramètres
     /// </summary>
     procedure Remove(key: string);
+    /// <summary>
+    /// Returns True if a setting has changed and not been saved.
+    /// </summary>
     function HasChanged: boolean;
+    /// <summary>
+    /// Allow parameters changes but delay the Save operation to the EndUpdate call.
+    /// </summary>
+    /// <remarks>
+    /// If you call BeginUpdate you MUST call its EndUpdate.
+    /// Use a try... finally... end !
+    /// </remarks>
+    procedure BeginUpdate;
+    /// <summary>
+    /// Closes the block of code started with BeginUpdate. If you did some changes, it saves them by default.
+    /// </summary>
+    /// <remarks>
+    /// If you call BeginUpdate you MUST call its EndUpdate.
+    /// Use a try... finally... end !
+    /// </remarks>
+    procedure EndUpdate(const AutoSaveChanges: boolean = true);
   end;
 
   /// <summary>
@@ -600,6 +620,22 @@ type
     /// </summary>
     class procedure Remove(key: string);
     class function HasChanged: boolean;
+    /// <summary>
+    /// Allow parameters changes but delay the Save operation to the EndUpdate call.
+    /// </summary>
+    /// <remarks>
+    /// If you call BeginUpdate you MUST call its EndUpdate.
+    /// Use a try... finally... end !
+    /// </remarks>
+    class procedure BeginUpdate;
+    /// <summary>
+    /// Closes the block of code started with BeginUpdate. If you did some changes, it saves them by default.
+    /// </summary>
+    /// <remarks>
+    /// If you call BeginUpdate you MUST call its EndUpdate.
+    /// Use a try... finally... end !
+    /// </remarks>
+    class procedure EndUpdate(const AutoSaveChanges: boolean = true);
   end;
 
 implementation
@@ -763,15 +799,34 @@ begin
   FonDecryptProc := nil;
 
   FPortableMode := False;
+
+  FBeginUpdateLevel := 0;
+end;
+
+procedure TParamsFile.BeginUpdate;
+begin
+  if (FBeginUpdateLevel = FBeginUpdateLevel.MaxValue) then
+    raise exception.Create
+      ('Missing some EndUpdate. BeginUpdate is called too often.');
+
+  inc(FBeginUpdateLevel);
 end;
 
 procedure TParamsFile.Cancel;
 begin
+  if (FBeginUpdateLevel > 0) then
+    raise exception.Create
+      ('Can''t cancel the settings in a BeginUpdate/EndUpdate block !');
+
   Load;
 end;
 
 procedure TParamsFile.Clear;
 begin
+  if (FBeginUpdateLevel > 0) then
+    raise exception.Create
+      ('Can''t clear the settings in a BeginUpdate/EndUpdate block !');
+
   FParamList.Free;
   FParamList := TJSONObject.Create;
 end;
@@ -784,6 +839,10 @@ end;
 
 procedure TParamsFile.Delete;
 begin
+  if (FBeginUpdateLevel > 0) then
+    raise exception.Create
+      ('Can''t delete the settings in a BeginUpdate/EndUpdate block !');
+
   if tfile.Exists(getFilePath) then
     tfile.Delete(getFilePath);
 end;
@@ -794,6 +853,17 @@ begin
   if Assigned(FParamList) then
     FreeAndNil(FParamList);
   inherited;
+end;
+
+procedure TParamsFile.EndUpdate(const AutoSaveChanges: boolean);
+begin
+  if (FBeginUpdateLevel < 1) then
+    raise exception.Create
+      ('Missing some BeginUpdate. EndUpdate is called too often.');
+
+  dec(FBeginUpdateLevel);
+  if (FBeginUpdateLevel = 0) and AutoSaveChanges then
+    Save;
 end;
 
 function TParamsFile.getFilePath: string;
@@ -818,6 +888,10 @@ var
   fs: TFileStream;
   JSON: string;
 begin
+  if (FBeginUpdateLevel > 0) then
+    raise exception.Create
+      ('Can''t reload the settings in a BeginUpdate/EndUpdate block !');
+
   // Call the Before Load event if it exists
   if Assigned(onBeforeLoadProc) then
     onBeforeLoadProc(self);
@@ -877,7 +951,7 @@ begin
       if ACreateFolder and (not FPortableMode) then
         tdirectory.CreateDirectory(NewPath)
       else
-        raise Exception.Create('Folder "' + NewPath + '" doesn''t exist.');
+        raise exception.Create('Folder "' + NewPath + '" doesn''t exist.');
     tfile.Move(oldFilePath, ANewFilePath);
     setFilePath(ANewFilePath, False);
     if ASave then
@@ -900,6 +974,9 @@ var
   cs: TStream;
   fs: TFileStream;
 begin
+  if (FBeginUpdateLevel > 0) then
+    exit;
+
   // Call the Before Save event if it exists
   if Assigned(onBeforeSaveProc) then
     onBeforeSaveProc(self);
@@ -1023,7 +1100,7 @@ begin
   begin
     FFolderName := TPath.GetDirectoryName(AFilePath);
     if not tdirectory.Exists(FFolderName) then
-      raise Exception.Create('Folder "' + FFolderName + '" doesn''t exist.');
+      raise exception.Create('Folder "' + FFolderName + '" doesn''t exist.');
     FFileName := TPath.GetFileName(AFilePath);
   end;
   if AReload then
@@ -1115,7 +1192,7 @@ var
   Folder: string;
 begin
   if AEditor.IsEmpty and ASoftware.IsEmpty then
-    raise Exception.Create('Needs at least an Editor or Software name.');
+    raise exception.Create('Needs at least an Editor or Software name.');
 
 {$IF Defined(DEBUG) or Defined(IOS)}
   Folder := TPath.GetDocumentsPath;
@@ -1168,6 +1245,11 @@ begin
   result := DefaultParamsFile.AsJSONObject(true);
 end;
 
+class procedure TParams.BeginUpdate;
+begin
+  DefaultParamsFile.BeginUpdate;
+end;
+
 class procedure TParams.Cancel;
 begin
   DefaultParamsFile.Cancel;
@@ -1181,6 +1263,11 @@ end;
 class procedure TParams.Delete;
 begin
   DefaultParamsFile.Delete;
+end;
+
+class procedure TParams.EndUpdate(const AutoSaveChanges: boolean);
+begin
+  DefaultParamsFile.EndUpdate(AutoSaveChanges);
 end;
 
 class function TParams.getFilePath: string;
