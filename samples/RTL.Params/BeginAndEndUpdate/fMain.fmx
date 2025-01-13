@@ -1,0 +1,203 @@
+object frmMain: TfrmMain
+  Left = 0
+  Top = 0
+  Caption = 'BeginUpdate and EndUpdate sample on TParams'
+  ClientHeight = 543
+  ClientWidth = 895
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object Memo1: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Align = Client
+    Size.Width = 895.000000000000000000
+    Size.Height = 343.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Viewport.Width = 891.000000000000000000
+    Viewport.Height = 339.000000000000000000
+  end
+  object GridPanelLayout1: TGridPanelLayout
+    Align = Top
+    Size.Width = 895.000000000000000000
+    Size.Height = 200.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    ColumnCollection = <
+      item
+        Value = 50.000000000000000000
+      end
+      item
+        Value = 50.000000000000000000
+      end>
+    ControlCollection = <
+      item
+        Column = 0
+        Control = btnBeginUpdate
+        Row = 0
+      end
+      item
+        Column = 1
+        Control = btnEndUpdate
+        Row = 0
+      end
+      item
+        Column = 0
+        Control = btnCreateParams
+        Row = 1
+      end
+      item
+        Column = 1
+        Control = btnLoadParams
+        Row = 1
+      end
+      item
+        Column = 0
+        Control = btnSaveParams
+        Row = 2
+      end
+      item
+        Column = 1
+        Control = btnClearParams
+        Row = 2
+      end
+      item
+        Column = 0
+        Control = btnDeleteParams
+        Row = 3
+      end
+      item
+        Column = 1
+        Control = btnCancel
+        Row = 3
+      end>
+    RowCollection = <
+      item
+        Value = 25.014212406529840000
+      end
+      item
+        Value = 24.979150676310350000
+      end
+      item
+        Value = 25.006634247041450000
+      end
+      item
+        Value = 25.000000000000000000
+      end>
+    object btnBeginUpdate: TButton
+      Align = Client
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 437.500000000000000000
+      Size.Height = 40.028423309326170000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'btnBeginUpdate'
+      TextSettings.Trimming = None
+      OnClick = btnBeginUpdateClick
+    end
+    object btnEndUpdate: TButton
+      Align = Client
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 437.500000000000000000
+      Size.Height = 40.028423309326170000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'btnEndUpdate'
+      TextSettings.Trimming = None
+      OnClick = btnEndUpdateClick
+    end
+    object btnCreateParams: TButton
+      Align = Client
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 437.500000000000000000
+      Size.Height = 39.958301544189450000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'btnCreateParams'
+      TextSettings.Trimming = None
+      OnClick = btnCreateParamsClick
+    end
+    object btnLoadParams: TButton
+      Align = Client
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 437.500000000000000000
+      Size.Height = 39.958301544189450000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      Text = 'btnLoadParams'
+      TextSettings.Trimming = None
+      OnClick = btnLoadParamsClick
+    end
+    object btnSaveParams: TButton
+      Align = Client
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 437.500000000000000000
+      Size.Height = 40.013275146484380000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      Text = 'btnSaveParams'
+      TextSettings.Trimming = None
+      OnClick = btnSaveParamsClick
+    end
+    object btnClearParams: TButton
+      Align = Client
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 437.500000000000000000
+      Size.Height = 40.013275146484380000
+      Size.PlatformDefault = False
+      TabOrder = 5
+      Text = 'btnClearParams'
+      TextSettings.Trimming = None
+      OnClick = btnClearParamsClick
+    end
+    object btnDeleteParams: TButton
+      Align = Client
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 437.500000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 6
+      Text = 'btnDeleteParams'
+      TextSettings.Trimming = None
+      OnClick = btnDeleteParamsClick
+    end
+    object btnCancel: TButton
+      Align = Client
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 437.500000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 7
+      Text = 'btnCancel'
+      TextSettings.Trimming = None
+      OnClick = btnCancelClick
+    end
+  end
+end
