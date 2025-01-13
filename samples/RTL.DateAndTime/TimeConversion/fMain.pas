@@ -3,7 +3,7 @@
 ///
 /// Librairies pour Delphi
 ///
-/// Copyright 1990-2024 Patrick Prémartin under AGPL 3.0 license.
+/// Copyright 1990-2025 Patrick Prémartin under AGPL 3.0 license.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -36,8 +36,8 @@
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 2024-12-24T17:08:46.000+01:00
-/// Signature : e3b3da9c62f17ab2e062d29aee1f59184228f80b
+/// File last update : 2025-01-13T18:12:20.000+01:00
+/// Signature : 55230e9c321a2a8b7fe15bbf70162607496ef091
 /// ***************************************************************************
 /// </summary>
 
@@ -91,7 +91,7 @@ uses
 procedure TfrmMain.btnFromHHMMSSClick(Sender: TObject);
 var
   sHH, sMM, sSS: string;
-  HH, MM, SS, Seconds: integer;
+  HH, MM, SS, Seconds: Int64;
   s: string;
 begin
   sHH := edtHH.Text;
@@ -141,7 +141,7 @@ end;
 
 procedure TfrmMain.btnFromSecondsClick(Sender: TObject);
 var
-  HH, MM, SS, Seconds: integer;
+  HH, MM, SS, Seconds: Int64;
   s: string;
 begin
   Seconds := edtSeconds.Text.ToInt64;
