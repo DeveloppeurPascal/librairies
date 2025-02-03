@@ -8,7 +8,7 @@ Les unités à utiliser dans vos projets se trouvent dans le dossier "src". Cert
 
 Des exemples d'utilisation sous forme de projets VCL ou FireMonkey sont disponibles dans le sous-dossier "samples".
 
-De nombreux projets utilisant cette librairie sont disponibles en open source sur [mon compte GitHub](https://github.com/DeveloppeurPascal/). Regardez en particulier les projets listés sur [ce dépôt](https://github.com/DeveloppeurPascal/DevPas-WorkingPrograms-Pack) ou [celui-ci](https://github.com/DeveloppeurPascal/DevPas-Games-Pack). D'autres exemples plus génériques de projets en Delphi sont [visibles ici](https://github.com/DeveloppeurPascal/Delphi-samples).
+De nombreux projets utilisant cette librairie sont disponibles en open source sur [mon compte GitHub](https://github.com/DeveloppeurPascal/). Regardez en particulier les projets listés sur [ce dépôt](https://github.com/DeveloppeurPascal/DevPas-WorkingPrograms-Pack) ou [celui-ci](https://github.com/DeveloppeurPascal/DevPas-Games-Pack). D'autres exemples plus génériques de projets en Delphi sont [disponibles ici](https://github.com/DeveloppeurPascal/Delphi-samples).
 
 Ce dépôt de code contient un projet développé en langage Pascal Objet sous Delphi. Vous ne savez pas ce qu'est Dephi ni où le télécharger ? Vous en saurez plus [sur ce site web](https://delphi-resources.developpeur-pascal.fr/).
 
@@ -22,7 +22,9 @@ Suivez mes streams de développement de logiciels, jeux vidéo, applications mob
 
 Pour télécharger ce dépôt de code il est recommandé de passer par "git" mais vous pouvez aussi télécharger un ZIP directement depuis [son dépôt GitHub](https://github.com/DeveloppeurPascal/librairies).
 
-Ce projet n'utilise pas de dépendances sous forme de sous modules. Si vous téléchargez un fichier ZIP depuis GitHub vous devriez avoir tout ce qu'il vous faut pour utiliser ces unités.
+La documentation technique du projet, générée avec [DocInsight](https://devjetsoftware.com/products/documentation-insight/), est disponible dans le dossier ./docs et sur [GitHub Pages](https://developpeurpascal.github.io/librairies). D'autres informations et des liens connexes sont disponibles sur [le site web du projet](https://librairies.developpeur-pascal.fr).
+
+Si vous avez besoin d'explications ou d'aide pour utiliser ce projet dans les vôtres, n'hésitez pas à [me contacter](https://developpeur-pascal.fr/nous-contacter.php). Je pourrai soit vous orienter vers une ressource en ligne, soit vous proposer une assistance sous forme de prestation ou gratuite selon les cas. Vous pouvez aussi me faire signe à l'occasion d'une conférence ou d'une présentation en ligne.
 
 ## Compatibilité
 
@@ -38,16 +40,16 @@ Si vous détectez des anomalies sur des versions antérieures n'hésitez pas à 
 
 Ces codes sources sont distribués sous licence [AGPL 3.0 ou ultérieure](https://choosealicense.com/licenses/agpl-3.0/).
 
-Vous êtes globalement libre d'utiliser le contenu de ce dépôt de code n'importe où à condition :
+Vous êtes libre d'utiliser le contenu de ce dépôt de code n'importe où à condition :
 * d'en faire mention dans vos projets
 * de diffuser les modifications apportées aux fichiers fournis dans ce projet sous licence AGPL (en y laissant les mentions de copyright d'origine (auteur, lien vers ce dépôt, licence) obligatoirement complétées par les vôtres)
 * de diffuser les codes sources de vos créations sous licence AGPL
 
-Si cette licence ne convient pas à vos besoins vous pouvez acheter un droit d'utilisation de ce projet sous la licence [Apache License 2.0](https://choosealicense.com/licenses/apache-2.0/) ou une licence commerciale dédiée ([contactez l'auteur](https://developpeur-pascal.fr/nous-contacter.php) pour discuter de vos besoins).
-
-Ces codes sources sont fournis en l'état sans garantie d'aucune sorte.
+Si cette licence ne convient pas à vos besoins (notamment pour un projet commercial) je propose aussi [des licences classiques pour les développeurs et les entreprises](https://librairies.developpeur-pascal.fr).
 
 Certains éléments inclus dans ce dépôt peuvent dépendre de droits d'utilisation de tiers (images, sons, ...). Ils ne sont pas réutilisables dans vos projets sauf mention contraire.
+
+Les codes sources de ce dépôt de code comme leur éventuelle version compilée sont fournis en l'état sans garantie d'aucune sorte.
 
 ## Comment demander une nouvelle fonctionnalité, signaler un bogue ou une faille de sécurité ?
 
