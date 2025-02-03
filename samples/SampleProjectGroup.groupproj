@@ -1,0 +1,444 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{49C68E69-BA44-490D-A0AD-279272A1E1AD}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="FMX.TextImageFrame\DisplayTextByCode\DisplayTextByCode.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="FMX.TextImageFrame\UseLibraryAsTFrame\UseLibraryAsTFrame.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Others\Hash-MD5\MD5Sample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.Checksum\ChecksumSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.CryptDecrypt\IDBCryptSample\IncDecByteCryptSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.CryptDecrypt\ShiftCryptDecryptSample\ShiftCryptDecryptSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.CryptDecrypt\SimpleCryptDecryptSample\CryptDecryptSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.CryptDecrypt\SwapCryptDecryptSample\SwapCryptDecryptSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.DateAndTime\TimeConversion\TimeConversionSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.DProjReader\DProjReaderSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.GenRandomID\RandomIDGenerator\RandomIDGenerator.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.Language\GetSystemLanguageISOCode-FMX\GetSystemLanguageISOCode_FMX.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.Language\GetSystemLanguageISOCode-VCL\GetSystemLanguageISOCode_VCL.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.Maths\NumberBaseConvert\NumberBaseConvertSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.Maths\SHL_SHR\SHL_SHR_Sample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.Params\BeginAndEndUpdate\BeginEndUpdateParamSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.Params\CryptDecryptEvents\CryptDecryptEventsSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.Params\Events\ParamsEvents.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.Params\ParamsSample\ParamsSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.Params\RemoveAParameter\RemoveKeySample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.Params\StorageFolderName\ParamsFolderTest.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.Params\UsePortableMode\ParamsInPortableMode.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.Streams\LoadAndSaveBitmap\LoadAndSaveBitmapInAStreamSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.Streams\LoadAndSaveEmptyBitmap\FMX\FMXEmptyBitmapSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.Streams\LoadAndSaveEmptyBitmap\VCL\VCLEmptyBitmapSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.Streams\LoadAndSaveString\LoadAndSaveStringSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.Streams\LoadAndSaveWithSize\StreamWithSize.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="RTL.SystemAppearance\GetSystemTheme\GetSystemTheme.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Skia.SVGToBitmap\FMX\FMXSVGToBitmapSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Skia.SVGToBitmap\FMX_AccessSVGSourcesByClassMethods\FMXSVGClassTest.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Skia.SVGToBitmap\FMX_With_SVGList\FMXShowSVGFromBitmapSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Skia.SVGToBitmap\FMXAutoRegisterAndSVGMargins\FMXAutoRegisterAndSVGMarginsSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Skia.SVGToBitmap\VCL\VCLSVGToBitmapSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Skia.SVGToBitmap\VCL_SVGList_CreateImagesByCode\CreateImagesByCodeSampleProject.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Skia.SVGToBitmap\VCL_With_SVGList\VCLShowSVGFromBitmapSample.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="DisplayTextByCode">
+        <MSBuild Projects="FMX.TextImageFrame\DisplayTextByCode\DisplayTextByCode.dproj"/>
+    </Target>
+    <Target Name="DisplayTextByCode:Clean">
+        <MSBuild Projects="FMX.TextImageFrame\DisplayTextByCode\DisplayTextByCode.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DisplayTextByCode:Make">
+        <MSBuild Projects="FMX.TextImageFrame\DisplayTextByCode\DisplayTextByCode.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="UseLibraryAsTFrame">
+        <MSBuild Projects="FMX.TextImageFrame\UseLibraryAsTFrame\UseLibraryAsTFrame.dproj"/>
+    </Target>
+    <Target Name="UseLibraryAsTFrame:Clean">
+        <MSBuild Projects="FMX.TextImageFrame\UseLibraryAsTFrame\UseLibraryAsTFrame.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="UseLibraryAsTFrame:Make">
+        <MSBuild Projects="FMX.TextImageFrame\UseLibraryAsTFrame\UseLibraryAsTFrame.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MD5Sample">
+        <MSBuild Projects="Others\Hash-MD5\MD5Sample.dproj"/>
+    </Target>
+    <Target Name="MD5Sample:Clean">
+        <MSBuild Projects="Others\Hash-MD5\MD5Sample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MD5Sample:Make">
+        <MSBuild Projects="Others\Hash-MD5\MD5Sample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ChecksumSample">
+        <MSBuild Projects="RTL.Checksum\ChecksumSample.dproj"/>
+    </Target>
+    <Target Name="ChecksumSample:Clean">
+        <MSBuild Projects="RTL.Checksum\ChecksumSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ChecksumSample:Make">
+        <MSBuild Projects="RTL.Checksum\ChecksumSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="IncDecByteCryptSample">
+        <MSBuild Projects="RTL.CryptDecrypt\IDBCryptSample\IncDecByteCryptSample.dproj"/>
+    </Target>
+    <Target Name="IncDecByteCryptSample:Clean">
+        <MSBuild Projects="RTL.CryptDecrypt\IDBCryptSample\IncDecByteCryptSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="IncDecByteCryptSample:Make">
+        <MSBuild Projects="RTL.CryptDecrypt\IDBCryptSample\IncDecByteCryptSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ShiftCryptDecryptSample">
+        <MSBuild Projects="RTL.CryptDecrypt\ShiftCryptDecryptSample\ShiftCryptDecryptSample.dproj"/>
+    </Target>
+    <Target Name="ShiftCryptDecryptSample:Clean">
+        <MSBuild Projects="RTL.CryptDecrypt\ShiftCryptDecryptSample\ShiftCryptDecryptSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ShiftCryptDecryptSample:Make">
+        <MSBuild Projects="RTL.CryptDecrypt\ShiftCryptDecryptSample\ShiftCryptDecryptSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="CryptDecryptSample">
+        <MSBuild Projects="RTL.CryptDecrypt\SimpleCryptDecryptSample\CryptDecryptSample.dproj"/>
+    </Target>
+    <Target Name="CryptDecryptSample:Clean">
+        <MSBuild Projects="RTL.CryptDecrypt\SimpleCryptDecryptSample\CryptDecryptSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CryptDecryptSample:Make">
+        <MSBuild Projects="RTL.CryptDecrypt\SimpleCryptDecryptSample\CryptDecryptSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="SwapCryptDecryptSample">
+        <MSBuild Projects="RTL.CryptDecrypt\SwapCryptDecryptSample\SwapCryptDecryptSample.dproj"/>
+    </Target>
+    <Target Name="SwapCryptDecryptSample:Clean">
+        <MSBuild Projects="RTL.CryptDecrypt\SwapCryptDecryptSample\SwapCryptDecryptSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SwapCryptDecryptSample:Make">
+        <MSBuild Projects="RTL.CryptDecrypt\SwapCryptDecryptSample\SwapCryptDecryptSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TimeConversionSample">
+        <MSBuild Projects="RTL.DateAndTime\TimeConversion\TimeConversionSample.dproj"/>
+    </Target>
+    <Target Name="TimeConversionSample:Clean">
+        <MSBuild Projects="RTL.DateAndTime\TimeConversion\TimeConversionSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TimeConversionSample:Make">
+        <MSBuild Projects="RTL.DateAndTime\TimeConversion\TimeConversionSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DProjReaderSample">
+        <MSBuild Projects="RTL.DProjReader\DProjReaderSample.dproj"/>
+    </Target>
+    <Target Name="DProjReaderSample:Clean">
+        <MSBuild Projects="RTL.DProjReader\DProjReaderSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DProjReaderSample:Make">
+        <MSBuild Projects="RTL.DProjReader\DProjReaderSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="RandomIDGenerator">
+        <MSBuild Projects="RTL.GenRandomID\RandomIDGenerator\RandomIDGenerator.dproj"/>
+    </Target>
+    <Target Name="RandomIDGenerator:Clean">
+        <MSBuild Projects="RTL.GenRandomID\RandomIDGenerator\RandomIDGenerator.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="RandomIDGenerator:Make">
+        <MSBuild Projects="RTL.GenRandomID\RandomIDGenerator\RandomIDGenerator.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="GetSystemLanguageISOCode_FMX">
+        <MSBuild Projects="RTL.Language\GetSystemLanguageISOCode-FMX\GetSystemLanguageISOCode_FMX.dproj"/>
+    </Target>
+    <Target Name="GetSystemLanguageISOCode_FMX:Clean">
+        <MSBuild Projects="RTL.Language\GetSystemLanguageISOCode-FMX\GetSystemLanguageISOCode_FMX.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="GetSystemLanguageISOCode_FMX:Make">
+        <MSBuild Projects="RTL.Language\GetSystemLanguageISOCode-FMX\GetSystemLanguageISOCode_FMX.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="GetSystemLanguageISOCode_VCL">
+        <MSBuild Projects="RTL.Language\GetSystemLanguageISOCode-VCL\GetSystemLanguageISOCode_VCL.dproj"/>
+    </Target>
+    <Target Name="GetSystemLanguageISOCode_VCL:Clean">
+        <MSBuild Projects="RTL.Language\GetSystemLanguageISOCode-VCL\GetSystemLanguageISOCode_VCL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="GetSystemLanguageISOCode_VCL:Make">
+        <MSBuild Projects="RTL.Language\GetSystemLanguageISOCode-VCL\GetSystemLanguageISOCode_VCL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="NumberBaseConvertSample">
+        <MSBuild Projects="RTL.Maths\NumberBaseConvert\NumberBaseConvertSample.dproj"/>
+    </Target>
+    <Target Name="NumberBaseConvertSample:Clean">
+        <MSBuild Projects="RTL.Maths\NumberBaseConvert\NumberBaseConvertSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="NumberBaseConvertSample:Make">
+        <MSBuild Projects="RTL.Maths\NumberBaseConvert\NumberBaseConvertSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="SHL_SHR_Sample">
+        <MSBuild Projects="RTL.Maths\SHL_SHR\SHL_SHR_Sample.dproj"/>
+    </Target>
+    <Target Name="SHL_SHR_Sample:Clean">
+        <MSBuild Projects="RTL.Maths\SHL_SHR\SHL_SHR_Sample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SHL_SHR_Sample:Make">
+        <MSBuild Projects="RTL.Maths\SHL_SHR\SHL_SHR_Sample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="BeginEndUpdateParamSample">
+        <MSBuild Projects="RTL.Params\BeginAndEndUpdate\BeginEndUpdateParamSample.dproj"/>
+    </Target>
+    <Target Name="BeginEndUpdateParamSample:Clean">
+        <MSBuild Projects="RTL.Params\BeginAndEndUpdate\BeginEndUpdateParamSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="BeginEndUpdateParamSample:Make">
+        <MSBuild Projects="RTL.Params\BeginAndEndUpdate\BeginEndUpdateParamSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="CryptDecryptEventsSample">
+        <MSBuild Projects="RTL.Params\CryptDecryptEvents\CryptDecryptEventsSample.dproj"/>
+    </Target>
+    <Target Name="CryptDecryptEventsSample:Clean">
+        <MSBuild Projects="RTL.Params\CryptDecryptEvents\CryptDecryptEventsSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CryptDecryptEventsSample:Make">
+        <MSBuild Projects="RTL.Params\CryptDecryptEvents\CryptDecryptEventsSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ParamsEvents">
+        <MSBuild Projects="RTL.Params\Events\ParamsEvents.dproj"/>
+    </Target>
+    <Target Name="ParamsEvents:Clean">
+        <MSBuild Projects="RTL.Params\Events\ParamsEvents.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ParamsEvents:Make">
+        <MSBuild Projects="RTL.Params\Events\ParamsEvents.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ParamsSample">
+        <MSBuild Projects="RTL.Params\ParamsSample\ParamsSample.dproj"/>
+    </Target>
+    <Target Name="ParamsSample:Clean">
+        <MSBuild Projects="RTL.Params\ParamsSample\ParamsSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ParamsSample:Make">
+        <MSBuild Projects="RTL.Params\ParamsSample\ParamsSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="RemoveKeySample">
+        <MSBuild Projects="RTL.Params\RemoveAParameter\RemoveKeySample.dproj"/>
+    </Target>
+    <Target Name="RemoveKeySample:Clean">
+        <MSBuild Projects="RTL.Params\RemoveAParameter\RemoveKeySample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="RemoveKeySample:Make">
+        <MSBuild Projects="RTL.Params\RemoveAParameter\RemoveKeySample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ParamsFolderTest">
+        <MSBuild Projects="RTL.Params\StorageFolderName\ParamsFolderTest.dproj"/>
+    </Target>
+    <Target Name="ParamsFolderTest:Clean">
+        <MSBuild Projects="RTL.Params\StorageFolderName\ParamsFolderTest.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ParamsFolderTest:Make">
+        <MSBuild Projects="RTL.Params\StorageFolderName\ParamsFolderTest.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ParamsInPortableMode">
+        <MSBuild Projects="RTL.Params\UsePortableMode\ParamsInPortableMode.dproj"/>
+    </Target>
+    <Target Name="ParamsInPortableMode:Clean">
+        <MSBuild Projects="RTL.Params\UsePortableMode\ParamsInPortableMode.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ParamsInPortableMode:Make">
+        <MSBuild Projects="RTL.Params\UsePortableMode\ParamsInPortableMode.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="LoadAndSaveBitmapInAStreamSample">
+        <MSBuild Projects="RTL.Streams\LoadAndSaveBitmap\LoadAndSaveBitmapInAStreamSample.dproj"/>
+    </Target>
+    <Target Name="LoadAndSaveBitmapInAStreamSample:Clean">
+        <MSBuild Projects="RTL.Streams\LoadAndSaveBitmap\LoadAndSaveBitmapInAStreamSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="LoadAndSaveBitmapInAStreamSample:Make">
+        <MSBuild Projects="RTL.Streams\LoadAndSaveBitmap\LoadAndSaveBitmapInAStreamSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FMXEmptyBitmapSample">
+        <MSBuild Projects="RTL.Streams\LoadAndSaveEmptyBitmap\FMX\FMXEmptyBitmapSample.dproj"/>
+    </Target>
+    <Target Name="FMXEmptyBitmapSample:Clean">
+        <MSBuild Projects="RTL.Streams\LoadAndSaveEmptyBitmap\FMX\FMXEmptyBitmapSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FMXEmptyBitmapSample:Make">
+        <MSBuild Projects="RTL.Streams\LoadAndSaveEmptyBitmap\FMX\FMXEmptyBitmapSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="VCLEmptyBitmapSample">
+        <MSBuild Projects="RTL.Streams\LoadAndSaveEmptyBitmap\VCL\VCLEmptyBitmapSample.dproj"/>
+    </Target>
+    <Target Name="VCLEmptyBitmapSample:Clean">
+        <MSBuild Projects="RTL.Streams\LoadAndSaveEmptyBitmap\VCL\VCLEmptyBitmapSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VCLEmptyBitmapSample:Make">
+        <MSBuild Projects="RTL.Streams\LoadAndSaveEmptyBitmap\VCL\VCLEmptyBitmapSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="LoadAndSaveStringSample">
+        <MSBuild Projects="RTL.Streams\LoadAndSaveString\LoadAndSaveStringSample.dproj"/>
+    </Target>
+    <Target Name="LoadAndSaveStringSample:Clean">
+        <MSBuild Projects="RTL.Streams\LoadAndSaveString\LoadAndSaveStringSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="LoadAndSaveStringSample:Make">
+        <MSBuild Projects="RTL.Streams\LoadAndSaveString\LoadAndSaveStringSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="StreamWithSize">
+        <MSBuild Projects="RTL.Streams\LoadAndSaveWithSize\StreamWithSize.dproj"/>
+    </Target>
+    <Target Name="StreamWithSize:Clean">
+        <MSBuild Projects="RTL.Streams\LoadAndSaveWithSize\StreamWithSize.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="StreamWithSize:Make">
+        <MSBuild Projects="RTL.Streams\LoadAndSaveWithSize\StreamWithSize.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="GetSystemTheme">
+        <MSBuild Projects="RTL.SystemAppearance\GetSystemTheme\GetSystemTheme.dproj"/>
+    </Target>
+    <Target Name="GetSystemTheme:Clean">
+        <MSBuild Projects="RTL.SystemAppearance\GetSystemTheme\GetSystemTheme.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="GetSystemTheme:Make">
+        <MSBuild Projects="RTL.SystemAppearance\GetSystemTheme\GetSystemTheme.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FMXSVGToBitmapSample">
+        <MSBuild Projects="Skia.SVGToBitmap\FMX\FMXSVGToBitmapSample.dproj"/>
+    </Target>
+    <Target Name="FMXSVGToBitmapSample:Clean">
+        <MSBuild Projects="Skia.SVGToBitmap\FMX\FMXSVGToBitmapSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FMXSVGToBitmapSample:Make">
+        <MSBuild Projects="Skia.SVGToBitmap\FMX\FMXSVGToBitmapSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FMXSVGClassTest">
+        <MSBuild Projects="Skia.SVGToBitmap\FMX_AccessSVGSourcesByClassMethods\FMXSVGClassTest.dproj"/>
+    </Target>
+    <Target Name="FMXSVGClassTest:Clean">
+        <MSBuild Projects="Skia.SVGToBitmap\FMX_AccessSVGSourcesByClassMethods\FMXSVGClassTest.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FMXSVGClassTest:Make">
+        <MSBuild Projects="Skia.SVGToBitmap\FMX_AccessSVGSourcesByClassMethods\FMXSVGClassTest.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FMXShowSVGFromBitmapSample">
+        <MSBuild Projects="Skia.SVGToBitmap\FMX_With_SVGList\FMXShowSVGFromBitmapSample.dproj"/>
+    </Target>
+    <Target Name="FMXShowSVGFromBitmapSample:Clean">
+        <MSBuild Projects="Skia.SVGToBitmap\FMX_With_SVGList\FMXShowSVGFromBitmapSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FMXShowSVGFromBitmapSample:Make">
+        <MSBuild Projects="Skia.SVGToBitmap\FMX_With_SVGList\FMXShowSVGFromBitmapSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FMXAutoRegisterAndSVGMarginsSample">
+        <MSBuild Projects="Skia.SVGToBitmap\FMXAutoRegisterAndSVGMargins\FMXAutoRegisterAndSVGMarginsSample.dproj"/>
+    </Target>
+    <Target Name="FMXAutoRegisterAndSVGMarginsSample:Clean">
+        <MSBuild Projects="Skia.SVGToBitmap\FMXAutoRegisterAndSVGMargins\FMXAutoRegisterAndSVGMarginsSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FMXAutoRegisterAndSVGMarginsSample:Make">
+        <MSBuild Projects="Skia.SVGToBitmap\FMXAutoRegisterAndSVGMargins\FMXAutoRegisterAndSVGMarginsSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="VCLSVGToBitmapSample">
+        <MSBuild Projects="Skia.SVGToBitmap\VCL\VCLSVGToBitmapSample.dproj"/>
+    </Target>
+    <Target Name="VCLSVGToBitmapSample:Clean">
+        <MSBuild Projects="Skia.SVGToBitmap\VCL\VCLSVGToBitmapSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VCLSVGToBitmapSample:Make">
+        <MSBuild Projects="Skia.SVGToBitmap\VCL\VCLSVGToBitmapSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="CreateImagesByCodeSampleProject">
+        <MSBuild Projects="Skia.SVGToBitmap\VCL_SVGList_CreateImagesByCode\CreateImagesByCodeSampleProject.dproj"/>
+    </Target>
+    <Target Name="CreateImagesByCodeSampleProject:Clean">
+        <MSBuild Projects="Skia.SVGToBitmap\VCL_SVGList_CreateImagesByCode\CreateImagesByCodeSampleProject.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CreateImagesByCodeSampleProject:Make">
+        <MSBuild Projects="Skia.SVGToBitmap\VCL_SVGList_CreateImagesByCode\CreateImagesByCodeSampleProject.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="VCLShowSVGFromBitmapSample">
+        <MSBuild Projects="Skia.SVGToBitmap\VCL_With_SVGList\VCLShowSVGFromBitmapSample.dproj"/>
+    </Target>
+    <Target Name="VCLShowSVGFromBitmapSample:Clean">
+        <MSBuild Projects="Skia.SVGToBitmap\VCL_With_SVGList\VCLShowSVGFromBitmapSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VCLShowSVGFromBitmapSample:Make">
+        <MSBuild Projects="Skia.SVGToBitmap\VCL_With_SVGList\VCLShowSVGFromBitmapSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="DisplayTextByCode;UseLibraryAsTFrame;MD5Sample;ChecksumSample;IncDecByteCryptSample;ShiftCryptDecryptSample;CryptDecryptSample;SwapCryptDecryptSample;TimeConversionSample;DProjReaderSample;RandomIDGenerator;GetSystemLanguageISOCode_FMX;GetSystemLanguageISOCode_VCL;NumberBaseConvertSample;SHL_SHR_Sample;BeginEndUpdateParamSample;CryptDecryptEventsSample;ParamsEvents;ParamsSample;RemoveKeySample;ParamsFolderTest;ParamsInPortableMode;LoadAndSaveBitmapInAStreamSample;FMXEmptyBitmapSample;VCLEmptyBitmapSample;LoadAndSaveStringSample;StreamWithSize;GetSystemTheme;FMXSVGToBitmapSample;FMXSVGClassTest;FMXShowSVGFromBitmapSample;FMXAutoRegisterAndSVGMarginsSample;VCLSVGToBitmapSample;CreateImagesByCodeSampleProject;VCLShowSVGFromBitmapSample"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="DisplayTextByCode:Clean;UseLibraryAsTFrame:Clean;MD5Sample:Clean;ChecksumSample:Clean;IncDecByteCryptSample:Clean;ShiftCryptDecryptSample:Clean;CryptDecryptSample:Clean;SwapCryptDecryptSample:Clean;TimeConversionSample:Clean;DProjReaderSample:Clean;RandomIDGenerator:Clean;GetSystemLanguageISOCode_FMX:Clean;GetSystemLanguageISOCode_VCL:Clean;NumberBaseConvertSample:Clean;SHL_SHR_Sample:Clean;BeginEndUpdateParamSample:Clean;CryptDecryptEventsSample:Clean;ParamsEvents:Clean;ParamsSample:Clean;RemoveKeySample:Clean;ParamsFolderTest:Clean;ParamsInPortableMode:Clean;LoadAndSaveBitmapInAStreamSample:Clean;FMXEmptyBitmapSample:Clean;VCLEmptyBitmapSample:Clean;LoadAndSaveStringSample:Clean;StreamWithSize:Clean;GetSystemTheme:Clean;FMXSVGToBitmapSample:Clean;FMXSVGClassTest:Clean;FMXShowSVGFromBitmapSample:Clean;FMXAutoRegisterAndSVGMarginsSample:Clean;VCLSVGToBitmapSample:Clean;CreateImagesByCodeSampleProject:Clean;VCLShowSVGFromBitmapSample:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="DisplayTextByCode:Make;UseLibraryAsTFrame:Make;MD5Sample:Make;ChecksumSample:Make;IncDecByteCryptSample:Make;ShiftCryptDecryptSample:Make;CryptDecryptSample:Make;SwapCryptDecryptSample:Make;TimeConversionSample:Make;DProjReaderSample:Make;RandomIDGenerator:Make;GetSystemLanguageISOCode_FMX:Make;GetSystemLanguageISOCode_VCL:Make;NumberBaseConvertSample:Make;SHL_SHR_Sample:Make;BeginEndUpdateParamSample:Make;CryptDecryptEventsSample:Make;ParamsEvents:Make;ParamsSample:Make;RemoveKeySample:Make;ParamsFolderTest:Make;ParamsInPortableMode:Make;LoadAndSaveBitmapInAStreamSample:Make;FMXEmptyBitmapSample:Make;VCLEmptyBitmapSample:Make;LoadAndSaveStringSample:Make;StreamWithSize:Make;GetSystemTheme:Make;FMXSVGToBitmapSample:Make;FMXSVGClassTest:Make;FMXShowSVGFromBitmapSample:Make;FMXAutoRegisterAndSVGMarginsSample:Make;VCLSVGToBitmapSample:Make;CreateImagesByCodeSampleProject:Make;VCLShowSVGFromBitmapSample:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
