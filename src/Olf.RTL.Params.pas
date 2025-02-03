@@ -243,7 +243,7 @@ type
     /// </remarks>
     procedure setFilePath(AFilePath: string; AReload: boolean = true);
     /// <summary>
-    /// Initialise the folder&filename with a new default tree:
+    /// Initialise the folder and the filename with a new default tree:
     /// => "Documents / Editor / Software" for DEBUG and iOS
     /// => "AppData (HomePath) / Editor / Software" in RELEASE (except iOS)
     /// </summary>
@@ -518,7 +518,7 @@ type
     /// </remarks>
     class procedure setFilePath(AFilePath: string; AReload: boolean = true);
     /// <summary>
-    /// Initialise the folder&filename with a new default tree:
+    /// Initialise the folder and the filename with a new default tree:
     /// => "Documents / Editor / Software" for DEBUG and iOS
     /// => "AppData (HomePath) / Editor / Software" in RELEASE (except iOS)
     /// </summary>
