@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project Version="1.0">
+  <Title>My toolbox for Delphi projects</Title>
+  <Summary>This repository contains functions, procedures and classes to use in Delphi projects (console, VCL, FireMonkey and others). It's my "everything reuseable things" toolbox.</Summary>
+  <Author>Patrick PREMARTIN</Author>
+  <Email>patrick@premartin.fr</Email>
+  <Copyright>(c) 1990-2025 Patrick PREMARTIN</Copyright>
+  <Comment/>
+  <Language>2057</Language>
+  <Charset>1</Charset>
+  <HeaderHtml>&lt;%TopicTitle%&gt;</HeaderHtml>
+  <FooterHtml>&lt;a href="https://librairies.developpeur-pascal.fr/" target="_blank"&gt;Toolbox Delphi&lt;/a&gt; (c) 1990-2025 &lt;a href="https://patrick.premartin.fr" target="_blank"&gt;Patrick PREMARTIN&lt;/a&gt; - Powered by &lt;a href="https://devjetsoftware.com/products/documentation-insight/" target="_blank"&gt;DocInsight&lt;/a&gt;</FooterHtml>
+  <CustomDefines/>
+  <ShowImplementationSection>false</ShowImplementationSection>
+  <ShowPrivateMembers>false</ShowPrivateMembers>
+  <ShowProtectedMembers>true</ShowProtectedMembers>
+  <ShowInheritedMembers>true</ShowInheritedMembers>
+  <ShowPropertyAccessors>true</ShowPropertyAccessors>
+  <FileNamePolicy>0</FileNamePolicy>
+  <CompilerVersion>27</CompilerVersion>
+  <TargetPlatform>0</TargetPlatform>
+  <Sources>
+    <Source>.\FMX.TextImageFrame\DisplayTextByCode\DisplayTextByCode.dpr</Source>
+    <Source>.\FMX.TextImageFrame\UseLibraryAsTFrame\UseLibraryAsTFrame.dpr</Source>
+    <Source>.\Others\Hash-MD5\MD5Sample.dpr</Source>
+    <Source>.\RTL.Checksum\ChecksumSample.dpr</Source>
+    <Source>.\RTL.CryptDecrypt\IDBCryptSample\IncDecByteCryptSample.dpr</Source>
+    <Source>.\RTL.CryptDecrypt\ShiftCryptDecryptSample\ShiftCryptDecryptSample.dpr</Source>
+    <Source>.\RTL.CryptDecrypt\SimpleCryptDecryptSample\CryptDecryptSample.dpr</Source>
+    <Source>.\RTL.CryptDecrypt\SwapCryptDecryptSample\SwapCryptDecryptSample.dpr</Source>
+    <Source>.\RTL.DateAndTime\TimeConversion\TimeConversionSample.dpr</Source>
+    <Source>.\RTL.DProjReader\DProjReaderSample.dpr</Source>
+    <Source>.\RTL.GenRandomID\RandomIDGenerator\RandomIDGenerator.dpr</Source>
+    <Source>.\RTL.Language\GetSystemLanguageISOCode-FMX\GetSystemLanguageISOCode_FMX.dpr</Source>
+    <Source>.\RTL.Language\GetSystemLanguageISOCode-VCL\GetSystemLanguageISOCode_VCL.dpr</Source>
+    <Source>.\RTL.Maths\NumberBaseConvert\NumberBaseConvertSample.dpr</Source>
+    <Source>.\RTL.Maths\SHL_SHR\SHL_SHR_Sample.dpr</Source>
+    <Source>.\RTL.Params\BeginAndEndUpdate\BeginEndUpdateParamSample.dpr</Source>
+    <Source>.\RTL.Params\CryptDecryptEvents\CryptDecryptEventsSample.dpr</Source>
+    <Source>.\RTL.Params\Events\ParamsEvents.dpr</Source>
+    <Source>.\RTL.Params\ParamsSample\ParamsSample.dpr</Source>
+    <Source>.\RTL.Params\RemoveAParameter\RemoveKeySample.dpr</Source>
+    <Source>.\RTL.Params\StorageFolderName\ParamsFolderTest.dpr</Source>
+    <Source>.\RTL.Params\UsePortableMode\ParamsInPortableMode.dpr</Source>
+    <Source>.\RTL.Streams\LoadAndSaveBitmap\LoadAndSaveBitmapInAStreamSample.dpr</Source>
+    <Source>.\RTL.Streams\LoadAndSaveEmptyBitmap\FMX\FMXEmptyBitmapSample.dpr</Source>
+    <Source>.\RTL.Streams\LoadAndSaveEmptyBitmap\VCL\VCLEmptyBitmapSample.dpr</Source>
+    <Source>.\RTL.Streams\LoadAndSaveString\LoadAndSaveStringSample.dpr</Source>
+    <Source>.\RTL.Streams\LoadAndSaveWithSize\StreamWithSize.dpr</Source>
+    <Source>.\RTL.SystemAppearance\GetSystemTheme\GetSystemTheme.dpr</Source>
+    <Source>.\Skia.SVGToBitmap\FMX\FMXSVGToBitmapSample.dpr</Source>
+    <Source>.\Skia.SVGToBitmap\FMX_AccessSVGSourcesByClassMethods\FMXSVGClassTest.dpr</Source>
+    <Source>.\Skia.SVGToBitmap\FMX_With_SVGList\FMXShowSVGFromBitmapSample.dpr</Source>
+    <Source>.\Skia.SVGToBitmap\FMXAutoRegisterAndSVGMargins\FMXAutoRegisterAndSVGMarginsSample.dpr</Source>
+    <Source>.\Skia.SVGToBitmap\VCL\VCLSVGToBitmapSample.dpr</Source>
+    <Source>.\Skia.SVGToBitmap\VCL_SVGList_CreateImagesByCode\CreateImagesByCodeSampleProject.dpr</Source>
+    <Source>.\Skia.SVGToBitmap\VCL_With_SVGList\VCLShowSVGFromBitmapSample.dpr</Source>
+  </Sources>
+  <Outputs>
+    <Output Type="HTML">
+      <Active>true</Active>
+      <OutputDirectory>..\docs</OutputDirectory>
+    </Output>
+    <Output Type="CHM">
+      <Active>true</Active>
+      <OutputFileName>..\SampleProjectGroup.chm</OutputFileName>
+    </Output>
+    <Output Type="MSHELP2">
+      <Active>false</Active>
+      <OutputFileName>build\docs\mshelp2\SampleProjectGroup.HxS</OutputFileName>
+      <Namespace>SampleProjectGroup</Namespace>
+      <TitleID>library</TitleID>
+    </Output>
+    <Output Type="HelpAndManual">
+      <Active>false</Active>
+      <OutputFileName>build\docs\hm\SampleProjectGroup.hmxp</OutputFileName>
+    </Output>
+  </Outputs>
+</Project>
