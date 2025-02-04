@@ -22,6 +22,8 @@ Suivez mes streams de développement de logiciels, jeux vidéo, applications mob
 
 Pour télécharger ce dépôt de code il est recommandé de passer par "git" mais vous pouvez aussi télécharger un ZIP directement depuis [son dépôt GitHub](https://github.com/DeveloppeurPascal/librairies).
 
+## Documentation et assistance
+
 La documentation technique du projet, générée avec [DocInsight](https://devjetsoftware.com/products/documentation-insight/), est disponible dans le dossier ./docs et sur [GitHub Pages](https://developpeurpascal.github.io/librairies). D'autres informations et des liens connexes sont disponibles sur [le site web du projet](https://librairies.developpeur-pascal.fr).
 
 Si vous avez besoin d'explications ou d'aide pour utiliser ce projet dans les vôtres, n'hésitez pas à [me contacter](https://developpeur-pascal.fr/nous-contacter.php). Je pourrai soit vous orienter vers une ressource en ligne, soit vous proposer une assistance sous forme de prestation ou gratuite selon les cas. Vous pouvez aussi me faire signe à l'occasion d'une conférence ou d'une présentation en ligne.
@@ -71,4 +73,6 @@ Vous pouvez utiliser l'un de ces services :
 * [Liberapay](https://liberapay.com/PatrickPremartin)
 * [Paypal](https://www.paypal.com/paypalme/patrickpremartin)
 
-ou si vous parlez français vous pouvez [vous abonner à Zone Abo](https://zone-abo.fr/nos-abonnements.php) sur une base mensuelle ou annuelle et avoir en plus accès à de nombreuses ressources en ligne (vidéos et articles).
+Vous pouvez acheter [mes logiciels](https://lic.olfsoftware.fr/products.php?lng=fr), [mes jeux vidéo](https://lic.gamolf.fr/products.php?lng=fr) ou [une licence de développement pour mes bibliothèques](https://lic.developpeur-pascal.fr/products.php?lng=fr) si vous les utilisez dans vos projets.
+
+Si vous parlez français [abonnez-vous à Zone Abo](https://zone-abo.fr/nos-abonnements.php) pour accéder à l'intégralité de mes archives en ligne (articles, vidéos, vidéos de formation, ebooks).
