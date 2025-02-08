@@ -1,7 +1,7 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{E0585144-592F-48DD-A0A2-565D7323CD02}</ProjectGuid>
-        <ProjectVersion>20.1</ProjectVersion>
+        <ProjectVersion>20.2</ProjectVersion>
         <FrameworkType>FMX</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
@@ -111,7 +111,7 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Android)'!=''">
         <DCC_UsePackage>bindengine;IndyIPCommon;FMX_FlexCel_Components;dbxcds;FlexCel_Pdf;dbexpress;inet;FMX_FlexCel_Core;FireDACDBXDriver;CustomIPTransport;rtl;DBXSqliteDriver;FireDAC;xmlrtl;ibxpress;dsnap;bindcompfmx;ibmonitor;DataSnapCommon;fmxase;FlexCel_XlsAdapter;DBXInterBaseDriver;DataSnapClient;emsclientfiredac;FireDACDSDriver;tethering;CloudService;soapserver;FireDACIBDriver;fmx;DbxCommonDriver;emsclient;IndyProtocols;FmxTeeUI;FireDACSqliteDriver;DbxClientDriver;soapmidas;IndySystem;ibxbindings;FlexCel_Render;FireDACCommon;bindcompdbx;DataSnapFireDAC;DataSnapNativeClient;FlexCel_Report;FireDACCommonDriver;IndyIPClient;Olf.FMX.AboutBoxPackage;fmxFireDAC;dbrtl;FlexCel_Core;bindcomp;IndyCore;RESTBackendComponents;RESTComponents;IndyIPServer;dsnapxml;DataSnapProviderClient;FMXTee;soaprtl;$(DCC_UsePackage)</DCC_UsePackage>
-        <VerInfo_Keys>package=com.embarcadero.$(MSBuildProjectName);label=$(MSBuildProjectName);versionCode=1;versionName=1.0.0;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
+        <VerInfo_Keys>package=com.embarcadero.$(MSBuildProjectName);label=$(MSBuildProjectName);versionCode=1;versionName=1.0.0;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=TitleBar;hardwareAccelerated=true;apiKey=;minSdkVersion=23;targetSdkVersion=34</VerInfo_Keys>
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <Android_LauncherIcon36>$(BDS)\bin\Artwork\Android\FM_LauncherIcon_36x36.png</Android_LauncherIcon36>
@@ -145,7 +145,7 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Android64)'!=''">
         <DCC_UsePackage>bindengine;IndyIPCommon;FMX_FlexCel_Components;dbxcds;FlexCel_Pdf;dbexpress;inet;FMX_FlexCel_Core;FireDACDBXDriver;CustomIPTransport;rtl;DBXSqliteDriver;FireDAC;xmlrtl;ibxpress;dsnap;bindcompfmx;ibmonitor;DataSnapCommon;FlexCel_XlsAdapter;DBXInterBaseDriver;DataSnapClient;emsclientfiredac;FireDACDSDriver;tethering;CloudService;soapserver;FireDACIBDriver;fmx;DbxCommonDriver;emsclient;IndyProtocols;FmxTeeUI;FireDACSqliteDriver;DbxClientDriver;soapmidas;IndySystem;ibxbindings;FlexCel_Render;FireDACCommon;bindcompdbx;DataSnapFireDAC;DataSnapNativeClient;FlexCel_Report;FireDACCommonDriver;IndyIPClient;Olf.FMX.AboutBoxPackage;fmxFireDAC;dbrtl;FlexCel_Core;bindcomp;IndyCore;RESTBackendComponents;RESTComponents;IndyIPServer;dsnapxml;DataSnapProviderClient;FMXTee;soaprtl;$(DCC_UsePackage)</DCC_UsePackage>
-        <VerInfo_Keys>package=com.embarcadero.$(MSBuildProjectName);label=$(MSBuildProjectName);versionCode=1;versionName=1.0.0;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
+        <VerInfo_Keys>package=com.embarcadero.$(MSBuildProjectName);label=$(MSBuildProjectName);versionCode=1;versionName=1.0.0;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=TitleBar;hardwareAccelerated=true;apiKey=;minSdkVersion=23;targetSdkVersion=34</VerInfo_Keys>
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <Android_LauncherIcon36>$(BDS)\bin\Artwork\Android\FM_LauncherIcon_36x36.png</Android_LauncherIcon36>
@@ -325,7 +325,7 @@
                     <Source Name="MainSource">SwapCryptDecryptSample.dpr</Source>
                 </Source>
             </Delphi.Personality>
-            <Deployment Version="4">
+            <Deployment Version="5">
                 <DeployFile LocalName="$(BDS)\Redist\iossimulator\libcgunwind.1.0.dylib" Class="DependencyModule">
                     <Platform Name="iOSSimulator">
                         <Overwrite>true</Overwrite>
@@ -341,12 +341,7 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Win32\Debug\SwapCryptDecryptSample.exe" Configuration="Debug" Class="ProjectOutput">
-                    <Platform Name="Win32">
-                        <RemoteName>SwapCryptDecryptSample.exe</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\SwapCryptDecryptSample.exe" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="iOSSimulator">
                         <Operation>1</Operation>
@@ -357,16 +352,6 @@
                     </Platform>
                     <Platform Name="Win32">
                         <Operation>0</Operation>
-                    </Platform>
-                </DeployClass>
-                <DeployClass Name="AndroidClasses">
-                    <Platform Name="Android">
-                        <RemoteDir>classes</RemoteDir>
-                        <Operation>64</Operation>
-                    </Platform>
-                    <Platform Name="Android64">
-                        <RemoteDir>classes</RemoteDir>
-                        <Operation>64</Operation>
                     </Platform>
                 </DeployClass>
                 <DeployClass Name="AndroidFileProvider">
@@ -1301,10 +1286,8 @@
             <Platforms>
                 <Platform value="Android">True</Platform>
                 <Platform value="Android64">True</Platform>
-                <Platform value="iOSDevice32">False</Platform>
                 <Platform value="iOSDevice64">True</Platform>
                 <Platform value="iOSSimARM64">True</Platform>
-                <Platform value="OSX32">False</Platform>
                 <Platform value="OSX64">True</Platform>
                 <Platform value="OSXARM64">True</Platform>
                 <Platform value="Win32">True</Platform>
