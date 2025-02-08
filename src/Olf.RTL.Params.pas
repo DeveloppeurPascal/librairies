@@ -1,7 +1,7 @@
 /// <summary>
 /// ***************************************************************************
 ///
-/// Librairies pour Delphi
+/// My libraries for Delphi
 ///
 /// Copyright 1990-2025 Patrick Prémartin under AGPL 3.0 license.
 ///
@@ -36,8 +36,8 @@
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 2025-01-13T19:18:44.000+01:00
-/// Signature : 56a942ce9a088e822726e43e8b61de9ec16279a0
+/// File last update : 2025-02-05T20:59:29.445+01:00
+/// Signature : 053bf155cbadccb8b294aa63b647fe516cc68527
 /// ***************************************************************************
 /// </summary>
 
