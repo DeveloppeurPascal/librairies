@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Project Version="1.0">
-  <Title>My toolbox for Delphi projects</Title>
+  <Title>My libraries for Delphi</Title>
   <Summary>This repository contains functions, procedures and classes to use in Delphi projects (console, VCL, FireMonkey and others). It's my "everything reuseable things" toolbox.</Summary>
   <Author>Patrick PREMARTIN</Author>
   <Email>patrick@premartin.fr</Email>
@@ -9,7 +9,7 @@
   <Language>2057</Language>
   <Charset>1</Charset>
   <HeaderHtml>&lt;%TopicTitle%&gt;</HeaderHtml>
-  <FooterHtml>&lt;a href="https://librairies.developpeur-pascal.fr/" target="_blank"&gt;Toolbox Delphi&lt;/a&gt; (c) 1990-2025 &lt;a href="https://patrick.premartin.fr" target="_blank"&gt;Patrick PREMARTIN&lt;/a&gt; - Powered by &lt;a href="https://devjetsoftware.com/products/documentation-insight/" target="_blank"&gt;DocInsight&lt;/a&gt;</FooterHtml>
+  <FooterHtml>&lt;a href="https://librairies.developpeur-pascal.fr/" target="_blank"&gt;My libraries for Delphi&lt;/a&gt; (c) 1990-2025 &lt;a href="https://patrick.premartin.fr" target="_blank"&gt;Patrick PREMARTIN&lt;/a&gt; - Powered by &lt;a href="https://devjetsoftware.com/products/documentation-insight/" target="_blank"&gt;DocInsight&lt;/a&gt;</FooterHtml>
   <CustomDefines/>
   <ShowImplementationSection>false</ShowImplementationSection>
   <ShowPrivateMembers>false</ShowPrivateMembers>
@@ -59,11 +59,11 @@
   <Outputs>
     <Output Type="HTML">
       <Active>true</Active>
-      <OutputDirectory>..\docs</OutputDirectory>
+      <OutputDirectory>..\docs\Samples</OutputDirectory>
     </Output>
     <Output Type="CHM">
       <Active>true</Active>
-      <OutputFileName>..\SampleProjectGroup.chm</OutputFileName>
+      <OutputFileName>.\MyLibrariesForDelphi.chm</OutputFileName>
     </Output>
     <Output Type="MSHELP2">
       <Active>false</Active>
