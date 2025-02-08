@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>My libraries for Delphi: Olf.RTL.Params: Class TParams</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 0.16.0">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<div class="container"><div class="navigation">
+<h2><a href="index.html">My libraries for Delphi</a></h2><ul><li><a href="AllUnits.html">Units</a></li><li><a href="ClassHierarchy.html">Class Hierarchy</a></li><li><a href="AllClasses.html">Classes, Interfaces, Objects and Records</a></li><li><a href="AllTypes.html">Types</a></li><li><a href="AllVariables.html">Variables</a></li><li><a href="AllConstants.html">Constants</a></li><li><a href="AllFunctions.html">Functions and Procedures</a></li><li><a href="AllIdentifiers.html">Identifiers</a></li></ul></div><div class="content">
+<span id="TParams"></span><h1 class="cio">Class TParams</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section">Fields</div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="Olf.RTL.Params.html">Olf.RTL.Params</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TParams = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Use TParams with its class methods if you only want to manage one settings file. If you need more than 1 file to store your settings in the same project, crreate instances of TParamsFile instead of using TParams. </p>
+<p>
+
+
+<p>TParams is here for compatibility with old projects.</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TParams</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#Save">Save</a></strong>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#Load">Load</a></strong>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#Cancel">Cancel</a></strong>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#Delete">Delete</a></strong>(const ClearMemoryToo: boolean = true);</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#Clear">Clear</a></strong>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class function <strong><a href="Olf.RTL.Params.TParams.html#getValue">getValue</a></strong>(key: string; default: string = ''): string; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class function <strong><a href="Olf.RTL.Params.TParams.html#getValue">getValue</a></strong>(key: string; default: boolean = False) : boolean; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class function <strong><a href="Olf.RTL.Params.TParams.html#getValue">getValue</a></strong>(key: string; default: integer = 0) : integer; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class function <strong><a href="Olf.RTL.Params.TParams.html#getValue">getValue</a></strong>(key: string; default: cardinal = 0) : integer; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class function <strong><a href="Olf.RTL.Params.TParams.html#getValue">getValue</a></strong>(key: string; default: single = 0): single; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class function <strong><a href="Olf.RTL.Params.TParams.html#getValue">getValue</a></strong>(key: string; default: TDateTime = 0) : TDateTime; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class function <strong><a href="Olf.RTL.Params.TParams.html#getValue">getValue</a></strong>(key: string; default: TJSONValue = nil) : TJSONValue; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#setValue">setValue</a></strong>(key, Value: string); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#setValue">setValue</a></strong>(key: string; Value: boolean); overload;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#setValue">setValue</a></strong>(key: string; Value: integer); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#setValue">setValue</a></strong>(key: string; Value: cardinal); overload;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#setValue">setValue</a></strong>(key: string; Value: single); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#setValue">setValue</a></strong>(key: string; Value: TDateTime); overload;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#setValue">setValue</a></strong>(key: string; Value: TJSONValue); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#setFolderName">setFolderName</a></strong>(AFolderName: string; AReload: boolean = true);</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#setFilePath">setFilePath</a></strong>(AFilePath: string; AReload: boolean = true);</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#InitDefaultFileNameV2">InitDefaultFileNameV2</a></strong>(Const AEditor, ASoftware: string; AReload: boolean = true);</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#MoveToFilePath">MoveToFilePath</a></strong>(ANewFilePath: string; ASave: boolean = true; ACreateFolder: boolean = False);</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class function <strong><a href="Olf.RTL.Params.TParams.html#getFilePath">getFilePath</a></strong>: string;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class function <strong><a href="Olf.RTL.Params.TParams.html#ToJSON">ToJSON</a></strong>: string;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class function <strong><a href="Olf.RTL.Params.TParams.html#AsJSONObject">AsJSONObject</a></strong>: TJSONObject;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#Remove">Remove</a></strong>(key: string);</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class function <strong><a href="Olf.RTL.Params.TParams.html#HasChanged">HasChanged</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#BeginUpdate">BeginUpdate</a></strong>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#EndUpdate">EndUpdate</a></strong>(const AutoSaveChanges: boolean = true);</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class property <strong><a href="Olf.RTL.Params.TParams.html#onBeforeLoadEvent">onBeforeLoadEvent</a></strong>: <a href="Olf.RTL.Params.html#TParamsLoadSaveEvent">TParamsLoadSaveEvent</a>
+      read GetonBeforeLoadEvent write SetonBeforeLoadEvent;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class property <strong><a href="Olf.RTL.Params.TParams.html#onBeforeLoadProc">onBeforeLoadProc</a></strong>: <a href="Olf.RTL.Params.html#TParamsLoadSaveProc">TParamsLoadSaveProc</a>
+      read GetonBeforeLoadProc write SetonBeforeLoadProc;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class property <strong><a href="Olf.RTL.Params.TParams.html#onAfterLoadEvent">onAfterLoadEvent</a></strong>: <a href="Olf.RTL.Params.html#TParamsLoadSaveEvent">TParamsLoadSaveEvent</a>
+      read GetonAfterLoadEvent write SetonAfterLoadEvent;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class property <strong><a href="Olf.RTL.Params.TParams.html#onAfterLoadProc">onAfterLoadProc</a></strong>: <a href="Olf.RTL.Params.html#TParamsLoadSaveProc">TParamsLoadSaveProc</a> read GetonAfterLoadProc
+      write SetonAfterLoadProc;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class property <strong><a href="Olf.RTL.Params.TParams.html#onBeforeSaveEvent">onBeforeSaveEvent</a></strong>: <a href="Olf.RTL.Params.html#TParamsLoadSaveEvent">TParamsLoadSaveEvent</a>
+      read GetonBeforeSaveEvent write SetonBeforeSaveEvent;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class property <strong><a href="Olf.RTL.Params.TParams.html#onBeforeSaveProc">onBeforeSaveProc</a></strong>: <a href="Olf.RTL.Params.html#TParamsLoadSaveProc">TParamsLoadSaveProc</a>
+      read GetonBeforeSaveProc write SetonBeforeSaveProc;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class property <strong><a href="Olf.RTL.Params.TParams.html#onAfterSaveEvent">onAfterSaveEvent</a></strong>: <a href="Olf.RTL.Params.html#TParamsLoadSaveEvent">TParamsLoadSaveEvent</a>
+      read GetonAfterSaveEvent write SetonAfterSaveEvent;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class property <strong><a href="Olf.RTL.Params.TParams.html#onAfterSaveProc">onAfterSaveProc</a></strong>: <a href="Olf.RTL.Params.html#TParamsLoadSaveProc">TParamsLoadSaveProc</a> read GetonAfterSaveProc
+      write SetonAfterSaveProc;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class property <strong><a href="Olf.RTL.Params.TParams.html#onCryptEvent">onCryptEvent</a></strong>: <a href="Olf.RTL.Params.html#TParamsCryptEvent">TParamsCryptEvent</a> read GetonCryptEvent
+      write SetonCryptEvent;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class property <strong><a href="Olf.RTL.Params.TParams.html#onCryptProc">onCryptProc</a></strong>: <a href="Olf.RTL.Params.html#TParamsCryptProc">TParamsCryptProc</a> read GetonCryptProc
+      write SetonCryptProc;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class property <strong><a href="Olf.RTL.Params.TParams.html#onDecryptEvent">onDecryptEvent</a></strong>: <a href="Olf.RTL.Params.html#TParamsDecryptEvent">TParamsDecryptEvent</a> read GetonDecryptEvent
+      write SetonDecryptEvent;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class property <strong><a href="Olf.RTL.Params.TParams.html#onDecryptProc">onDecryptProc</a></strong>: <a href="Olf.RTL.Params.html#TParamsDecryptProc">TParamsDecryptProc</a> read GetonDecryptProc
+      write SetonDecryptProc;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class property <strong><a href="Olf.RTL.Params.TParams.html#PortableMode">PortableMode</a></strong>: boolean read GetPortableMode
+      write SetPortableMode;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Save"></span><code>class procedure <strong>Save</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Save current parameters to actual parameter file </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Load"></span><code>class procedure <strong>Load</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Load parameters from actual parameter file </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Cancel"></span><code>class procedure <strong>Cancel</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Cancel current changes and reload previous saved values </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Delete"></span><code>class procedure <strong>Delete</strong>(const ClearMemoryToo: boolean = true);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Delete the file where settings are stored. </p>
+<p>
+
+
+<p>WARNING !!! No rollback. Deleting the file can't be canceled.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Clear"></span><code>class procedure <strong>Clear</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Clear current parameters list </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="getValue"></span><code>class function <strong>getValue</strong>(key: string; default: string = ''): string; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get the string value for key parameter with an empty string as default value </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="getValue"></span><code>class function <strong>getValue</strong>(key: string; default: boolean = False) : boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get the boolean value for key parameter with False as default value </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="getValue"></span><code>class function <strong>getValue</strong>(key: string; default: integer = 0) : integer; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get the integer value for key parameter with zero as default value </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="getValue"></span><code>class function <strong>getValue</strong>(key: string; default: cardinal = 0) : integer; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get the cardinal value for key parameter with zero as default value </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="getValue"></span><code>class function <strong>getValue</strong>(key: string; default: single = 0): single; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get the single value for key parameter with zero as default value </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="getValue"></span><code>class function <strong>getValue</strong>(key: string; default: TDateTime = 0) : TDateTime; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get the TDateTime value for key parameter with December 30th 1899 at 12:00 as default value </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="getValue"></span><code>class function <strong>getValue</strong>(key: string; default: TJSONValue = nil) : TJSONValue; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get the JSON value for key parameter with nil as default value </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="setValue"></span><code>class procedure <strong>setValue</strong>(key, Value: string); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Set the value for key parameter as string </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="setValue"></span><code>class procedure <strong>setValue</strong>(key: string; Value: boolean); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Set the value for key parameter as boolean </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="setValue"></span><code>class procedure <strong>setValue</strong>(key: string; Value: integer); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Set the value for key parameter as integer </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="setValue"></span><code>class procedure <strong>setValue</strong>(key: string; Value: cardinal); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Set the value for key parameter as cardinal </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="setValue"></span><code>class procedure <strong>setValue</strong>(key: string; Value: single); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Set the value for key parameter as single </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="setValue"></span><code>class procedure <strong>setValue</strong>(key: string; Value: TDateTime); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Set the value for key parameter as TDateTime </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="setValue"></span><code>class procedure <strong>setValue</strong>(key: string; Value: TJSONValue); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Set the value for key parameter as TJSONValue </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="setFolderName"></span><code>class procedure <strong>setFolderName</strong>(AFolderName: string; AReload: boolean = true);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Change the folder where is the parameter file. </p>
+<p>
+ 
+
+<p>
+
+<p>To change the file name, use setFilePath() instead of setFolderName().</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AFolderName</dt>
+<dd>Absolute folder path where you want to save the parameter file.</dd>
+<dt>AReload</dt>
+<dd>If set to True (by default), call the Load procedure after changing the folder.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="setFilePath"></span><code>class procedure <strong>setFilePath</strong>(AFilePath: string; AReload: boolean = true);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Change the folder where is the parameter file. </p>
+<p>
+ 
+
+<p>
+
+<p>If you only want to change the path to the parameter file, use setFolderName procedure instead of this one.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AFilePath</dt>
+<dd>Absolute file path (drive+folder+file name+extension) to the parameter file you want to use.</dd>
+<dt>AReload</dt>
+<dd>If set to True (by default), call Load procedure after changing the file path.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="InitDefaultFileNameV2"></span><code>class procedure <strong>InitDefaultFileNameV2</strong>(Const AEditor, ASoftware: string; AReload: boolean = true);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Initialise the folder and the filename with a new default tree: =&gt; &quot;Documents / Editor / Software&quot; for DEBUG and iOS =&gt; &quot;AppData (HomePath) / Editor / Software&quot; in RELEASE (except iOS) </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="MoveToFilePath"></span><code>class procedure <strong>MoveToFilePath</strong>(ANewFilePath: string; ASave: boolean = true; ACreateFolder: boolean = False);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Move actual parameter file to the new file. </p>
+<p>
+ 
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ANewFilePath</dt>
+<dd>Absolute file path (drive+folder+file name+extension) to the parameter file you want to use.</dd>
+<dt>ASave</dt>
+<dd>If set to True, save actual values to the parameter file. If set to false, just move the parameter file to it's new folder/filename.</dd>
+<dt>ACreateFolder</dt>
+<dd>If set to True, create the folder of file parameter if it doesn't exists.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="getFilePath"></span><code>class function <strong>getFilePath</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return the absolute path to the parameter file (drive+folder+file name+extension) </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ToJSON"></span><code>class function <strong>ToJSON</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return the current parameters as a serialized JSON object. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="AsJSONObject"></span><code>class function <strong>AsJSONObject</strong>: TJSONObject;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return the current parameters as a JSON object </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Remove"></span><code>class procedure <strong>Remove</strong>(key: string);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Retire une clé des paramètres </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="HasChanged"></span><code>class function <strong>HasChanged</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="BeginUpdate"></span><code>class procedure <strong>BeginUpdate</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Allow parameters changes but delay the Save operation to the EndUpdate call. </p>
+<p>
+
+
+<p>If you call BeginUpdate you MUST call its EndUpdate. Use a try... finally... end !</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="EndUpdate"></span><code>class procedure <strong>EndUpdate</strong>(const AutoSaveChanges: boolean = true);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Closes the block of code started with BeginUpdate. If you did some changes, it saves them by default. </p>
+<p>
+
+
+<p>If you call BeginUpdate you MUST call its EndUpdate. Use a try... finally... end !</p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="onBeforeLoadEvent"></span><code>class property <strong>onBeforeLoadEvent</strong>: <a href="Olf.RTL.Params.html#TParamsLoadSaveEvent">TParamsLoadSaveEvent</a>
+      read GetonBeforeLoadEvent write SetonBeforeLoadEvent;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Called before loading the settings file </p>
+<p>
+
+
+<p>Also called for Cancel operation (which reload the file).</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="onBeforeLoadProc"></span><code>class property <strong>onBeforeLoadProc</strong>: <a href="Olf.RTL.Params.html#TParamsLoadSaveProc">TParamsLoadSaveProc</a>
+      read GetonBeforeLoadProc write SetonBeforeLoadProc;</code></td>
+</tr>
+<tr><td colspan="2">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="onAfterLoadEvent"></span><code>class property <strong>onAfterLoadEvent</strong>: <a href="Olf.RTL.Params.html#TParamsLoadSaveEvent">TParamsLoadSaveEvent</a>
+      read GetonAfterLoadEvent write SetonAfterLoadEvent;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Called after loading the settings file </p>
+<p>
+
+
+<p>Also called for Cancel operation (which reload the file).</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="onAfterLoadProc"></span><code>class property <strong>onAfterLoadProc</strong>: <a href="Olf.RTL.Params.html#TParamsLoadSaveProc">TParamsLoadSaveProc</a> read GetonAfterLoadProc
+      write SetonAfterLoadProc;</code></td>
+</tr>
+<tr><td colspan="2">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="onBeforeSaveEvent"></span><code>class property <strong>onBeforeSaveEvent</strong>: <a href="Olf.RTL.Params.html#TParamsLoadSaveEvent">TParamsLoadSaveEvent</a>
+      read GetonBeforeSaveEvent write SetonBeforeSaveEvent;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Called before saving the settings file </p>
+<p>
+
+
+<p>The finalization of this unit calls the TParams.Save. If you have a BeforeSaveEvent or BeforeEventProc, beware of potential access violation by using something perhaps already destroyed.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="onBeforeSaveProc"></span><code>class property <strong>onBeforeSaveProc</strong>: <a href="Olf.RTL.Params.html#TParamsLoadSaveProc">TParamsLoadSaveProc</a>
+      read GetonBeforeSaveProc write SetonBeforeSaveProc;</code></td>
+</tr>
+<tr><td colspan="2">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="onAfterSaveEvent"></span><code>class property <strong>onAfterSaveEvent</strong>: <a href="Olf.RTL.Params.html#TParamsLoadSaveEvent">TParamsLoadSaveEvent</a>
+      read GetonAfterSaveEvent write SetonAfterSaveEvent;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Called after saving the settings file </p>
+<p>
+
+
+<p>The finalization of this unit calls the TParams.Save. If you have a BeforeSaveEvent or BeforeEventProc, beware of potential access violation by using something perhaps already destroyed.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="onAfterSaveProc"></span><code>class property <strong>onAfterSaveProc</strong>: <a href="Olf.RTL.Params.html#TParamsLoadSaveProc">TParamsLoadSaveProc</a> read GetonAfterSaveProc
+      write SetonAfterSaveProc;</code></td>
+</tr>
+<tr><td colspan="2">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="onCryptEvent"></span><code>class property <strong>onCryptEvent</strong>: <a href="Olf.RTL.Params.html#TParamsCryptEvent">TParamsCryptEvent</a> read GetonCryptEvent
+      write SetonCryptEvent;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Called before saving the parameters in a file (and after onBeforeSave). If crypted, the file is saved as a binary format. If uncrypted, the file is saved as a JSON text file. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="onCryptProc"></span><code>class property <strong>onCryptProc</strong>: <a href="Olf.RTL.Params.html#TParamsCryptProc">TParamsCryptProc</a> read GetonCryptProc
+      write SetonCryptProc;</code></td>
+</tr>
+<tr><td colspan="2">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="onDecryptEvent"></span><code>class property <strong>onDecryptEvent</strong>: <a href="Olf.RTL.Params.html#TParamsDecryptEvent">TParamsDecryptEvent</a> read GetonDecryptEvent
+      write SetonDecryptEvent;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Called after loading the parameters from a file (and before onAfterLoad). If crypted, the file is saved as a binary format. If uncrypted, the file is saved as a JSON text file. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="onDecryptProc"></span><code>class property <strong>onDecryptProc</strong>: <a href="Olf.RTL.Params.html#TParamsDecryptProc">TParamsDecryptProc</a> read GetonDecryptProc
+      write SetonDecryptProc;</code></td>
+</tr>
+<tr><td colspan="2">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="PortableMode"></span><code>class property <strong>PortableMode</strong>: boolean read GetPortableMode
+      write SetPortableMode;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Portable mode : if true nothing is done on the storage. Default value is false. </p>
+</td></tr>
+</table>
+<a href="https://librairies.developpeur-pascal.fr/" target="_blank">My libraries for Delphi</a> (c) 1990-2025 <a href="https://patrick.premartin.fr" target="_blank">Patrick PREMARTIN</a> - Powered by <a href="https://pasdoc.github.io/" target="_blank">PasDoc</a>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 0.16.0</a>. </em>
+</span>
+</div></div></body></html>

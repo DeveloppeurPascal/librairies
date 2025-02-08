@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>My libraries for Delphi: u_AnalysePageHTML</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 0.16.0">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<div class="container"><div class="navigation">
+<h2><a href="index.html">My libraries for Delphi</a></h2><ul><li><a href="AllUnits.html">Units</a></li><li><a href="ClassHierarchy.html">Class Hierarchy</a></li><li><a href="AllClasses.html">Classes, Interfaces, Objects and Records</a></li><li><a href="AllTypes.html">Types</a></li><li><a href="AllVariables.html">Variables</a></li><li><a href="AllConstants.html">Constants</a></li><li><a href="AllFunctions.html">Functions and Procedures</a></li><li><a href="AllIdentifiers.html">Identifiers</a></li></ul></div><div class="content">
+<h1 class="unit">Unit u_AnalysePageHTML</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section">Uses</div><div class="one_section">Classes, Interfaces, Objects and Records</div><div class="one_section"><a class="section" href="#PasDoc-FuncsProcs">Functions and Procedures</a></div><div class="one_section"><a class="section" href="#PasDoc-Types">Types</a></div><div class="one_section">Constants</div><div class="one_section">Variables</div></div>
+<span id="PasDoc-Description"></span><h2 class="description">Description</h2>
+<p>
+ ***************************************************************************
+
+<p>Librairies pour Delphi
+
+<p>Copyright 1990-2024 Patrick Prémartin under AGPL 3.0 license.
+
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+<p>***************************************************************************
+
+<p>This repository contains functions, procedures and classes to use in Delphi projects (console, VCL, FireMonkey and others). It's my &quot;everything reuseable things&quot; toolbox.
+
+<p>The units to be used in your projects can be found in the &quot;src&quot; folder. Some features are explained on my blog or have been coded live on Twitch.
+
+<p>Examples of use in the form of VCL or FireMonkey projects are available in the &quot;samples&quot; subfolder.
+
+<p>***************************************************************************
+
+<p>Author(s) : Patrick PREMARTIN
+
+<p>Site : <a href="https://developpeur-pascal.fr/librairies-publiques.html">https://developpeur-pascal.fr/librairies-publiques.html</a>
+
+<p>Project site : <a href="https://github.com/DeveloppeurPascal/librairies">https://github.com/DeveloppeurPascal/librairies</a>
+
+<p>*************************************************************************** File last update : 28/05/2024 12:19:15 Signature : f1bcef28327f5f03756db2460b5ff5f3a59906e7 *************************************************************************** </p>
+<span id="PasDoc-Uses"></span><h2 class="overview">Overview</h2>
+<span id="PasDoc-FuncsProcs"></span><h3 class="summary">Functions and Procedures</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code>procedure <strong><a href="u_AnalysePageHTML.html#tag_traiter_fichier">tag_traiter_fichier</a></strong>(nom_fichier_html: string; proc: <a href="u_AnalysePageHTML.html#Ttag_traitement_proc">Ttag_traitement_proc</a>); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <strong><a href="u_AnalysePageHTML.html#tag_traiter_page">tag_traiter_page</a></strong>(var contenu_fichier: string; proc: <a href="u_AnalysePageHTML.html#Ttag_traitement_proc">Ttag_traitement_proc</a>); overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <strong><a href="u_AnalysePageHTML.html#tag_nom_instruction">tag_nom_instruction</a></strong>(tag: string): string;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <strong><a href="u_AnalysePageHTML.html#tag_valeur">tag_valeur</a></strong>(tag, nom_param: string): string;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Types"></span><h3 class="summary">Types</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code><strong><a href="u_AnalysePageHTML.html#TTag_Action">TTag_Action</a></strong> = (...);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="u_AnalysePageHTML.html#Ttag_traitement_proc">Ttag_traitement_proc</a></strong> = procedure (tag, instruction_html: string; var action: <a href="u_AnalysePageHTML.html#TTag_Action">TTag_Action</a>; var nouveau_tag: string);</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Functions and Procedures</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="tag_traiter_fichier"></span><code>procedure <strong>tag_traiter_fichier</strong>(nom_fichier_html: string; proc: <a href="u_AnalysePageHTML.html#Ttag_traitement_proc">Ttag_traitement_proc</a>); overload;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="tag_traiter_page"></span><code>procedure <strong>tag_traiter_page</strong>(var contenu_fichier: string; proc: <a href="u_AnalysePageHTML.html#Ttag_traitement_proc">Ttag_traitement_proc</a>); overload;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="tag_nom_instruction"></span><code>function <strong>tag_nom_instruction</strong>(tag: string): string;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="tag_valeur"></span><code>function <strong>tag_valeur</strong>(tag, nom_param: string): string;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<h3 class="detail">Types</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TTag_Action"></span><code><strong>TTag_Action</strong> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+(c) Patrick Prémartin / Olf Software 06/2002</p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+<span id="rien">rien</span></li>
+<li>
+<span id="effacer">effacer</span></li>
+<li>
+<span id="remplacer">remplacer</span></li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="Ttag_traitement_proc"></span><code><strong>Ttag_traitement_proc</strong> = procedure (tag, instruction_html: string; var action: <a href="u_AnalysePageHTML.html#TTag_Action">TTag_Action</a>; var nouveau_tag: string);</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<a href="https://librairies.developpeur-pascal.fr/" target="_blank">My libraries for Delphi</a> (c) 1990-2025 <a href="https://patrick.premartin.fr" target="_blank">Patrick PREMARTIN</a> - Powered by <a href="https://pasdoc.github.io/" target="_blank">PasDoc</a>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 0.16.0</a>. </em>
+</span>
+</div></div></body></html>

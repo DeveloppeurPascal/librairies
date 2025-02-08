@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>My libraries for Delphi: U_Position</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 0.16.0">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<div class="container"><div class="navigation">
+<h2><a href="index.html">My libraries for Delphi</a></h2><ul><li><a href="AllUnits.html">Units</a></li><li><a href="ClassHierarchy.html">Class Hierarchy</a></li><li><a href="AllClasses.html">Classes, Interfaces, Objects and Records</a></li><li><a href="AllTypes.html">Types</a></li><li><a href="AllVariables.html">Variables</a></li><li><a href="AllConstants.html">Constants</a></li><li><a href="AllFunctions.html">Functions and Procedures</a></li><li><a href="AllIdentifiers.html">Identifiers</a></li></ul></div><div class="content">
+<h1 class="unit">Unit U_Position</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section">Uses</div><div class="one_section">Classes, Interfaces, Objects and Records</div><div class="one_section"><a class="section" href="#PasDoc-FuncsProcs">Functions and Procedures</a></div><div class="one_section">Types</div><div class="one_section">Constants</div><div class="one_section">Variables</div></div>
+<span id="PasDoc-Description"></span><h2 class="description">Description</h2>
+<p>
+ ***************************************************************************
+
+<p>Librairies pour Delphi
+
+<p>Copyright 1990-2024 Patrick PrÈmartin under AGPL 3.0 license.
+
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+<p>***************************************************************************
+
+<p>This repository contains functions, procedures and classes to use in Delphi projects (console, VCL, FireMonkey and others). It's my &quot;everything reuseable things&quot; toolbox.
+
+<p>The units to be used in your projects can be found in the &quot;src&quot; folder. Some features are explained on my blog or have been coded live on Twitch.
+
+<p>Examples of use in the form of VCL or FireMonkey projects are available in the &quot;samples&quot; subfolder.
+
+<p>***************************************************************************
+
+<p>Author(s) : Patrick PREMARTIN
+
+<p>Site : <a href="https://developpeur-pascal.fr/librairies-publiques.html">https://developpeur-pascal.fr/librairies-publiques.html</a>
+
+<p>Project site : <a href="https://github.com/DeveloppeurPascal/librairies">https://github.com/DeveloppeurPascal/librairies</a>
+
+<p>*************************************************************************** File last update : 03/08/2024 22:03:34 Signature : 75b968c384a6e48107bd22236739f11cb25a857a *************************************************************************** </p>
+<span id="PasDoc-Uses"></span><h2 class="overview">Overview</h2>
+<span id="PasDoc-FuncsProcs"></span><h3 class="summary">Functions and Procedures</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code>Function <strong><a href="U_Position.html#Len">Len</a></strong>(Chaine : String): Byte;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>Function <strong><a href="U_Position.html#Pos_Left">Pos_Left</a></strong>(Carac : Char; Chaine : String): Byte;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>Function <strong><a href="U_Position.html#Pos_Right">Pos_Right</a></strong>(Carac : Char; Chaine : String): Byte;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>Function <strong><a href="U_Position.html#Pos_Left_N">Pos_Left_N</a></strong>(Carac : Char; Chaine : String; N : Byte): Byte;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>Function <strong><a href="U_Position.html#Pos_Right_N">Pos_Right_N</a></strong>(Carac : Char; Chaine : String; N : Byte): Byte;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>Function <strong><a href="U_Position.html#Pos_Left_Debut">Pos_Left_Debut</a></strong>(Carac : Char; Chaine : String; Debut : Byte): Byte;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>Function <strong><a href="U_Position.html#Pos_Right_Debut">Pos_Right_Debut</a></strong>(Carac : Char; Chaine : String; Debut : Byte): Byte;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>Function <strong><a href="U_Position.html#Pos_Left_Debut_N">Pos_Left_Debut_N</a></strong>(Carac:Char; Chaine:String; Debut, N:Byte):Byte;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>Function <strong><a href="U_Position.html#Pos_Right_Debut_N">Pos_Right_Debut_N</a></strong>(Carac:Char; Chaine:String; Debut, N:Byte):Byte;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>Function <strong><a href="U_Position.html#Non_Pos_Left">Non_Pos_Left</a></strong>(Carac : Char; Chaine : String): Byte;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>Function <strong><a href="U_Position.html#Non_Pos_Right">Non_Pos_Right</a></strong>(Carac : Char; Chaine : String): Byte;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Functions and Procedures</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="Len"></span><code>Function <strong>Len</strong>(Chaine : String): Byte;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Partie des fonctions.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="Pos_Left"></span><code>Function <strong>Pos_Left</strong>(Carac : Char; Chaine : String): Byte;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+renvoie la longueur de la chaine</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="Pos_Right"></span><code>Function <strong>Pos_Right</strong>(Carac : Char; Chaine : String): Byte;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+donne la premiäre position de Carac dans Chaine par la gauche.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="Pos_Left_N"></span><code>Function <strong>Pos_Left_N</strong>(Carac : Char; Chaine : String; N : Byte): Byte;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+donne la premiäre position de Carac dans Chaine par la droite.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="Pos_Right_N"></span><code>Function <strong>Pos_Right_N</strong>(Carac : Char; Chaine : String; N : Byte): Byte;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+donne la n-iäme position de Carac Ö partir de la gauche.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="Pos_Left_Debut"></span><code>Function <strong>Pos_Left_Debut</strong>(Carac : Char; Chaine : String; Debut : Byte): Byte;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+donne la n-iäme position de Carac Ö partir de la droite.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="Pos_Right_Debut"></span><code>Function <strong>Pos_Right_Debut</strong>(Carac : Char; Chaine : String; Debut : Byte): Byte;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+position de Carac Ö partir du Debut-iäme caractäre de la chaine vers la droite.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="Pos_Left_Debut_N"></span><code>Function <strong>Pos_Left_Debut_N</strong>(Carac:Char; Chaine:String; Debut, N:Byte):Byte;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+position de Carac Ö partir de Debut-iäme caractäre de la chaine vers la gauche.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="Pos_Right_Debut_N"></span><code>Function <strong>Pos_Right_Debut_N</strong>(Carac:Char; Chaine:String; Debut, N:Byte):Byte;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+donne la n-iäme position de Carac dans Chaine en partant du Debut- iäme caractäre et en allant vers la droite.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="Non_Pos_Left"></span><code>Function <strong>Non_Pos_Left</strong>(Carac : Char; Chaine : String): Byte;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+donne la n-iäme position de Carac dans Chaine en partant du Debut- iäme caractäre et en allant vers la gauche.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="Non_Pos_Right"></span><code>Function <strong>Non_Pos_Right</strong>(Carac : Char; Chaine : String): Byte;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+cherche la position du premier caractäre diffÇrent de carac Ö partir de la gauche de la chaine.</p>
+</td></tr>
+</table>
+<a href="https://librairies.developpeur-pascal.fr/" target="_blank">My libraries for Delphi</a> (c) 1990-2025 <a href="https://patrick.premartin.fr" target="_blank">Patrick PREMARTIN</a> - Powered by <a href="https://pasdoc.github.io/" target="_blank">PasDoc</a>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 0.16.0</a>. </em>
+</span>
+</div></div></body></html>

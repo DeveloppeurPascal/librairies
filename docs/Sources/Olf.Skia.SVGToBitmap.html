@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>My libraries for Delphi: Olf.Skia.SVGToBitmap</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 0.16.0">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<div class="container"><div class="navigation">
+<h2><a href="index.html">My libraries for Delphi</a></h2><ul><li><a href="AllUnits.html">Units</a></li><li><a href="ClassHierarchy.html">Class Hierarchy</a></li><li><a href="AllClasses.html">Classes, Interfaces, Objects and Records</a></li><li><a href="AllTypes.html">Types</a></li><li><a href="AllVariables.html">Variables</a></li><li><a href="AllConstants.html">Constants</a></li><li><a href="AllFunctions.html">Functions and Procedures</a></li><li><a href="AllIdentifiers.html">Identifiers</a></li></ul></div><div class="content">
+<h1 class="unit">Unit Olf.Skia.SVGToBitmap</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Uses">Uses</a></div><div class="one_section"><a class="section" href="#PasDoc-Classes">Classes, Interfaces, Objects and Records</a></div><div class="one_section"><a class="section" href="#PasDoc-FuncsProcs">Functions and Procedures</a></div><div class="one_section">Types</div><div class="one_section">Constants</div><div class="one_section">Variables</div></div>
+<span id="PasDoc-Description"></span><h2 class="description">Description</h2>
+<p>
+ ***************************************************************************
+
+<p>Librairies pour Delphi
+
+<p>Copyright 1990-2024 Patrick Prémartin under AGPL 3.0 license.
+
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+<p>***************************************************************************
+
+<p>This repository contains functions, procedures and classes to use in Delphi projects (console, VCL, FireMonkey and others). It's my &quot;everything reuseable things&quot; toolbox.
+
+<p>The units to be used in your projects can be found in the &quot;src&quot; folder. Some features are explained on my blog or have been coded live on Twitch.
+
+<p>Examples of use in the form of VCL or FireMonkey projects are available in the &quot;samples&quot; subfolder.
+
+<p>***************************************************************************
+
+<p>Author(s) : Patrick PREMARTIN
+
+<p>Site : <a href="https://developpeur-pascal.fr/librairies-publiques.html">https://developpeur-pascal.fr/librairies-publiques.html</a>
+
+<p>Project site : <a href="https://github.com/DeveloppeurPascal/librairies">https://github.com/DeveloppeurPascal/librairies</a>
+
+<p>*************************************************************************** File last update : 01/08/2024 10:47:00 Signature : 2e545670f696ebf375fed52e96432b79a3144f1c *************************************************************************** </p>
+<span id="PasDoc-Uses"></span><h2 class="uses">Uses</h2>
+<ul class="useslist"><li>FMX.Graphics</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Classes"></span><h3 class="cio">Classes, Interfaces, Objects and Records</h3>
+<table class="classestable wide_list">
+<tr class="listheader">
+<th class="itemname">Name</th>
+<th class="itemdesc">Description</th>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold" href="Olf.Skia.SVGToBitmap.TOlfSVGBitmapList.html"><code>TOlfSVGBitmapList</code></a></td>
+<td class="itemdesc">&nbsp;</td>
+</tr>
+</table>
+<span id="PasDoc-FuncsProcs"></span><h3 class="summary">Functions and Procedures</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code>function <strong><a href="Olf.Skia.SVGToBitmap.html#SVGToBitmap">SVGToBitmap</a></strong>(Const Width, Height: integer; Const SVGSource: string; const MarginTop: single = 0; const MarginRight: single = 0; const MarginBottom: single = 0; const MarginLeft: single = 0): TBitmap;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Functions and Procedures</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="SVGToBitmap"></span><code>function <strong>SVGToBitmap</strong>(Const Width, Height: integer; Const SVGSource: string; const MarginTop: single = 0; const MarginRight: single = 0; const MarginBottom: single = 0; const MarginLeft: single = 0): TBitmap;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Returns a transparent bitmap drawn by Skia4Delphi library from a SVG source. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>
+
+<p>
+
+<p>
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>Width</dt>
+<dd>Logical width of the target bitmap. Its real width will be calculated ith the BitmapScale (in a FireMonkey project).</dd>
+<dt>Height</dt>
+<dd>Logical height of the target bitmap. Its real height will be calculated ith the BitmapScale (in a FireMonkey project).</dd>
+<dt>SVGSource</dt>
+<dd>XML source code of the SVG as string. No CSS content allowed. Check default Adobe Illustrator settings if you have exports problems.</dd>
+<dt>BitmapScale</dt>
+<dd>Only used in FireMonkey projects. The BitmapScale is used to calculate the real bitmap size from logical given size. Default value is 1.</dd>
+<dt>MarginTop</dt>
+<dd>Margin top used to calculate the real SVG size and position in the final bitmap. It's a decimal value between 0 and 100, used as a percent of the bitmap height.</dd>
+<dt>MarginRight</dt>
+<dd>Margin right used to calculate the real SVG size and position in the final bitmap. It's a decimal value between 0 and 100, used as a percent of the bitmap width.</dd>
+<dt>MarginBottom</dt>
+<dd>Margin bottom used to calculate the real SVG size and position in the final bitmap. It's a decimal value between 0 and 100, used as a percent of the bitmap height.</dd>
+<dt>MarginLeft</dt>
+<dd>Margin left used to calculate the real SVG size and position in the final bitmap. It's a decimal value between 0 and 100, used as a percent of the bitmap width.</dd>
+</dl>
+</td></tr>
+</table>
+<a href="https://librairies.developpeur-pascal.fr/" target="_blank">My libraries for Delphi</a> (c) 1990-2025 <a href="https://patrick.premartin.fr" target="_blank">Patrick PREMARTIN</a> - Powered by <a href="https://pasdoc.github.io/" target="_blank">PasDoc</a>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 0.16.0</a>. </em>
+</span>
+</div></div></body></html>

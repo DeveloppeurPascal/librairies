@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>My libraries for Delphi: Olf.RTL.Params</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 0.16.0">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<div class="container"><div class="navigation">
+<h2><a href="index.html">My libraries for Delphi</a></h2><ul><li><a href="AllUnits.html">Units</a></li><li><a href="ClassHierarchy.html">Class Hierarchy</a></li><li><a href="AllClasses.html">Classes, Interfaces, Objects and Records</a></li><li><a href="AllTypes.html">Types</a></li><li><a href="AllVariables.html">Variables</a></li><li><a href="AllConstants.html">Constants</a></li><li><a href="AllFunctions.html">Functions and Procedures</a></li><li><a href="AllIdentifiers.html">Identifiers</a></li></ul></div><div class="content">
+<h1 class="unit">Unit Olf.RTL.Params</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Uses">Uses</a></div><div class="one_section"><a class="section" href="#PasDoc-Classes">Classes, Interfaces, Objects and Records</a></div><div class="one_section">Functions and Procedures</div><div class="one_section"><a class="section" href="#PasDoc-Types">Types</a></div><div class="one_section">Constants</div><div class="one_section">Variables</div></div>
+<span id="PasDoc-Description"></span><h2 class="description">Description</h2>
+<p>
+ ***************************************************************************
+
+<p>My libraries for Delphi
+
+<p>Copyright 1990-2025 Patrick Prémartin under AGPL 3.0 license.
+
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+<p>***************************************************************************
+
+<p>This repository contains functions, procedures and classes to use in Delphi projects (console, VCL, FireMonkey and others). It's my &quot;everything reuseable things&quot; toolbox.
+
+<p>The units to be used in your projects can be found in the &quot;src&quot; folder. Some features are explained on my blog or have been coded live on Twitch.
+
+<p>Examples of use in the form of VCL or FireMonkey projects are available in the &quot;samples&quot; subfolder.
+
+<p>***************************************************************************
+
+<p>Author(s) : Patrick PREMARTIN
+
+<p>Site : <a href="https://librairies.developpeur-pascal.fr">https://librairies.developpeur-pascal.fr</a>
+
+<p>Project site : <a href="https://github.com/DeveloppeurPascal/librairies">https://github.com/DeveloppeurPascal/librairies</a>
+
+<p>*************************************************************************** File last update : 2025-02-05T20:59:29.445+01:00 Signature : 053bf155cbadccb8b294aa63b647fe516cc68527 *************************************************************************** </p>
+<span id="PasDoc-Uses"></span><h2 class="uses">Uses</h2>
+<ul class="useslist"><li>System.Classes</li><li>System.JSON</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Classes"></span><h3 class="cio">Classes, Interfaces, Objects and Records</h3>
+<table class="classestable wide_list">
+<tr class="listheader">
+<th class="itemname">Name</th>
+<th class="itemdesc">Description</th>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold" href="Olf.RTL.Params.TParamsFile.html"><code>TParamsFile</code></a></td>
+<td class="itemdesc"> TParamsFile work as an instance of a settings file. You can have more than one instance for more than 1 settings file. </td>
+</tr>
+<tr class="list2">
+<td class="itemname">Class&nbsp;<a class="bold" href="Olf.RTL.Params.TParams.html"><code>TParams</code></a></td>
+<td class="itemdesc"> Use TParams with its class methods if you only want to manage one settings file. If you need more than 1 file to store your settings in the same project, crreate instances of TParamsFile instead of using TParams. </td>
+</tr>
+</table>
+<span id="PasDoc-Types"></span><h3 class="summary">Types</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code><strong><a href="Olf.RTL.Params.html#TParamsLoadSaveEvent">TParamsLoadSaveEvent</a></strong> = procedure(Const AParamsFile: <a href="Olf.RTL.Params.TParamsFile.html">TParamsFile</a>) of object;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="Olf.RTL.Params.html#TParamsLoadSaveProc">TParamsLoadSaveProc</a></strong> = reference to procedure(Const AParamsFile: <a href="Olf.RTL.Params.TParamsFile.html">TParamsFile</a>);</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="Olf.RTL.Params.html#TParamsCryptEvent">TParamsCryptEvent</a></strong> = function(Const AParams: string): TStream of object;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="Olf.RTL.Params.html#TParamsCryptProc">TParamsCryptProc</a></strong> = reference to function(Const AParams: string): TStream;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="Olf.RTL.Params.html#TParamsDecryptEvent">TParamsDecryptEvent</a></strong> = function(Const AStream: TStream): string of object;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="Olf.RTL.Params.html#TParamsDecryptProc">TParamsDecryptProc</a></strong> = reference to function(Const AStream: TStream): string;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Types</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TParamsLoadSaveEvent"></span><code><strong>TParamsLoadSaveEvent</strong> = procedure(Const AParamsFile: <a href="Olf.RTL.Params.TParamsFile.html">TParamsFile</a>) of object;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Method signature for load/save events in TParamsFile </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TParamsLoadSaveProc"></span><code><strong>TParamsLoadSaveProc</strong> = reference to procedure(Const AParamsFile: <a href="Olf.RTL.Params.TParamsFile.html">TParamsFile</a>);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Procedure signature for load/save events in TParamsFile </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TParamsCryptEvent"></span><code><strong>TParamsCryptEvent</strong> = function(Const AParams: string): TStream of object;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Method signature for the crypt event in TParamsFile </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TParamsCryptProc"></span><code><strong>TParamsCryptProc</strong> = reference to function(Const AParams: string): TStream;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Procedure signature for the crypt event in TParamsFile </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TParamsDecryptEvent"></span><code><strong>TParamsDecryptEvent</strong> = function(Const AStream: TStream): string of object;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Method signature for the decrypt event in TParamsFile </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TParamsDecryptProc"></span><code><strong>TParamsDecryptProc</strong> = reference to function(Const AStream: TStream): string;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Procedure signature for the decrypt event in TParamsFile </p>
+</td></tr>
+</table>
+<a href="https://librairies.developpeur-pascal.fr/" target="_blank">My libraries for Delphi</a> (c) 1990-2025 <a href="https://patrick.premartin.fr" target="_blank">Patrick PREMARTIN</a> - Powered by <a href="https://pasdoc.github.io/" target="_blank">PasDoc</a>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 0.16.0</a>. </em>
+</span>
+</div></div></body></html>

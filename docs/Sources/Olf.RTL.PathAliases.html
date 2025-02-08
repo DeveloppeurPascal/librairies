@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>My libraries for Delphi: Olf.RTL.PathAliases</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 0.16.0">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<div class="container"><div class="navigation">
+<h2><a href="index.html">My libraries for Delphi</a></h2><ul><li><a href="AllUnits.html">Units</a></li><li><a href="ClassHierarchy.html">Class Hierarchy</a></li><li><a href="AllClasses.html">Classes, Interfaces, Objects and Records</a></li><li><a href="AllTypes.html">Types</a></li><li><a href="AllVariables.html">Variables</a></li><li><a href="AllConstants.html">Constants</a></li><li><a href="AllFunctions.html">Functions and Procedures</a></li><li><a href="AllIdentifiers.html">Identifiers</a></li></ul></div><div class="content">
+<h1 class="unit">Unit Olf.RTL.PathAliases</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Uses">Uses</a></div><div class="one_section">Classes, Interfaces, Objects and Records</div><div class="one_section"><a class="section" href="#PasDoc-FuncsProcs">Functions and Procedures</a></div><div class="one_section"><a class="section" href="#PasDoc-Types">Types</a></div><div class="one_section">Constants</div><div class="one_section">Variables</div></div>
+<span id="PasDoc-Description"></span><h2 class="description">Description</h2>
+<p>
+ ***************************************************************************
+
+<p>Librairies pour Delphi
+
+<p>Copyright 1990-2024 Patrick Prémartin under AGPL 3.0 license.
+
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+<p>***************************************************************************
+
+<p>This repository contains functions, procedures and classes to use in Delphi projects (console, VCL, FireMonkey and others). It's my &quot;everything reuseable things&quot; toolbox.
+
+<p>The units to be used in your projects can be found in the &quot;src&quot; folder. Some features are explained on my blog or have been coded live on Twitch.
+
+<p>Examples of use in the form of VCL or FireMonkey projects are available in the &quot;samples&quot; subfolder.
+
+<p>***************************************************************************
+
+<p>Author(s) : Patrick PREMARTIN
+
+<p>Site : <a href="https://developpeur-pascal.fr/librairies-publiques.html">https://developpeur-pascal.fr/librairies-publiques.html</a>
+
+<p>Project site : <a href="https://github.com/DeveloppeurPascal/librairies">https://github.com/DeveloppeurPascal/librairies</a>
+
+<p>*************************************************************************** File last update : 28/05/2024 12:19:15 Signature : 09e8f689b08685f76ec078b8856bd470d7651d50 *************************************************************************** </p>
+<span id="PasDoc-Uses"></span><h2 class="uses">Uses</h2>
+<ul class="useslist"><li>System.Generics.Collections</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-FuncsProcs"></span><h3 class="summary">Functions and Procedures</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.PathAliases.html#ReplaceAliasesInPath">ReplaceAliasesInPath</a></strong>(Const ASourcePath: string; Const AAliasList: <a href="Olf.RTL.PathAliases.html#TKeyValueList">TKeyValueList</a>; Const AAllowEmptyAlias: boolean = false; Const ABDSVersion: string = '23.0' ; Const AGetPathForAliasFunc: <a href="Olf.RTL.PathAliases.html#TGetPathForAliasFunc">TGetPathForAliasFunc</a> = nil): string; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.PathAliases.html#ReplaceAliasesInPath">ReplaceAliasesInPath</a></strong>(Const ASourcePath: string; Const AAliasList: <a href="Olf.RTL.PathAliases.html#TKeyValueList">TKeyValueList</a>; Const AAllowEmptyAlias: boolean; Const ABDSVersion: string; Const AGetPathForAliasEvent: <a href="Olf.RTL.PathAliases.html#TGetPathForAliasEvent">TGetPathForAliasEvent</a>) : string; overload;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Types"></span><h3 class="summary">Types</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code><strong><a href="Olf.RTL.PathAliases.html#TKeyValueList">TKeyValueList</a></strong> = TDictionary&lt;string, string&gt;;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="Olf.RTL.PathAliases.html#TGetPathForAliasFunc">TGetPathForAliasFunc</a></strong> = reference to function(Const AAlias: string): string;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="Olf.RTL.PathAliases.html#TGetPathForAliasEvent">TGetPathForAliasEvent</a></strong> = function(Const AAlias: string): string of object;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Functions and Procedures</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="ReplaceAliasesInPath"></span><code>function <strong>ReplaceAliasesInPath</strong>(Const ASourcePath: string; Const AAliasList: <a href="Olf.RTL.PathAliases.html#TKeyValueList">TKeyValueList</a>; Const AAllowEmptyAlias: boolean = false; Const ABDSVersion: string = '23.0' ; Const AGetPathForAliasFunc: <a href="Olf.RTL.PathAliases.html#TGetPathForAliasFunc">TGetPathForAliasFunc</a> = nil): string; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Replace aliases in a path by their value and remove &quot;../&quot; parts. </p>
+<p>
+
+
+<p>Alias are used by Delphi/C++Builder/RADStudio IDE in project options and editor options. You can find $(BDS), $(PROJECTDIR) and others in your paths.
+
+<p>The replacement is done from the Key/Value list, the registry keys (Delphi/C++Builder/RAD Studio is installed), the environment variables or asked to the call by AGetAliasProc.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="ReplaceAliasesInPath"></span><code>function <strong>ReplaceAliasesInPath</strong>(Const ASourcePath: string; Const AAliasList: <a href="Olf.RTL.PathAliases.html#TKeyValueList">TKeyValueList</a>; Const AAllowEmptyAlias: boolean; Const ABDSVersion: string; Const AGetPathForAliasEvent: <a href="Olf.RTL.PathAliases.html#TGetPathForAliasEvent">TGetPathForAliasEvent</a>) : string; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<h3 class="detail">Types</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TKeyValueList"></span><code><strong>TKeyValueList</strong> = TDictionary&lt;string, string&gt;;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TGetPathForAliasFunc"></span><code><strong>TGetPathForAliasFunc</strong> = reference to function(Const AAlias: string): string;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TGetPathForAliasEvent"></span><code><strong>TGetPathForAliasEvent</strong> = function(Const AAlias: string): string of object;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<a href="https://librairies.developpeur-pascal.fr/" target="_blank">My libraries for Delphi</a> (c) 1990-2025 <a href="https://patrick.premartin.fr" target="_blank">Patrick PREMARTIN</a> - Powered by <a href="https://pasdoc.github.io/" target="_blank">PasDoc</a>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 0.16.0</a>. </em>
+</span>
+</div></div></body></html>

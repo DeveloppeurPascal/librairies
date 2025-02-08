@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>My libraries for Delphi: Olf.RTL.DateAndTime</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 0.16.0">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<div class="container"><div class="navigation">
+<h2><a href="index.html">My libraries for Delphi</a></h2><ul><li><a href="AllUnits.html">Units</a></li><li><a href="ClassHierarchy.html">Class Hierarchy</a></li><li><a href="AllClasses.html">Classes, Interfaces, Objects and Records</a></li><li><a href="AllTypes.html">Types</a></li><li><a href="AllVariables.html">Variables</a></li><li><a href="AllConstants.html">Constants</a></li><li><a href="AllFunctions.html">Functions and Procedures</a></li><li><a href="AllIdentifiers.html">Identifiers</a></li></ul></div><div class="content">
+<h1 class="unit">Unit Olf.RTL.DateAndTime</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section">Uses</div><div class="one_section">Classes, Interfaces, Objects and Records</div><div class="one_section"><a class="section" href="#PasDoc-FuncsProcs">Functions and Procedures</a></div><div class="one_section">Types</div><div class="one_section">Constants</div><div class="one_section">Variables</div></div>
+<span id="PasDoc-Description"></span><h2 class="description">Description</h2>
+<p>
+ ***************************************************************************
+
+<p>Librairies pour Delphi
+
+<p>Copyright 1990-2025 Patrick Prémartin under AGPL 3.0 license.
+
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+<p>***************************************************************************
+
+<p>This repository contains functions, procedures and classes to use in Delphi projects (console, VCL, FireMonkey and others). It's my &quot;everything reuseable things&quot; toolbox.
+
+<p>The units to be used in your projects can be found in the &quot;src&quot; folder. Some features are explained on my blog or have been coded live on Twitch.
+
+<p>Examples of use in the form of VCL or FireMonkey projects are available in the &quot;samples&quot; subfolder.
+
+<p>***************************************************************************
+
+<p>Author(s) : Patrick PREMARTIN
+
+<p>Site : <a href="https://librairies.developpeur-pascal.fr">https://librairies.developpeur-pascal.fr</a>
+
+<p>Project site : <a href="https://github.com/DeveloppeurPascal/librairies">https://github.com/DeveloppeurPascal/librairies</a>
+
+<p>*************************************************************************** File last update : 2025-01-13T18:10:42.000+01:00 Signature : 3170f577bffd83a31cee415c3cfc1fb47b9e432a *************************************************************************** </p>
+<span id="PasDoc-Uses"></span><h2 class="overview">Overview</h2>
+<span id="PasDoc-FuncsProcs"></span><h3 class="summary">Functions and Procedures</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.DateAndTime.html#DateToString8">DateToString8</a></strong>: string; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.DateAndTime.html#DateToString8">DateToString8</a></strong>(Const ADate: TDateTime): string; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.DateAndTime.html#Date8ToDate">Date8ToDate</a></strong>(Const Date8: string): tdate;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.DateAndTime.html#Date8ToString">Date8ToString</a></strong>(Const Date8AAfficher: string): string;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.DateAndTime.html#Date8ToStringISO">Date8ToStringISO</a></strong>(Const Date8AAfficher: string): string;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.DateAndTime.html#Date8ToStringRFC822">Date8ToStringRFC822</a></strong>(Const Date8AAfficher: string): string;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.DateAndTime.html#TimeToString6">TimeToString6</a></strong>: string; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.DateAndTime.html#TimeToString6">TimeToString6</a></strong>(Const ATime: TDateTime): string; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.DateAndTime.html#Time6ToString">Time6ToString</a></strong>(Const Time6AAfficher: string): string;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.DateAndTime.html#DateTimeToString14">DateTimeToString14</a></strong>: string; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.DateAndTime.html#DateTimeToString14">DateTimeToString14</a></strong>(Const ADateTime: TDateTime): string; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.DateAndTime.html#SecToHMS">SecToHMS</a></strong>(Const Valeur_En_secondes: Integer): String; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <strong><a href="Olf.RTL.DateAndTime.html#SecToHMS">SecToHMS</a></strong>(Const Valeur_En_secondes: Integer; var HH, MM, SS: Integer); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.DateAndTime.html#SecToHMS">SecToHMS</a></strong>(Const Valeur_En_secondes: Int64): String; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <strong><a href="Olf.RTL.DateAndTime.html#SecToHMS">SecToHMS</a></strong>(Const Valeur_En_secondes: Int64; var HH, MM, SS: Int64); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.DateAndTime.html#SecToTime">SecToTime</a></strong>(Const Valeur_En_secondes: Integer): String; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.DateAndTime.html#SecToTime">SecToTime</a></strong>(Const Valeur_En_secondes: Int64): String; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.DateAndTime.html#HMSToSec">HMSToSec</a></strong>(Const HH, MM, SS: Integer): Integer; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.DateAndTime.html#HMSToSec">HMSToSec</a></strong>(Const Valeur_En_HMS: String): Int64; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.DateAndTime.html#HMSToSec">HMSToSec</a></strong>(Const HH, MM, SS: Int64): Int64; overload;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Functions and Procedures</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="DateToString8"></span><code>function <strong>DateToString8</strong>: string; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Ressort la date du jour en AAAAMMJJ </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="DateToString8"></span><code>function <strong>DateToString8</strong>(Const ADate: TDateTime): string; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Ressort la date passée en AAAAMMJJ </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="Date8ToDate"></span><code>function <strong>Date8ToDate</strong>(Const Date8: string): tdate;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Get the TDate value of a YYYYMMDD string </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="Date8ToString"></span><code>function <strong>Date8ToString</strong>(Const Date8AAfficher: string): string;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Transforme une date AAAAMMJJ dans son format d'affichage JJ/MM/AAAA </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="Date8ToStringISO"></span><code>function <strong>Date8ToStringISO</strong>(Const Date8AAfficher: string): string;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Transforme une date AAAAMMJJ dans son format d'affichage AAAA-MM-JJ </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="Date8ToStringRFC822"></span><code>function <strong>Date8ToStringRFC822</strong>(Const Date8AAfficher: string): string;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Transforme une date AAAAMMJJ dans son format d'affichage RFC822 </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TimeToString6"></span><code>function <strong>TimeToString6</strong>: string; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Ressort l'heure en cours en HHMMSS </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TimeToString6"></span><code>function <strong>TimeToString6</strong>(Const ATime: TDateTime): string; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Ressort l'heure passée en HHMMSS </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="Time6ToString"></span><code>function <strong>Time6ToString</strong>(Const Time6AAfficher: string): string;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Transforme une heure HHMMSS dans son format d'affichage HH:MM:SS </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="DateTimeToString14"></span><code>function <strong>DateTimeToString14</strong>: string; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Transforme la date et heure du moment en AAAAMMJJHHMMSS Ce format est utilisé dans le stockage d'infos de création et de modification dans la base de données et permettre des tris chronologiques sur l'ordre alphabétique. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="DateTimeToString14"></span><code>function <strong>DateTimeToString14</strong>(Const ADateTime: TDateTime): string; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Transforme la date et heure passée en AAAAMMJJHHMMSS Ce format est utilisé dans le stockage d'infos de création et de modification dans la base de données et permettre des tris chronologiques sur l'ordre alphabétique. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="SecToHMS"></span><code>function <strong>SecToHMS</strong>(Const Valeur_En_secondes: Integer): String; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Converti une valeur en secondes vers son équivalent en HMS </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="SecToHMS"></span><code>procedure <strong>SecToHMS</strong>(Const Valeur_En_secondes: Integer; var HH, MM, SS: Integer); overload;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="SecToHMS"></span><code>function <strong>SecToHMS</strong>(Const Valeur_En_secondes: Int64): String; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="SecToHMS"></span><code>procedure <strong>SecToHMS</strong>(Const Valeur_En_secondes: Int64; var HH, MM, SS: Int64); overload;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="SecToTime"></span><code>function <strong>SecToTime</strong>(Const Valeur_En_secondes: Integer): String; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Converti une valeur en secondes vers son équivalent en &quot;HH:MM:SS&quot; </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="SecToTime"></span><code>function <strong>SecToTime</strong>(Const Valeur_En_secondes: Int64): String; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="HMSToSec"></span><code>function <strong>HMSToSec</strong>(Const HH, MM, SS: Integer): Integer; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Converti une valeur HMS (xxH xxM xxS) en son équivalent en secondes </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="HMSToSec"></span><code>function <strong>HMSToSec</strong>(Const Valeur_En_HMS: String): Int64; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="HMSToSec"></span><code>function <strong>HMSToSec</strong>(Const HH, MM, SS: Int64): Int64; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<a href="https://librairies.developpeur-pascal.fr/" target="_blank">My libraries for Delphi</a> (c) 1990-2025 <a href="https://patrick.premartin.fr" target="_blank">Patrick PREMARTIN</a> - Powered by <a href="https://pasdoc.github.io/" target="_blank">PasDoc</a>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 0.16.0</a>. </em>
+</span>
+</div></div></body></html>
