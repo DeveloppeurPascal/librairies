@@ -1,4 +1,4 @@
-# My toolbox for Delphi projects
+# My libraries for Delphi
 
 [Cette page en français.](LISEZMOI.md)
 
@@ -22,11 +22,17 @@ Follow my development streams of software, video games, mobile applications and 
 
 To download this code repository, we recommend using "git", but you can also download a ZIP file directly from [its GitHub repository](https://github.com/DeveloppeurPascal/librairies).
 
-# Documentation and support
+## Documentation and support
 
-The project's technical documentation, generated with [DocInsight](https://devjetsoftware.com/products/documentation-insight/), is available in the ./docs folder and on [GitHub Pages](https://developpeurpascal.github.io/librairies). Further information and related links are available on [the project website](https://librairies.developpeur-pascal.fr).
+I use comments in [XMLDOC](https://docwiki.embarcadero.com/RADStudio/en/XML_Documentation_Comments) format in Delphi to document my projects. They are recognized by Help Insight, which offers real-time input help in the code editor.
 
-If you need explanations or help in using this project in your own, please [contact me](https://developpeur-pascal.fr/nous-contacter.php). I can either direct you to an online resource, or offer you assistance on a fee-for-service basis. You can also contact me at a conference or an online presentation.
+I regularly use the [DocInsight](https://devjetsoftware.com/products/documentation-insight/) tool to enter them and check their formatting.
+
+Documentation is exported in HTML by [DocInsight](https://devjetsoftware.com/products/documentation-insight/) or [PasDoc](https://pasdoc.github.io) to the /docs folder of the repository. You can also [access it online](https://developpeurpascal.github.io/librairies) through the hosting offered by GitHub Pages.
+
+Further information (tutorials, articles, videos, FAQ, talks and links) can be found on [the project website](https://librairies.developpeur-pascal.fr) or [the project devlog](https://developpeur-pascal.fr/librairies-publiques.html).
+
+If you need explanations or help in understanding or using parts of this project in yours, please [contact me](https://developpeur-pascal.fr/nous-contacter.php). I can either direct you to an online resource, or offer you assistance in the form of a paid or free service, depending on the case. You can also contact me at a conference or during an online presentation.
 
 ## Compatibility
 
