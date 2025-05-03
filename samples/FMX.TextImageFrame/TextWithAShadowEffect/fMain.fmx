@@ -1,0 +1,148 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 480
+  ClientWidth = 640
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object Button1: TButton
+    Align = Top
+    Margins.Left = 10.000000000000000000
+    Margins.Top = 10.000000000000000000
+    Margins.Right = 10.000000000000000000
+    Margins.Bottom = 10.000000000000000000
+    Position.X = 10.000000000000000000
+    Position.Y = 10.000000000000000000
+    Size.Width = 620.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Text = 'Button1'
+    TextSettings.Trimming = None
+    OnClick = Button1Click
+  end
+  object FlowLayout1: TFlowLayout
+    Align = Client
+    Size.Width = 640.000000000000000000
+    Size.Height = 410.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Justify = Center
+    JustifyLastLine = Center
+    FlowDirection = LeftToRight
+    OnResized = FlowLayout1Resized
+    object Rectangle1: TRectangle
+      Fill.Bitmap.Bitmap.PNG = {
+        89504E470D0A1A0A0000000D494844520000008F00000022080600000066E18A
+        A30000000473424954080808087C086488000002D449444154789CEDDCBF6EDA
+        501887E1DF3939FE077610D8814055254BD7A697D0257B2F214BF674CC962D52
+        AFA05287A697D03943B376CC05548A9A42488A492207DB31B64F874A09949680
+        A36268BF67E3C8B23F8B1781118601C0FEF6E61698DC63C01A081947E2A3D68F
+        B75E1F1C5DB1FDEDCD2DC6E47B005084726EE86AA4AA4A9AF78C64BE7837BE88
+        FAFD8A94D200E4B116252F0598DC0380A78D5A5029976A39CF48E65892A4F872
+        72DA09C2DB8D50515E0906AC294239AF944BB5344DAFDBED76298AA2A9766A59
+        5660DBB60100AEEB069EE719BFDB4E5555D4EBF58031660080DFF3BB17DF2F2A
+        8F3E2BF2D7398ED3314DD3A9556DE7E46B0B60729D0380AA8A3600B45AADA9C3
+        0100CFF30CD7758371E100401445383B3B33A4942185B3583A9D8E1345B7C786
+        AEDDAD090010425C01401CC799773E2E9A415114A1D96CEA711CEB990F467211
+        F793AB42F13E1E9ECB108F8894CC8F5CE221FF068A874C84730ECD509F0DADE5
+        350C591C9C73341A8DEE12178DA1F5BC06228B43D775082146AE8C291EF220DF
+        F7E1BA6EF0EB3AC54326E2799EE107C1E7C1358A874C2E95E1E0438A876446F1
+        90CC281E9219C54332A3784866140FC98CE22199513C24B3A1782CCB1AF90A9A
+        903F198AC7B66D830222931A79DBB26DDB1042E4310B593023F1B8AE1BD0CF44
+        C92486E279E8EE0742060DC543E19069D0A5FA144CD3CC7B84B9C201200CC375
+        0028954AE1D8ADFF63D5956AD7711C5457AADDBC67017E3E579CCFEEB5CF3987
+        6EE8CF6F7AFEDD9A008038499601A05C2EEB8AA2349334A54FCC037455D5345D
+        5F058042B150A92FADB6C328BACD7B1ECBB23A3DDFEFCDE298C542A1C8397792
+        F4FE3F3004208F9324DDF8D63AF7EAB515CB34CD27B318669169BABEAAE9F9DF
+        F02A84704ACBCBCEAC8E77D3F371DA6C5F022883E34848CE76588A4FEEE5B5E5
+        5E5ECF6A0EB2B8CA12ECC3EEDBC32306006FB6375F240C3B805CCF793032EF24
+        3BD87D777800003F0025A8F9D08B8987D10000000049454E44AE426082}
+      Fill.Bitmap.WrapMode = TileStretch
+      Fill.Kind = Bitmap
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Position.X = 70.000000000000000000
+      Position.Y = 10.000000000000000000
+      Size.Width = 500.000000000000000000
+      Size.Height = 120.000000000000000000
+      Size.PlatformDefault = False
+      inline OlfFMXTextImageFrame1: TOlfFMXTextImageFrame
+        Align = Center
+        HitTest = False
+        Size.Width = 320.000000000000000000
+        Size.Height = 100.000000000000000000
+        Size.PlatformDefault = False
+        object ShadowEffect1: TShadowEffect
+          Distance = 3.000000000000000000
+          Direction = 45.000000000000000000
+          Softness = 0.300000011920929000
+          Opacity = 0.600000023841857900
+          ShadowColor = claBlack
+        end
+      end
+    end
+    object FlowLayoutBreak1: TFlowLayoutBreak
+      ChangesRules = False
+      Justify = Left
+      JustifyLastLine = Left
+      FlowDirection = LeftToRight
+    end
+    object Rectangle2: TRectangle
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Position.X = 70.000000000000000000
+      Position.Y = 150.000000000000000000
+      Size.Width = 500.000000000000000000
+      Size.Height = 120.000000000000000000
+      Size.PlatformDefault = False
+      inline OlfFMXTextImageFrame2: TOlfFMXTextImageFrame
+        Align = Center
+        HitTest = False
+        Size.Width = 320.000000000000000000
+        Size.Height = 100.000000000000000000
+        Size.PlatformDefault = False
+        object ShadowEffect2: TShadowEffect
+          Distance = 3.000000000000000000
+          Direction = 45.000000000000000000
+          Softness = 0.300000011920929000
+          Opacity = 0.600000023841857900
+          ShadowColor = claBlack
+        end
+      end
+    end
+    object FlowLayoutBreak2: TFlowLayoutBreak
+      ChangesRules = False
+      Justify = Left
+      JustifyLastLine = Left
+      FlowDirection = LeftToRight
+    end
+    inline OlfFMXTextImageFrame3: TOlfFMXTextImageFrame
+      HitTest = False
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Position.X = 160.000000000000000000
+      Position.Y = 290.000000000000000000
+      Size.Width = 320.000000000000000000
+      Size.Height = 100.000000000000000000
+      Size.PlatformDefault = False
+      object ShadowEffect3: TShadowEffect
+        Distance = 3.000000000000000000
+        Direction = 45.000000000000000000
+        Softness = 0.300000011920929000
+        Opacity = 0.600000023841857900
+        ShadowColor = claBlack
+      end
+    end
+  end
+end
