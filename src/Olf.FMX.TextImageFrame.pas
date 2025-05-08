@@ -27,13 +27,13 @@
 /// ***************************************************************************
 ///
 /// Author(s) :
-///      Patrick PREMARTIN
+/// Patrick PREMARTIN
 ///
 /// Site :
-///      https://developpeur-pascal.fr/librairies-publiques.html
+/// https://developpeur-pascal.fr/librairies-publiques.html
 ///
 /// Project site :
-///      https://github.com/DeveloppeurPascal/librairies
+/// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
 /// File last update : 28/05/2024 12:19:15
@@ -46,10 +46,19 @@ unit Olf.FMX.TextImageFrame;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes,
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
   System.Variants,
-  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
-  System.ImageList, FMX.ImgList;
+  FMX.Types,
+  FMX.Graphics,
+  FMX.Controls,
+  FMX.Forms,
+  FMX.Dialogs,
+  FMX.StdCtrls,
+  System.ImageList,
+  FMX.ImgList;
 
 type
   TOlfFMXTextImageFrame = class;
