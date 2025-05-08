@@ -36,8 +36,8 @@
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 2025-05-03T10:21:06.000+02:00
-/// Signature : 2ad2c824f52e63b309e7332a8523c1f6d65ef8da
+/// File last update : 2025-05-08T16:11:54.000+02:00
+/// Signature : 62a5068156ca43c60fcf78c5cfbb2c33d5761186
 /// ***************************************************************************
 /// </summary>
 
@@ -106,7 +106,7 @@ begin
   s := '';
   while (nb > 0) do
   begin
-    case random(9) of
+    case random(11) of
       0:
         s := s + '0';
       1:
@@ -123,6 +123,10 @@ begin
         s := s + 'A';
       7:
         s := s + 'B';
+      8:
+        s := s + 'à';
+      9:
+        s := s + 'ã';
     else
       s := s + 'C';
     end;
@@ -153,6 +157,8 @@ begin
   OlfFMXTextImageFrame1.Text := s;
   OlfFMXTextImageFrame2.Text := s;
   OlfFMXTextImageFrame3.Text := s;
+
+  Button1.Text := s;
 end;
 
 procedure TForm1.FlowLayout1Resized(Sender: TObject);
