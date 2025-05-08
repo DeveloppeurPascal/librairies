@@ -1,9 +1,9 @@
-/// <summary>
+﻿/// <summary>
 /// ***************************************************************************
 ///
-/// Librairies pour Delphi
+/// My libraries for Delphi
 ///
-/// Copyright 1990-2024 Patrick Pr�martin under AGPL 3.0 license.
+/// Copyright 1990-2025 Patrick Prémartin under AGPL 3.0 license.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -30,14 +30,14 @@
 /// Patrick PREMARTIN
 ///
 /// Site :
-/// https://developpeur-pascal.fr/librairies-publiques.html
+/// https://librairies.developpeur-pascal.fr
 ///
 /// Project site :
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 28/05/2024 12:19:15
-/// Signature : 391f3042364d77f2433eaabadf097f8049612985
+/// File last update : 2025-05-08T16:29:04.000+02:00
+/// Signature : 3efcf2870c46efdfc6b3930d3e2af22aecffefa4
 /// ***************************************************************************
 /// </summary>
 
@@ -83,6 +83,11 @@ type
     function AjoutImageEtRetourneLargeur(AImages: TCustomImageList;
       AImageIndex: TImageIndex; AX: single): single;
     procedure RefreshTexte;
+    /// <summary>
+    /// Called by GetImageIndexOfChar() when no index for a char has been found
+    /// after calling OnGetImageIndexOfUnknowChar event.
+    /// </summary>
+    function DefaultOnGetImageIndexOfUnknowChar(AChar: char): integer; virtual;
   public
     property Font: TCustomImageList read FFont write SetFont;
     property Text: string read FText write SetText;
@@ -93,7 +98,19 @@ type
     constructor Create(AOwner: TComponent); override;
     function RetourneLargeur(AImages: TCustomImageList;
       AImageIndex: TImageIndex): single;
-    function getImageIndexOfChar(AChar: string): integer;
+    /// <summary>
+    /// Returns the index of the char in the image list.
+    /// If it's not found this function can call the
+    /// OnGetImageIndexOfUnknowCharIfNotFound event or do a default character
+    /// swap to find the good one.
+    /// </summary>
+    /// <remarks>
+    /// Don't use True for CallOnGetImageIndexOfUnknowCharIfNotFound in your
+    /// OnGetImageIndexOfUnknowCharIfNotFound events or you'll have infinite
+    /// loops.
+    /// </remarks>
+    function getImageIndexOfChar(AChar: String;
+      CallOnGetImageIndexOfUnknowCharIfNotFound: boolean = false): integer;
   end;
 
 implementation
@@ -106,7 +123,7 @@ const
   CPosMinuscules = CPosMajuscules;
   // Pas de minuscules dans les fontes prises sur ce jeu
   CPosPonctuation = CPosMajuscules + 26;
-  // TODO : � modifier si n�cessaire selon les fontes
+  // TODO : à modifier si nécessaire selon les fontes
 
   { TcadAffichageTexteGraphique }
 
@@ -147,14 +164,236 @@ begin
   FOnGetImageIndexOfUnknowChar := nil;
 end;
 
-function TOlfFMXTextImageFrame.getImageIndexOfChar(AChar: string): integer;
+function TOlfFMXTextImageFrame.DefaultOnGetImageIndexOfUnknowChar
+  (AChar: char): integer;
+begin
+  result := -1;
+  if CharInset(AChar, ['a' .. 'z']) then
+  begin
+    result := getImageIndexOfChar('_' + AChar);
+    if (result < 0) then
+      result := getImageIndexOfChar(AChar + '_');
+    if (result < 0) then
+      result := getImageIndexOfChar(uppercase(AChar));
+  end;
+
+  if (result < 0) and (AChar = 'à') then
+  begin
+    result := getImageIndexOfChar('_agrave');
+    if result < 0 then
+      result := getImageIndexOfChar('agrave');
+  end;
+  if (result < 0) and (AChar = 'ã') then
+  begin
+    result := getImageIndexOfChar('_atilde');
+    if result < 0 then
+      result := getImageIndexOfChar('atilde');
+  end;
+  if (result < 0) and CharInset(AChar, ['à', 'ã']) then
+    result := getImageIndexOfChar('a', true);
+
+  if (result < 0) and (AChar = 'ç') then
+  begin
+    result := getImageIndexOfChar('_ccedille');
+    if (result < 0) then
+      result := getImageIndexOfChar('c');
+  end;
+
+  if (result < 0) and (AChar = 'ď') then
+  begin
+    result := getImageIndexOfChar('_dprime');
+    if (result < 0) then
+      result := getImageIndexOfChar('dprime');
+    if (result < 0) then
+      result := getImageIndexOfChar('d');
+  end;
+
+  if (result < 0) and (AChar = 'é') then
+  begin
+    result := getImageIndexOfChar('_eaigu');
+    if result < 0 then
+      result := getImageIndexOfChar('eaigu');
+  end;
+  if (result < 0) and (AChar = 'è') then
+  begin
+    result := getImageIndexOfChar('_egrave');
+    if result < 0 then
+      result := getImageIndexOfChar('egrave');
+  end;
+  if (result < 0) and (AChar = 'ê') then
+  begin
+    result := getImageIndexOfChar('_ecirconflexe');
+    if result < 0 then
+      result := getImageIndexOfChar('ecirconflexe');
+  end;
+  if (result < 0) and (AChar = 'ë') then
+  begin
+    result := getImageIndexOfChar('_etrema');
+    if result < 0 then
+      result := getImageIndexOfChar('etrema');
+  end;
+  if (result < 0) and CharInset(AChar, ['é', 'è', 'ê', 'ë']) then
+    result := getImageIndexOfChar('e', true);
+
+  if (result < 0) and (AChar = 'ı') then
+  begin
+    result := getImageIndexOfChar('_iturc');
+    if result < 0 then
+      result := getImageIndexOfChar('iturc');
+  end;
+  if (result < 0) and (AChar = 'î') then
+  begin
+    result := getImageIndexOfChar('_icirconflexe');
+    if result < 0 then
+      result := getImageIndexOfChar('icirconflexe');
+  end;
+  if (result < 0) and (AChar = 'ï') then
+  begin
+    result := getImageIndexOfChar('_itrema');
+    if result < 0 then
+      result := getImageIndexOfChar('itrema');
+  end;
+  if (result < 0) and (AChar = 'í') then
+  begin
+    result := getImageIndexOfChar('_iaigu');
+    if result < 0 then
+      result := getImageIndexOfChar('iaigu');
+  end;
+  if (result < 0) and CharInset(AChar, ['î', 'ï', 'í', 'ı']) then
+    result := getImageIndexOfChar('i', true);
+
+  if (result < 0) and (AChar = 'ñ') then
+  begin
+    result := getImageIndexOfChar('_ntilde');
+    if result < 0 then
+      result := getImageIndexOfChar('ntilde');
+    if (result < 0) then
+      result := getImageIndexOfChar('n');
+  end;
+
+  if (result < 0) and (AChar = 'ô') then
+  begin
+    result := getImageIndexOfChar('_ocirconflexe');
+    if result < 0 then
+      result := getImageIndexOfChar('ocirconflexe');
+  end;
+  if (result < 0) and (AChar = 'ö') then
+  begin
+    result := getImageIndexOfChar('_otrema');
+    if result < 0 then
+      result := getImageIndexOfChar('otrema');
+  end;
+  if (result < 0) and (AChar = 'ó') then
+  begin
+    result := getImageIndexOfChar('_oaigu');
+    if result < 0 then
+      result := getImageIndexOfChar('oaigu');
+  end;
+  if (result < 0) and CharInset(AChar, ['ô', 'ö', 'ó']) then
+    result := getImageIndexOfChar('o', true);
+
+  // TODO : cf https://github.com/DeveloppeurPascal/librairies/issues/128
+  if (result < 0) and (AChar = 'oe') then
+    result := getImageIndexOfChar('_oe');
+  // TODO : récupérer "oe" en minuscules
+  if (result < 0) and (AChar = 'OE') then
+    result := getImageIndexOfChar('OE');
+  // TODO : récupérer "oe" en majuscules
+
+  if (result < 0) and (AChar = 'ť') then
+  begin
+    result := getImageIndexOfChar('_tprime');
+    if (result < 0) then
+      result := getImageIndexOfChar('tprime');
+    if (result < 0) then
+      result := getImageIndexOfChar('t');
+  end;
+
+  if (result < 0) and (AChar = 'û') then
+  begin
+    result := getImageIndexOfChar('_ucirconflexe');
+    if result < 0 then
+      result := getImageIndexOfChar('ucirconflexe');
+  end;
+  if (result < 0) and (AChar = 'ü') then
+  begin
+    result := getImageIndexOfChar('_utrema');
+    if result < 0 then
+      result := getImageIndexOfChar('_utrema');
+  end;
+  if (result < 0) and (AChar = 'ù') then
+  begin
+    result := getImageIndexOfChar('_ugrave');
+    if result < 0 then
+      result := getImageIndexOfChar('ugrave');
+  end;
+  // if (result < 0) and (AChar = '') then // TODO : ajouter u aigu
+  // result := getImageIndexOfChar('_uaigu');
+  if (result < 0) and CharInset(AChar, ['û', 'ü', 'ù']) then
+    // TODO : ajouter u aigu
+    result := getImageIndexOfChar('u', true);
+
+  if (result < 0) and (AChar = '?') then
+    result := getImageIndexOfChar('interrogation');
+  if (result < 0) and (AChar = '$') then
+    result := getImageIndexOfChar('dollar');
+  if (result < 0) and (AChar = '!') then
+    result := getImageIndexOfChar('exclamation');
+  if (result < 0) and (AChar = '&') then
+    result := getImageIndexOfChar('et');
+  if (result < 0) and (AChar = '%') then
+    result := getImageIndexOfChar('pourcent');
+  if (result < 0) and (AChar = '''') then
+    result := getImageIndexOfChar('apostrophe');
+  if (result < 0) and (AChar = ',') then
+    result := getImageIndexOfChar('virgule');
+  if (result < 0) and (AChar = '=') then
+    result := getImageIndexOfChar('egale');
+  if (result < 0) and (AChar = '-') then
+    result := getImageIndexOfChar('moins');
+  if (result < 0) and (AChar = '+') then
+    result := getImageIndexOfChar('plus');
+  // if (result < 0) and (AChar = '...') then
+  // TODO : récupérer points de suspensions en 1 caractère
+  // result := getImageIndexOfChar('suspension'); // TODO
+  if (result < 0) and (AChar = '.') then
+    result := getImageIndexOfChar('point');
+  if (result < 0) and (AChar = ':') then
+  begin
+    result := getImageIndexOfChar('deuxpoint');
+    if (result < 0) then
+      result := getImageIndexOfChar('deuxpoints');
+    if (result < 0) then
+      result := getImageIndexOfChar('deux-point');
+    if (result < 0) then
+      result := getImageIndexOfChar('deux-points');
+  end;
+  if (result < 0) and (AChar = ';') then
+  begin
+    result := getImageIndexOfChar('pointvirgule');
+    if (result < 0) then
+      result := getImageIndexOfChar('point-virgule');
+  end;
+end;
+
+function TOlfFMXTextImageFrame.getImageIndexOfChar(AChar: String;
+  CallOnGetImageIndexOfUnknowCharIfNotFound: boolean): integer;
 begin
   result := 0;
   while (result < FFont.Count) and
     (FFont.Destination[result].Layers[0].Name <> AChar) do
     inc(result);
+
   if (result >= FFont.Count) then
-    result := -1;
+    if CallOnGetImageIndexOfUnknowCharIfNotFound then
+    begin
+      if assigned(OnGetImageIndexOfUnknowChar) then
+        result := OnGetImageIndexOfUnknowChar(self, AChar.Chars[0]);
+      if result < 0 then
+        result := DefaultOnGetImageIndexOfUnknowChar(AChar.Chars[0]);
+    end
+    else
+      result := -1;
 end;
 
 procedure TOlfFMXTextImageFrame.RefreshTexte;
@@ -171,36 +410,26 @@ begin
   if assigned(FFont) and (FText.Length > 0) then
     for i := 0 to FText.Length - 1 do
     begin
-      idx := getImageIndexOfChar(FText.Chars[i]);
-      if (idx < 0) and assigned(FOnGetImageIndexOfUnknowChar) then
-        idx := FOnGetImageIndexOfUnknowChar(self, FText.Chars[i]);
+      idx := getImageIndexOfChar(FText.Chars[i], true);
       if (idx >= 0) then
         x := x + AjoutImageEtRetourneLargeur(FFont, idx, x) + FLetterSpacing
       else if (FText.Chars[i] = ' ') then
       begin
         if (FRealSpaceWidth < 1) then
         begin
-          idx := getImageIndexOfChar('.');
-          if (idx < 0) and assigned(FOnGetImageIndexOfUnknowChar) then
-            idx := FOnGetImageIndexOfUnknowChar(self, '.');
+          idx := getImageIndexOfChar('.', true);
           if (idx >= 0) then
             FRealSpaceWidth := RetourneLargeur(FFont, idx);
 
-          idx := getImageIndexOfChar('i');
-          if (idx < 0) and assigned(FOnGetImageIndexOfUnknowChar) then
-            idx := FOnGetImageIndexOfUnknowChar(self, 'i');
+          idx := getImageIndexOfChar('i', true);
           if (idx >= 0) then
             FRealSpaceWidth := RetourneLargeur(FFont, idx);
 
-          idx := getImageIndexOfChar('I');
-          if (idx < 0) and assigned(FOnGetImageIndexOfUnknowChar) then
-            idx := FOnGetImageIndexOfUnknowChar(self, 'I');
+          idx := getImageIndexOfChar('I', true);
           if (idx >= 0) then
             FRealSpaceWidth := RetourneLargeur(FFont, idx);
 
-          idx := getImageIndexOfChar('1');
-          if (idx < 0) and assigned(FOnGetImageIndexOfUnknowChar) then
-            idx := FOnGetImageIndexOfUnknowChar(self, '1');
+          idx := getImageIndexOfChar('1', true);
           if (idx >= 0) then
             FRealSpaceWidth := RetourneLargeur(FFont, idx);
         end;
@@ -260,6 +489,6 @@ begin
   RefreshTexte;
 end;
 
-// TODO : g�rer changement de taille des chiffres en cas de resize de la zone
+// TODO : gérer changement de taille des chiffres en cas de resize de la zone
 
 end.
