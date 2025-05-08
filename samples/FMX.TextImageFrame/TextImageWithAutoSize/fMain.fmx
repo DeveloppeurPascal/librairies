@@ -1,0 +1,104 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 764
+  ClientWidth = 1063
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object Rectangle1: TRectangle
+    Align = Top
+    Position.Y = 120.000000000000000000
+    Size.Width = 1063.000000000000000000
+    Size.Height = 161.000000000000000000
+    Size.PlatformDefault = False
+    OnResized = Rectangle1Resized
+    inline OlfFMXTextImageFrame1: TOlfFMXTextImageFrame
+      Align = Center
+      HitTest = False
+      Size.Width = 320.000000000000000000
+      Size.Height = 240.000000000000000000
+      Size.PlatformDefault = False
+    end
+  end
+  object Rectangle2: TRectangle
+    Align = Client
+    Size.Width = 744.000000000000000000
+    Size.Height = 295.000000000000000000
+    Size.PlatformDefault = False
+    OnResized = Rectangle2Resized
+    inline OlfFMXTextImageFrame2: TOlfFMXTextImageFrame
+      Align = Center
+      HitTest = False
+      Size.Width = 320.000000000000000000
+      Size.Height = 240.000000000000000000
+      Size.PlatformDefault = False
+    end
+  end
+  object Rectangle3: TRectangle
+    Align = Right
+    Position.X = 744.000000000000000000
+    Position.Y = 281.000000000000000000
+    Size.Width = 319.000000000000000000
+    Size.Height = 295.000000000000000000
+    Size.PlatformDefault = False
+    OnResized = Rectangle3Resized
+    inline OlfFMXTextImageFrame3: TOlfFMXTextImageFrame
+      Align = Center
+      HitTest = False
+      Size.Width = 320.000000000000000000
+      Size.Height = 240.000000000000000000
+      Size.PlatformDefault = False
+    end
+  end
+  object Rectangle4: TRectangle
+    Align = MostBottom
+    Position.Y = 576.000000000000000000
+    Size.Width = 1063.000000000000000000
+    Size.Height = 188.000000000000000000
+    Size.PlatformDefault = False
+    OnResized = Rectangle4Resized
+    inline OlfFMXTextImageFrame4: TOlfFMXTextImageFrame
+      Align = Center
+      HitTest = False
+      Size.Width = 320.000000000000000000
+      Size.Height = 240.000000000000000000
+      Size.PlatformDefault = False
+    end
+  end
+  object btnRefresh: TButton
+    Align = MostTop
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 5.000000000000000000
+    Size.Width = 1053.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    Text = 'btnRefresh'
+    TextSettings.Trimming = None
+    OnClick = btnRefreshClick
+  end
+  object btnReverseAutosize: TButton
+    Align = MostTop
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 65.000000000000000000
+    Size.Width = 1053.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 6
+    Text = 'btnReverseAutosize'
+    TextSettings.Trimming = None
+    OnClick = btnReverseAutosizeClick
+  end
+end
