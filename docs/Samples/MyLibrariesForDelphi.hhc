@@ -45,8 +45,16 @@
                                           </OBJECT>
                                           <UL>
                                               <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="AutoSize">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.AutoSize.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
                                                   <param name="Name" value="Font">
                                                   <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.Font.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="HasPendingRefresh">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.HasPendingRefresh.html">
                                                   </OBJECT>
                                               <LI> <OBJECT type="text/sitemap">
                                                   <param name="Name" value="LetterSpacing">
@@ -74,8 +82,16 @@
                                                   <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.AjoutImageEtRetourneLargeur.html">
                                                   </OBJECT>
                                               <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="RefreshTexte">
-                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.RefreshTexte.html">
+                                                  <param name="Name" value="DefaultOnGetImageIndexOfUnknowChar">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.DefaultOnGetImageIndexOfUnknowChar.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="DoEndUpdate">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.DoEndUpdate.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Refresh">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.Refresh.html">
                                                   </OBJECT>
                                               <LI> <OBJECT type="text/sitemap">
                                                   <param name="Name" value="RetourneLargeur">
@@ -202,8 +218,16 @@
                                           </OBJECT>
                                           <UL>
                                               <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="AutoSize">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.AutoSize.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
                                                   <param name="Name" value="Font">
                                                   <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.Font.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="HasPendingRefresh">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.HasPendingRefresh.html">
                                                   </OBJECT>
                                               <LI> <OBJECT type="text/sitemap">
                                                   <param name="Name" value="LetterSpacing">
@@ -231,8 +255,16 @@
                                                   <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.AjoutImageEtRetourneLargeur.html">
                                                   </OBJECT>
                                               <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="RefreshTexte">
-                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.RefreshTexte.html">
+                                                  <param name="Name" value="DefaultOnGetImageIndexOfUnknowChar">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.DefaultOnGetImageIndexOfUnknowChar.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="DoEndUpdate">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.DoEndUpdate.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Refresh">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.Refresh.html">
                                                   </OBJECT>
                                               <LI> <OBJECT type="text/sitemap">
                                                   <param name="Name" value="RetourneLargeur">
@@ -11366,6 +11398,490 @@
                               <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="Form3">
                                   <param name="Local" value="fMain.Form3.html">
+                                  </OBJECT>
+                          </UL>
+                  </UL>
+          </UL>
+      <LI> <OBJECT type="text/sitemap">
+          <param name="Name" value="TextImageWithAutoSizeSample">
+          <param name="Local" value="TextImageWithAutoSizeSample.html">
+          </OBJECT>
+          <UL>
+              <LI> <OBJECT type="text/sitemap">
+                  <param name="Name" value="Olf.FMX.TextImageFrame">
+                  <param name="Local" value="Olf.FMX.TextImageFrame.html">
+                  </OBJECT>
+                  <UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Classes">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TOlfFMXTextImageFrame">
+                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Constructors">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Create">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.Create.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Properties">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="AutoSize">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.AutoSize.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Font">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.Font.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="HasPendingRefresh">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.HasPendingRefresh.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="LetterSpacing">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.LetterSpacing.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="OnGetImageIndexOfUnknowChar">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.OnGetImageIndexOfUnknowChar.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="SpaceWidth">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.SpaceWidth.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Text">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.Text.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Methods">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="AjoutImageEtRetourneLargeur">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.AjoutImageEtRetourneLargeur.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="DefaultOnGetImageIndexOfUnknowChar">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.DefaultOnGetImageIndexOfUnknowChar.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="DoEndUpdate">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.DoEndUpdate.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Refresh">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.Refresh.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="RetourneLargeur">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.RetourneLargeur.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="getImageIndexOfChar">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.getImageIndexOfChar.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                          </UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Delegates">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TOlfFMXTIFOnGetImageIndexOfUnknowChar">
+                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTIFOnGetImageIndexOfUnknowChar.html">
+                                  </OBJECT>
+                          </UL>
+                  </UL>
+              <LI> <OBJECT type="text/sitemap">
+                  <param name="Name" value="fMain">
+                  <param name="Local" value="fMain.html">
+                  </OBJECT>
+                  <UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Classes">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TForm1">
+                                  <param name="Local" value="fMain.TForm1.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Methods">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="ChangeText">
+                                                  <param name="Local" value="fMain.TForm1.ChangeText.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="FormCreate">
+                                                  <param name="Local" value="fMain.TForm1.FormCreate.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Rectangle1Resized">
+                                                  <param name="Local" value="fMain.TForm1.Rectangle1Resized.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Rectangle2Resized">
+                                                  <param name="Local" value="fMain.TForm1.Rectangle2Resized.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Rectangle3Resized">
+                                                  <param name="Local" value="fMain.TForm1.Rectangle3Resized.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Rectangle4Resized">
+                                                  <param name="Local" value="fMain.TForm1.Rectangle4Resized.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnRefreshClick">
+                                                  <param name="Local" value="fMain.TForm1.btnRefreshClick.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnReverseAutosizeClick">
+                                                  <param name="Local" value="fMain.TForm1.btnReverseAutosizeClick.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Fields">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="OlfFMXTextImageFrame1">
+                                                  <param name="Local" value="fMain.TForm1.OlfFMXTextImageFrame1.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="OlfFMXTextImageFrame2">
+                                                  <param name="Local" value="fMain.TForm1.OlfFMXTextImageFrame2.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="OlfFMXTextImageFrame3">
+                                                  <param name="Local" value="fMain.TForm1.OlfFMXTextImageFrame3.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="OlfFMXTextImageFrame4">
+                                                  <param name="Local" value="fMain.TForm1.OlfFMXTextImageFrame4.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Rectangle1">
+                                                  <param name="Local" value="fMain.TForm1.Rectangle1.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Rectangle2">
+                                                  <param name="Local" value="fMain.TForm1.Rectangle2.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Rectangle3">
+                                                  <param name="Local" value="fMain.TForm1.Rectangle3.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Rectangle4">
+                                                  <param name="Local" value="fMain.TForm1.Rectangle4.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnRefresh">
+                                                  <param name="Local" value="fMain.TForm1.btnRefresh.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnReverseAutosize">
+                                                  <param name="Local" value="fMain.TForm1.btnReverseAutosize.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                          </UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Variables">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="Form1">
+                                  <param name="Local" value="fMain.Form1.html">
+                                  </OBJECT>
+                          </UL>
+                  </UL>
+              <LI> <OBJECT type="text/sitemap">
+                  <param name="Name" value="udm_CharacterImages">
+                  <param name="Local" value="udm_CharacterImages.html">
+                  </OBJECT>
+                  <UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Classes">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="Tdm_CharacterImages">
+                                  <param name="Local" value="udm_CharacterImages.Tdm_CharacterImages.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Fields">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="ImageList">
+                                                  <param name="Local" value="udm_CharacterImages.Tdm_CharacterImages.ImageList.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                          </UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Variables">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="dm_CharacterImages">
+                                  <param name="Local" value="udm_CharacterImages.dm_CharacterImages.html">
+                                  </OBJECT>
+                          </UL>
+                  </UL>
+          </UL>
+      <LI> <OBJECT type="text/sitemap">
+          <param name="Name" value="TextWithAShadowEffectSample">
+          <param name="Local" value="TextWithAShadowEffectSample.html">
+          </OBJECT>
+          <UL>
+              <LI> <OBJECT type="text/sitemap">
+                  <param name="Name" value="Olf.FMX.TextImageFrame">
+                  <param name="Local" value="Olf.FMX.TextImageFrame.html">
+                  </OBJECT>
+                  <UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Classes">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TOlfFMXTextImageFrame">
+                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Constructors">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Create">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.Create.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Properties">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="AutoSize">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.AutoSize.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Font">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.Font.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="HasPendingRefresh">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.HasPendingRefresh.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="LetterSpacing">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.LetterSpacing.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="OnGetImageIndexOfUnknowChar">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.OnGetImageIndexOfUnknowChar.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="SpaceWidth">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.SpaceWidth.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Text">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.Text.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Methods">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="AjoutImageEtRetourneLargeur">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.AjoutImageEtRetourneLargeur.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="DefaultOnGetImageIndexOfUnknowChar">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.DefaultOnGetImageIndexOfUnknowChar.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="DoEndUpdate">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.DoEndUpdate.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Refresh">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.Refresh.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="RetourneLargeur">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.RetourneLargeur.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="getImageIndexOfChar">
+                                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.getImageIndexOfChar.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                          </UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Delegates">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TOlfFMXTIFOnGetImageIndexOfUnknowChar">
+                                  <param name="Local" value="Olf.FMX.TextImageFrame.TOlfFMXTIFOnGetImageIndexOfUnknowChar.html">
+                                  </OBJECT>
+                          </UL>
+                  </UL>
+              <LI> <OBJECT type="text/sitemap">
+                  <param name="Name" value="fMain">
+                  <param name="Local" value="fMain.html">
+                  </OBJECT>
+                  <UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Classes">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TForm1">
+                                  <param name="Local" value="fMain.TForm1.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Methods">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Button1Click">
+                                                  <param name="Local" value="fMain.TForm1.Button1Click.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="FlowLayout1Resized">
+                                                  <param name="Local" value="fMain.TForm1.FlowLayout1Resized.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="FormCreate">
+                                                  <param name="Local" value="fMain.TForm1.FormCreate.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="GetImageIndexOfUnknowChar">
+                                                  <param name="Local" value="fMain.TForm1.GetImageIndexOfUnknowChar.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Fields">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Button1">
+                                                  <param name="Local" value="fMain.TForm1.Button1.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="FlowLayout1">
+                                                  <param name="Local" value="fMain.TForm1.FlowLayout1.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="FlowLayoutBreak1">
+                                                  <param name="Local" value="fMain.TForm1.FlowLayoutBreak1.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="FlowLayoutBreak2">
+                                                  <param name="Local" value="fMain.TForm1.FlowLayoutBreak2.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="OlfFMXTextImageFrame1">
+                                                  <param name="Local" value="fMain.TForm1.OlfFMXTextImageFrame1.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="OlfFMXTextImageFrame2">
+                                                  <param name="Local" value="fMain.TForm1.OlfFMXTextImageFrame2.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="OlfFMXTextImageFrame3">
+                                                  <param name="Local" value="fMain.TForm1.OlfFMXTextImageFrame3.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Rectangle1">
+                                                  <param name="Local" value="fMain.TForm1.Rectangle1.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Rectangle2">
+                                                  <param name="Local" value="fMain.TForm1.Rectangle2.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="ShadowEffect1">
+                                                  <param name="Local" value="fMain.TForm1.ShadowEffect1.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="ShadowEffect2">
+                                                  <param name="Local" value="fMain.TForm1.ShadowEffect2.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="ShadowEffect3">
+                                                  <param name="Local" value="fMain.TForm1.ShadowEffect3.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                          </UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Variables">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="Form1">
+                                  <param name="Local" value="fMain.Form1.html">
+                                  </OBJECT>
+                          </UL>
+                  </UL>
+              <LI> <OBJECT type="text/sitemap">
+                  <param name="Name" value="udm_CharacterImages">
+                  <param name="Local" value="udm_CharacterImages.html">
+                  </OBJECT>
+                  <UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Classes">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="Tdm_CharacterImages">
+                                  <param name="Local" value="udm_CharacterImages.Tdm_CharacterImages.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Fields">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="ImageList">
+                                                  <param name="Local" value="udm_CharacterImages.Tdm_CharacterImages.ImageList.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                          </UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Variables">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="dm_CharacterImages">
+                                  <param name="Local" value="udm_CharacterImages.dm_CharacterImages.html">
                                   </OBJECT>
                           </UL>
                   </UL>

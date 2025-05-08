@@ -20,6 +20,8 @@
 <p class="declaration">
 <code>type TOlfFMXTextImageFrame = class(TFrame)</code></p>
 <h2 class="description">Description</h2>
+<p>
+ Display a text with a bitmap font. </p>
 <span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
 <ul class="hierarchy"><li class="ancestor">TFrame</li>
 <li class="thisitem">TOlfFMXTextImageFrame</li></ul><h2 class="overview">Overview</h2>
@@ -27,27 +29,44 @@
 <table class="summary wide_list">
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
-<td class="itemcode"><code>function <strong><a href="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.html#AjoutImageEtRetourneLargeur">AjoutImageEtRetourneLargeur</a></strong>(AImages: TCustomImageList; AImageIndex: TImageIndex; AX: single): single;</code></td>
+<td class="itemcode"><code>function <strong><a href="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.html#AjoutImageEtRetourneLargeur">AjoutImageEtRetourneLargeur</a></strong>(AImages: TCustomImageList; AImageIndex: TImageIndex; AX: single; AChar: char): single;</code></td>
 </tr>
 <tr class="list2">
 <td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
-<td class="itemcode"><code>procedure <strong><a href="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.html#RefreshTexte">RefreshTexte</a></strong>;</code></td>
+<td class="itemcode"><code>function <strong><a href="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.html#DefaultOnGetImageIndexOfUnknowChar">DefaultOnGetImageIndexOfUnknowChar</a></strong>(AChar: char): integer; virtual;</code></td>
 </tr>
 <tr class="list">
-<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
-<td class="itemcode"><code>constructor <strong><a href="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.html#Create">Create</a></strong>(AOwner: TComponent); override;</code></td>
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.html#DoEndUpdate">DoEndUpdate</a></strong>; override;</code></td>
 </tr>
 <tr class="list2">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
-<td class="itemcode"><code>function <strong><a href="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.html#RetourneLargeur">RetourneLargeur</a></strong>(AImages: TCustomImageList; AImageIndex: TImageIndex): single;</code></td>
+<td class="itemcode"><code>constructor <strong><a href="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.html#Create">Create</a></strong>(AOwner: TComponent); override;</code></td>
 </tr>
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
-<td class="itemcode"><code>function <strong><a href="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.html#getImageIndexOfChar">getImageIndexOfChar</a></strong>(AChar: string): integer;</code></td>
+<td class="itemcode"><code>function <strong><a href="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.html#RetourneLargeur">RetourneLargeur</a></strong>(AImages: TCustomImageList; AImageIndex: TImageIndex): single;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.html#getImageIndexOfChar">getImageIndexOfChar</a></strong>(AChar: String; CallOnGetImageIndexOfUnknowCharIfNotFound: boolean = false): integer;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.html#Refresh">Refresh</a></strong>;</code></td>
 </tr>
 </table>
 <span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
 <table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>property <strong><a href="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.html#HasPendingRefresh">HasPendingRefresh</a></strong>: boolean read FHasPendingRefresh
+      write SetHasPendingRefresh;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.html#AutoSize">AutoSize</a></strong>: boolean read FAutoSize write SetAutoSize;</code></td>
+</tr>
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><code>property <strong><a href="Olf.FMX.TextImageFrame.TOlfFMXTextImageFrame.html#Font">Font</a></strong>: TCustomImageList read FFont write SetFont;</code></td>
@@ -75,18 +94,32 @@
 <table class="detail wide_list">
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
-<td class="itemcode"><span id="AjoutImageEtRetourneLargeur"></span><code>function <strong>AjoutImageEtRetourneLargeur</strong>(AImages: TCustomImageList; AImageIndex: TImageIndex; AX: single): single;</code></td>
+<td class="itemcode"><span id="AjoutImageEtRetourneLargeur"></span><code>function <strong>AjoutImageEtRetourneLargeur</strong>(AImages: TCustomImageList; AImageIndex: TImageIndex; AX: single; AChar: char): single;</code></td>
 </tr>
 <tr><td colspan="2">
-&nbsp;</td></tr>
+<p>
+ Add an image (= a character as bitmap) and returns its width. </p>
+</td></tr>
 </table>
 <table class="detail wide_list">
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
-<td class="itemcode"><span id="RefreshTexte"></span><code>procedure <strong>RefreshTexte</strong>;</code></td>
+<td class="itemcode"><span id="DefaultOnGetImageIndexOfUnknowChar"></span><code>function <strong>DefaultOnGetImageIndexOfUnknowChar</strong>(AChar: char): integer; virtual;</code></td>
 </tr>
 <tr><td colspan="2">
-&nbsp;</td></tr>
+<p>
+ Called by GetImageIndexOfChar() when no index for a char has been found after calling OnGetImageIndexOfUnknowChar event. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="DoEndUpdate"></span><code>procedure <strong>DoEndUpdate</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Called at the end of a BeginUpdate/EndUpdate bloc. It calls the Refresh method if it has been asked in the bloc. </p>
+</td></tr>
 </table>
 <table class="detail wide_list">
 <tr class="list">
@@ -94,7 +127,9 @@
 <td class="itemcode"><span id="Create"></span><code>constructor <strong>Create</strong>(AOwner: TComponent); override;</code></td>
 </tr>
 <tr><td colspan="2">
-&nbsp;</td></tr>
+<p>
+ Create an instance of this class </p>
+</td></tr>
 </table>
 <table class="detail wide_list">
 <tr class="list">
@@ -102,24 +137,65 @@
 <td class="itemcode"><span id="RetourneLargeur"></span><code>function <strong>RetourneLargeur</strong>(AImages: TCustomImageList; AImageIndex: TImageIndex): single;</code></td>
 </tr>
 <tr><td colspan="2">
-&nbsp;</td></tr>
+<p>
+ Returns the width of a character image with current drawing height of the text. </p>
+</td></tr>
 </table>
 <table class="detail wide_list">
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
-<td class="itemcode"><span id="getImageIndexOfChar"></span><code>function <strong>getImageIndexOfChar</strong>(AChar: string): integer;</code></td>
+<td class="itemcode"><span id="getImageIndexOfChar"></span><code>function <strong>getImageIndexOfChar</strong>(AChar: String; CallOnGetImageIndexOfUnknowCharIfNotFound: boolean = false): integer;</code></td>
 </tr>
 <tr><td colspan="2">
-&nbsp;</td></tr>
+<p>
+ Returns the index of the char in the image list. If it's not found this function can call the OnGetImageIndexOfUnknowCharIfNotFound event or do a default character swap to find the good one. </p>
+<p>
+
+
+<p>Don't use True for CallOnGetImageIndexOfUnknowCharIfNotFound in your OnGetImageIndexOfUnknowCharIfNotFound events or you'll have infinite loops.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Refresh"></span><code>procedure <strong>Refresh</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Repaint the text </p>
+</td></tr>
 </table>
 <h3 class="detail">Properties</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="HasPendingRefresh"></span><code>property <strong>HasPendingRefresh</strong>: boolean read FHasPendingRefresh
+      write SetHasPendingRefresh;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Use to delay a Refresh operation during a BeginUpdate/EndUpdate bloc </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="AutoSize"></span><code>property <strong>AutoSize</strong>: boolean read FAutoSize write SetAutoSize;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ If True, the text size is reduced or increased to fill its parent. If False, the text size depends only on its Height property, the Width is adapted after a Refresh. </p>
+</td></tr>
+</table>
 <table class="detail wide_list">
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><span id="Font"></span><code>property <strong>Font</strong>: TCustomImageList read FFont write SetFont;</code></td>
 </tr>
 <tr><td colspan="2">
-&nbsp;</td></tr>
+<p>
+ Font to use (an image list with characters as bitmaps) </p>
+</td></tr>
 </table>
 <table class="detail wide_list">
 <tr class="list">
@@ -127,7 +203,9 @@
 <td class="itemcode"><span id="Text"></span><code>property <strong>Text</strong>: string read FText write SetText;</code></td>
 </tr>
 <tr><td colspan="2">
-&nbsp;</td></tr>
+<p>
+ Text to display </p>
+</td></tr>
 </table>
 <table class="detail wide_list">
 <tr class="list">
@@ -135,7 +213,9 @@
 <td class="itemcode"><span id="SpaceWidth"></span><code>property <strong>SpaceWidth</strong>: single read FSpaceWidth write SetSpaceWidth;</code></td>
 </tr>
 <tr><td colspan="2">
-&nbsp;</td></tr>
+<p>
+ Width to use when a text contains a space character. </p>
+</td></tr>
 </table>
 <table class="detail wide_list">
 <tr class="list">
@@ -143,7 +223,9 @@
 <td class="itemcode"><span id="LetterSpacing"></span><code>property <strong>LetterSpacing</strong>: single read FLetterSpacing write SetLetterSpacing;</code></td>
 </tr>
 <tr><td colspan="2">
-&nbsp;</td></tr>
+<p>
+ Width to use between two letters. </p>
+</td></tr>
 </table>
 <table class="detail wide_list">
 <tr class="list">
@@ -152,7 +234,9 @@
       read FOnGetImageIndexOfUnknowChar write SetOnGetImageIndexOfUnknowChar;</code></td>
 </tr>
 <tr><td colspan="2">
-&nbsp;</td></tr>
+<p>
+ Event used to get the index of an unknow character in the font image list. </p>
+</td></tr>
 </table>
 <a href="https://librairies.developpeur-pascal.fr/" target="_blank">My libraries for Delphi</a> (c) 1990-2025 <a href="https://patrick.premartin.fr" target="_blank">Patrick PREMARTIN</a> - Powered by <a href="https://pasdoc.github.io/" target="_blank">PasDoc</a>
 <hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 0.16.0</a>. </em>
