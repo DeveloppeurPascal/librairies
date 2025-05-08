@@ -1,9 +1,9 @@
 /// <summary>
 /// ***************************************************************************
 ///
-/// Librairies pour Delphi
+/// My libraries for Delphi
 ///
-/// Copyright 1990-2024 Patrick Prémartin under AGPL 3.0 license.
+/// Copyright 1990-2025 Patrick Prémartin under AGPL 3.0 license.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -27,17 +27,17 @@
 /// ***************************************************************************
 ///
 /// Author(s) :
-///      Patrick PREMARTIN
+/// Patrick PREMARTIN
 ///
 /// Site :
-///      https://developpeur-pascal.fr/librairies-publiques.html
+/// https://librairies.developpeur-pascal.fr
 ///
 /// Project site :
-///      https://github.com/DeveloppeurPascal/librairies
+/// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 28/05/2024 12:19:14
-/// Signature : 6cdcf3e15662357f03b6f3c05c083734da7eaaf7
+/// File last update : 2025-05-08T16:59:08.000+02:00
+/// Signature : 17a89a586b1c2e65b91b1fd53dc94a4b19693623
 /// ***************************************************************************
 /// </summary>
 
@@ -46,9 +46,16 @@ unit fUseLibraryAsTFrame;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes,
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
   System.Variants,
-  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
+  FMX.Types,
+  FMX.Controls,
+  FMX.Forms,
+  FMX.Graphics,
+  FMX.Dialogs,
   Olf.FMX.TextImageFrame;
 
 type
@@ -70,7 +77,8 @@ implementation
 
 {$R *.fmx}
 
-uses udm_CharacterImages;
+uses
+  udm_CharacterImages;
 
 function TForm1.ConvertUnknownChars(Sender: TOlfFMXTextImageFrame;
   AChar: char): integer;
@@ -84,7 +92,7 @@ procedure TForm1.FormCreate(Sender: TObject);
 begin
   OlfFMXTextImageFrame1.OnGetImageIndexOfUnknowChar := ConvertUnknownChars;
   OlfFMXTextImageFrame1.Font := dm_CharacterImages.ImageList;
-  OlfFMXTextImageFrame1.Text := '012 abc ABC';
+  OlfFMXTextImageFrame1.Text := '123 abc ABC';
 end;
 
 end.
