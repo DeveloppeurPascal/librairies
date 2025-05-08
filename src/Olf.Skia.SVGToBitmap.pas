@@ -1,9 +1,9 @@
 ﻿/// <summary>
 /// ***************************************************************************
 ///
-/// Librairies pour Delphi
+/// My libraries for Delphi
 ///
-/// Copyright 1990-2024 Patrick Prémartin under AGPL 3.0 license.
+/// Copyright 1990-2025 Patrick Prémartin under AGPL 3.0 license.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -27,17 +27,17 @@
 /// ***************************************************************************
 ///
 /// Author(s) :
-///      Patrick PREMARTIN
+/// Patrick PREMARTIN
 ///
 /// Site :
-///      https://developpeur-pascal.fr/librairies-publiques.html
+/// https://librairies.developpeur-pascal.fr
 ///
 /// Project site :
-///      https://github.com/DeveloppeurPascal/librairies
+/// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 01/08/2024 10:47:00
-/// Signature : 2e545670f696ebf375fed52e96432b79a3144f1c
+/// File last update : 2025-05-08T14:33:56.000+02:00
+/// Signature : dcc4c885e95e098bf53695bfaa5644136d425a05
 /// ***************************************************************************
 /// </summary>
 
@@ -665,25 +665,30 @@ const BitmapScale: single; const SVG: string; const MarginTop: single;
 const MarginRight: single; const MarginBottom: single;
 const MarginLeft: single): TBitmap;
 begin
-  if not FWithList.ContainsKey(Width) then
-    FWithList.Add(Width, THeightList.Create);
+  System.TMonitor.Enter(Self);
+  try
+    if not FWithList.ContainsKey(Width) then
+      FWithList.Add(Width, THeightList.Create);
 
-  if not FWithList[Width].ContainsKey(Height) then
-    FWithList[Width].Add(Height, TBitmapScaleList.Create);
+    if not FWithList[Width].ContainsKey(Height) then
+      FWithList[Width].Add(Height, TBitmapScaleList.Create);
 
-  if not FWithList[Width][Height].ContainsKey(BitmapScale) then
-    FWithList[Width][Height].Add(BitmapScale, nil);
+    if not FWithList[Width][Height].ContainsKey(BitmapScale) then
+      FWithList[Width][Height].Add(BitmapScale, nil);
 
-  if not assigned(FWithList[Width][Height][BitmapScale]) then
+    if not assigned(FWithList[Width][Height][BitmapScale]) then
 {$IF Defined(FRAMEWORK_VCL)}
-    FWithList[Width][Height][BitmapScale] := SVGToBitmap(Width, Height, SVG,
-      MarginTop, MarginRight, MarginBottom, MarginLeft)
+      FWithList[Width][Height][BitmapScale] := SVGToBitmap(Width, Height, SVG,
+        MarginTop, MarginRight, MarginBottom, MarginLeft)
 {$ELSEIF Defined(FRAMEWORK_FMX)}
-    FWithList[Width][Height][BitmapScale] := SVGToBitmap(Width, Height, SVG,
-      BitmapScale, MarginTop, MarginRight, MarginBottom, MarginLeft)
+      FWithList[Width][Height][BitmapScale] := SVGToBitmap(Width, Height, SVG,
+        BitmapScale, MarginTop, MarginRight, MarginBottom, MarginLeft)
 {$ENDIF};
 
-  result := FWithList[Width][Height][BitmapScale];
+    result := FWithList[Width][Height][BitmapScale];
+  finally
+    System.TMonitor.Exit(Self);
+  end;
 end;
 
 constructor TBMPCache.Create;
@@ -703,30 +708,45 @@ end;
 function TItem.Bitmap(const Width, Height: integer; const BitmapScale: single;
 const WithCache: boolean): TBitmap;
 begin
-  result := Bitmap(Width, Height, 0, 0, 0, 0, BitmapScale, WithCache);
+  System.TMonitor.Enter(Self);
+  try
+    result := Bitmap(Width, Height, 0, 0, 0, 0, BitmapScale, WithCache);
+  finally
+    System.TMonitor.Exit(Self);
+  end;
 end;
 
 function TItem.Bitmap(const Width, Height: integer;
 const MarginTop, MarginRight, MarginBottom, MarginLeft, BitmapScale: single;
 const WithCache: boolean): TBitmap;
 begin
-  if WithCache then
-    result := FBMPCache.Bitmap(Width, Height, BitmapScale, FSVG, MarginTop,
-      MarginRight, MarginBottom, MarginLeft)
-  else
+  System.TMonitor.Enter(Self);
+  try
+    if WithCache then
+      result := FBMPCache.Bitmap(Width, Height, BitmapScale, FSVG, MarginTop,
+        MarginRight, MarginBottom, MarginLeft)
+    else
 {$IF Defined(FRAMEWORK_VCL)}
-    result := SVGToBitmap(Width, Height, FSVG, MarginTop, MarginRight,
-      MarginBottom, MarginLeft)
+      result := SVGToBitmap(Width, Height, FSVG, MarginTop, MarginRight,
+        MarginBottom, MarginLeft)
 {$ELSEIF Defined(FRAMEWORK_FMX)}
-      result := SVGToBitmap(Width, Height, FSVG, BitmapScale, MarginTop,
-      MarginRight, MarginBottom, MarginLeft)
+        result := SVGToBitmap(Width, Height, FSVG, BitmapScale, MarginTop,
+        MarginRight, MarginBottom, MarginLeft)
 {$ENDIF};
+  finally
+    System.TMonitor.Exit(Self);
+  end;
 end;
 
 procedure TItem.ClearCache;
 begin
-  FBMPCache.Free;
-  FBMPCache := TBMPCache.Create;
+  System.TMonitor.Enter(Self);
+  try
+    FBMPCache.Free;
+    FBMPCache := TBMPCache.Create;
+  finally
+    System.TMonitor.Exit(Self);
+  end;
 end;
 
 constructor TItem.Create(const SVG: string);
@@ -748,8 +768,13 @@ procedure TItemsList.ClearCache;
 var
   Item: TItem;
 begin
-  for Item in Values do
-    Item.ClearCache;
+  System.TMonitor.Enter(Self);
+  try
+    for Item in Values do
+      Item.ClearCache;
+  finally
+    System.TMonitor.Exit(Self);
+  end;
 end;
 
 constructor TItemsList.Create;
