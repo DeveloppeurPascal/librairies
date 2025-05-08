@@ -36,8 +36,8 @@
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 2025-05-08T16:45:50.000+02:00
-/// Signature : 8252bdf4a0984238457d5c1f4440c3b090685dcf
+/// File last update : 2025-05-08T16:59:12.000+02:00
+/// Signature : a2124abd3feb2ffa96ee459a5513614861946aba
 /// ***************************************************************************
 /// </summary>
 
@@ -90,7 +90,7 @@ type
     /// Add an image (= a character as bitmap) and returns its width.
     /// </summary>
     function AjoutImageEtRetourneLargeur(AImages: TCustomImageList;
-      AImageIndex: TImageIndex; AX: single): single;
+      AImageIndex: TImageIndex; AX: single; AChar: char): single;
     /// <summary>
     /// Called by GetImageIndexOfChar() when no index for a char has been found
     /// after calling OnGetImageIndexOfUnknowChar event.
@@ -152,9 +152,10 @@ implementation
 {$R *.fmx}
 
 function TOlfFMXTextImageFrame.AjoutImageEtRetourneLargeur
-  (AImages: TCustomImageList; AImageIndex: TImageIndex; AX: single): single;
+  (AImages: TCustomImageList; AImageIndex: TImageIndex; AX: single;
+  AChar: char): single;
 var
-  g: tglyph;
+  g: TGlyph;
   wi, hi: single;
 begin
   if (not assigned(AImages)) or (AImageIndex < 0) or
@@ -162,7 +163,7 @@ begin
     result := 0
   else
   begin
-    g := tglyph.Create(self);
+    g := TGlyph.Create(self);
     g.Parent := self;
     wi := AImages.Destination[AImageIndex].Layers[0].MultiResBitmap[0].Width;
     hi := AImages.Destination[AImageIndex].Layers[0].MultiResBitmap[0].height;
@@ -172,6 +173,7 @@ begin
     g.ImageIndex := AImageIndex;
     g.Position.x := AX;
     g.Position.y := 0;
+    g.TagString := AChar;
     result := g.Width;
   end;
 end;
@@ -427,7 +429,7 @@ var
   idx: integer;
 begin
   for i := childrencount - 1 downto 0 do
-    if (children[i] is tglyph) then
+    if (children[i] is TGlyph) then
       children[i].Free;
 
   x := 0;
@@ -436,24 +438,25 @@ begin
     begin
       idx := getImageIndexOfChar(FText.Chars[i], true);
       if (idx >= 0) then
-        x := x + AjoutImageEtRetourneLargeur(FFont, idx, x) + FLetterSpacing
+        x := x + AjoutImageEtRetourneLargeur(FFont, idx, x, FText.Chars[i]) +
+          FLetterSpacing
       else if (FText.Chars[i] = ' ') then
       begin
         if (FRealSpaceWidth < 1) then
         begin
-          idx := getImageIndexOfChar('.', true);
+          idx := getImageIndexOfChar('.', false);
           if (idx >= 0) then
             FRealSpaceWidth := RetourneLargeur(FFont, idx);
 
-          idx := getImageIndexOfChar('i', true);
+          idx := getImageIndexOfChar('i', false);
           if (idx >= 0) then
             FRealSpaceWidth := RetourneLargeur(FFont, idx);
 
-          idx := getImageIndexOfChar('I', true);
+          idx := getImageIndexOfChar('I', false);
           if (idx >= 0) then
             FRealSpaceWidth := RetourneLargeur(FFont, idx);
 
-          idx := getImageIndexOfChar('1', true);
+          idx := getImageIndexOfChar('1', false);
           if (idx >= 0) then
             FRealSpaceWidth := RetourneLargeur(FFont, idx);
         end;
