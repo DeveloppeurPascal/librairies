@@ -55,6 +55,8 @@
     <Source>.\Skia.SVGToBitmap\VCL\VCLSVGToBitmapSample.dpr</Source>
     <Source>.\Skia.SVGToBitmap\VCL_SVGList_CreateImagesByCode\CreateImagesByCodeSampleProject.dpr</Source>
     <Source>.\Skia.SVGToBitmap\VCL_With_SVGList\VCLShowSVGFromBitmapSample.dpr</Source>
+    <Source>.\FMX.TextImageFrame\TextImageWithAutoSize\TextImageWithAutoSizeSample.dpr</Source>
+    <Source>.\FMX.TextImageFrame\TextWithAShadowEffect\TextWithAShadowEffectSample.dpr</Source>
   </Sources>
   <Outputs>
     <Output Type="HTML">
