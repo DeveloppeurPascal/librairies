@@ -36,8 +36,8 @@
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 2025-05-08T17:21:44.000+02:00
-/// Signature : f0cba4fe9fae65824a15b57606cf477713192e48
+/// File last update : 2025-05-08T18:03:02.000+02:00
+/// Signature : 4df992bc8de280c9d5277a842fd161e2db02d1ba
 /// ***************************************************************************
 /// </summary>
 
@@ -80,6 +80,7 @@ type
     FLetterSpacing: single;
     FSpaceWidth, FRealSpaceWidth: single;
     FHasPendingRefresh: boolean;
+    FAutoSize: boolean;
     procedure SetFont(const Value: TCustomImageList);
     procedure SetText(const Value: string);
     procedure SetOnGetImageIndexOfUnknowChar(const Value
@@ -87,6 +88,8 @@ type
     procedure SetLetterSpacing(const Value: single);
     procedure SetSpaceWidth(const Value: single);
     procedure SetHasPendingRefresh(const Value: boolean);
+    procedure SetAutoSize(const Value: boolean);
+    procedure DoRefresh;
   protected
     /// <summary>
     /// Use to delay a Refresh operation during a BeginUpdate/EndUpdate bloc
@@ -109,6 +112,12 @@ type
     /// </summary>
     procedure DoEndUpdate; override;
   public
+    /// <summary>
+    /// If True, the text size is reduced or increased to fill its parent.
+    /// If False, the text size depends only on its Height property, the Width
+    /// is adapted after a Refresh.
+    /// </summary>
+    property AutoSize: boolean read FAutoSize write SetAutoSize;
     /// <summary>
     /// Font to use (an image list with characters as bitmaps)
     /// </summary>
@@ -422,27 +431,7 @@ begin
     Refresh;
 end;
 
-function TOlfFMXTextImageFrame.getImageIndexOfChar(AChar: String;
-  CallOnGetImageIndexOfUnknowCharIfNotFound: boolean): integer;
-begin
-  result := 0;
-  while (result < FFont.Count) and
-    (FFont.Destination[result].Layers[0].Name <> AChar) do
-    inc(result);
-
-  if (result >= FFont.Count) then
-    if CallOnGetImageIndexOfUnknowCharIfNotFound then
-    begin
-      if assigned(OnGetImageIndexOfUnknowChar) then
-        result := OnGetImageIndexOfUnknowChar(self, AChar.Chars[0]);
-      if result < 0 then
-        result := DefaultOnGetImageIndexOfUnknowChar(AChar.Chars[0]);
-    end
-    else
-      result := -1;
-end;
-
-procedure TOlfFMXTextImageFrame.Refresh;
+procedure TOlfFMXTextImageFrame.DoRefresh;
 var
   i: integer;
   x: single;
@@ -502,6 +491,48 @@ begin
   end;
 end;
 
+function TOlfFMXTextImageFrame.getImageIndexOfChar(AChar: String;
+  CallOnGetImageIndexOfUnknowCharIfNotFound: boolean): integer;
+begin
+  result := 0;
+  while (result < FFont.Count) and
+    (FFont.Destination[result].Layers[0].Name <> AChar) do
+    inc(result);
+
+  if (result >= FFont.Count) then
+    if CallOnGetImageIndexOfUnknowCharIfNotFound then
+    begin
+      if assigned(OnGetImageIndexOfUnknowChar) then
+        result := OnGetImageIndexOfUnknowChar(self, AChar.Chars[0]);
+      if result < 0 then
+        result := DefaultOnGetImageIndexOfUnknowChar(AChar.Chars[0]);
+    end
+    else
+      result := -1;
+end;
+
+procedure TOlfFMXTextImageFrame.Refresh;
+var
+  C: TControl;
+begin
+  if AutoSize then
+  begin
+    if assigned(Parent) and (Parent is TControl) then
+    begin
+      C := (Parent as TControl);
+      height := C.height;
+      DoRefresh;
+      if (Width > C.Width) then
+        height := C.height * C.Width / Width;
+      DoRefresh;
+    end
+    else
+      Raise Exception.Create('AutoSize not allowed on this parent.');
+  end
+  else
+    DoRefresh;
+end;
+
 function TOlfFMXTextImageFrame.RetourneLargeur(AImages: TCustomImageList;
   AImageIndex: TImageIndex): single;
 var
@@ -518,14 +549,22 @@ begin
   end;
 end;
 
+procedure TOlfFMXTextImageFrame.SetAutoSize(const Value: boolean);
+begin
+  if (FAutoSize <> Value) then
+  begin
+    FAutoSize := Value;
+    Refresh;
+  end;
+end;
+
 procedure TOlfFMXTextImageFrame.SetFont(const Value: TCustomImageList);
 begin
   if (FFont <> Value) then
   begin
     FFont := Value;
     FRealSpaceWidth := FSpaceWidth;
-    if (FText.Length > 0) then
-      Refresh;
+    Refresh;
   end;
 end;
 
@@ -539,8 +578,7 @@ begin
   if (FLetterSpacing <> Value) then
   begin
     FLetterSpacing := Value;
-    if (FText.Length > 0) then
-      Refresh;
+    Refresh;
   end;
 end;
 
@@ -550,8 +588,7 @@ begin
   if (@FOnGetImageIndexOfUnknowChar <> @Value) then
   begin
     FOnGetImageIndexOfUnknowChar := Value;
-    if (FText.Length > 0) then
-      Refresh;
+    Refresh;
   end;
 end;
 
@@ -561,8 +598,7 @@ begin
   begin
     FSpaceWidth := Value;
     FRealSpaceWidth := FSpaceWidth;
-    if (FText.Length > 0) then
-      Refresh;
+    Refresh;
   end;
 end;
 
