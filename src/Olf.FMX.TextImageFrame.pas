@@ -36,8 +36,8 @@
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 2025-05-08T16:29:04.000+02:00
-/// Signature : 3efcf2870c46efdfc6b3930d3e2af22aecffefa4
+/// File last update : 2025-05-08T16:45:50.000+02:00
+/// Signature : 8252bdf4a0984238457d5c1f4440c3b090685dcf
 /// ***************************************************************************
 /// </summary>
 
@@ -63,9 +63,15 @@ uses
 type
   TOlfFMXTextImageFrame = class;
 
+  /// <summary>
+  /// Type to use for the "get image index" method event
+  /// </summary>
   TOlfFMXTIFOnGetImageIndexOfUnknowChar = function
     (Sender: TOlfFMXTextImageFrame; AChar: char): integer of object;
 
+  /// <summary>
+  /// Display a text with a bitmap font.
+  /// </summary>
   TOlfFMXTextImageFrame = class(TFrame)
   private
     FText: string;
@@ -80,22 +86,46 @@ type
     procedure SetLetterSpacing(const Value: single);
     procedure SetSpaceWidth(const Value: single);
   protected
+    /// <summary>
+    /// Add an image (= a character as bitmap) and returns its width.
+    /// </summary>
     function AjoutImageEtRetourneLargeur(AImages: TCustomImageList;
       AImageIndex: TImageIndex; AX: single): single;
-    procedure RefreshTexte;
     /// <summary>
     /// Called by GetImageIndexOfChar() when no index for a char has been found
     /// after calling OnGetImageIndexOfUnknowChar event.
     /// </summary>
     function DefaultOnGetImageIndexOfUnknowChar(AChar: char): integer; virtual;
   public
+    /// <summary>
+    /// Font to use (an image list with characters as bitmaps)
+    /// </summary>
     property Font: TCustomImageList read FFont write SetFont;
+    /// <summary>
+    /// Text to display
+    /// </summary>
     property Text: string read FText write SetText;
+    /// <summary>
+    /// Width to use when a text contains a space character.
+    /// </summary>
     property SpaceWidth: single read FSpaceWidth write SetSpaceWidth;
+    /// <summary>
+    /// Width to use between two letters.
+    /// </summary>
     property LetterSpacing: single read FLetterSpacing write SetLetterSpacing;
+    /// <summary>
+    /// Event used to get the index of an unknow character in the font image list.
+    /// </summary>
     property OnGetImageIndexOfUnknowChar: TOlfFMXTIFOnGetImageIndexOfUnknowChar
       read FOnGetImageIndexOfUnknowChar write SetOnGetImageIndexOfUnknowChar;
+    /// <summary>
+    /// Create an instance of this class
+    /// </summary>
     constructor Create(AOwner: TComponent); override;
+    /// <summary>
+    /// Returns the width of a character image with current drawing height of
+    /// the text.
+    /// </summary>
     function RetourneLargeur(AImages: TCustomImageList;
       AImageIndex: TImageIndex): single;
     /// <summary>
@@ -111,21 +141,15 @@ type
     /// </remarks>
     function getImageIndexOfChar(AChar: String;
       CallOnGetImageIndexOfUnknowCharIfNotFound: boolean = false): integer;
+    /// <summary>
+    /// Repaint the text
+    /// </summary>
+    procedure Refresh;
   end;
 
 implementation
 
 {$R *.fmx}
-
-const
-  CPosChiffres = 0;
-  CPosMajuscules = CPosChiffres + 10;
-  CPosMinuscules = CPosMajuscules;
-  // Pas de minuscules dans les fontes prises sur ce jeu
-  CPosPonctuation = CPosMajuscules + 26;
-  // TODO : à modifier si nécessaire selon les fontes
-
-  { TcadAffichageTexteGraphique }
 
 function TOlfFMXTextImageFrame.AjoutImageEtRetourneLargeur
   (AImages: TCustomImageList; AImageIndex: TImageIndex; AX: single): single;
@@ -396,7 +420,7 @@ begin
       result := -1;
 end;
 
-procedure TOlfFMXTextImageFrame.RefreshTexte;
+procedure TOlfFMXTextImageFrame.Refresh;
 var
   i: integer;
   x: single;
@@ -461,7 +485,7 @@ begin
   FFont := Value;
   FRealSpaceWidth := FSpaceWidth;
   if (FText.Length > 0) then
-    RefreshTexte;
+    Refresh;
 end;
 
 procedure TOlfFMXTextImageFrame.SetLetterSpacing(const Value: single);
@@ -486,7 +510,7 @@ begin
   FText := Value;
   if not assigned(FFont) then
     exit;
-  RefreshTexte;
+  Refresh;
 end;
 
 // TODO : gérer changement de taille des chiffres en cas de resize de la zone
