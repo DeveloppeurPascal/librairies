@@ -36,8 +36,8 @@
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 2025-05-08T16:59:12.000+02:00
-/// Signature : a2124abd3feb2ffa96ee459a5513614861946aba
+/// File last update : 2025-05-08T17:21:44.000+02:00
+/// Signature : f0cba4fe9fae65824a15b57606cf477713192e48
 /// ***************************************************************************
 /// </summary>
 
@@ -79,13 +79,20 @@ type
     FOnGetImageIndexOfUnknowChar: TOlfFMXTIFOnGetImageIndexOfUnknowChar;
     FLetterSpacing: single;
     FSpaceWidth, FRealSpaceWidth: single;
+    FHasPendingRefresh: boolean;
     procedure SetFont(const Value: TCustomImageList);
     procedure SetText(const Value: string);
     procedure SetOnGetImageIndexOfUnknowChar(const Value
       : TOlfFMXTIFOnGetImageIndexOfUnknowChar);
     procedure SetLetterSpacing(const Value: single);
     procedure SetSpaceWidth(const Value: single);
+    procedure SetHasPendingRefresh(const Value: boolean);
   protected
+    /// <summary>
+    /// Use to delay a Refresh operation during a BeginUpdate/EndUpdate bloc
+    /// </summary>
+    property HasPendingRefresh: boolean read FHasPendingRefresh
+      write SetHasPendingRefresh;
     /// <summary>
     /// Add an image (= a character as bitmap) and returns its width.
     /// </summary>
@@ -96,6 +103,11 @@ type
     /// after calling OnGetImageIndexOfUnknowChar event.
     /// </summary>
     function DefaultOnGetImageIndexOfUnknowChar(AChar: char): integer; virtual;
+    /// <summary>
+    /// Called at the end of a BeginUpdate/EndUpdate bloc. It calls the Refresh
+    /// method if it has been asked in the bloc.
+    /// </summary>
+    procedure DoEndUpdate; override;
   public
     /// <summary>
     /// Font to use (an image list with characters as bitmaps)
@@ -188,6 +200,7 @@ begin
   FSpaceWidth := 0;
   FRealSpaceWidth := 0;
   FOnGetImageIndexOfUnknowChar := nil;
+  FHasPendingRefresh := false;
 end;
 
 function TOlfFMXTextImageFrame.DefaultOnGetImageIndexOfUnknowChar
@@ -402,6 +415,13 @@ begin
   end;
 end;
 
+procedure TOlfFMXTextImageFrame.DoEndUpdate;
+begin
+  inherited;
+  if (not IsUpdating) and HasPendingRefresh then
+    Refresh;
+end;
+
 function TOlfFMXTextImageFrame.getImageIndexOfChar(AChar: String;
   CallOnGetImageIndexOfUnknowCharIfNotFound: boolean): integer;
 begin
@@ -428,12 +448,26 @@ var
   x: single;
   idx: integer;
 begin
+  if IsUpdating then
+  begin
+    FHasPendingRefresh := true;
+    exit;
+  end
+  else
+    FHasPendingRefresh := false;
+
   for i := childrencount - 1 downto 0 do
     if (children[i] is TGlyph) then
       children[i].Free;
 
   x := 0;
-  if assigned(FFont) and (FText.Length > 0) then
+  try
+    if not assigned(FFont) then
+      exit;
+
+    if FText.IsEmpty then
+      exit;
+
     for i := 0 to FText.Length - 1 do
     begin
       idx := getImageIndexOfChar(FText.Chars[i], true);
@@ -463,8 +497,9 @@ begin
         x := x + FRealSpaceWidth;
       end;
     end;
-
-  Width := x;
+  finally
+    Width := x;
+  end;
 end;
 
 function TOlfFMXTextImageFrame.RetourneLargeur(AImages: TCustomImageList;
@@ -485,35 +520,59 @@ end;
 
 procedure TOlfFMXTextImageFrame.SetFont(const Value: TCustomImageList);
 begin
-  FFont := Value;
-  FRealSpaceWidth := FSpaceWidth;
-  if (FText.Length > 0) then
-    Refresh;
+  if (FFont <> Value) then
+  begin
+    FFont := Value;
+    FRealSpaceWidth := FSpaceWidth;
+    if (FText.Length > 0) then
+      Refresh;
+  end;
+end;
+
+procedure TOlfFMXTextImageFrame.SetHasPendingRefresh(const Value: boolean);
+begin
+  FHasPendingRefresh := Value;
 end;
 
 procedure TOlfFMXTextImageFrame.SetLetterSpacing(const Value: single);
 begin
-  FLetterSpacing := Value;
+  if (FLetterSpacing <> Value) then
+  begin
+    FLetterSpacing := Value;
+    if (FText.Length > 0) then
+      Refresh;
+  end;
 end;
 
 procedure TOlfFMXTextImageFrame.SetOnGetImageIndexOfUnknowChar
   (const Value: TOlfFMXTIFOnGetImageIndexOfUnknowChar);
 begin
-  FOnGetImageIndexOfUnknowChar := Value;
+  if (@FOnGetImageIndexOfUnknowChar <> @Value) then
+  begin
+    FOnGetImageIndexOfUnknowChar := Value;
+    if (FText.Length > 0) then
+      Refresh;
+  end;
 end;
 
 procedure TOlfFMXTextImageFrame.SetSpaceWidth(const Value: single);
 begin
-  FSpaceWidth := Value;
-  FRealSpaceWidth := FSpaceWidth;
+  if (FSpaceWidth <> Value) then
+  begin
+    FSpaceWidth := Value;
+    FRealSpaceWidth := FSpaceWidth;
+    if (FText.Length > 0) then
+      Refresh;
+  end;
 end;
 
 procedure TOlfFMXTextImageFrame.SetText(const Value: string);
 begin
-  FText := Value;
-  if not assigned(FFont) then
-    exit;
-  Refresh;
+  if (FText <> Value) then
+  begin
+    FText := Value;
+    Refresh;
+  end;
 end;
 
 // TODO : gérer changement de taille des chiffres en cas de resize de la zone
