@@ -36,8 +36,8 @@
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 2025-05-08T18:03:02.000+02:00
-/// Signature : 4df992bc8de280c9d5277a842fd161e2db02d1ba
+/// File last update : 2025-05-09T18:11:30.000+02:00
+/// Signature : d722cb7a8a44bde2edb899958f85ac95943e89f3
 /// ***************************************************************************
 /// </summary>
 
@@ -502,6 +502,7 @@ begin
   if (result >= FFont.Count) then
     if CallOnGetImageIndexOfUnknowCharIfNotFound then
     begin
+      result := -1;
       if assigned(OnGetImageIndexOfUnknowChar) then
         result := OnGetImageIndexOfUnknowChar(self, AChar.Chars[0]);
       if result < 0 then
