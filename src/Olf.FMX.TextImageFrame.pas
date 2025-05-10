@@ -36,8 +36,8 @@
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 2025-05-09T18:11:30.000+02:00
-/// Signature : d722cb7a8a44bde2edb899958f85ac95943e89f3
+/// File last update : 2025-05-10T09:42:46.000+02:00
+/// Signature : 7a3a133c3e0231443ab3230d11931360c0b99651
 /// ***************************************************************************
 /// </summary>
 
@@ -187,9 +187,9 @@ begin
     g := TGlyph.Create(self);
     g.Parent := self;
     wi := AImages.Destination[AImageIndex].Layers[0].MultiResBitmap[0].Width;
-    hi := AImages.Destination[AImageIndex].Layers[0].MultiResBitmap[0].height;
-    g.height := height;
-    g.Width := g.height * wi / hi;
+    hi := AImages.Destination[AImageIndex].Layers[0].MultiResBitmap[0].Height;
+    g.Height := Height;
+    g.Width := g.Height * wi / hi;
     g.Images := AImages;
     g.ImageIndex := AImageIndex;
     g.Position.x := AX;
@@ -515,16 +515,19 @@ end;
 procedure TOlfFMXTextImageFrame.Refresh;
 var
   C: TControl;
+  ParentWidth, ParentHeight: single;
 begin
   if AutoSize then
   begin
     if assigned(Parent) and (Parent is TControl) then
     begin
       C := (Parent as TControl);
-      height := C.height;
+      ParentWidth := C.Width - C.Padding.Left - C.Padding.Right;
+      ParentHeight := C.Height - C.Padding.Top - C.Padding.Bottom;
+      Height := ParentHeight;
       DoRefresh;
-      if (Width > C.Width) then
-        height := C.height * C.Width / Width;
+      if (Width > ParentWidth) then
+        Height := ParentHeight * ParentWidth / Width;
       DoRefresh;
     end
     else
@@ -545,8 +548,8 @@ begin
   else
   begin
     wi := AImages.Destination[AImageIndex].Layers[0].MultiResBitmap[0].Width;
-    hi := AImages.Destination[AImageIndex].Layers[0].MultiResBitmap[0].height;
-    result := height * wi / hi;
+    hi := AImages.Destination[AImageIndex].Layers[0].MultiResBitmap[0].Height;
+    result := Height * wi / hi;
   end;
 end;
 
