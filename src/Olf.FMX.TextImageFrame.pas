@@ -36,8 +36,8 @@
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 2025-05-24T13:36:56.000+02:00
-/// Signature : a20488d77fd9ef4ff238e7a6c37c1f7a4e1b4590
+/// File last update : 2025-05-24T13:47:46.000+02:00
+/// Signature : a3d6954bba4b35ea06f04a0697f629dbfcf8d630
 /// ***************************************************************************
 /// </summary>
 
@@ -172,6 +172,9 @@ implementation
 
 {$R *.fmx}
 
+uses
+  System.Character;
+
 function TOlfFMXTextImageFrame.AjoutImageEtRetourneLargeur
   (AImages: TCustomImageList; AImageIndex: TImageIndex; AX: single;
   AChar: char): single;
@@ -217,20 +220,20 @@ function TOlfFMXTextImageFrame.DefaultOnGetImageIndexOfUnknowChar
 begin
   result := -1;
 
-  if CharInset(AChar, ['0' .. '9']) then
+  if AChar.IsDigit then
   begin
     result := getImageIndexOfChar('_' + AChar);
     if (result < 0) then
       result := getImageIndexOfChar(AChar + '_');
   end;
 
-  if CharInset(AChar, ['a' .. 'z']) then
+  if AChar.IsLetter then
   begin
     result := getImageIndexOfChar('_' + AChar);
     if (result < 0) then
       result := getImageIndexOfChar(AChar + '_');
     if (result < 0) then
-      result := getImageIndexOfChar(uppercase(AChar));
+      result := getImageIndexOfChar(AChar.ToUpper);
   end;
 
   if (result < 0) and (AChar = 'à') then
@@ -245,7 +248,7 @@ begin
     if result < 0 then
       result := getImageIndexOfChar('atilde');
   end;
-  if (result < 0) and CharInset(AChar, ['à', 'ã', 'ạ']) then
+  if (result < 0) and AChar.IsInArray(['à', 'ã', 'ạ']) then
     result := getImageIndexOfChar('a', true);
 
   if (result < 0) and (AChar = 'ç') then
@@ -254,7 +257,7 @@ begin
     if (result < 0) then
       result := getImageIndexOfChar('_ccedille');
   end;
-  if (result < 0) and CharInset(AChar, ['ç', 'č']) then
+  if (result < 0) and AChar.IsInArray(['ç', 'č']) then
     result := getImageIndexOfChar('c');
 
   if (result < 0) and (AChar = 'ď') then
@@ -290,7 +293,7 @@ begin
     if result < 0 then
       result := getImageIndexOfChar('etrema');
   end;
-  if (result < 0) and CharInset(AChar, ['é', 'è', 'ê', 'ë', 'ě']) then
+  if (result < 0) and AChar.IsInArray(['é', 'è', 'ê', 'ë', 'ě']) then
     result := getImageIndexOfChar('e', true);
 
   if (result < 0) and (AChar = 'ı') then
@@ -317,7 +320,7 @@ begin
     if result < 0 then
       result := getImageIndexOfChar('iaigu');
   end;
-  if (result < 0) and CharInset(AChar, ['î', 'ï', 'í', 'ı']) then
+  if (result < 0) and AChar.IsInArray(['î', 'ï', 'í', 'ı']) then
     result := getImageIndexOfChar('i', true);
 
   if (result < 0) and (AChar = 'ñ') then
@@ -326,7 +329,7 @@ begin
     if result < 0 then
       result := getImageIndexOfChar('ntilde');
   end;
-  if (result < 0) and CharInset(AChar, ['ñ', 'ň']) then
+  if (result < 0) and AChar.IsInArray(['ñ', 'ň']) then
     result := getImageIndexOfChar('n');
 
   if (result < 0) and (AChar = 'ô') then
@@ -347,22 +350,24 @@ begin
     if result < 0 then
       result := getImageIndexOfChar('oaigu');
   end;
-  if (result < 0) and CharInset(AChar, ['ô', 'ö', 'ó']) then
+  if (result < 0) and AChar.IsInArray(['ô', 'ö', 'ó']) then
     result := getImageIndexOfChar('o', true);
 
+  // if (result < 0) and (AChar = 'oe') then
+  // result := getImageIndexOfChar('_oe');
+  // if (result < 0) and (AChar = 'OE') then
+  // result := getImageIndexOfChar('OE');
   // TODO : cf https://github.com/DeveloppeurPascal/librairies/issues/128
-  if (result < 0) and (AChar = 'oe') then
-    result := getImageIndexOfChar('_oe');
-  // TODO : récupérer "oe" en minuscules
-  if (result < 0) and (AChar = 'OE') then
-    result := getImageIndexOfChar('OE');
-  // TODO : récupérer "oe" en majuscules
 
-  if (result < 0) and CharInset(AChar, ['ř']) then
+  if (result < 0) and AChar.IsInArray(['ř']) then
     result := getImageIndexOfChar('r', true);
 
-  if (result < 0) and CharInset(AChar, ['š']) then
+  if (result < 0) and AChar.IsInArray(['š']) then
     result := getImageIndexOfChar('s', true);
+
+  // if (result < 0) and (AChar = 'ß') then
+  // result := getImageIndexOfChar('ss');
+  // TODO : https://github.com/DeveloppeurPascal/librairies/issues/127
 
   if (result < 0) and (AChar = 'ť') then
   begin
@@ -393,11 +398,10 @@ begin
   end;
   // if (result < 0) and (AChar = '') then // TODO : ajouter u aigu
   // result := getImageIndexOfChar('_uaigu');
-  if (result < 0) and CharInset(AChar, ['û', 'ü', 'ù']) then
-    // TODO : ajouter u aigu
+  if (result < 0) and AChar.IsInArray(['û', 'ü', 'ù']) then
     result := getImageIndexOfChar('u', true);
 
-  if (result < 0) and CharInset(AChar, ['ž']) then
+  if (result < 0) and AChar.IsInArray(['ž']) then
     result := getImageIndexOfChar('z', true);
 
   if (result < 0) and (AChar = '?') then
@@ -435,11 +439,11 @@ begin
       result := getImageIndexOfChar('mult');
   end;
   // if (result < 0) and (AChar = '...') then
+  // result := getImageIndexOfChar('suspension');
   // TODO : récupérer "points de suspensions" en 1 caractère
-  // result := getImageIndexOfChar('suspension'); // TODO
   // if (result < 0) and (AChar = '->') then
+  // result := getImageIndexOfChar('fleche-droite');
   // TODO : récupérer "flèche vers la droite" en 1 caractère
-  // result := getImageIndexOfChar('fleche-droite'); // TODO
   if (result < 0) and (AChar = '.') then
     result := getImageIndexOfChar('point');
   if (result < 0) and (AChar = '@') then
@@ -678,7 +682,5 @@ begin
     Refresh;
   end;
 end;
-
-// TODO : gérer changement de taille des chiffres en cas de resize de la zone
 
 end.
