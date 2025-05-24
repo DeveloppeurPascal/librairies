@@ -36,8 +36,8 @@
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 2025-05-24T12:59:18.000+02:00
-/// Signature : e65bbf5cb07a529ef506c59f08f8171ac94c8935
+/// File last update : 2025-05-24T13:36:56.000+02:00
+/// Signature : a20488d77fd9ef4ff238e7a6c37c1f7a4e1b4590
 /// ***************************************************************************
 /// </summary>
 
@@ -412,17 +412,34 @@ begin
     result := getImageIndexOfChar('pourcent');
   if (result < 0) and (AChar = '''') then
     result := getImageIndexOfChar('apostrophe');
+  if (result < 0) and (AChar = '"') then
+    result := getImageIndexOfChar('guillemet');
   if (result < 0) and (AChar = ',') then
     result := getImageIndexOfChar('virgule');
   if (result < 0) and (AChar = '=') then
-    result := getImageIndexOfChar('egale');
+    result := getImageIndexOfChar('egal');
   if (result < 0) and (AChar = '-') then
     result := getImageIndexOfChar('moins');
   if (result < 0) and (AChar = '+') then
     result := getImageIndexOfChar('plus');
+  if (result < 0) and (AChar = '/') then
+  begin
+    result := getImageIndexOfChar('slash');
+    if (result < 0) then
+      result := getImageIndexOfChar('div');
+  end;
+  if (result < 0) and (AChar = '*') then
+  begin
+    result := getImageIndexOfChar('asterisque');
+    if (result < 0) then
+      result := getImageIndexOfChar('mult');
+  end;
   // if (result < 0) and (AChar = '...') then
-  // TODO : récupérer points de suspensions en 1 caractère
+  // TODO : récupérer "points de suspensions" en 1 caractère
   // result := getImageIndexOfChar('suspension'); // TODO
+  // if (result < 0) and (AChar = '->') then
+  // TODO : récupérer "flèche vers la droite" en 1 caractère
+  // result := getImageIndexOfChar('fleche-droite'); // TODO
   if (result < 0) and (AChar = '.') then
     result := getImageIndexOfChar('point');
   if (result < 0) and (AChar = '@') then
@@ -433,6 +450,22 @@ begin
     result := getImageIndexOfChar('euro');
   if (result < 0) and (AChar = ' ') then
     result := getImageIndexOfChar('space');
+  if (result < 0) and (AChar = '<') then
+    result := getImageIndexOfChar('inf');
+  if (result < 0) and (AChar = '>') then
+    result := getImageIndexOfChar('sup');
+  if (result < 0) and (AChar = '(') then
+    result := getImageIndexOfChar('parenthese-on');
+  if (result < 0) and (AChar = ')') then
+    result := getImageIndexOfChar('parenthese-off');
+  if (result < 0) and (AChar = '{') then
+    result := getImageIndexOfChar('accolade-on');
+  if (result < 0) and (AChar = '}') then
+    result := getImageIndexOfChar('accolade-off');
+  if (result < 0) and (AChar = '[') then
+    result := getImageIndexOfChar('crochet-on');
+  if (result < 0) and (AChar = ']') then
+    result := getImageIndexOfChar('crochet-off');
   if (result < 0) and (AChar = ':') then
   begin
     result := getImageIndexOfChar('deuxpoint');
