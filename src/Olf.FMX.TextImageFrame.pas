@@ -36,8 +36,8 @@
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 2025-05-24T12:46:58.000+02:00
-/// Signature : 4d7b56066668991fd5229fd0a7cfab94da222d44
+/// File last update : 2025-05-24T12:49:22.000+02:00
+/// Signature : dacdc9ec89c80cf0d719a3baa321569750c0e2a3
 /// ***************************************************************************
 /// </summary>
 
@@ -237,7 +237,7 @@ begin
     if result < 0 then
       result := getImageIndexOfChar('atilde');
   end;
-  if (result < 0) and CharInset(AChar, ['à', 'ã']) then
+  if (result < 0) and CharInset(AChar, ['à', 'ã', 'ạ']) then
     result := getImageIndexOfChar('a', true);
 
   if (result < 0) and (AChar = 'ç') then
