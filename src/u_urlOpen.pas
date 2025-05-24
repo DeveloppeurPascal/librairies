@@ -36,8 +36,8 @@
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 2025-05-24T12:25:22.000+02:00
-/// Signature : d44d0958b693360fbd7599448e3e12415aaa8278
+/// File last update : 2025-05-24T12:30:20.000+02:00
+/// Signature : 0443fa5fe9a45b383d12d657d36f286fb5d6b471
 /// ***************************************************************************
 /// </summary>
 
@@ -52,28 +52,26 @@ procedure url_Open_In_Browser(URL: string);
 implementation
 
 uses
+{$IF Defined(IOS)}
+  macapi.helpers,
+  iOSapi.Foundation,
+  FMX.helpers.iOS,
+{$ELSEIF Defined(ANDROID)}
+  Androidapi.JNI.GraphicsContentViewText,
+  Androidapi.JNI.App,
+  Androidapi.JNI.Net,
+  Androidapi.helpers,
+{$ELSEIF Defined(MACOS)}
+  Posix.Stdlib,
+{$ELSEIF Defined(MSWINDOWS)}
+  Winapi.ShellAPI,
+  Winapi.Windows,
+{$ENDIF}
   System.SysUtils,
   System.Types,
   System.UITypes,
   System.Classes,
-  System.Variants
-{$IF Defined(IOS)}
-    ,
-  macapi.helpers,
-  iOSapi.Foundation,
-  FMX.helpers.iOS
-{$ELSEIF Defined(ANDROID)}
-    ,
-  Androidapi.JNI.GraphicsContentViewText,
-  Androidapi.helpers
-{$ELSEIF Defined(MACOS)}
-    ,
-  Posix.Stdlib
-{$ELSEIF Defined(MSWINDOWS)}
-    ,
-  Winapi.ShellAPI,
-  Winapi.Windows
-{$ENDIF};
+  System.Variants;
 
 procedure url_Open_In_Browser(URL: string);
 {$IF Defined(ANDROID)}
