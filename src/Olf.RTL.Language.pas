@@ -1,9 +1,9 @@
 ﻿/// <summary>
 /// ***************************************************************************
 ///
-/// Librairies pour Delphi
+/// My libraries for Delphi
 ///
-/// Copyright 1990-2024 Patrick Prémartin under AGPL 3.0 license.
+/// Copyright 1990-2025 Patrick Prémartin under AGPL 3.0 license.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -27,17 +27,17 @@
 /// ***************************************************************************
 ///
 /// Author(s) :
-///      Patrick PREMARTIN
+/// Patrick PREMARTIN
 ///
 /// Site :
-///      https://developpeur-pascal.fr/librairies-publiques.html
+/// https://librairies.developpeur-pascal.fr
 ///
 /// Project site :
-///      https://github.com/DeveloppeurPascal/librairies
+/// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 03/08/2024 22:01:25
-/// Signature : 2c5550e3b008903c964c02a8627018617f65dbd7
+/// File last update : 2025-05-24T12:12:02.000+02:00
+/// Signature : 1c31428f8d19ebde449516c240a9f165dacabfe8
 /// ***************************************************************************
 /// </summary>
 
@@ -103,7 +103,7 @@ var
   Languages: NSArray;
 begin
   Languages := TNSLocale.OCClass.preferredLanguages;
-  Result := lowercase(TNSString.Wrap(Languages.objectAtIndex(0)).UTF8String);
+  Result := String(TNSString.Wrap(Languages.objectAtIndex(0)).lowercaseString.UTF8String);
 end;
 {$ELSE}
 
