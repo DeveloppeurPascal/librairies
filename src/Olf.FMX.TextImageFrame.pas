@@ -36,8 +36,8 @@
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 2025-05-24T12:49:22.000+02:00
-/// Signature : dacdc9ec89c80cf0d719a3baa321569750c0e2a3
+/// File last update : 2025-05-24T12:55:02.000+02:00
+/// Signature : ee18cf74f3349e03330f3abf9c51bd29bff3cb05
 /// ***************************************************************************
 /// </summary>
 
@@ -417,6 +417,12 @@ begin
   // result := getImageIndexOfChar('suspension'); // TODO
   if (result < 0) and (AChar = '.') then
     result := getImageIndexOfChar('point');
+  if (result < 0) and (AChar = '@') then
+    result := getImageIndexOfChar('arobase');
+  if (result < 0) and (AChar = '#') then
+    result := getImageIndexOfChar('diese');
+  if (result < 0) and (AChar = '€') then
+    result := getImageIndexOfChar('euro');
   if (result < 0) and (AChar = ':') then
   begin
     result := getImageIndexOfChar('deuxpoint');
