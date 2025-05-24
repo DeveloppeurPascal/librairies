@@ -1,9 +1,9 @@
 ﻿/// <summary>
 /// ***************************************************************************
 ///
-/// Librairies pour Delphi
+/// My libraries for Delphi
 ///
-/// Copyright 1990-2024 Patrick Prémartin under AGPL 3.0 license.
+/// Copyright 1990-2025 Patrick Prémartin under AGPL 3.0 license.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -27,17 +27,17 @@
 /// ***************************************************************************
 ///
 /// Author(s) :
-///      Patrick PREMARTIN
+/// Patrick PREMARTIN
 ///
 /// Site :
-///      https://developpeur-pascal.fr/librairies-publiques.html
+/// https://librairies.developpeur-pascal.fr
 ///
 /// Project site :
-///      https://github.com/DeveloppeurPascal/librairies
+/// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 28/05/2024 12:19:15
-/// Signature : 62546efcde8a5cca798d483bad205b939f0127c5
+/// File last update : 2025-05-24T12:25:22.000+02:00
+/// Signature : d44d0958b693360fbd7599448e3e12415aaa8278
 /// ***************************************************************************
 /// </summary>
 
@@ -52,15 +52,27 @@ procedure url_Open_In_Browser(URL: string);
 implementation
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
+  System.Variants
 {$IF Defined(IOS)}
-    , macapi.helpers, iOSapi.Foundation, FMX.helpers.iOS
+    ,
+  macapi.helpers,
+  iOSapi.Foundation,
+  FMX.helpers.iOS
 {$ELSEIF Defined(ANDROID)}
-    , Androidapi.JNI.GraphicsContentViewText, Androidapi.helpers
+    ,
+  Androidapi.JNI.GraphicsContentViewText,
+  Androidapi.helpers
 {$ELSEIF Defined(MACOS)}
-    , Posix.Stdlib
+    ,
+  Posix.Stdlib
 {$ELSEIF Defined(MSWINDOWS)}
-    , Winapi.ShellAPI, Winapi.Windows
+    ,
+  Winapi.ShellAPI,
+  Winapi.Windows
 {$ENDIF};
 
 procedure url_Open_In_Browser(URL: string);
