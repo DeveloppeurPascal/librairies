@@ -36,8 +36,8 @@
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 2025-05-24T12:55:02.000+02:00
-/// Signature : ee18cf74f3349e03330f3abf9c51bd29bff3cb05
+/// File last update : 2025-05-24T12:56:50.000+02:00
+/// Signature : 27452e81f3c09a548a0591cb93a59b8c6d2728bb
 /// ***************************************************************************
 /// </summary>
 
@@ -216,6 +216,14 @@ function TOlfFMXTextImageFrame.DefaultOnGetImageIndexOfUnknowChar
   (AChar: char): integer;
 begin
   result := -1;
+
+  if CharInset(AChar, ['0' .. '9']) then
+  begin
+    result := getImageIndexOfChar('_' + AChar);
+    if (result < 0) then
+      result := getImageIndexOfChar(AChar + '_');
+  end;
+
   if CharInset(AChar, ['a' .. 'z']) then
   begin
     result := getImageIndexOfChar('_' + AChar);
