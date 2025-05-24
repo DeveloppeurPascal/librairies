@@ -36,8 +36,8 @@
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 2025-05-10T09:42:46.000+02:00
-/// Signature : 7a3a133c3e0231443ab3230d11931360c0b99651
+/// File last update : 2025-05-24T12:46:58.000+02:00
+/// Signature : 4d7b56066668991fd5229fd0a7cfab94da222d44
 /// ***************************************************************************
 /// </summary>
 
@@ -244,8 +244,10 @@ begin
   begin
     result := getImageIndexOfChar('_ccedille');
     if (result < 0) then
-      result := getImageIndexOfChar('c');
+      result := getImageIndexOfChar('_ccedille');
   end;
+  if (result < 0) and CharInset(AChar, ['ç', 'č']) then
+    result := getImageIndexOfChar('c');
 
   if (result < 0) and (AChar = 'ď') then
   begin
@@ -280,7 +282,7 @@ begin
     if result < 0 then
       result := getImageIndexOfChar('etrema');
   end;
-  if (result < 0) and CharInset(AChar, ['é', 'è', 'ê', 'ë']) then
+  if (result < 0) and CharInset(AChar, ['é', 'è', 'ê', 'ë', 'ě']) then
     result := getImageIndexOfChar('e', true);
 
   if (result < 0) and (AChar = 'ı') then
@@ -315,9 +317,9 @@ begin
     result := getImageIndexOfChar('_ntilde');
     if result < 0 then
       result := getImageIndexOfChar('ntilde');
-    if (result < 0) then
-      result := getImageIndexOfChar('n');
   end;
+  if (result < 0) and CharInset(AChar, ['ñ', 'ň']) then
+    result := getImageIndexOfChar('n');
 
   if (result < 0) and (AChar = 'ô') then
   begin
@@ -347,6 +349,12 @@ begin
   if (result < 0) and (AChar = 'OE') then
     result := getImageIndexOfChar('OE');
   // TODO : récupérer "oe" en majuscules
+
+  if (result < 0) and CharInset(AChar, ['ř']) then
+    result := getImageIndexOfChar('r', true);
+
+  if (result < 0) and CharInset(AChar, ['š']) then
+    result := getImageIndexOfChar('s', true);
 
   if (result < 0) and (AChar = 'ť') then
   begin
@@ -380,6 +388,9 @@ begin
   if (result < 0) and CharInset(AChar, ['û', 'ü', 'ù']) then
     // TODO : ajouter u aigu
     result := getImageIndexOfChar('u', true);
+
+  if (result < 0) and CharInset(AChar, ['ž']) then
+    result := getImageIndexOfChar('z', true);
 
   if (result < 0) and (AChar = '?') then
     result := getImageIndexOfChar('interrogation');
