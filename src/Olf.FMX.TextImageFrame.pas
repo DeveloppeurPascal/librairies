@@ -36,8 +36,8 @@
 /// https://github.com/DeveloppeurPascal/librairies
 ///
 /// ***************************************************************************
-/// File last update : 2025-05-24T12:56:50.000+02:00
-/// Signature : 27452e81f3c09a548a0591cb93a59b8c6d2728bb
+/// File last update : 2025-05-24T12:59:18.000+02:00
+/// Signature : e65bbf5cb07a529ef506c59f08f8171ac94c8935
 /// ***************************************************************************
 /// </summary>
 
@@ -431,6 +431,8 @@ begin
     result := getImageIndexOfChar('diese');
   if (result < 0) and (AChar = '€') then
     result := getImageIndexOfChar('euro');
+  if (result < 0) and (AChar = ' ') then
+    result := getImageIndexOfChar('space');
   if (result < 0) and (AChar = ':') then
   begin
     result := getImageIndexOfChar('deuxpoint');
@@ -492,6 +494,10 @@ begin
       begin
         if (FRealSpaceWidth < 1) then
         begin
+          idx := getImageIndexOfChar(' ', false);
+          if (idx >= 0) then
+            FRealSpaceWidth := RetourneLargeur(FFont, idx);
+
           idx := getImageIndexOfChar('.', false);
           if (idx >= 0) then
             FRealSpaceWidth := RetourneLargeur(FFont, idx);
