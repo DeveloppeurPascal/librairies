@@ -609,8 +609,10 @@ begin
       Height := ParentHeight;
       DoRefresh;
       if (Width > ParentWidth) then
+      begin
         Height := ParentHeight * ParentWidth / Width;
-      DoRefresh;
+        DoRefresh;
+      end;
     end
     else
       Raise Exception.Create('AutoSize not allowed on this parent.');
