@@ -36,8 +36,8 @@
   https://github.com/DeveloppeurPascal/librairies
 
   ***************************************************************************
-  File last update : 2025-06-01T09:56:22.000+02:00
-  Signature : 7bb81085a54152b43752cf5f97a6309bb429d94d
+  File last update : 2025-06-01T10:09:44.000+02:00
+  Signature : 3ae50511aa145015cf9834d4ba81489738bf27e1
   ***************************************************************************
 *)
 
@@ -78,7 +78,7 @@ type
     FFont: TCustomImageList;
     FOnGetImageIndexOfUnknowChar: TOlfFMXTIFOnGetImageIndexOfUnknowChar;
     FLetterSpacing: single;
-    FSpaceWidth, FRealSpaceWidth: single;
+    FSpaceWidth: single;
     FHasPendingRefresh: boolean;
     FAutoSize: boolean;
     procedure SetFont(const Value: TCustomImageList);
@@ -210,7 +210,6 @@ begin
   FText := '';
   FLetterSpacing := 0;
   FSpaceWidth := 0;
-  FRealSpaceWidth := 0;
   FOnGetImageIndexOfUnknowChar := nil;
   FHasPendingRefresh := false;
 end;
@@ -500,6 +499,7 @@ var
   i: integer;
   x: single;
   idx: integer;
+  RealSpaceWidth: single;
 begin
   if IsUpdating then
   begin
@@ -512,6 +512,8 @@ begin
   for i := childrencount - 1 downto 0 do
     if (children[i] is TGlyph) then
       children[i].Free;
+
+  RealSpaceWidth := FSpaceWidth;
 
   x := 0;
   try
@@ -529,41 +531,41 @@ begin
           FLetterSpacing
       else if (FText.Chars[i] = ' ') then
       begin
-        if (FRealSpaceWidth < 1) then
+        if (RealSpaceWidth < 1) then
         begin
           idx := getImageIndexOfChar(' ', false);
           if (idx >= 0) then
-            FRealSpaceWidth := RetourneLargeur(FFont, idx);
+            RealSpaceWidth := RetourneLargeur(FFont, idx);
         end;
 
-        if (FRealSpaceWidth < 1) then
+        if (RealSpaceWidth < 1) then
         begin
           idx := getImageIndexOfChar('.', false);
           if (idx >= 0) then
-            FRealSpaceWidth := RetourneLargeur(FFont, idx);
+            RealSpaceWidth := RetourneLargeur(FFont, idx);
         end;
 
-        if (FRealSpaceWidth < 1) then
+        if (RealSpaceWidth < 1) then
         begin
           idx := getImageIndexOfChar('i', false);
           if (idx >= 0) then
-            FRealSpaceWidth := RetourneLargeur(FFont, idx);
+            RealSpaceWidth := RetourneLargeur(FFont, idx);
         end;
 
-        if (FRealSpaceWidth < 1) then
+        if (RealSpaceWidth < 1) then
         begin
           idx := getImageIndexOfChar('I', false);
           if (idx >= 0) then
-            FRealSpaceWidth := RetourneLargeur(FFont, idx);
+            RealSpaceWidth := RetourneLargeur(FFont, idx);
         end;
 
-        if (FRealSpaceWidth < 1) then
+        if (RealSpaceWidth < 1) then
         begin
           idx := getImageIndexOfChar('1', false);
           if (idx >= 0) then
-            FRealSpaceWidth := RetourneLargeur(FFont, idx);
+            RealSpaceWidth := RetourneLargeur(FFont, idx);
         end;
-        x := x + FRealSpaceWidth;
+        x := x + RealSpaceWidth;
       end;
     end;
   finally
@@ -647,7 +649,6 @@ begin
   if (FFont <> Value) then
   begin
     FFont := Value;
-    FRealSpaceWidth := FSpaceWidth;
     Refresh;
   end;
 end;
@@ -681,7 +682,6 @@ begin
   if (FSpaceWidth <> Value) then
   begin
     FSpaceWidth := Value;
-    FRealSpaceWidth := FSpaceWidth;
     Refresh;
   end;
 end;
