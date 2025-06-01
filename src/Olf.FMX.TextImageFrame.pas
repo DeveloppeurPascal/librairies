@@ -36,8 +36,8 @@
   https://github.com/DeveloppeurPascal/librairies
 
   ***************************************************************************
-  File last update : 2025-05-24T13:48:07.141+02:00
-  Signature : d86f76a9fd9e16dedaaf5e882c9276cd66ae4686
+  File last update : 2025-06-01T09:56:22.000+02:00
+  Signature : 7bb81085a54152b43752cf5f97a6309bb429d94d
   ***************************************************************************
 *)
 
@@ -534,19 +534,31 @@ begin
           idx := getImageIndexOfChar(' ', false);
           if (idx >= 0) then
             FRealSpaceWidth := RetourneLargeur(FFont, idx);
+        end;
 
+        if (FRealSpaceWidth < 1) then
+        begin
           idx := getImageIndexOfChar('.', false);
           if (idx >= 0) then
             FRealSpaceWidth := RetourneLargeur(FFont, idx);
+        end;
 
+        if (FRealSpaceWidth < 1) then
+        begin
           idx := getImageIndexOfChar('i', false);
           if (idx >= 0) then
             FRealSpaceWidth := RetourneLargeur(FFont, idx);
+        end;
 
+        if (FRealSpaceWidth < 1) then
+        begin
           idx := getImageIndexOfChar('I', false);
           if (idx >= 0) then
             FRealSpaceWidth := RetourneLargeur(FFont, idx);
+        end;
 
+        if (FRealSpaceWidth < 1) then
+        begin
           idx := getImageIndexOfChar('1', false);
           if (idx >= 0) then
             FRealSpaceWidth := RetourneLargeur(FFont, idx);
