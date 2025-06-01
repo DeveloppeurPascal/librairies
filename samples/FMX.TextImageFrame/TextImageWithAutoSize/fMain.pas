@@ -36,8 +36,8 @@
   https://github.com/DeveloppeurPascal/librairies
 
   ***************************************************************************
-  File last update : 2025-05-08T18:09:12.000+02:00
-  Signature : 4ba0477cd726d454fc6796d1dd03be0b31f626f0
+  File last update : 2025-06-01T09:57:22.000+02:00
+  Signature : 12b4bb5f5a70f305543a66f52a7bb825ee0159a7
   ***************************************************************************
 *)
 
@@ -117,7 +117,7 @@ begin
   S := '';
   while (I > 0) do
   begin
-    case random(9) of
+    case random(10) of
       0:
         S := S + 'a';
       1:
@@ -134,6 +134,8 @@ begin
         S := S + '1';
       7:
         S := S + '2';
+      8:
+        S := S + ' ';
     else
       S := S + '3';
     end;
