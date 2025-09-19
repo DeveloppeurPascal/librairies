@@ -47,7 +47,7 @@ interface
 
 (*
   Permet le déclenchement du vibreur du smartphone.
-  basé sur http://community.embarcadero.com/blogs/entry/how-to-vibrate-ios-and-android-phones-using-firemonkey-and-xe8
+  basé sur https://blogs.embarcadero.com/how-to-vibrate-ios-and-android-phones-using-firemonkey-and-xe8/
 
   Pour Android :
   - activer l'autorisation "vibrate" ou "vibrer" dans les autorisations de l'application
@@ -110,7 +110,7 @@ Var
 begin
 {$IFDEF ANDROID}
   Vibrator := TJVibrator.Wrap
-    ((SharedActivityContext.getSystemService
+    ((TAndroidHelper.Context.getSystemService
     (TJContext.JavaClass.VIBRATOR_SERVICE) as ILocalObject).GetObjectID);
   Vibrator.vibrate(milliseconds);
 {$ENDIF}
