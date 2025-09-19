@@ -1,9 +1,15 @@
-﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{49C68E69-BA44-490D-A0AD-279272A1E1AD}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
         <Projects Include="FMX.TextImageFrame\DisplayTextByCode\DisplayTextByCode.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="FMX.TextImageFrame\TextImageWithAutoSize\TextImageWithAutoSizeSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="FMX.TextImageFrame\TextWithAShadowEffect\TextWithAShadowEffectSample.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="FMX.TextImageFrame\UseLibraryAsTFrame\UseLibraryAsTFrame.dproj">
@@ -87,6 +93,12 @@
         <Projects Include="RTL.SystemAppearance\GetSystemTheme\GetSystemTheme.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="RTL.URLAndFileOpen\URLAndFileOpenSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Skia.SVGToBitmap\FMXAutoRegisterAndSVGMargins\FMXAutoRegisterAndSVGMarginsSample.dproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="Skia.SVGToBitmap\FMX\FMXSVGToBitmapSample.dproj">
             <Dependencies/>
         </Projects>
@@ -94,9 +106,6 @@
             <Dependencies/>
         </Projects>
         <Projects Include="Skia.SVGToBitmap\FMX_With_SVGList\FMXShowSVGFromBitmapSample.dproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="Skia.SVGToBitmap\FMXAutoRegisterAndSVGMargins\FMXAutoRegisterAndSVGMarginsSample.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="Skia.SVGToBitmap\VCL\VCLSVGToBitmapSample.dproj">
@@ -124,6 +133,24 @@
     </Target>
     <Target Name="DisplayTextByCode:Make">
         <MSBuild Projects="FMX.TextImageFrame\DisplayTextByCode\DisplayTextByCode.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TextImageWithAutoSizeSample">
+        <MSBuild Projects="FMX.TextImageFrame\TextImageWithAutoSize\TextImageWithAutoSizeSample.dproj"/>
+    </Target>
+    <Target Name="TextImageWithAutoSizeSample:Clean">
+        <MSBuild Projects="FMX.TextImageFrame\TextImageWithAutoSize\TextImageWithAutoSizeSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TextImageWithAutoSizeSample:Make">
+        <MSBuild Projects="FMX.TextImageFrame\TextImageWithAutoSize\TextImageWithAutoSizeSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TextWithAShadowEffectSample">
+        <MSBuild Projects="FMX.TextImageFrame\TextWithAShadowEffect\TextWithAShadowEffectSample.dproj"/>
+    </Target>
+    <Target Name="TextWithAShadowEffectSample:Clean">
+        <MSBuild Projects="FMX.TextImageFrame\TextWithAShadowEffect\TextWithAShadowEffectSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TextWithAShadowEffectSample:Make">
+        <MSBuild Projects="FMX.TextImageFrame\TextWithAShadowEffect\TextWithAShadowEffectSample.dproj" Targets="Make"/>
     </Target>
     <Target Name="UseLibraryAsTFrame">
         <MSBuild Projects="FMX.TextImageFrame\UseLibraryAsTFrame\UseLibraryAsTFrame.dproj"/>
@@ -368,6 +395,24 @@
     <Target Name="GetSystemTheme:Make">
         <MSBuild Projects="RTL.SystemAppearance\GetSystemTheme\GetSystemTheme.dproj" Targets="Make"/>
     </Target>
+    <Target Name="URLAndFileOpenSample">
+        <MSBuild Projects="RTL.URLAndFileOpen\URLAndFileOpenSample.dproj"/>
+    </Target>
+    <Target Name="URLAndFileOpenSample:Clean">
+        <MSBuild Projects="RTL.URLAndFileOpen\URLAndFileOpenSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="URLAndFileOpenSample:Make">
+        <MSBuild Projects="RTL.URLAndFileOpen\URLAndFileOpenSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FMXAutoRegisterAndSVGMarginsSample">
+        <MSBuild Projects="Skia.SVGToBitmap\FMXAutoRegisterAndSVGMargins\FMXAutoRegisterAndSVGMarginsSample.dproj"/>
+    </Target>
+    <Target Name="FMXAutoRegisterAndSVGMarginsSample:Clean">
+        <MSBuild Projects="Skia.SVGToBitmap\FMXAutoRegisterAndSVGMargins\FMXAutoRegisterAndSVGMarginsSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FMXAutoRegisterAndSVGMarginsSample:Make">
+        <MSBuild Projects="Skia.SVGToBitmap\FMXAutoRegisterAndSVGMargins\FMXAutoRegisterAndSVGMarginsSample.dproj" Targets="Make"/>
+    </Target>
     <Target Name="FMXSVGToBitmapSample">
         <MSBuild Projects="Skia.SVGToBitmap\FMX\FMXSVGToBitmapSample.dproj"/>
     </Target>
@@ -394,15 +439,6 @@
     </Target>
     <Target Name="FMXShowSVGFromBitmapSample:Make">
         <MSBuild Projects="Skia.SVGToBitmap\FMX_With_SVGList\FMXShowSVGFromBitmapSample.dproj" Targets="Make"/>
-    </Target>
-    <Target Name="FMXAutoRegisterAndSVGMarginsSample">
-        <MSBuild Projects="Skia.SVGToBitmap\FMXAutoRegisterAndSVGMargins\FMXAutoRegisterAndSVGMarginsSample.dproj"/>
-    </Target>
-    <Target Name="FMXAutoRegisterAndSVGMarginsSample:Clean">
-        <MSBuild Projects="Skia.SVGToBitmap\FMXAutoRegisterAndSVGMargins\FMXAutoRegisterAndSVGMarginsSample.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="FMXAutoRegisterAndSVGMarginsSample:Make">
-        <MSBuild Projects="Skia.SVGToBitmap\FMXAutoRegisterAndSVGMargins\FMXAutoRegisterAndSVGMarginsSample.dproj" Targets="Make"/>
     </Target>
     <Target Name="VCLSVGToBitmapSample">
         <MSBuild Projects="Skia.SVGToBitmap\VCL\VCLSVGToBitmapSample.dproj"/>
@@ -432,13 +468,13 @@
         <MSBuild Projects="Skia.SVGToBitmap\VCL_With_SVGList\VCLShowSVGFromBitmapSample.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="DisplayTextByCode;UseLibraryAsTFrame;MD5Sample;ChecksumSample;IncDecByteCryptSample;ShiftCryptDecryptSample;CryptDecryptSample;SwapCryptDecryptSample;TimeConversionSample;DProjReaderSample;RandomIDGenerator;GetSystemLanguageISOCode_FMX;GetSystemLanguageISOCode_VCL;NumberBaseConvertSample;SHL_SHR_Sample;BeginEndUpdateParamSample;CryptDecryptEventsSample;ParamsEvents;ParamsSample;RemoveKeySample;ParamsFolderTest;ParamsInPortableMode;LoadAndSaveBitmapInAStreamSample;FMXEmptyBitmapSample;VCLEmptyBitmapSample;LoadAndSaveStringSample;StreamWithSize;GetSystemTheme;FMXSVGToBitmapSample;FMXSVGClassTest;FMXShowSVGFromBitmapSample;FMXAutoRegisterAndSVGMarginsSample;VCLSVGToBitmapSample;CreateImagesByCodeSampleProject;VCLShowSVGFromBitmapSample"/>
+        <CallTarget Targets="DisplayTextByCode;TextImageWithAutoSizeSample;TextWithAShadowEffectSample;UseLibraryAsTFrame;MD5Sample;ChecksumSample;IncDecByteCryptSample;ShiftCryptDecryptSample;CryptDecryptSample;SwapCryptDecryptSample;TimeConversionSample;DProjReaderSample;RandomIDGenerator;GetSystemLanguageISOCode_FMX;GetSystemLanguageISOCode_VCL;NumberBaseConvertSample;SHL_SHR_Sample;BeginEndUpdateParamSample;CryptDecryptEventsSample;ParamsEvents;ParamsSample;RemoveKeySample;ParamsFolderTest;ParamsInPortableMode;LoadAndSaveBitmapInAStreamSample;FMXEmptyBitmapSample;VCLEmptyBitmapSample;LoadAndSaveStringSample;StreamWithSize;GetSystemTheme;URLAndFileOpenSample;FMXAutoRegisterAndSVGMarginsSample;FMXSVGToBitmapSample;FMXSVGClassTest;FMXShowSVGFromBitmapSample;VCLSVGToBitmapSample;CreateImagesByCodeSampleProject;VCLShowSVGFromBitmapSample"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="DisplayTextByCode:Clean;UseLibraryAsTFrame:Clean;MD5Sample:Clean;ChecksumSample:Clean;IncDecByteCryptSample:Clean;ShiftCryptDecryptSample:Clean;CryptDecryptSample:Clean;SwapCryptDecryptSample:Clean;TimeConversionSample:Clean;DProjReaderSample:Clean;RandomIDGenerator:Clean;GetSystemLanguageISOCode_FMX:Clean;GetSystemLanguageISOCode_VCL:Clean;NumberBaseConvertSample:Clean;SHL_SHR_Sample:Clean;BeginEndUpdateParamSample:Clean;CryptDecryptEventsSample:Clean;ParamsEvents:Clean;ParamsSample:Clean;RemoveKeySample:Clean;ParamsFolderTest:Clean;ParamsInPortableMode:Clean;LoadAndSaveBitmapInAStreamSample:Clean;FMXEmptyBitmapSample:Clean;VCLEmptyBitmapSample:Clean;LoadAndSaveStringSample:Clean;StreamWithSize:Clean;GetSystemTheme:Clean;FMXSVGToBitmapSample:Clean;FMXSVGClassTest:Clean;FMXShowSVGFromBitmapSample:Clean;FMXAutoRegisterAndSVGMarginsSample:Clean;VCLSVGToBitmapSample:Clean;CreateImagesByCodeSampleProject:Clean;VCLShowSVGFromBitmapSample:Clean"/>
+        <CallTarget Targets="DisplayTextByCode:Clean;TextImageWithAutoSizeSample:Clean;TextWithAShadowEffectSample:Clean;UseLibraryAsTFrame:Clean;MD5Sample:Clean;ChecksumSample:Clean;IncDecByteCryptSample:Clean;ShiftCryptDecryptSample:Clean;CryptDecryptSample:Clean;SwapCryptDecryptSample:Clean;TimeConversionSample:Clean;DProjReaderSample:Clean;RandomIDGenerator:Clean;GetSystemLanguageISOCode_FMX:Clean;GetSystemLanguageISOCode_VCL:Clean;NumberBaseConvertSample:Clean;SHL_SHR_Sample:Clean;BeginEndUpdateParamSample:Clean;CryptDecryptEventsSample:Clean;ParamsEvents:Clean;ParamsSample:Clean;RemoveKeySample:Clean;ParamsFolderTest:Clean;ParamsInPortableMode:Clean;LoadAndSaveBitmapInAStreamSample:Clean;FMXEmptyBitmapSample:Clean;VCLEmptyBitmapSample:Clean;LoadAndSaveStringSample:Clean;StreamWithSize:Clean;GetSystemTheme:Clean;URLAndFileOpenSample:Clean;FMXAutoRegisterAndSVGMarginsSample:Clean;FMXSVGToBitmapSample:Clean;FMXSVGClassTest:Clean;FMXShowSVGFromBitmapSample:Clean;VCLSVGToBitmapSample:Clean;CreateImagesByCodeSampleProject:Clean;VCLShowSVGFromBitmapSample:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="DisplayTextByCode:Make;UseLibraryAsTFrame:Make;MD5Sample:Make;ChecksumSample:Make;IncDecByteCryptSample:Make;ShiftCryptDecryptSample:Make;CryptDecryptSample:Make;SwapCryptDecryptSample:Make;TimeConversionSample:Make;DProjReaderSample:Make;RandomIDGenerator:Make;GetSystemLanguageISOCode_FMX:Make;GetSystemLanguageISOCode_VCL:Make;NumberBaseConvertSample:Make;SHL_SHR_Sample:Make;BeginEndUpdateParamSample:Make;CryptDecryptEventsSample:Make;ParamsEvents:Make;ParamsSample:Make;RemoveKeySample:Make;ParamsFolderTest:Make;ParamsInPortableMode:Make;LoadAndSaveBitmapInAStreamSample:Make;FMXEmptyBitmapSample:Make;VCLEmptyBitmapSample:Make;LoadAndSaveStringSample:Make;StreamWithSize:Make;GetSystemTheme:Make;FMXSVGToBitmapSample:Make;FMXSVGClassTest:Make;FMXShowSVGFromBitmapSample:Make;FMXAutoRegisterAndSVGMarginsSample:Make;VCLSVGToBitmapSample:Make;CreateImagesByCodeSampleProject:Make;VCLShowSVGFromBitmapSample:Make"/>
+        <CallTarget Targets="DisplayTextByCode:Make;TextImageWithAutoSizeSample:Make;TextWithAShadowEffectSample:Make;UseLibraryAsTFrame:Make;MD5Sample:Make;ChecksumSample:Make;IncDecByteCryptSample:Make;ShiftCryptDecryptSample:Make;CryptDecryptSample:Make;SwapCryptDecryptSample:Make;TimeConversionSample:Make;DProjReaderSample:Make;RandomIDGenerator:Make;GetSystemLanguageISOCode_FMX:Make;GetSystemLanguageISOCode_VCL:Make;NumberBaseConvertSample:Make;SHL_SHR_Sample:Make;BeginEndUpdateParamSample:Make;CryptDecryptEventsSample:Make;ParamsEvents:Make;ParamsSample:Make;RemoveKeySample:Make;ParamsFolderTest:Make;ParamsInPortableMode:Make;LoadAndSaveBitmapInAStreamSample:Make;FMXEmptyBitmapSample:Make;VCLEmptyBitmapSample:Make;LoadAndSaveStringSample:Make;StreamWithSize:Make;GetSystemTheme:Make;URLAndFileOpenSample:Make;FMXAutoRegisterAndSVGMarginsSample:Make;FMXSVGToBitmapSample:Make;FMXSVGClassTest:Make;FMXShowSVGFromBitmapSample:Make;VCLSVGToBitmapSample:Make;CreateImagesByCodeSampleProject:Make;VCLShowSVGFromBitmapSample:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
