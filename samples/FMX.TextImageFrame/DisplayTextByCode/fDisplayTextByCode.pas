@@ -67,9 +67,7 @@ type
       AChar: char): integer;
     function CreateTextImage(AFont: tcustomimagelist; Atext: string)
       : TOlfFMXTextImageFrame;
-    { Déclarations privées }
   public
-    { Déclarations publiques }
   end;
 
 var
@@ -86,7 +84,7 @@ function TForm1.ConvertUnknownChars(Sender: TOlfFMXTextImageFrame;
   AChar: char): integer;
 begin
   result := -1;
-  if charinset(AChar, ['a' .. 'z']) then // _a, _b, _c in source images
+  if charinset(AChar, ['a'..'z']) then // _a, _b, _c in source images
     result := Sender.getImageIndexOfChar('_' + AChar);
 end;
 
@@ -117,3 +115,4 @@ begin
 end;
 
 end.
+
