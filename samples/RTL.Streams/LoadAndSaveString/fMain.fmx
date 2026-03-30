@@ -13,41 +13,39 @@ object Form1: TForm1
     Touch.InteractiveGestures = [LongTap, DoubleTap]
     Align = Top
     TabOrder = 0
-    Size.Width = 640.000000000000000000
-    Size.Height = 22.000000000000000000
+    Size.Width = 640.00000000000000000
+    Size.Height = 22.00000000000000000
     Size.PlatformDefault = False
   end
   object Button1: TButton
     Align = Top
-    Position.Y = 22.000000000000000000
-    Size.Width = 640.000000000000000000
-    Size.Height = 22.000000000000000000
+    Position.Y = 22.00000000000000000
+    Size.Width = 640.00000000000000000
+    Size.Height = 22.00000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
     Text = 'Button1'
-    TextSettings.Trimming = None
     OnClick = Button1Click
   end
   object Memo1: TMemo
     Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
     DataDetectorTypes = []
     Align = Client
-    Size.Width = 640.000000000000000000
-    Size.Height = 414.000000000000000000
+    Size.Width = 640.00000000000000000
+    Size.Height = 414.00000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
-    Viewport.Width = 636.000000000000000000
-    Viewport.Height = 410.000000000000000000
+    Viewport.Width = 636.00000000000000000
+    Viewport.Height = 410.00000000000000000
   end
   object Button2: TButton
     Align = Top
-    Position.Y = 44.000000000000000000
-    Size.Width = 640.000000000000000000
-    Size.Height = 22.000000000000000000
+    Position.Y = 44.00000000000000000
+    Size.Width = 640.00000000000000000
+    Size.Height = 22.00000000000000000
     Size.PlatformDefault = False
     TabOrder = 3
     Text = 'Button2'
-    TextSettings.Trimming = None
     OnClick = Button2Click
   end
 end

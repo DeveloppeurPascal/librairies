@@ -46,10 +46,22 @@ unit fMain;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes,
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
   System.Variants,
-  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Memo.Types,
-  FMX.ScrollBox, FMX.Memo, FMX.StdCtrls, FMX.Controls.Presentation, FMX.Edit;
+  FMX.Types,
+  FMX.Controls,
+  FMX.Forms,
+  FMX.Graphics,
+  FMX.Dialogs,
+  FMX.Memo.Types,
+  FMX.ScrollBox,
+  FMX.Memo,
+  FMX.StdCtrls,
+  FMX.Controls.Presentation,
+  FMX.Edit;
 
 type
   TForm1 = class(TForm)
@@ -107,7 +119,6 @@ procedure TForm1.Button2Click(Sender: TObject);
 var
   s: tmemorystream;
   size: int64;
-  ch: string;
 begin
   if Edit1.text.isEmpty then
     exit;
@@ -149,3 +160,4 @@ begin
 end;
 
 end.
+
