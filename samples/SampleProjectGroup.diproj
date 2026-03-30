@@ -4,15 +4,17 @@
   <Summary>This repository contains functions, procedures and classes to use in Delphi projects (console, VCL, FireMonkey and others). It's my "everything reuseable things" toolbox.</Summary>
   <Author>Patrick PREMARTIN</Author>
   <Email>patrick@premartin.fr</Email>
-  <Copyright>(c) 1990-2025 Patrick PREMARTIN</Copyright>
+  <Copyright>(c) 1990-2026 Patrick PREMARTIN</Copyright>
   <Comment/>
   <Language>2057</Language>
   <Charset>1</Charset>
+  <Theme>Learn</Theme>
   <HeaderHtml>&lt;%TopicTitle%&gt;</HeaderHtml>
-  <FooterHtml>&lt;a href="https://librairies.developpeur-pascal.fr/" target="_blank"&gt;My libraries for Delphi&lt;/a&gt; (c) 1990-2025 &lt;a href="https://patrick.premartin.fr" target="_blank"&gt;Patrick PREMARTIN&lt;/a&gt; - Powered by &lt;a href="https://devjetsoftware.com/products/documentation-insight/" target="_blank"&gt;DocInsight&lt;/a&gt;</FooterHtml>
+  <FooterHtml>&lt;a href="https://librairies.developpeur-pascal.fr/" target="_blank"&gt;My libraries for Delphi&lt;/a&gt; (c) 1990-2026 &lt;a href="https://patrick.premartin.fr" target="_blank"&gt;Patrick PREMARTIN&lt;/a&gt; - Powered by &lt;a href="https://devjetsoftware.com/products/documentation-insight/" target="_blank"&gt;DocInsight&lt;/a&gt;</FooterHtml>
   <CustomDefines/>
-  <ShowImplementationSection>false</ShowImplementationSection>
-  <ShowPrivateMembers>false</ShowPrivateMembers>
+  <GlobalSearchPaths>false</GlobalSearchPaths>
+  <ShowImplementationSection>true</ShowImplementationSection>
+  <ShowPrivateMembers>true</ShowPrivateMembers>
   <ShowProtectedMembers>true</ShowProtectedMembers>
   <ShowInheritedMembers>true</ShowInheritedMembers>
   <ShowPropertyAccessors>true</ShowPropertyAccessors>
@@ -21,6 +23,8 @@
   <TargetPlatform>0</TargetPlatform>
   <Sources>
     <Source>.\FMX.TextImageFrame\DisplayTextByCode\DisplayTextByCode.dpr</Source>
+    <Source>.\FMX.TextImageFrame\TextImageWithAutoSize\TextImageWithAutoSizeSample.dpr</Source>
+    <Source>.\FMX.TextImageFrame\TextWithAShadowEffect\TextWithAShadowEffectSample.dpr</Source>
     <Source>.\FMX.TextImageFrame\UseLibraryAsTFrame\UseLibraryAsTFrame.dpr</Source>
     <Source>.\Others\Hash-MD5\MD5Sample.dpr</Source>
     <Source>.\RTL.Checksum\ChecksumSample.dpr</Source>
@@ -48,16 +52,14 @@
     <Source>.\RTL.Streams\LoadAndSaveString\LoadAndSaveStringSample.dpr</Source>
     <Source>.\RTL.Streams\LoadAndSaveWithSize\StreamWithSize.dpr</Source>
     <Source>.\RTL.SystemAppearance\GetSystemTheme\GetSystemTheme.dpr</Source>
+    <Source>.\RTL.URLAndFileOpen\URLAndFileOpenSample.dpr</Source>
+    <Source>.\Skia.SVGToBitmap\FMXAutoRegisterAndSVGMargins\FMXAutoRegisterAndSVGMarginsSample.dpr</Source>
     <Source>.\Skia.SVGToBitmap\FMX\FMXSVGToBitmapSample.dpr</Source>
     <Source>.\Skia.SVGToBitmap\FMX_AccessSVGSourcesByClassMethods\FMXSVGClassTest.dpr</Source>
     <Source>.\Skia.SVGToBitmap\FMX_With_SVGList\FMXShowSVGFromBitmapSample.dpr</Source>
-    <Source>.\Skia.SVGToBitmap\FMXAutoRegisterAndSVGMargins\FMXAutoRegisterAndSVGMarginsSample.dpr</Source>
     <Source>.\Skia.SVGToBitmap\VCL\VCLSVGToBitmapSample.dpr</Source>
     <Source>.\Skia.SVGToBitmap\VCL_SVGList_CreateImagesByCode\CreateImagesByCodeSampleProject.dpr</Source>
     <Source>.\Skia.SVGToBitmap\VCL_With_SVGList\VCLShowSVGFromBitmapSample.dpr</Source>
-    <Source>.\FMX.TextImageFrame\TextImageWithAutoSize\TextImageWithAutoSizeSample.dpr</Source>
-    <Source>.\FMX.TextImageFrame\TextWithAShadowEffect\TextWithAShadowEffectSample.dpr</Source>
-    <Source>.\RTL.URLAndFileOpen\URLAndFileOpenSample.dpr</Source>
   </Sources>
   <Outputs>
     <Output Type="HTML">
