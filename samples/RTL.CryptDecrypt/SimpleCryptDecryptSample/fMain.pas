@@ -76,7 +76,7 @@ type
     { Déclarations privées }
   public
     { Déclarations publiques }
-    procedure ShowStreamContent(Const AName: string; Const AStream: TStream);
+    procedure ShowStreamContent(const AName: string; const AStream: TStream);
   end;
 
 var
@@ -96,7 +96,7 @@ var
   ss: TStringStream;
   cs, dcs: TStream;
   crypt: TOlfCryptDecrypt;
-  nb, i: integer;
+  i: integer;
   key: TByteDynArray;
   KeyToString: string;
 begin
@@ -166,7 +166,7 @@ var
   s: string;
   ss: TStringStream;
   cs, dcs: TStream;
-  nb, i: integer;
+  i: integer;
   key: TByteDynArray;
   KeyToString: string;
 begin
@@ -250,7 +250,8 @@ end;
 
 initialization
 
-randomize;
-ReportMemoryLeaksOnShutdown := true;
+  randomize;
+  ReportMemoryLeaksOnShutdown := true;
 
 end.
+
