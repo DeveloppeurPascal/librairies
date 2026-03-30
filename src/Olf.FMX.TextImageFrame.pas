@@ -441,6 +441,10 @@ begin
     if (result < 0) then
       result := getImageIndexOfChar('div');
   end;
+  if (result < 0) and (AChar = '\') then
+    result := getImageIndexOfChar('backslash');
+  if (result < 0) and (AChar = '|') then
+    result := getImageIndexOfChar('pipe');
   if (result < 0) and (AChar = '*') then
   begin
     result := getImageIndexOfChar('asterisque');
