@@ -72,7 +72,7 @@ type
     procedure FormCreate(Sender: TObject);
   private
     { Déclarations privées }
-    procedure LogStream(Const Txt: string; Const Stream: TStream);
+    procedure LogStream(const Txt: string; const Stream: TStream);
   public
     { Déclarations publiques }
   end;
@@ -96,8 +96,6 @@ var
   ss: TStringStream;
   ms1, ms2: TStream;
 begin
-  ms1 := nil;
-
   key := TOlfCryptDecrypt.GenShiftKey(random(21) + 5);
   s := '';
   for i := 0 to length(key) - 1 do
@@ -158,6 +156,7 @@ end;
 
 initialization
 
-ReportMemoryLeaksOnShutdown := true;
+  ReportMemoryLeaksOnShutdown := true;
 
 end.
+
