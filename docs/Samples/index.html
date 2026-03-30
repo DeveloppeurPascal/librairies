@@ -1,122 +1,534 @@
-﻿<!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html class="layout layout-holy-grail" lang="en-us" dir="ltr">
+
 <head>
-  <title>My libraries for Delphi</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="generator" content="DocInsight">
-  <link type="text/css" rel="stylesheet" media="all" href="themes/legacy/css/reset.css" />
-  <link type="text/css" rel="stylesheet" media="all" href="themes/legacy/css/smoothness/jquery-ui.css" />
-  <script type="text/javascript" src="themes/legacy/js/jquery.min.js"></script>
-  <script type="text/javascript" src="themes/legacy/js/jquery-migrate.min.js"></script>
-  <script type="text/javascript" src="themes/legacy/js/jquery-ui.min.js"></script>
-  <script type="text/javascript" src="themes/legacy/js/splitter.js"></script>
-
-  <style type="text/css">
-    html, body {
-		margin:0;
-		padding:0;
-		height:100%;
-		overflow:hidden;
-    }
-
-    #navigationLayout {
-		min-width: 200px;
-		height: 100%;
-    }
-
-    #contentLayout {
-		min-width: 300px;
-		height: 100%;
-		background-color: #eee;
-    }
-
-    #navigationFrame, #contentFrame {
-      height:100%; width:100%; border:none;
-    }
-
-	#main {
-		height: 100%;
-		width: 100%;
-		border: none;
-	}
-	#main div {
-		overflow-x: auto;
-		overflow-y: hidden;
-	}
-	.vsplitbar {
-		height: 100%;
-		width: 1px;
-		background: #b6b6b6;
-		background-image: url(images/vgrabber.gif);
-		background-repeat: no-repeat;
-		background-position: center;
-	}
-    .cover {
-		position:absolute;
-		width:100%;
-		height:100%;
-		top:0;
-		left:0;
-		z-index:99;
-		background-color:#fff;
-		filter:alpha(opacity=30);
-		opacity:0.01;
-		display:none;
-	}
-
-  </style>
-
-  <script type="text/javascript">
-	var resizeTimer;
-
-	function realignWindow() {
-		if (! $(".vsplitbar").hasClass("active"))
-			$("#main").trigger("resize");
-	}
-
-	$(function() {
-		$("#main").splitter({
-			splitVertical: true,
-			// outline: true,
-            sizeLeft: 300
-        });
-		$(window).resize(
-			function () {
-				clearTimeout(resizeTimer);
-				resizeTimer = setTimeout(realignWindow, 10);
-			}
-		);
-	});
-
-  </script>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My libraries for Delphi ProjectGroup</title>
+  <meta name="color-scheme" content="light dark" />
+  <meta name="generator" content="DocInsight" />
+  <meta name="toc-key" content="toc-packages" />
+  <meta name="search-index" content="toc&#x2f;search-index.js" />
+  <meta name="uid" content="index" />
+  <link rel="stylesheet" href="static/css/learn.css" />
+  <script src="static/js/index-learn.js"></script>
+  <script src="toc/toc-packages.js"></script>
 </head>
-<body>
+
+<body id="body" class="layout-body">
+  <header id="header" class="layout-body-header">
+    <div class="site-header display-flex align-items-center ">
+      <span class="margin-left-none icon logo">
+      </span>
+      <a href="index.html" class="site-header-brand padding-left-none">
+        <span>My libraries for Delphi</span>
+      </a>
+
+      <nav aria-label="site header nav" class="site-header-nav display-flex align-items-center gap-xxs">
+        <ul class="display-none display-flex-tablet justify-content-space-between gap-xxs">
+          <li>
+            <a class="color-text font-size-sm" href="index.html">API Reference</a>
+          </li>
+        </ul>
+
+        <form role="search" aria-label="Search" id="search-container" class="margin-left-xss margin-left-lg-tablet">
+          <div class="autocomplete display-block">
+            <div class="position-relative">
+              <input class="input input-icon input-sm" type="text" placeholder="Search" aria-expanded="true"
+                aria-activedescendant="">
+              <span class="icon search" aria-hidden="true"></span>
+            </div>
+            <ul role="listbox" id="search-suggestions"
+              class="autocomplete-suggestions is-vertically-scrollable padding-xxs" aria-label="Suggestions" hidden>
+            </ul>
+          </div>
+        </form>
+
+        <button id="color-mode-toggle" title="Toggle color mode" class="button button-clear margin-left-auto">
+          <span class="icon color-mode">
+          </span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <section id="layout-body-menu" class="layout-body-menu display-flex">
+    <div id="left-container"
+      class="left-container display-none display-block-tablet padding-inline-sm padding-bottom-sm width-full">
+      <nav id="affixed-left-container" class="margin-top-sm-tablet position-sticky display-flex flex-direction-column"
+        aria-label="Primary">
+      </nav>
+    </div>
+  </section>
+
+  <main id="main" role="main" class="layout-body-main">
+    <article class="padding-sm padding-top-none padding-top-sm-tablet">
+      <div id="article-header"
+        class="align-items-center display-flex background-color-body margin-bottom-xs display-none-print">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumbs">
+          </ol>
+        </nav>
+
+        <div id="page-actions" class="display-flex flex-wrap-no-wrap margin-left-auto">
+        </div>
+      </div>
+
+      <div class="content">
+        <h1>My libraries for Delphi ProjectGroup</h1>
+
+        <nav id="center-doc-outline" class="doc-outline is-hidden-desktop display-none-print margin-bottom-sm"
+          aria-label="On this page">
+          <h2 id="on-this-page" class="title is-6 margin-block-xs">
+            On this page
+          </h2>
+          <ol id="content-well-in-this-article-list2" class="border-left padding-left-xxs">
+            <li class="">
+              <a href="#packages">Packages</a>
+            </li>
+          </ol>
+        </nav>
+        
 
 
-<div id="main">
 
-	<div id="navigationLayout">
-		<iframe name="navigationFrame" id="navigationFrame" src="toc.html" seamless="seamless" title="Navigation Frame" frameborder="0">
-		</iframe>
-		<!--
-		-->
-	</div>
 
-	<div id="contentLayout">
-	  <script type="text/javascript">
-		var defaultTopic = "My-libraries-for-Delphi.html";
-		if (location.href.lastIndexOf("?") > 0)
-			defaultTopic = location.href.substring(location.href.lastIndexOf("?")+1,location.href.length).replace(/:/g,"");
-		document.write('<iframe name="contentFrame" id="contentFrame" src="' + defaultTopic + '" seamless="seamless" title="Content Frame" frameborder="0">');
-	  </script>
-	  <noscript>
-		<iframe name="contentFrame" id="contentFrame" src="My-libraries-for-Delphi.html" seamless="seamless" title="Content Frame" frameborder="0">
-		</iframe>
-	  </noscript>
-	</div>
-</div>
-<div class="cover" id="cover"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="member-group">
+  <h2 id="packages">Packages</h2>
+  <div class="has-inner-focus">
+    <table class="table table-sm margin-top-none">
+      <tbody>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="BeginEndUpdateParamSample.html" class="cref">BeginEndUpdateParamSample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="ChecksumSample.html" class="cref">ChecksumSample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="CreateImagesByCodeSampleProject.html" class="cref">CreateImagesByCodeSampleProject</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="CryptDecryptEventsSample.html" class="cref">CryptDecryptEventsSample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="CryptDecryptSample.html" class="cref">CryptDecryptSample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="DProjReaderSample.html" class="cref">DProjReaderSample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="DisplayTextByCode.html" class="cref">DisplayTextByCode</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="FMXAutoRegisterAndSVGMarginsSample.html" class="cref">FMXAutoRegisterAndSVGMarginsSample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="FMXEmptyBitmapSample.html" class="cref">FMXEmptyBitmapSample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="FMXSVGClassTest.html" class="cref">FMXSVGClassTest</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="FMXSVGToBitmapSample.html" class="cref">FMXSVGToBitmapSample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="FMXShowSVGFromBitmapSample.html" class="cref">FMXShowSVGFromBitmapSample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="GetSystemLanguageISOCode_FMX.html" class="cref">GetSystemLanguageISOCode_FMX</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="GetSystemLanguageISOCode_VCL.html" class="cref">GetSystemLanguageISOCode_VCL</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="GetSystemTheme.html" class="cref">GetSystemTheme</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="IncDecByteCryptSample.html" class="cref">IncDecByteCryptSample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="LoadAndSaveBitmapInAStreamSample.html" class="cref">LoadAndSaveBitmapInAStreamSample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="LoadAndSaveStringSample.html" class="cref">LoadAndSaveStringSample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="MD5Sample.html" class="cref">MD5Sample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="NumberBaseConvertSample.html" class="cref">NumberBaseConvertSample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="ParamsEvents.html" class="cref">ParamsEvents</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="ParamsFolderTest.html" class="cref">ParamsFolderTest</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="ParamsInPortableMode.html" class="cref">ParamsInPortableMode</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="ParamsSample.html" class="cref">ParamsSample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="RandomIDGenerator.html" class="cref">RandomIDGenerator</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="RemoveKeySample.html" class="cref">RemoveKeySample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="SHL_SHR_Sample.html" class="cref">SHL_SHR_Sample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="ShiftCryptDecryptSample.html" class="cref">ShiftCryptDecryptSample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="StreamWithSize.html" class="cref">StreamWithSize</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="SwapCryptDecryptSample.html" class="cref">SwapCryptDecryptSample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="TextImageWithAutoSizeSample.html" class="cref">TextImageWithAutoSizeSample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="TextWithAShadowEffectSample.html" class="cref">TextWithAShadowEffectSample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="TimeConversionSample.html" class="cref">TimeConversionSample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="URLAndFileOpenSample.html" class="cref">URLAndFileOpenSample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="UseLibraryAsTFrame.html" class="cref">UseLibraryAsTFrame</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="VCLEmptyBitmapSample.html" class="cref">VCLEmptyBitmapSample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="VCLSVGToBitmapSample.html" class="cref">VCLSVGToBitmapSample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="break-text">
+              <a href="VCLShowSVGFromBitmapSample.html" class="cref">VCLShowSVGFromBitmapSample</a>
+            </span>
+          </td>
+          <td class="has-text-wrap">
+            
+          </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+      </div>
+    </article>
+  </main>
+
+  <aside id="layout-body-aside" class="layout-body-aside" aria-label="Page Outline">
+    <div id="additional-resources" class="right-container padding-sm display-none display-block-desktop height-full"
+      role="complementary" aria-label="Additional resources">
+      <div id="affixed-right-container" class="position-sticky">
+        <nav id="side-doc-outline" class="doc-outline padding-bottom-xs margin-bottom-xs" aria-label="On this page">
+          <h2 class="title is-6 margin-top-xxs margin-bottom-xs">
+            On this page
+          </h2>
+          <ol id="right-rail-on-this-page-list">
+            <li
+              class="border-left-md padding-left-xxs  border-color-primary">
+              <a href="#packages"
+                class="font-weight-semibold color-text">Packages</a>
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </aside>
+
+
+  <footer id="footer" class="layout-body-footer footer-layout uhf-container  has-padding
+    border-top" role="contentinfo">
+    <a href="https://librairies.developpeur-pascal.fr/" target="_blank">My libraries for Delphi</a> (c) 1990-2026 <a href="https://patrick.premartin.fr" target="_blank">Patrick PREMARTIN</a> - Powered by <a href="https://devjetsoftware.com/products/documentation-insight/" target="_blank">DocInsight</a>
+  </footer>
 
 </body>
-</html>
 
+</html>
