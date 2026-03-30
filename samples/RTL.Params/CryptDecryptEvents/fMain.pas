@@ -73,8 +73,8 @@ type
     procedure KeyInit;
     procedure ShowParamsValues;
   public
-    function DoCryptParams(Const AParams: string): TStream;
-    function DoDecryptParams(Const AStream: TStream): string;
+    function DoCryptParams(const AParams: string): TStream;
+    function DoDecryptParams(const AStream: TStream): string;
   end;
 
 var
@@ -103,7 +103,7 @@ var
 begin
   StringStream := TStringStream.create(AParams);
   try
-    result := TOlfCryptDecrypt.Crypt(StringStream, Key);
+    result := TOlfCryptDecrypt.XORCrypt(StringStream, Key);
   finally
     StringStream.free;
   end;
@@ -114,7 +114,7 @@ var
   StringStream: TStringStream;
   Stream: TStream;
 begin
-  Stream := TOlfCryptDecrypt.deCrypt(AStream, Key);
+  Stream := TOlfCryptDecrypt.XORDecrypt(AStream, Key);
   try
     StringStream := TStringStream.create;
     try
@@ -179,9 +179,10 @@ end;
 
 initialization
 
-// randomize;
+  // randomize;
 {$IFDEF DEBUG}
   ReportMemoryLeaksOnShutdown := true;
 {$ENDIF}
 
 end.
+
