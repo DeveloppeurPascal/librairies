@@ -27,7 +27,7 @@ object Form1: TForm1
   end
   object Rectangle2: TRectangle
     Align = Client
-    Size.Width = 744.000000000000000000
+    Size.Width = 534.000000000000000000
     Size.Height = 243.000000000000000000
     Size.PlatformDefault = False
     OnResized = Rectangle2Resized
@@ -117,5 +117,55 @@ object Form1: TForm1
       Size.Height = 240.000000000000000000
       Size.PlatformDefault = False
     end
+  end
+  object GridPanelLayout1: TGridPanelLayout
+    Align = Left
+    Position.Y = 281.000000000000000000
+    Size.Width = 200.000000000000000000
+    Size.Height = 243.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 8
+    ColumnCollection = <
+      item
+        Value = 100.000000000000000000
+      end>
+    ControlCollection = <
+      item
+        Column = 0
+        Control = OlfFMXTextImageFrame6
+        Row = 0
+      end>
+    RowCollection = <
+      item
+        Value = 100.000000000000000000
+      end>
+    OnResized = GridPanelLayout1Resized
+    inline OlfFMXTextImageFrame6: TOlfFMXTextImageFrame
+      Align = Center
+      HitTest = False
+      Size.Width = 117.000000000000000000
+      Size.Height = 240.000000000000000000
+      Size.PlatformDefault = False
+    end
+  end
+  object Splitter1: TSplitter
+    Align = Left
+    Cursor = crHSplit
+    MinSize = 20.000000000000000000
+    Position.X = 200.000000000000000000
+    Position.Y = 281.000000000000000000
+    Size.Width = 5.000000000000000000
+    Size.Height = 243.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object Splitter2: TSplitter
+    Align = Right
+    Cursor = crHSplit
+    MinSize = 20.000000000000000000
+    Position.X = 739.000000000000000000
+    Position.Y = 281.000000000000000000
+    Size.Width = 5.000000000000000000
+    Size.Height = 243.000000000000000000
+    Size.PlatformDefault = False
   end
 end

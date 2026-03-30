@@ -76,6 +76,10 @@ type
     btnReverseAutosize: TButton;
     VertScrollBox1: TVertScrollBox;
     OlfFMXTextImageFrame5: TOlfFMXTextImageFrame;
+    GridPanelLayout1: TGridPanelLayout;
+    OlfFMXTextImageFrame6: TOlfFMXTextImageFrame;
+    Splitter1: TSplitter;
+    Splitter2: TSplitter;
     procedure Rectangle1Resized(Sender: TObject);
     procedure Rectangle2Resized(Sender: TObject);
     procedure Rectangle3Resized(Sender: TObject);
@@ -84,6 +88,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure btnReverseAutosizeClick(Sender: TObject);
     procedure VertScrollBox1Resized(Sender: TObject);
+    procedure GridPanelLayout1Resized(Sender: TObject);
   private
   public
     procedure ChangeText;
@@ -111,6 +116,7 @@ begin
   OlfFMXTextImageFrame3.AutoSize := not OlfFMXTextImageFrame3.AutoSize;
   OlfFMXTextImageFrame4.AutoSize := not OlfFMXTextImageFrame4.AutoSize;
   OlfFMXTextImageFrame5.AutoSize := not OlfFMXTextImageFrame5.AutoSize;
+  OlfFMXTextImageFrame6.AutoSize := not OlfFMXTextImageFrame6.AutoSize;
 end;
 
 procedure TForm1.ChangeText;
@@ -152,6 +158,7 @@ begin
   OlfFMXTextImageFrame3.Text := S;
   OlfFMXTextImageFrame4.Text := S;
   OlfFMXTextImageFrame5.Text := S;
+  OlfFMXTextImageFrame6.Text := S;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
@@ -161,11 +168,18 @@ begin
   OlfFMXTextImageFrame3.font := dm_CharacterImages.ImageList;
   OlfFMXTextImageFrame4.font := dm_CharacterImages.ImageList;
   OlfFMXTextImageFrame5.font := dm_CharacterImages.ImageList;
+  OlfFMXTextImageFrame6.font := dm_CharacterImages.ImageList;
   OlfFMXTextImageFrame1.AutoSize := True;
   OlfFMXTextImageFrame2.AutoSize := True;
   OlfFMXTextImageFrame3.AutoSize := True;
   OlfFMXTextImageFrame4.AutoSize := True;
   OlfFMXTextImageFrame5.AutoSize := True;
+  OlfFMXTextImageFrame6.AutoSize := True;
+end;
+
+procedure TForm1.GridPanelLayout1Resized(Sender: TObject);
+begin
+  OlfFMXTextImageFrame6.Refresh;
 end;
 
 procedure TForm1.Rectangle1Resized(Sender: TObject);
