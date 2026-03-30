@@ -12,14 +12,14 @@ object Form1: TForm1
   DesignerMasterStyle = 0
   object lblBase2: TLabel
     Align = Top
-    Margins.Left = 5.000000000000000000
-    Margins.Top = 5.000000000000000000
-    Margins.Right = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.X = 5.000000000000000000
-    Position.Y = 5.000000000000000000
-    Size.Width = 630.000000000000000000
-    Size.Height = 17.000000000000000000
+    Margins.Left = 5.00000000000000000
+    Margins.Top = 5.00000000000000000
+    Margins.Right = 5.00000000000000000
+    Margins.Bottom = 5.00000000000000000
+    Position.X = 5.00000000000000000
+    Position.Y = 5.00000000000000000
+    Size.Width = 630.00000000000000000
+    Size.Height = 17.00000000000000000
     Size.PlatformDefault = False
     TextSettings.Trimming = None
     Text = 'lblBase2'
@@ -29,22 +29,22 @@ object Form1: TForm1
       Align = Right
       TabOrder = 4
       Text = 'e'
-      Position.X = 330.000000000000000000
-      Size.Width = 300.000000000000000000
-      Size.Height = 17.000000000000000000
+      Position.X = 330.00000000000000000
+      Size.Width = 300.00000000000000000
+      Size.Height = 17.00000000000000000
       Size.PlatformDefault = False
     end
   end
   object lblBase62: TLabel
     Align = Top
-    Margins.Left = 5.000000000000000000
-    Margins.Top = 5.000000000000000000
-    Margins.Right = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.X = 5.000000000000000000
-    Position.Y = 194.000000000000000000
-    Size.Width = 630.000000000000000000
-    Size.Height = 17.000000000000000000
+    Margins.Left = 5.00000000000000000
+    Margins.Top = 5.00000000000000000
+    Margins.Right = 5.00000000000000000
+    Margins.Bottom = 5.00000000000000000
+    Position.X = 5.00000000000000000
+    Position.Y = 194.00000000000000000
+    Size.Width = 630.00000000000000000
+    Size.Height = 17.00000000000000000
     Size.PlatformDefault = False
     TextSettings.Trimming = None
     Text = 'Label1'
@@ -53,22 +53,22 @@ object Form1: TForm1
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Align = Right
       TabOrder = 4
-      Position.X = 330.000000000000000000
-      Size.Width = 300.000000000000000000
-      Size.Height = 17.000000000000000000
+      Position.X = 330.00000000000000000
+      Size.Width = 300.00000000000000000
+      Size.Height = 17.00000000000000000
       Size.PlatformDefault = False
     end
   end
   object lblBase57: TLabel
     Align = Top
-    Margins.Left = 5.000000000000000000
-    Margins.Top = 5.000000000000000000
-    Margins.Right = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.X = 5.000000000000000000
-    Position.Y = 167.000000000000000000
-    Size.Width = 630.000000000000000000
-    Size.Height = 17.000000000000000000
+    Margins.Left = 5.00000000000000000
+    Margins.Top = 5.00000000000000000
+    Margins.Right = 5.00000000000000000
+    Margins.Bottom = 5.00000000000000000
+    Position.X = 5.00000000000000000
+    Position.Y = 167.00000000000000000
+    Size.Width = 630.00000000000000000
+    Size.Height = 17.00000000000000000
     Size.PlatformDefault = False
     TextSettings.Trimming = None
     Text = 'Label1'
@@ -77,22 +77,22 @@ object Form1: TForm1
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Align = Right
       TabOrder = 4
-      Position.X = 330.000000000000000000
-      Size.Width = 300.000000000000000000
-      Size.Height = 17.000000000000000000
+      Position.X = 330.00000000000000000
+      Size.Width = 300.00000000000000000
+      Size.Height = 17.00000000000000000
       Size.PlatformDefault = False
     end
   end
   object lblBase36: TLabel
     Align = Top
-    Margins.Left = 5.000000000000000000
-    Margins.Top = 5.000000000000000000
-    Margins.Right = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.X = 5.000000000000000000
-    Position.Y = 140.000000000000000000
-    Size.Width = 630.000000000000000000
-    Size.Height = 17.000000000000000000
+    Margins.Left = 5.00000000000000000
+    Margins.Top = 5.00000000000000000
+    Margins.Right = 5.00000000000000000
+    Margins.Bottom = 5.00000000000000000
+    Position.X = 5.00000000000000000
+    Position.Y = 140.00000000000000000
+    Size.Width = 630.00000000000000000
+    Size.Height = 17.00000000000000000
     Size.PlatformDefault = False
     TextSettings.Trimming = None
     Text = 'Label1'
@@ -101,22 +101,22 @@ object Form1: TForm1
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Align = Right
       TabOrder = 4
-      Position.X = 330.000000000000000000
-      Size.Width = 300.000000000000000000
-      Size.Height = 17.000000000000000000
+      Position.X = 330.00000000000000000
+      Size.Width = 300.00000000000000000
+      Size.Height = 17.00000000000000000
       Size.PlatformDefault = False
     end
   end
   object lblBase27: TLabel
     Align = Top
-    Margins.Left = 5.000000000000000000
-    Margins.Top = 5.000000000000000000
-    Margins.Right = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.X = 5.000000000000000000
-    Position.Y = 113.000000000000000000
-    Size.Width = 630.000000000000000000
-    Size.Height = 17.000000000000000000
+    Margins.Left = 5.00000000000000000
+    Margins.Top = 5.00000000000000000
+    Margins.Right = 5.00000000000000000
+    Margins.Bottom = 5.00000000000000000
+    Position.X = 5.00000000000000000
+    Position.Y = 113.00000000000000000
+    Size.Width = 630.00000000000000000
+    Size.Height = 17.00000000000000000
     Size.PlatformDefault = False
     TextSettings.Trimming = None
     Text = 'Label1'
@@ -125,22 +125,22 @@ object Form1: TForm1
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Align = Right
       TabOrder = 4
-      Position.X = 330.000000000000000000
-      Size.Width = 300.000000000000000000
-      Size.Height = 17.000000000000000000
+      Position.X = 330.00000000000000000
+      Size.Width = 300.00000000000000000
+      Size.Height = 17.00000000000000000
       Size.PlatformDefault = False
     end
   end
   object lblBase16: TLabel
     Align = Top
-    Margins.Left = 5.000000000000000000
-    Margins.Top = 5.000000000000000000
-    Margins.Right = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.X = 5.000000000000000000
-    Position.Y = 86.000000000000000000
-    Size.Width = 630.000000000000000000
-    Size.Height = 17.000000000000000000
+    Margins.Left = 5.00000000000000000
+    Margins.Top = 5.00000000000000000
+    Margins.Right = 5.00000000000000000
+    Margins.Bottom = 5.00000000000000000
+    Position.X = 5.00000000000000000
+    Position.Y = 86.00000000000000000
+    Size.Width = 630.00000000000000000
+    Size.Height = 17.00000000000000000
     Size.PlatformDefault = False
     TextSettings.Trimming = None
     Text = 'Label1'
@@ -149,22 +149,22 @@ object Form1: TForm1
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Align = Right
       TabOrder = 4
-      Position.X = 330.000000000000000000
-      Size.Width = 300.000000000000000000
-      Size.Height = 17.000000000000000000
+      Position.X = 330.00000000000000000
+      Size.Width = 300.00000000000000000
+      Size.Height = 17.00000000000000000
       Size.PlatformDefault = False
     end
   end
   object lblBase10: TLabel
     Align = Top
-    Margins.Left = 5.000000000000000000
-    Margins.Top = 5.000000000000000000
-    Margins.Right = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.X = 5.000000000000000000
-    Position.Y = 59.000000000000000000
-    Size.Width = 630.000000000000000000
-    Size.Height = 17.000000000000000000
+    Margins.Left = 5.00000000000000000
+    Margins.Top = 5.00000000000000000
+    Margins.Right = 5.00000000000000000
+    Margins.Bottom = 5.00000000000000000
+    Position.X = 5.00000000000000000
+    Position.Y = 59.00000000000000000
+    Size.Width = 630.00000000000000000
+    Size.Height = 17.00000000000000000
     Size.PlatformDefault = False
     TextSettings.Trimming = None
     Text = 'Label1'
@@ -173,22 +173,22 @@ object Form1: TForm1
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Align = Right
       TabOrder = 4
-      Position.X = 330.000000000000000000
-      Size.Width = 300.000000000000000000
-      Size.Height = 17.000000000000000000
+      Position.X = 330.00000000000000000
+      Size.Width = 300.00000000000000000
+      Size.Height = 17.00000000000000000
       Size.PlatformDefault = False
     end
   end
   object lblBase8: TLabel
     Align = Top
-    Margins.Left = 5.000000000000000000
-    Margins.Top = 5.000000000000000000
-    Margins.Right = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.X = 5.000000000000000000
-    Position.Y = 32.000000000000000000
-    Size.Width = 630.000000000000000000
-    Size.Height = 17.000000000000000000
+    Margins.Left = 5.00000000000000000
+    Margins.Top = 5.00000000000000000
+    Margins.Right = 5.00000000000000000
+    Margins.Bottom = 5.00000000000000000
+    Position.X = 5.00000000000000000
+    Position.Y = 32.00000000000000000
+    Size.Width = 630.00000000000000000
+    Size.Height = 17.00000000000000000
     Size.PlatformDefault = False
     TextSettings.Trimming = None
     Text = 'Label1'
@@ -197,9 +197,9 @@ object Form1: TForm1
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Align = Right
       TabOrder = 4
-      Position.X = 330.000000000000000000
-      Size.Width = 300.000000000000000000
-      Size.Height = 17.000000000000000000
+      Position.X = 330.00000000000000000
+      Size.Width = 300.00000000000000000
+      Size.Height = 17.00000000000000000
       Size.PlatformDefault = False
     end
   end

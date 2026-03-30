@@ -106,6 +106,7 @@ begin
   if ChangeInProgress then
     exit;
   ChangeInProgress := true;
+  nb := 0;
   try
     if (Sender is TEdit) and ((Sender as TEdit).tag > 0) then
     begin
