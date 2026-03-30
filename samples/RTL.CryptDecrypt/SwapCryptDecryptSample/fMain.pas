@@ -74,7 +74,7 @@ type
     { Déclarations privées }
   public
     { Déclarations publiques }
-    procedure ShowStreamContent(Const AName: string; Const AStream: TStream);
+    procedure ShowStreamContent(const AName: string; const AStream: TStream);
   end;
 
 var
@@ -94,10 +94,9 @@ var
   s: string;
   ss: TStringStream;
   cs, dcs: TStream;
-  nb, i: integer;
+  i: integer;
   key: TByteDynArray;
   KeyToString: string;
-  Bytes: TList<byte>;
 begin
   s := Edit1.text;
   if s.isempty then
@@ -184,3 +183,4 @@ begin
 end;
 
 end.
+
