@@ -59,7 +59,8 @@ uses
   FMX.Objects,
   FMX.Controls.Presentation,
   FMX.StdCtrls,
-  Olf.FMX.TextImageFrame;
+  Olf.FMX.TextImageFrame,
+  FMX.Layouts;
 
 type
   TForm1 = class(TForm)
@@ -73,6 +74,8 @@ type
     OlfFMXTextImageFrame3: TOlfFMXTextImageFrame;
     OlfFMXTextImageFrame4: TOlfFMXTextImageFrame;
     btnReverseAutosize: TButton;
+    VertScrollBox1: TVertScrollBox;
+    OlfFMXTextImageFrame5: TOlfFMXTextImageFrame;
     procedure Rectangle1Resized(Sender: TObject);
     procedure Rectangle2Resized(Sender: TObject);
     procedure Rectangle3Resized(Sender: TObject);
@@ -80,6 +83,7 @@ type
     procedure btnRefreshClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnReverseAutosizeClick(Sender: TObject);
+    procedure VertScrollBox1Resized(Sender: TObject);
   private
   public
     procedure ChangeText;
@@ -106,11 +110,12 @@ begin
   OlfFMXTextImageFrame2.AutoSize := not OlfFMXTextImageFrame2.AutoSize;
   OlfFMXTextImageFrame3.AutoSize := not OlfFMXTextImageFrame3.AutoSize;
   OlfFMXTextImageFrame4.AutoSize := not OlfFMXTextImageFrame4.AutoSize;
+  OlfFMXTextImageFrame5.AutoSize := not OlfFMXTextImageFrame5.AutoSize;
 end;
 
 procedure TForm1.ChangeText;
 var
-  S: String;
+  S: string;
   I: Integer;
 begin
   I := random(20) + 5;
@@ -146,6 +151,7 @@ begin
   OlfFMXTextImageFrame2.Text := S;
   OlfFMXTextImageFrame3.Text := S;
   OlfFMXTextImageFrame4.Text := S;
+  OlfFMXTextImageFrame5.Text := S;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
@@ -154,10 +160,12 @@ begin
   OlfFMXTextImageFrame2.font := dm_CharacterImages.ImageList;
   OlfFMXTextImageFrame3.font := dm_CharacterImages.ImageList;
   OlfFMXTextImageFrame4.font := dm_CharacterImages.ImageList;
+  OlfFMXTextImageFrame5.font := dm_CharacterImages.ImageList;
   OlfFMXTextImageFrame1.AutoSize := True;
   OlfFMXTextImageFrame2.AutoSize := True;
   OlfFMXTextImageFrame3.AutoSize := True;
   OlfFMXTextImageFrame4.AutoSize := True;
+  OlfFMXTextImageFrame5.AutoSize := True;
 end;
 
 procedure TForm1.Rectangle1Resized(Sender: TObject);
@@ -180,8 +188,14 @@ begin
   OlfFMXTextImageFrame4.Refresh;
 end;
 
+procedure TForm1.VertScrollBox1Resized(Sender: TObject);
+begin
+  OlfFMXTextImageFrame5.Refresh;
+end;
+
 initialization
 
-randomize;
+  randomize;
 
 end.
+

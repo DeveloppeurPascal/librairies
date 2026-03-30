@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 764
+  ClientHeight = 818
   ClientWidth = 1063
   FormFactor.Width = 320
   FormFactor.Height = 480
@@ -28,7 +28,7 @@ object Form1: TForm1
   object Rectangle2: TRectangle
     Align = Client
     Size.Width = 744.000000000000000000
-    Size.Height = 295.000000000000000000
+    Size.Height = 243.000000000000000000
     Size.PlatformDefault = False
     OnResized = Rectangle2Resized
     inline OlfFMXTextImageFrame2: TOlfFMXTextImageFrame
@@ -44,7 +44,7 @@ object Form1: TForm1
     Position.X = 744.000000000000000000
     Position.Y = 281.000000000000000000
     Size.Width = 319.000000000000000000
-    Size.Height = 295.000000000000000000
+    Size.Height = 243.000000000000000000
     Size.PlatformDefault = False
     OnResized = Rectangle3Resized
     inline OlfFMXTextImageFrame3: TOlfFMXTextImageFrame
@@ -57,7 +57,7 @@ object Form1: TForm1
   end
   object Rectangle4: TRectangle
     Align = MostBottom
-    Position.Y = 576.000000000000000000
+    Position.Y = 524.000000000000000000
     Size.Width = 1063.000000000000000000
     Size.Height = 188.000000000000000000
     Size.PlatformDefault = False
@@ -83,7 +83,6 @@ object Form1: TForm1
     Size.PlatformDefault = False
     TabOrder = 4
     Text = 'btnRefresh'
-    TextSettings.Trimming = None
     OnClick = btnRefreshClick
   end
   object btnReverseAutosize: TButton
@@ -99,7 +98,24 @@ object Form1: TForm1
     Size.PlatformDefault = False
     TabOrder = 6
     Text = 'btnReverseAutosize'
-    TextSettings.Trimming = None
     OnClick = btnReverseAutosizeClick
+  end
+  object VertScrollBox1: TVertScrollBox
+    Align = MostBottom
+    Position.Y = 712.000000000000000000
+    Size.Width = 1063.000000000000000000
+    Size.Height = 106.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 7
+    OnResized = VertScrollBox1Resized
+    Viewport.Width = 1047.000000000000000000
+    Viewport.Height = 106.000000000000000000
+    inline OlfFMXTextImageFrame5: TOlfFMXTextImageFrame
+      Align = Center
+      HitTest = False
+      Size.Width = 320.000000000000000000
+      Size.Height = 240.000000000000000000
+      Size.PlatformDefault = False
+    end
   end
 end
