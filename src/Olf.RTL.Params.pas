@@ -55,29 +55,29 @@ type
   /// <summary>
   /// Method signature for load/save events in TParamsFile
   /// </summary>
-  TParamsLoadSaveEvent = procedure(Const AParamsFile: TParamsFile) of object;
+  TParamsLoadSaveEvent = procedure(const AParamsFile: TParamsFile) of object;
   /// <summary>
   /// Procedure signature for load/save events in TParamsFile
   /// </summary>
-  TParamsLoadSaveProc = reference to procedure(Const AParamsFile: TParamsFile);
+  TParamsLoadSaveProc = reference to procedure(const AParamsFile: TParamsFile);
 
   /// <summary>
   /// Method signature for the crypt event in TParamsFile
   /// </summary>
-  TParamsCryptEvent = function(Const AParams: string): TStream of object;
+  TParamsCryptEvent = function(const AParams: string): TStream of object;
   /// <summary>
   /// Procedure signature for the crypt event in TParamsFile
   /// </summary>
-  TParamsCryptProc = reference to function(Const AParams: string): TStream;
+  TParamsCryptProc = reference to function(const AParams: string): TStream;
 
   /// <summary>
   /// Method signature for the decrypt event in TParamsFile
   /// </summary>
-  TParamsDecryptEvent = function(Const AStream: TStream): string of object;
+  TParamsDecryptEvent = function(const AStream: TStream): string of object;
   /// <summary>
   /// Procedure signature for the decrypt event in TParamsFile
   /// </summary>
-  TParamsDecryptProc = reference to function(Const AStream: TStream): string;
+  TParamsDecryptProc = reference to function(const AStream: TStream): string;
 
   /// <summary>
   /// TParamsFile work as an instance of a settings file.
@@ -247,7 +247,7 @@ type
     /// => "Documents / Editor / Software" for DEBUG and iOS
     /// => "AppData (HomePath) / Editor / Software" in RELEASE (except iOS)
     /// </summary>
-    procedure InitDefaultFileNameV2(Const AEditor, ASoftware: string;
+    procedure InitDefaultFileNameV2(const AEditor, ASoftware: string;
       AReload: boolean = true);
     /// <summary>
     /// Move actual parameter file to the new file.
@@ -522,7 +522,7 @@ type
     /// => "Documents / Editor / Software" for DEBUG and iOS
     /// => "AppData (HomePath) / Editor / Software" in RELEASE (except iOS)
     /// </summary>
-    class procedure InitDefaultFileNameV2(Const AEditor, ASoftware: string;
+    class procedure InitDefaultFileNameV2(const AEditor, ASoftware: string;
       AReload: boolean = true);
     /// <summary>
     /// Move actual parameter file to the new file.
@@ -671,7 +671,8 @@ begin
     FileName := AppName + Extension;
 {$ELSE}
 {$MESSAGE FATAL 'not implemented'}
-{$ENDIF} end
+{$ENDIF}
+  end
   else
     FileName := FFileName;
 
@@ -681,7 +682,7 @@ begin
   else
     Folder := FFolderName;
   if ACreateFolder and (not tdirectory.Exists(Folder)) and (not FPortableMode)
-  then
+    then
     tdirectory.CreateDirectory(Folder);
 
   // get file path
@@ -761,7 +762,15 @@ var
 begin
   jsonvalue := getParamValue(key);
   if Assigned(jsonvalue) then
-    result := jsonvalue.Value.ToInteger
+    try
+      result := jsonvalue.Value.ToInteger
+    except
+      on E: EConvertError do
+        if (jsonvalue.Value.ToSingle = trunc(jsonvalue.Value.ToSingle)) then
+          result := Trunc(jsonvalue.Value.ToSingle)
+        else
+          raise;
+    end
   else
     result := default;
 end;
@@ -1263,7 +1272,15 @@ var
 begin
   jsonvalue := getParamValue(key);
   if Assigned(jsonvalue) then
-    result := jsonvalue.Value.ToInt64
+    try
+      result := jsonvalue.Value.ToInt64
+    except
+      on E: EConvertError do
+        if (jsonvalue.Value.ToSingle = trunc(jsonvalue.Value.ToSingle)) then
+          result := Trunc(jsonvalue.Value.ToSingle)
+        else
+          raise;
+    end
   else
     result := default;
 end;
@@ -1562,13 +1579,14 @@ end;
 
 initialization
 
-DefaultParamsFile := TParamsFile.Create;
-TParams.Load;
+  DefaultParamsFile := TParamsFile.Create;
+  TParams.Load;
 
 finalization
 
-TParams.Save;
-if Assigned(DefaultParamsFile) then
-  FreeAndNil(DefaultParamsFile);
+  TParams.Save;
+  if Assigned(DefaultParamsFile) then
+    FreeAndNil(DefaultParamsFile);
 
 end.
+
