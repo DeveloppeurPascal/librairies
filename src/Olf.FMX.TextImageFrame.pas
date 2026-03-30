@@ -160,7 +160,7 @@ type
     /// OnGetImageIndexOfUnknowCharIfNotFound events or you'll have infinite
     /// loops.
     /// </remarks>
-    function getImageIndexOfChar(AChar: String;
+    function getImageIndexOfChar(AChar: string;
       CallOnGetImageIndexOfUnknowCharIfNotFound: boolean = false): integer;
     /// <summary>
     /// Repaint the text
@@ -573,7 +573,7 @@ begin
   end;
 end;
 
-function TOlfFMXTextImageFrame.getImageIndexOfChar(AChar: String;
+function TOlfFMXTextImageFrame.getImageIndexOfChar(AChar: string;
   CallOnGetImageIndexOfUnknowCharIfNotFound: boolean): integer;
 begin
   result := 0;
@@ -615,7 +615,7 @@ begin
       end;
     end
     else
-      Raise Exception.Create('AutoSize not allowed on this parent.');
+      raise Exception.Create('AutoSize not allowed on this parent.');
   end
   else
     DoRefresh;
@@ -698,3 +698,4 @@ begin
 end;
 
 end.
+
