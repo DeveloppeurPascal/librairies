@@ -241,13 +241,19 @@ begin
     if result < 0 then
       result := getImageIndexOfChar('agrave');
   end;
+  if (result < 0) and (AChar = 'â') then
+  begin
+    result := getImageIndexOfChar('_acirconflexe');
+    if result < 0 then
+      result := getImageIndexOfChar('acirconflexe');
+  end;
   if (result < 0) and (AChar = 'ã') then
   begin
     result := getImageIndexOfChar('_atilde');
     if result < 0 then
       result := getImageIndexOfChar('atilde');
   end;
-  if (result < 0) and AChar.IsInArray(['à', 'ã', 'ạ']) then
+  if (result < 0) and AChar.IsInArray(['â', 'à', 'ã', 'ạ']) then
     result := getImageIndexOfChar('a', true);
 
   if (result < 0) and (AChar = 'ç') then
