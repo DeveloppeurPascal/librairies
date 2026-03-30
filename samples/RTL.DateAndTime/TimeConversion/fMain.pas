@@ -92,7 +92,6 @@ procedure TfrmMain.btnFromHHMMSSClick(Sender: TObject);
 var
   sHH, sMM, sSS: string;
   HH, MM, SS, Seconds: Int64;
-  s: string;
 begin
   sHH := edtHH.Text;
   sMM := edtMM.Text;
@@ -142,7 +141,6 @@ end;
 procedure TfrmMain.btnFromSecondsClick(Sender: TObject);
 var
   HH, MM, SS, Seconds: Int64;
-  s: string;
 begin
   Seconds := edtSeconds.Text.ToInt64;
   SecToHMS(Seconds, HH, MM, SS);
