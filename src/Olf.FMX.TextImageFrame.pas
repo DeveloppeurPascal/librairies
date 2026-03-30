@@ -253,6 +253,7 @@ begin
     if result < 0 then
       result := getImageIndexOfChar('atilde');
   end;
+  // TODO : missing 'ạ'
   if (result < 0) and AChar.IsInArray(['â', 'à', 'ã', 'ạ']) then
     result := getImageIndexOfChar('a', true);
 
@@ -260,10 +261,11 @@ begin
   begin
     result := getImageIndexOfChar('_ccedille');
     if (result < 0) then
-      result := getImageIndexOfChar('_ccedille');
+      result := getImageIndexOfChar('ccedille');
   end;
+  // TODO : missing 'č'
   if (result < 0) and AChar.IsInArray(['ç', 'č']) then
-    result := getImageIndexOfChar('c');
+    result := getImageIndexOfChar('c', true);
 
   if (result < 0) and (AChar = 'ď') then
   begin
@@ -271,7 +273,7 @@ begin
     if (result < 0) then
       result := getImageIndexOfChar('dprime');
     if (result < 0) then
-      result := getImageIndexOfChar('d');
+      result := getImageIndexOfChar('d', true);
   end;
 
   if (result < 0) and (AChar = 'é') then
@@ -298,6 +300,7 @@ begin
     if result < 0 then
       result := getImageIndexOfChar('etrema');
   end;
+  // TODO : missing 'ě'
   if (result < 0) and AChar.IsInArray(['é', 'è', 'ê', 'ë', 'ě']) then
     result := getImageIndexOfChar('e', true);
 
@@ -334,8 +337,9 @@ begin
     if result < 0 then
       result := getImageIndexOfChar('ntilde');
   end;
+  // TODO : missing 'ň'
   if (result < 0) and AChar.IsInArray(['ñ', 'ň']) then
-    result := getImageIndexOfChar('n');
+    result := getImageIndexOfChar('n', true);
 
   if (result < 0) and (AChar = 'ô') then
   begin
@@ -380,7 +384,7 @@ begin
     if (result < 0) then
       result := getImageIndexOfChar('tprime');
     if (result < 0) then
-      result := getImageIndexOfChar('t');
+      result := getImageIndexOfChar('t', true);
   end;
 
   if (result < 0) and (AChar = 'û') then
@@ -393,7 +397,7 @@ begin
   begin
     result := getImageIndexOfChar('_utrema');
     if result < 0 then
-      result := getImageIndexOfChar('_utrema');
+      result := getImageIndexOfChar('utrema');
   end;
   if (result < 0) and (AChar = 'ù') then
   begin
@@ -603,25 +607,40 @@ end;
 procedure TOlfFMXTextImageFrame.Refresh;
 var
   C: TControl;
+  F: TCustomForm;
   ParentWidth, ParentHeight: single;
 begin
   if AutoSize then
   begin
-    if assigned(Parent) and (Parent is TControl) then
-    begin
-      C := (Parent as TControl);
-      ParentWidth := C.Width - C.Padding.Left - C.Padding.Right;
-      ParentHeight := C.Height - C.Padding.Top - C.Padding.Bottom;
-      Height := ParentHeight;
-      DoRefresh;
-      if (Width > ParentWidth) then
+    if assigned(Parent) then
+      if (Parent is TControl) then
       begin
-        Height := ParentHeight * ParentWidth / Width;
+        C := (Parent as TControl);
+        ParentWidth := C.Width - C.Padding.Left - C.Padding.Right;
+        ParentHeight := C.Height - C.Padding.Top - C.Padding.Bottom;
+        Height := ParentHeight;
         DoRefresh;
-      end;
-    end
-    else
-      raise Exception.Create('AutoSize not allowed on this parent.');
+        if (Width > ParentWidth) then
+        begin
+          Height := ParentHeight * ParentWidth / Width;
+          DoRefresh;
+        end;
+      end
+      else if (Parent is TCustomForm) then
+      begin
+        f := (Parent as TCustomForm);
+        ParentWidth := f.clientWidth - f.Padding.Left - f.Padding.Right;
+        ParentHeight := f.clientHeight - f.Padding.Top - f.Padding.Bottom;
+        Height := ParentHeight;
+        DoRefresh;
+        if (Width > ParentWidth) then
+        begin
+          Height := ParentHeight * ParentWidth / Width;
+          DoRefresh;
+        end;
+      end
+      else
+        raise Exception.Create('AutoSize not allowed on this parent.');
   end
   else
     DoRefresh;
