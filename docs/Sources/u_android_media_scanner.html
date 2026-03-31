@@ -31,33 +31,7 @@
 <div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-FuncsProcs">Functions and Procedures</a></div></div>
 <span id="PasDoc-Description"></span><h2 class="description">Description</h2>
 <p>
-C2PP ***************************************************************************
-
-<p>My libraries for Delphi Copyright (c) 1990-2026 Patrick PREMARTIN
-
-<p>This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
-
-<p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
-
-<p>You should have received a copy of the GNU Affero General Public License along with this program. If not, see &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.
-
-<p>***************************************************************************
-
-<p>This repository contains functions, procedures and classes to use in Delphi projects (console, VCL, FireMonkey and others). It's my &quot;everything reuseable things&quot; toolbox.
-
-<p>The units to be used in your projects can be found in the &quot;src&quot; folder. Some features are explained on my blog or have been coded live on Twitch.
-
-<p>Examples of use in the form of VCL or FireMonkey projects are available in the &quot;samples&quot; subfolder.
-
-<p>***************************************************************************
-
-<p>Author(s) : Patrick PREMARTIN
-
-<p>Site : <a href="https://librairies.developpeur-pascal.fr">https://librairies.developpeur-pascal.fr</a>
-
-<p>Project site : <a href="https://github.com/DeveloppeurPascal/librairies">https://github.com/DeveloppeurPascal/librairies</a>
-
-<p>*************************************************************************** File last update : 2026-03-30T16:35:19.678+02:00 Signature : 3831db2725845a0f900771c92ce98e692cdd4866 ***************************************************************************</p>
+This Delphi unit contains procedures for use on Android when you want to provide USB (MTP) access to files created by an application.</p>
 <span id="PasDoc-Uses"></span><h2 class="overview">Overview</h2>
 <span id="PasDoc-FuncsProcs"></span><h3 class="summary">Functions and Procedures</h3>
 <table class="summary wide_list">
@@ -76,9 +50,18 @@ C2PP ***************************************************************************
 </tr>
 <tr><td colspan="1">
 <p>
-Cette unité Delphi contient des procedures à utiliser sous Android lorsqu'on désire donner accès en USB (MTP) à des fichiers créés depuis une application (c) 2016 Patrick Prémartin / Olf Software
+Add a file to the media files cache.</p>
+<p>
 
-<p>Liste des mises à jour : 16/06/2016, Patrick Prémartin : mise en production de la version initiale &lt;summary&gt;Add a file to the media files cache.&lt;/summary&gt; &lt;para&gt;Call it after creating the file you want to share with USB connected device.&lt;/para&gt; &lt;param name=&quot;filename&quot;&gt;absolute path + name of the file to add&lt;/param&gt;</p>
+
+<p>Call it after creating the file you want to share with USB connected device.
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>filename</dt>
+<dd>absolute path + name of the file to add</dd>
+</dl>
 </td></tr>
 </table>
 <table class="detail visibility-published wide_list">
