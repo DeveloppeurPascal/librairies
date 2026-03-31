@@ -40,8 +40,8 @@
   https://github.com/DeveloppeurPascal/librairies
 
   ***************************************************************************
-  File last update : 2026-03-30T16:35:19.662+02:00
-  Signature : 58918830aeabf3c420c90a4be3f496c637c68efe
+  File last update : 2026-03-31T17:26:36.000+02:00
+  Signature : 2ea6ba639c7c49338b65a7200f9494f4966c771c
   ***************************************************************************
 *)
 
@@ -107,7 +107,8 @@ var
   Languages: NSArray;
 begin
   Languages := TNSLocale.OCClass.preferredLanguages;
-  Result := String(TNSString.Wrap(Languages.objectAtIndex(0)).lowercaseString.UTF8String);
+  // Result := String(TNSString.Wrap(Languages.objectAtIndex(0)).lowercaseString.UTF8String);
+  Result := string(TNSString.Wrap(Languages.objectAtIndex(0)).UTF8String).ToLower;
 end;
 {$ELSE}
 
