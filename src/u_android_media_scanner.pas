@@ -1,4 +1,4 @@
-(* C2PP
+ï»¿(* C2PP
   ***************************************************************************
 
   My libraries for Delphi
@@ -40,19 +40,13 @@
   https://github.com/DeveloppeurPascal/librairies
 
   ***************************************************************************
-  File last update : 2026-03-30T16:35:19.678+02:00
-  Signature : 3831db2725845a0f900771c92ce98e692cdd4866
+  File last update : 2026-03-31T16:43:19.994+02:00
+  Signature : 7ff247cedd829346e2570f23ea49431c6997ca0b
   ***************************************************************************
 *)
 
+/// <summary>This Delphi unit contains procedures for use on Android when you want to provide USB (MTP) access to files created by an application.</summary>
 unit u_android_media_scanner;
-
-// Cette unité Delphi contient des procedures à utiliser sous Android lorsqu'on
-// désire donner accès en USB (MTP) à des fichiers créés depuis une application
-// (c) 2016 Patrick Prémartin / Olf Software
-//
-// Liste des mises à jour :
-// 16/06/2016, Patrick Prémartin : mise en production de la version initiale
 
 interface
 
