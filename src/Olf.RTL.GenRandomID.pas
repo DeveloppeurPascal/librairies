@@ -40,8 +40,8 @@
   https://github.com/DeveloppeurPascal/librairies
 
   ***************************************************************************
-  File last update : 2026-07-17T18:51:28.000+02:00
-  Signature : 7516fd85182f6da2d7e70d37337a56eed580767d
+  File last update : 2026-07-17T19:09:00.000+02:00
+  Signature : 7a092d70d3ac51724a6d8d93ec9584f8e8012a15
   ***************************************************************************
 *)
 
@@ -76,6 +76,9 @@ type
     ///   Generate a string like a password with different elements in it
     /// </summary>
     class function getPassword(const Numbers, LowerCaseLetters, UpperCaseLetters: Boolean; const Symbols: TArray < Char >= []; const ASize: Cardinal = 0): string; overload;
+    /// <summary>
+    ///   Generate a string like a password with different elements in it
+    /// </summary>
     class function getPassword(const Numbers, LowerCaseLetters, UpperCaseLetters: Boolean; const Symbols: string = ''; const ASize: Cardinal = 0): string; overload;
     /// <summary>
     /// Set the default size used by other methods of this class when no size is given when generating an ID.
