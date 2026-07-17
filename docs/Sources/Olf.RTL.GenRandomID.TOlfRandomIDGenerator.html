@@ -3,7 +3,7 @@
 <head>
 <title>My libraries for Delphi: Olf.RTL.GenRandomID: Class TOlfRandomIDGenerator</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="generator" content="PasDoc 1.0.2">
+<meta name="generator" content="PasDoc 1.0.4">
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
 <link rel="StyleSheet" type="text/css" href="pasdoc.css">
@@ -43,27 +43,35 @@
 <table class="summary wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class function <strong><a href="Olf.RTL.GenRandomID.TOlfRandomIDGenerator.html#getID-Byte-cardinal-">getID</a></strong>(Const Base: Byte; Const ASize: cardinal = 0): string;</code></td>
+<td class="itemcode"><code>class function <strong><a href="Olf.RTL.GenRandomID.TOlfRandomIDGenerator.html#getID-Byte-Cardinal-">getID</a></strong>(const Base: Byte; const ASize: Cardinal = 0): string;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class function <strong><a href="Olf.RTL.GenRandomID.TOlfRandomIDGenerator.html#getIDBase2-cardinal-">getIDBase2</a></strong>(Const Size: cardinal = 0): string;</code></td>
+<td class="itemcode"><code>class function <strong><a href="Olf.RTL.GenRandomID.TOlfRandomIDGenerator.html#getIDBase2-Cardinal-">getIDBase2</a></strong>(const Size: Cardinal = 0): string;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class function <strong><a href="Olf.RTL.GenRandomID.TOlfRandomIDGenerator.html#getIDBase10-cardinal-">getIDBase10</a></strong>(Const Size: cardinal = 0): string;</code></td>
+<td class="itemcode"><code>class function <strong><a href="Olf.RTL.GenRandomID.TOlfRandomIDGenerator.html#getIDBase10-Cardinal-">getIDBase10</a></strong>(const Size: Cardinal = 0): string;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class function <strong><a href="Olf.RTL.GenRandomID.TOlfRandomIDGenerator.html#getIDBase36-cardinal-">getIDBase36</a></strong>(Const Size: cardinal = 0): string;</code></td>
+<td class="itemcode"><code>class function <strong><a href="Olf.RTL.GenRandomID.TOlfRandomIDGenerator.html#getIDBase36-Cardinal-">getIDBase36</a></strong>(const Size: Cardinal = 0): string;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class function <strong><a href="Olf.RTL.GenRandomID.TOlfRandomIDGenerator.html#getIDBase62-cardinal-">getIDBase62</a></strong>(Const Size: cardinal = 0): string;</code></td>
+<td class="itemcode"><code>class function <strong><a href="Olf.RTL.GenRandomID.TOlfRandomIDGenerator.html#getIDBase62-Cardinal-">getIDBase62</a></strong>(const Size: Cardinal = 0): string;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.GenRandomID.TOlfRandomIDGenerator.html#SetDefaultSize-cardinal-">SetDefaultSize</a></strong>(Const Size: cardinal);</code></td>
+<td class="itemcode"><code>class function <strong><a href="Olf.RTL.GenRandomID.TOlfRandomIDGenerator.html#getPassword-Boolean-Boolean-Boolean-TArrayChar-Cardinal-">getPassword</a></strong>(const Numbers, LowerCaseLetters, UpperCaseLetters: Boolean; const Symbols: TArray &lt; Char &gt;= []; const ASize: Cardinal = 0): string; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="Olf.RTL.GenRandomID.TOlfRandomIDGenerator.html#getPassword-Boolean-Boolean-Boolean-string-Cardinal-">getPassword</a></strong>(const Numbers, LowerCaseLetters, UpperCaseLetters: Boolean; const Symbols: string = ''; const ASize: Cardinal = 0): string; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.GenRandomID.TOlfRandomIDGenerator.html#SetDefaultSize-Cardinal-">SetDefaultSize</a></strong>(const Size: Cardinal);</code></td>
 </tr>
 </table>
 <h2 class="description">Description</h2>
@@ -71,7 +79,7 @@
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="getID-Byte-cardinal-"></span><code>class function <strong>getID</strong>(Const Base: Byte; Const ASize: cardinal = 0): string;</code></td>
+<td class="itemcode"><span id="getID-Byte-Cardinal-"></span><code>class function <strong>getID</strong>(const Base: Byte; const ASize: Cardinal = 0): string;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -81,7 +89,7 @@
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="getIDBase2-cardinal-"></span><code>class function <strong>getIDBase2</strong>(Const Size: cardinal = 0): string;</code></td>
+<td class="itemcode"><span id="getIDBase2-Cardinal-"></span><code>class function <strong>getIDBase2</strong>(const Size: Cardinal = 0): string;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -91,7 +99,7 @@
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="getIDBase10-cardinal-"></span><code>class function <strong>getIDBase10</strong>(Const Size: cardinal = 0): string;</code></td>
+<td class="itemcode"><span id="getIDBase10-Cardinal-"></span><code>class function <strong>getIDBase10</strong>(const Size: Cardinal = 0): string;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -101,7 +109,7 @@
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="getIDBase36-cardinal-"></span><code>class function <strong>getIDBase36</strong>(Const Size: cardinal = 0): string;</code></td>
+<td class="itemcode"><span id="getIDBase36-Cardinal-"></span><code>class function <strong>getIDBase36</strong>(const Size: Cardinal = 0): string;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -111,7 +119,7 @@
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="getIDBase62-cardinal-"></span><code>class function <strong>getIDBase62</strong>(Const Size: cardinal = 0): string;</code></td>
+<td class="itemcode"><span id="getIDBase62-Cardinal-"></span><code>class function <strong>getIDBase62</strong>(const Size: Cardinal = 0): string;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -121,7 +129,27 @@
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="SetDefaultSize-cardinal-"></span><code>class procedure <strong>SetDefaultSize</strong>(Const Size: cardinal);</code></td>
+<td class="itemcode"><span id="getPassword-Boolean-Boolean-Boolean-TArrayChar-Cardinal-"></span><code>class function <strong>getPassword</strong>(const Numbers, LowerCaseLetters, UpperCaseLetters: Boolean; const Symbols: TArray &lt; Char &gt;= []; const ASize: Cardinal = 0): string; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Generate a string like a password with different elements in it </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="getPassword-Boolean-Boolean-Boolean-string-Cardinal-"></span><code>class function <strong>getPassword</strong>(const Numbers, LowerCaseLetters, UpperCaseLetters: Boolean; const Symbols: string = ''; const ASize: Cardinal = 0): string; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Generate a string like a password with different elements in it </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetDefaultSize-Cardinal-"></span><code>class procedure <strong>SetDefaultSize</strong>(const Size: Cardinal);</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -129,7 +157,7 @@
 </td></tr>
 </table>
 <a href="https://librairies.developpeur-pascal.fr/" target="_blank">My libraries for Delphi</a> (c) 1990-2026 <a href="https://patrick.premartin.fr" target="_blank">Patrick PREMARTIN</a> - Powered by <a href="https://pasdoc.github.io/" target="_blank">PasDoc</a>
-<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.2</a>. </em>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
 </span>
 </div></main>
 <script src="bootstrap.bundle.min.js"></script>
