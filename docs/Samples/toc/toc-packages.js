@@ -158,5 +158,9 @@ window.DocInsight.toc["toc-packages"] =   [
         id: "VCLShowSVGFromBitmapSample",
         title: "VCLShowSVGFromBitmapSample",
           href: "VCLShowSVGFromBitmapSample.html",
+      },      {
+        id: "RandomPasswordSample",
+        title: "RandomPasswordSample",
+          href: "RandomPasswordSample.html",
       }  ]
 ;
