@@ -252,12 +252,19 @@ type
     procedure setFilePath(AFilePath: string; AReload: boolean = true;
       AExceptionIfFolderNotExist: boolean = true);
     /// <summary>
-    /// Initialise the folder and the filename with a new default tree:
+    /// Initialize the folder with a new default tree:
     /// => "Documents / Editor / Software" for DEBUG and iOS
     /// => "AppData (HomePath) / Editor / Software" in RELEASE (except iOS)
     /// </summary>
     procedure InitDefaultFileNameV2(const AEditor, ASoftware: string;
-      AReload: boolean = true);
+      AReload: boolean = true); overload;
+    /// <summary>
+    /// Initialize the folder and the filename with a new default tree:
+    /// => "Documents / Editor / Software" for DEBUG and iOS
+    /// => "AppData (HomePath) / Editor / Software" in RELEASE (except iOS)
+    /// </summary>
+    procedure InitDefaultFileNameV2(const AEditor, ASoftware, AFileName: string;
+      AReload: boolean = true); overload;
     /// <summary>
     /// Move actual parameter file to the new file.
     /// </summary>
@@ -532,12 +539,19 @@ type
     class procedure setFilePath(AFilePath: string; AReload: boolean = true;
       AExceptionIfFolderNotExist: boolean = true);
     /// <summary>
-    /// Initialise the folder and the filename with a new default tree:
+    /// Initialize the folder with a new default tree:
     /// => "Documents / Editor / Software" for DEBUG and iOS
     /// => "AppData (HomePath) / Editor / Software" in RELEASE (except iOS)
     /// </summary>
     class procedure InitDefaultFileNameV2(const AEditor, ASoftware: string;
-      AReload: boolean = true);
+      AReload: boolean = true); overload;
+    /// <summary>
+    /// Initialize the folder and the filename with a new default tree:
+    /// => "Documents / Editor / Software" for DEBUG and iOS
+    /// => "AppData (HomePath) / Editor / Software" in RELEASE (except iOS)
+    /// </summary>
+    class procedure InitDefaultFileNameV2(const AEditor, ASoftware, AFileName:
+      string; AReload: boolean = true); overload;
     /// <summary>
     /// Move actual parameter file to the new file.
     /// </summary>
@@ -1248,6 +1262,15 @@ begin
   result := FParamChanged;
 end;
 
+procedure TParamsFile.InitDefaultFileNameV2(const AEditor, ASoftware,
+  AFileName: string; AReload: boolean);
+begin
+  InitDefaultFileNameV2(AEditor, ASoftware, false);
+  FFileName := AFileName;
+  if AReload then
+    Load;
+end;
+
 procedure TParamsFile.InitDefaultFileNameV2(const AEditor, ASoftware: string;
   AReload: boolean);
 var
@@ -1570,6 +1593,13 @@ end;
 class function TParams.HasChanged: boolean;
 begin
   result := DefaultParamsFile.HasChanged;
+end;
+
+class procedure TParams.InitDefaultFileNameV2(const AEditor, ASoftware,
+  AFileName: string; AReload: boolean);
+begin
+  DefaultParamsFile.InitDefaultFileNameV2(AEditor, ASoftware, AFileName,
+    AReload);
 end;
 
 class procedure TParams.InitDefaultFileNameV2(const AEditor, ASoftware: string;
