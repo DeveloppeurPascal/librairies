@@ -66,6 +66,9 @@
         <Projects Include="RTL.Params\Events\ParamsEvents.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="RTL.Params\IntegerDoubleAndSingle\IntegerDoubleAndSingleSample.dproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="RTL.Params\ParamsSample\ParamsSample.dproj">
             <Dependencies/>
         </Projects>
@@ -317,6 +320,15 @@
     <Target Name="ParamsEvents:Make">
         <MSBuild Projects="RTL.Params\Events\ParamsEvents.dproj" Targets="Make"/>
     </Target>
+    <Target Name="IntegerDoubleAndSingleSample">
+        <MSBuild Projects="RTL.Params\IntegerDoubleAndSingle\IntegerDoubleAndSingleSample.dproj"/>
+    </Target>
+    <Target Name="IntegerDoubleAndSingleSample:Clean">
+        <MSBuild Projects="RTL.Params\IntegerDoubleAndSingle\IntegerDoubleAndSingleSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="IntegerDoubleAndSingleSample:Make">
+        <MSBuild Projects="RTL.Params\IntegerDoubleAndSingle\IntegerDoubleAndSingleSample.dproj" Targets="Make"/>
+    </Target>
     <Target Name="ParamsSample">
         <MSBuild Projects="RTL.Params\ParamsSample\ParamsSample.dproj"/>
     </Target>
@@ -480,13 +492,13 @@
         <MSBuild Projects="Skia.SVGToBitmap\VCL_With_SVGList\VCLShowSVGFromBitmapSample.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="DisplayTextByCode;TextImageWithAutoSizeSample;TextWithAShadowEffectSample;UseLibraryAsTFrame;MD5Sample;ChecksumSample;IncDecByteCryptSample;ShiftCryptDecryptSample;CryptDecryptSample;SwapCryptDecryptSample;TimeConversionSample;DProjReaderSample;RandomIDGenerator;RandomPasswordSample;GetSystemLanguageISOCode_FMX;GetSystemLanguageISOCode_VCL;NumberBaseConvertSample;SHL_SHR_Sample;BeginEndUpdateParamSample;CryptDecryptEventsSample;ParamsEvents;ParamsSample;RemoveKeySample;ParamsFolderTest;ParamsInPortableMode;LoadAndSaveBitmapInAStreamSample;FMXEmptyBitmapSample;VCLEmptyBitmapSample;LoadAndSaveStringSample;StreamWithSize;GetSystemTheme;URLAndFileOpenSample;FMXAutoRegisterAndSVGMarginsSample;FMXSVGToBitmapSample;FMXSVGClassTest;FMXShowSVGFromBitmapSample;VCLSVGToBitmapSample;CreateImagesByCodeSampleProject;VCLShowSVGFromBitmapSample"/>
+        <CallTarget Targets="DisplayTextByCode;TextImageWithAutoSizeSample;TextWithAShadowEffectSample;UseLibraryAsTFrame;MD5Sample;ChecksumSample;IncDecByteCryptSample;ShiftCryptDecryptSample;CryptDecryptSample;SwapCryptDecryptSample;TimeConversionSample;DProjReaderSample;RandomIDGenerator;RandomPasswordSample;GetSystemLanguageISOCode_FMX;GetSystemLanguageISOCode_VCL;NumberBaseConvertSample;SHL_SHR_Sample;BeginEndUpdateParamSample;CryptDecryptEventsSample;ParamsEvents;IntegerDoubleAndSingleSample;ParamsSample;RemoveKeySample;ParamsFolderTest;ParamsInPortableMode;LoadAndSaveBitmapInAStreamSample;FMXEmptyBitmapSample;VCLEmptyBitmapSample;LoadAndSaveStringSample;StreamWithSize;GetSystemTheme;URLAndFileOpenSample;FMXAutoRegisterAndSVGMarginsSample;FMXSVGToBitmapSample;FMXSVGClassTest;FMXShowSVGFromBitmapSample;VCLSVGToBitmapSample;CreateImagesByCodeSampleProject;VCLShowSVGFromBitmapSample"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="DisplayTextByCode:Clean;TextImageWithAutoSizeSample:Clean;TextWithAShadowEffectSample:Clean;UseLibraryAsTFrame:Clean;MD5Sample:Clean;ChecksumSample:Clean;IncDecByteCryptSample:Clean;ShiftCryptDecryptSample:Clean;CryptDecryptSample:Clean;SwapCryptDecryptSample:Clean;TimeConversionSample:Clean;DProjReaderSample:Clean;RandomIDGenerator:Clean;RandomPasswordSample:Clean;GetSystemLanguageISOCode_FMX:Clean;GetSystemLanguageISOCode_VCL:Clean;NumberBaseConvertSample:Clean;SHL_SHR_Sample:Clean;BeginEndUpdateParamSample:Clean;CryptDecryptEventsSample:Clean;ParamsEvents:Clean;ParamsSample:Clean;RemoveKeySample:Clean;ParamsFolderTest:Clean;ParamsInPortableMode:Clean;LoadAndSaveBitmapInAStreamSample:Clean;FMXEmptyBitmapSample:Clean;VCLEmptyBitmapSample:Clean;LoadAndSaveStringSample:Clean;StreamWithSize:Clean;GetSystemTheme:Clean;URLAndFileOpenSample:Clean;FMXAutoRegisterAndSVGMarginsSample:Clean;FMXSVGToBitmapSample:Clean;FMXSVGClassTest:Clean;FMXShowSVGFromBitmapSample:Clean;VCLSVGToBitmapSample:Clean;CreateImagesByCodeSampleProject:Clean;VCLShowSVGFromBitmapSample:Clean"/>
+        <CallTarget Targets="DisplayTextByCode:Clean;TextImageWithAutoSizeSample:Clean;TextWithAShadowEffectSample:Clean;UseLibraryAsTFrame:Clean;MD5Sample:Clean;ChecksumSample:Clean;IncDecByteCryptSample:Clean;ShiftCryptDecryptSample:Clean;CryptDecryptSample:Clean;SwapCryptDecryptSample:Clean;TimeConversionSample:Clean;DProjReaderSample:Clean;RandomIDGenerator:Clean;RandomPasswordSample:Clean;GetSystemLanguageISOCode_FMX:Clean;GetSystemLanguageISOCode_VCL:Clean;NumberBaseConvertSample:Clean;SHL_SHR_Sample:Clean;BeginEndUpdateParamSample:Clean;CryptDecryptEventsSample:Clean;ParamsEvents:Clean;IntegerDoubleAndSingleSample:Clean;ParamsSample:Clean;RemoveKeySample:Clean;ParamsFolderTest:Clean;ParamsInPortableMode:Clean;LoadAndSaveBitmapInAStreamSample:Clean;FMXEmptyBitmapSample:Clean;VCLEmptyBitmapSample:Clean;LoadAndSaveStringSample:Clean;StreamWithSize:Clean;GetSystemTheme:Clean;URLAndFileOpenSample:Clean;FMXAutoRegisterAndSVGMarginsSample:Clean;FMXSVGToBitmapSample:Clean;FMXSVGClassTest:Clean;FMXShowSVGFromBitmapSample:Clean;VCLSVGToBitmapSample:Clean;CreateImagesByCodeSampleProject:Clean;VCLShowSVGFromBitmapSample:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="DisplayTextByCode:Make;TextImageWithAutoSizeSample:Make;TextWithAShadowEffectSample:Make;UseLibraryAsTFrame:Make;MD5Sample:Make;ChecksumSample:Make;IncDecByteCryptSample:Make;ShiftCryptDecryptSample:Make;CryptDecryptSample:Make;SwapCryptDecryptSample:Make;TimeConversionSample:Make;DProjReaderSample:Make;RandomIDGenerator:Make;RandomPasswordSample:Make;GetSystemLanguageISOCode_FMX:Make;GetSystemLanguageISOCode_VCL:Make;NumberBaseConvertSample:Make;SHL_SHR_Sample:Make;BeginEndUpdateParamSample:Make;CryptDecryptEventsSample:Make;ParamsEvents:Make;ParamsSample:Make;RemoveKeySample:Make;ParamsFolderTest:Make;ParamsInPortableMode:Make;LoadAndSaveBitmapInAStreamSample:Make;FMXEmptyBitmapSample:Make;VCLEmptyBitmapSample:Make;LoadAndSaveStringSample:Make;StreamWithSize:Make;GetSystemTheme:Make;URLAndFileOpenSample:Make;FMXAutoRegisterAndSVGMarginsSample:Make;FMXSVGToBitmapSample:Make;FMXSVGClassTest:Make;FMXShowSVGFromBitmapSample:Make;VCLSVGToBitmapSample:Make;CreateImagesByCodeSampleProject:Make;VCLShowSVGFromBitmapSample:Make"/>
+        <CallTarget Targets="DisplayTextByCode:Make;TextImageWithAutoSizeSample:Make;TextWithAShadowEffectSample:Make;UseLibraryAsTFrame:Make;MD5Sample:Make;ChecksumSample:Make;IncDecByteCryptSample:Make;ShiftCryptDecryptSample:Make;CryptDecryptSample:Make;SwapCryptDecryptSample:Make;TimeConversionSample:Make;DProjReaderSample:Make;RandomIDGenerator:Make;RandomPasswordSample:Make;GetSystemLanguageISOCode_FMX:Make;GetSystemLanguageISOCode_VCL:Make;NumberBaseConvertSample:Make;SHL_SHR_Sample:Make;BeginEndUpdateParamSample:Make;CryptDecryptEventsSample:Make;ParamsEvents:Make;IntegerDoubleAndSingleSample:Make;ParamsSample:Make;RemoveKeySample:Make;ParamsFolderTest:Make;ParamsInPortableMode:Make;LoadAndSaveBitmapInAStreamSample:Make;FMXEmptyBitmapSample:Make;VCLEmptyBitmapSample:Make;LoadAndSaveStringSample:Make;StreamWithSize:Make;GetSystemTheme:Make;URLAndFileOpenSample:Make;FMXAutoRegisterAndSVGMarginsSample:Make;FMXSVGToBitmapSample:Make;FMXSVGClassTest:Make;FMXShowSVGFromBitmapSample:Make;VCLSVGToBitmapSample:Make;CreateImagesByCodeSampleProject:Make;VCLShowSVGFromBitmapSample:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
