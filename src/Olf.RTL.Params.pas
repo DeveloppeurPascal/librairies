@@ -234,7 +234,7 @@ type
     /// </remarks>
     procedure setFolderName(AFolderName: string; AReload: boolean = true);
     /// <summary>
-    /// Change the folder where is the parameter file.
+    /// Change the file path (folder + filename) of the parameter file.
     /// </summary>
     /// <param name="AFilePath">
     /// Absolute file path (drive+folder+file name+extension) to the parameter file you want to use.
