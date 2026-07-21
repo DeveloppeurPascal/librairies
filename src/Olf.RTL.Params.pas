@@ -242,10 +242,15 @@ type
     /// <param name="AReload">
     /// If set to True (by default), call Load procedure after changing the file path.
     /// </param>
+/// <param name="AExceptionIfFolderNotExist">
+/// Check if the folder of the new path exists. If not, an exception is raized.
+///  On iOS and Android, if an exception is sent before the GUI has started, it will crash the app.
+/// </param>
     /// <remarks>
     /// If you only want to change the path to the parameter file, use setFolderName procedure instead of this one.
     /// </remarks>
-    procedure setFilePath(AFilePath: string; AReload: boolean = true);
+    procedure setFilePath(AFilePath: string; AReload: boolean = true;
+      AExceptionIfFolderNotExist: boolean = true);
     /// <summary>
     /// Initialise the folder and the filename with a new default tree:
     /// => "Documents / Editor / Software" for DEBUG and iOS
@@ -509,7 +514,7 @@ type
     /// </remarks>
     class procedure setFolderName(AFolderName: string; AReload: boolean = true);
     /// <summary>
-    /// Change the folder where is the parameter file.
+    /// Change the file path (folder + filename) of the parameter file.
     /// </summary>
     /// <param name="AFilePath">
     /// Absolute file path (drive+folder+file name+extension) to the parameter file you want to use.
@@ -517,10 +522,15 @@ type
     /// <param name="AReload">
     /// If set to True (by default), call Load procedure after changing the file path.
     /// </param>
+/// <param name="AExceptionIfFolderNotExist">
+/// Check if the folder of the new path exists. If not, an exception is raized.
+///  On iOS and Android, if an exception is sent before the GUI has started, it will crash the app.
+/// </param>
     /// <remarks>
     /// If you only want to change the path to the parameter file, use setFolderName procedure instead of this one.
     /// </remarks>
-    class procedure setFilePath(AFilePath: string; AReload: boolean = true);
+    class procedure setFilePath(AFilePath: string; AReload: boolean = true;
+      AExceptionIfFolderNotExist: boolean = true);
     /// <summary>
     /// Initialise the folder and the filename with a new default tree:
     /// => "Documents / Editor / Software" for DEBUG and iOS
@@ -1140,7 +1150,8 @@ begin
   end;
 end;
 
-procedure TParamsFile.setFilePath(AFilePath: string; AReload: boolean);
+procedure TParamsFile.setFilePath(AFilePath: string; AReload,
+  AExceptionIfFolderNotExist: boolean);
 begin
   if AFilePath.IsEmpty then
   begin
@@ -1150,7 +1161,7 @@ begin
   else
   begin
     FFolderName := TPath.GetDirectoryName(AFilePath);
-    if not tdirectory.Exists(FFolderName) then
+    if AExceptionIfFolderNotExist and (not tdirectory.Exists(FFolderName)) then
       raise exception.Create('Folder "' + FFolderName + '" doesn''t exist.');
     FFileName := TPath.GetFileName(AFilePath);
   end;
@@ -1445,9 +1456,10 @@ begin
   DefaultParamsFile.Save;
 end;
 
-class procedure TParams.setFilePath(AFilePath: string; AReload: boolean);
+class procedure TParams.setFilePath(AFilePath: string; AReload,
+  AExceptionIfFolderNotExist: boolean);
 begin
-  DefaultParamsFile.setFilePath(AFilePath, AReload);
+  DefaultParamsFile.setFilePath(AFilePath, AReload, AExceptionIfFolderNotExist);
 end;
 
 class procedure TParams.setFolderName(AFolderName: string; AReload: boolean);
