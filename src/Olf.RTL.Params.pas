@@ -53,6 +53,8 @@ uses
   System.Classes,
   System.JSON;
 
+{$SCOPEDENUMS ON}
+
 type
   TParamsFile = class;
 
@@ -82,6 +84,8 @@ type
   /// Procedure signature for the decrypt event in TParamsFile
   /// </summary>
   TParamsDecryptProc = reference to function(const AStream: TStream): string;
+
+  TDateTimeStorrageFormat = (Delphi, ISO8601, RFC822);
 
   /// <summary>
   /// TParamsFile work as an instance of a settings file.
@@ -122,7 +126,8 @@ type
     procedure SetPortableMode(const Value: boolean);
   protected
     function getParamsFileName(ACreateFolder: boolean = False): string;
-    function getParamValue(key: string): TJSONValue;
+    function getParamValue(key: string): TJSONValue; deprecated
+      'use GetValue<T>(key:string; Default:T):T';
     procedure setParamValue(key: string; Value: TJSONValue);
   public
     /// <summary>
@@ -188,10 +193,23 @@ type
     /// </summary>
     function getValue(key: string; default: TDateTime = 0): TDateTime; overload;
     /// <summary>
+    /// Get the TDateTime value for key parameter with December 30th 1899 at 12:00  as default value
+    /// </summary>
+    function getValue(key: string; DateFormat: TDateTimeStorrageFormat; default:
+      TDateTime = 0): TDateTime; overload;
+    /// <summary>
     /// Get the JSON value for key parameter with nil as default value
     /// </summary>
     function getValue(key: string; default: TJSONValue = nil)
       : TJSONValue; overload;
+    /// <summary>
+    /// Try to get the value of "Key" as type T.
+    ///Returns the Default value if it doesn't work.
+    /// </summary>
+/// <remarks>
+///   This function use TMonitor to lock the JSON storrage and can be used in multi threaded projects.
+/// </remarks>
+    function GetValue<T>(const key: string; const Default: T): T; overload;
     /// <summary>
     /// Set the value for key parameter as string
     /// </summary>
@@ -215,7 +233,8 @@ type
     /// <summary>
     /// Set the value for key parameter as TDateTime
     /// </summary>
-    procedure setValue(key: string; Value: TDateTime); overload;
+    procedure setValue(key: string; Value: TDateTime; DateFormat:
+      TDateTimeStorrageFormat = TDateTimeStorrageFormat.Delphi); overload;
     /// <summary>
     /// Set the value for key parameter as TJSONValue
     /// </summary>
@@ -502,7 +521,8 @@ type
     /// <summary>
     /// Set the value for key parameter as TDateTime
     /// </summary>
-    class procedure setValue(key: string; Value: TDateTime); overload;
+    class procedure setValue(key: string; Value: TDateTime; DateFormat:
+      TDateTimeStorrageFormat = TDateTimeStorrageFormat.Delphi); overload;
     /// <summary>
     /// Set the value for key parameter as TJSONValue
     /// </summary>
@@ -671,7 +691,8 @@ implementation
 uses
   System.Generics.collections,
   System.IOUtils,
-  System.SysUtils;
+  System.SysUtils,
+  System.DateUtils;
 
 { TParamsFile }
 
@@ -730,6 +751,21 @@ begin
   end;
 end;
 
+function TParamsFile.getValue(key: string; DateFormat: TDateTimeStorrageFormat;
+  default: TDateTime): TDateTime;
+begin
+  case DateFormat of
+    TDateTimeStorrageFormat.Delphi: result :=
+      StrToDateTime(getValue<string>(key, DateTimeToStr(Default)));
+    TDateTimeStorrageFormat.ISO8601: result :=
+      ISO8601ToDate(getValue<string>(key, DateToISO8601(Default)));
+    TDateTimeStorrageFormat.RFC822: result := RFC822ToDate(getValue<string>(key,
+        DateToRFC822(Default)));
+  else
+    raise Exception.Create('Unknown date format !');
+  end;
+end;
+
 procedure TParamsFile.setParamValue(key: string; Value: TJSONValue);
 begin
   System.TMonitor.Enter(Self);
@@ -763,55 +799,36 @@ begin
 end;
 
 function TParamsFile.getValue(key: string; default: boolean): boolean;
-var
-  jsonvalue: TJSONValue;
 begin
-  jsonvalue := getParamValue(key);
-  if Assigned(jsonvalue) then
-    result := jsonvalue.Value.ToBoolean
-  else
-    result := default;
+  result := getValue<boolean>(key, default);
 end;
 
 function TParamsFile.getValue(key: string; default: string): string;
-var
-  jsonvalue: TJSONValue;
 begin
-  jsonvalue := getParamValue(key);
-  if Assigned(jsonvalue) then
-    result := jsonvalue.Value
-  else
-    result := default;
+  result := getValue<string>(key, default);
 end;
 
 function TParamsFile.getValue(key: string; default: integer): integer;
 var
-  jsonvalue: TJSONValue;
+  s: Single;
 begin
-  jsonvalue := getParamValue(key);
-  if Assigned(jsonvalue) then
-    try
-      result := jsonvalue.Value.ToInteger
-    except
-      on E: EConvertError do
-        if (jsonvalue.Value.ToSingle = trunc(jsonvalue.Value.ToSingle)) then
-          result := Trunc(jsonvalue.Value.ToSingle)
-        else
-          raise;
-    end
-  else
-    result := default;
+  try
+    result := getValue<integer>(key, default);
+  except
+    on E: EConvertError do
+    begin
+      s := getValue<single>(key, default);
+      if s = trunc(s) then
+        result := trunc(s)
+      else
+        raise;
+    end;
+  end;
 end;
 
 function TParamsFile.getValue(key: string; default: single): single;
-var
-  jsonvalue: TJSONValue;
 begin
-  jsonvalue := getParamValue(key);
-  if Assigned(jsonvalue) then
-    result := jsonvalue.Value.ToSingle
-  else
-    result := default;
+  result := getValue<single>(key, default);
 end;
 
 function TParamsFile.AsJSONObject(AClone: boolean): TJSONObject;
@@ -933,12 +950,11 @@ end;
 
 function TParamsFile.getValue(key: string; default: TDateTime): TDateTime;
 var
-  jsonvalue: TJSONValue;
+  s: string;
 begin
-  jsonvalue := getParamValue(key);
-  if Assigned(jsonvalue) then
-    result := strToDateTime(jsonvalue.Value)
-  else
+  s := getValue<string>(key, '');
+  if (not TryStrToDateTime(s, result)) and (not TryISO8601ToDate(s, result)) and
+    (not TryRFC822ToDate(s, result)) then
     result := default;
 end;
 
@@ -1103,11 +1119,21 @@ begin
   end;
 end;
 
-procedure TParamsFile.setValue(key: string; Value: TDateTime);
+procedure TParamsFile.setValue(key: string; Value: TDateTime; DateFormat:
+  TDateTimeStorrageFormat);
 var
   jsonvalue: TJSONString;
 begin
-  jsonvalue := TJSONString.Create(DateTimeToStr(Value));
+  case DateFormat of
+    TDateTimeStorrageFormat.Delphi: jsonvalue :=
+      TJSONString.Create(DateTimeToStr(Value));
+    TDateTimeStorrageFormat.ISO8601: jsonvalue :=
+      TJSONString.Create(DateToISO8601(Value));
+    TDateTimeStorrageFormat.RFC822: jsonvalue :=
+      TJSONString.Create(DateToRFC822(Value));
+  else
+    raise Exception.create('Storrage date format unknown !');
+  end;
   try
     setParamValue(key, jsonvalue);
   except
@@ -1252,9 +1278,18 @@ end;
 
 function TParamsFile.getValue(key: string; default: TJSONValue): TJSONValue;
 begin
-  result := getParamValue(key);
-  if not Assigned(result) then
-    result := default;
+  result := getValue<TJSONValue>(key, default);
+end;
+
+function TParamsFile.GetValue<T>(const key: string; const Default: T): T;
+begin
+  System.TMonitor.Enter(Self);
+  try
+    if not FParamList.TryGetValue<T>(key, result) then
+      result := Default;
+  finally
+    System.TMonitor.Exit(Self);
+  end;
 end;
 
 function TParamsFile.HasChanged: boolean;
@@ -1306,21 +1341,20 @@ end;
 
 function TParamsFile.getValue(key: string; default: cardinal): cardinal;
 var
-  jsonvalue: TJSONValue;
+  s: Single;
 begin
-  jsonvalue := getParamValue(key);
-  if Assigned(jsonvalue) then
-    try
-      result := jsonvalue.Value.ToInt64
-    except
-      on E: EConvertError do
-        if (jsonvalue.Value.ToSingle = trunc(jsonvalue.Value.ToSingle)) then
-          result := Trunc(jsonvalue.Value.ToSingle)
-        else
-          raise;
-    end
-  else
-    result := default;
+  try
+    result := getValue<cardinal>(key, default);
+  except
+    on E: EConvertError do
+    begin
+      s := getValue<single>(key, default);
+      if s = trunc(s) then
+        result := trunc(s)
+      else
+        raise;
+    end;
+  end;
 end;
 
 procedure TParamsFile.setValue(key: string; Value: TJSONValue);
@@ -1565,9 +1599,10 @@ begin
   DefaultParamsFile.setValue(key, Value);
 end;
 
-class procedure TParams.setValue(key: string; Value: TDateTime);
+class procedure TParams.setValue(key: string; Value: TDateTime; DateFormat:
+  TDateTimeStorrageFormat);
 begin
-  DefaultParamsFile.setValue(key, Value);
+  DefaultParamsFile.setValue(key, Value, DateFormat);
 end;
 
 class procedure TParams.setValue(key: string; Value: single);
