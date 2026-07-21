@@ -1282,11 +1282,14 @@ begin
 end;
 
 function TParamsFile.GetValue<T>(const key: string; const Default: T): T;
+var
+  JSV: TJSONValue;
 begin
   System.TMonitor.Enter(Self);
   try
-    if not FParamList.TryGetValue<T>(key, result) then
-      result := Default;
+    jsv := FParamList.GetValue(key);
+    if (not assigned(jsv)) or (not jsv.TryGetValue<T>(Result)) then
+      result := default;
   finally
     System.TMonitor.Exit(Self);
   end;
