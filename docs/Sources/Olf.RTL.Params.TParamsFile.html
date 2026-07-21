@@ -49,7 +49,7 @@
 </tr>
 <tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>function <strong><a href="Olf.RTL.Params.TParamsFile.html#getParamValue-string-">getParamValue</a></strong>(key: string): TJSONValue;</code></td>
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.Params.TParamsFile.html#getParamValue-string-">getParamValue</a></strong>(key: string): TJSONValue; deprecated 'use GetValue&lt;T&gt;(key:string; Default:T):T';</code></td>
 </tr>
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
@@ -113,7 +113,15 @@
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.Params.TParamsFile.html#getValue-string-TDateTimeStorrageFormat-TDateTime-">getValue</a></strong>(key: string; DateFormat: <a href="Olf.RTL.Params.html#TDateTimeStorrageFormat">TDateTimeStorrageFormat</a>; default: TDateTime = 0): TDateTime; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="Olf.RTL.Params.TParamsFile.html#getValue-string-TJSONValue-">getValue</a></strong>(key: string; default: TJSONValue = nil) : TJSONValue; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.Params.TParamsFile.html#GetValue-string-T-">GetValue</a></strong>&lt;T&gt;(const key: string; const Default: T): T; overload;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -137,7 +145,7 @@
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>procedure <strong><a href="Olf.RTL.Params.TParamsFile.html#setValue-string-TDateTime-">setValue</a></strong>(key: string; Value: TDateTime); overload;</code></td>
+<td class="itemcode"><code>procedure <strong><a href="Olf.RTL.Params.TParamsFile.html#setValue-string-TDateTime-TDateTimeStorrageFormat-">setValue</a></strong>(key: string; Value: TDateTime; DateFormat: <a href="Olf.RTL.Params.html#TDateTimeStorrageFormat">TDateTimeStorrageFormat</a> = <a href="Olf.RTL.Params.html#Delphi">TDateTimeStorrageFormat.Delphi</a>); overload;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -149,41 +157,45 @@
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>procedure <strong><a href="Olf.RTL.Params.TParamsFile.html#setFilePath-string-boolean-">setFilePath</a></strong>(AFilePath: string; AReload: boolean = true);</code></td>
+<td class="itemcode"><code>procedure <strong><a href="Olf.RTL.Params.TParamsFile.html#setFilePath-string-boolean-boolean-">setFilePath</a></strong>(AFilePath: string; AReload: boolean = true; AExceptionIfFolderNotExist: boolean = true);</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>procedure <strong><a href="Olf.RTL.Params.TParamsFile.html#InitDefaultFileNameV2-string-string-boolean-">InitDefaultFileNameV2</a></strong>(const AEditor, ASoftware: string; AReload: boolean = true);</code></td>
+<td class="itemcode"><code>procedure <strong><a href="Olf.RTL.Params.TParamsFile.html#InitDefaultFileNameV2-string-string-boolean-">InitDefaultFileNameV2</a></strong>(const AEditor, ASoftware: string; AReload: boolean = true); overload;</code></td>
 </tr>
 <tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="Olf.RTL.Params.TParamsFile.html#InitDefaultFileNameV2-string-string-string-boolean-">InitDefaultFileNameV2</a></strong>(const AEditor, ASoftware, AFileName: string; AReload: boolean = true); overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>procedure <strong><a href="Olf.RTL.Params.TParamsFile.html#MoveToFilePath-string-boolean-boolean-">MoveToFilePath</a></strong>(ANewFilePath: string; ASave: boolean = true; ACreateFolder: boolean = False);</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="Olf.RTL.Params.TParamsFile.html#getFilePath">getFilePath</a></strong>: string;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="Olf.RTL.Params.TParamsFile.html#ToJSON">ToJSON</a></strong>: string;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="Olf.RTL.Params.TParamsFile.html#AsJSONObject-boolean-">AsJSONObject</a></strong>(AClone: boolean = true): TJSONObject;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>procedure <strong><a href="Olf.RTL.Params.TParamsFile.html#Remove-string-">Remove</a></strong>(key: string);</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="Olf.RTL.Params.TParamsFile.html#HasChanged">HasChanged</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>procedure <strong><a href="Olf.RTL.Params.TParamsFile.html#BeginUpdate">BeginUpdate</a></strong>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>procedure <strong><a href="Olf.RTL.Params.TParamsFile.html#EndUpdate-boolean-">EndUpdate</a></strong>(const AutoSaveChanges: boolean = true);</code></td>
 </tr>
@@ -268,10 +280,10 @@
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="getParamValue-string-"></span><code>function <strong>getParamValue</strong>(key: string): TJSONValue;</code></td>
+<td class="itemcode"><span id="getParamValue-string-"></span><code>function <strong>getParamValue</strong>(key: string): TJSONValue; deprecated 'use GetValue&lt;T&gt;(key:string; Default:T):T';</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p class="hint_directive">Warning: this symbol is deprecated: use GetValue&lt;T&gt;(key:string; Default:T):T</p><p class="nodescription">This item has no description.</p></td></tr>
 </table>
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
@@ -435,11 +447,35 @@
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="getValue-string-TDateTimeStorrageFormat-TDateTime-"></span><code>function <strong>getValue</strong>(key: string; DateFormat: <a href="Olf.RTL.Params.html#TDateTimeStorrageFormat">TDateTimeStorrageFormat</a>; default: TDateTime = 0): TDateTime; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get the TDateTime value for key parameter with December 30th 1899 at 12:00 as default value </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><span id="getValue-string-TJSONValue-"></span><code>function <strong>getValue</strong>(key: string; default: TJSONValue = nil) : TJSONValue; overload;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
  Get the JSON value for key parameter with nil as default value </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetValue-string-T-"></span><code>function <strong>GetValue</strong>&lt;T&gt;(const key: string; const Default: T): T; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Try to get the value of &quot;Key&quot; as type T. Returns the Default value if it doesn't work. </p>
+<p>
+
+
+<p>This function use TMonitor to lock the JSON storrage and can be used in multi threaded projects.</p>
 </td></tr>
 </table>
 <table class="detail visibility-public wide_list">
@@ -495,7 +531,7 @@
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="setValue-string-TDateTime-"></span><code>procedure <strong>setValue</strong>(key: string; Value: TDateTime); overload;</code></td>
+<td class="itemcode"><span id="setValue-string-TDateTime-TDateTimeStorrageFormat-"></span><code>procedure <strong>setValue</strong>(key: string; Value: TDateTime; DateFormat: <a href="Olf.RTL.Params.html#TDateTimeStorrageFormat">TDateTimeStorrageFormat</a> = <a href="Olf.RTL.Params.html#Delphi">TDateTimeStorrageFormat.Delphi</a>); overload;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -538,13 +574,15 @@
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="setFilePath-string-boolean-"></span><code>procedure <strong>setFilePath</strong>(AFilePath: string; AReload: boolean = true);</code></td>
+<td class="itemcode"><span id="setFilePath-string-boolean-boolean-"></span><code>procedure <strong>setFilePath</strong>(AFilePath: string; AReload: boolean = true; AExceptionIfFolderNotExist: boolean = true);</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
- Change the folder where is the parameter file. </p>
+ Change the file path (folder + filename) of the parameter file. </p>
 <p>
  
+
+<p>
 
 <p>
 
@@ -555,17 +593,29 @@
 <dd>Absolute file path (drive+folder+file name+extension) to the parameter file you want to use.</dd>
 <dt>AReload</dt>
 <dd>If set to True (by default), call Load procedure after changing the file path.</dd>
+<dt>AExceptionIfFolderNotExist</dt>
+<dd>Check if the folder of the new path exists. If not, an exception is raized. On iOS and Android, if an exception is sent before the GUI has started, it will crash the app.</dd>
 </dl>
 </td></tr>
 </table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="InitDefaultFileNameV2-string-string-boolean-"></span><code>procedure <strong>InitDefaultFileNameV2</strong>(const AEditor, ASoftware: string; AReload: boolean = true);</code></td>
+<td class="itemcode"><span id="InitDefaultFileNameV2-string-string-boolean-"></span><code>procedure <strong>InitDefaultFileNameV2</strong>(const AEditor, ASoftware: string; AReload: boolean = true); overload;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
- Initialise the folder and the filename with a new default tree: =&gt; &quot;Documents / Editor / Software&quot; for DEBUG and iOS =&gt; &quot;AppData (HomePath) / Editor / Software&quot; in RELEASE (except iOS) </p>
+ Initialize the folder with a new default tree: =&gt; &quot;Documents / Editor / Software&quot; for DEBUG and iOS =&gt; &quot;AppData (HomePath) / Editor / Software&quot; in RELEASE (except iOS) </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="InitDefaultFileNameV2-string-string-string-boolean-"></span><code>procedure <strong>InitDefaultFileNameV2</strong>(const AEditor, ASoftware, AFileName: string; AReload: boolean = true); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Initialize the folder and the filename with a new default tree: =&gt; &quot;Documents / Editor / Software&quot; for DEBUG and iOS =&gt; &quot;AppData (HomePath) / Editor / Software&quot; in RELEASE (except iOS) </p>
 </td></tr>
 </table>
 <table class="detail visibility-public wide_list">

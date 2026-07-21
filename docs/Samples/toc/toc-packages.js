@@ -162,5 +162,9 @@ window.DocInsight.toc["toc-packages"] =   [
         id: "RandomPasswordSample",
         title: "RandomPasswordSample",
           href: "RandomPasswordSample.html",
+      },      {
+        id: "IntegerDoubleAndSingleSample",
+        title: "IntegerDoubleAndSingleSample",
+          href: "IntegerDoubleAndSingleSample.html",
       }  ]
 ;

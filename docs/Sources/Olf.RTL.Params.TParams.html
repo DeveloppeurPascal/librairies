@@ -117,7 +117,7 @@
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#setValue-string-TDateTime-">setValue</a></strong>(key: string; Value: TDateTime); overload;</code></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#setValue-string-TDateTime-TDateTimeStorrageFormat-">setValue</a></strong>(key: string; Value: TDateTime; DateFormat: <a href="Olf.RTL.Params.html#TDateTimeStorrageFormat">TDateTimeStorrageFormat</a> = <a href="Olf.RTL.Params.html#Delphi">TDateTimeStorrageFormat.Delphi</a>); overload;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -129,41 +129,45 @@
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#setFilePath-string-boolean-">setFilePath</a></strong>(AFilePath: string; AReload: boolean = true);</code></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#setFilePath-string-boolean-boolean-">setFilePath</a></strong>(AFilePath: string; AReload: boolean = true; AExceptionIfFolderNotExist: boolean = true);</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#InitDefaultFileNameV2-string-string-boolean-">InitDefaultFileNameV2</a></strong>(const AEditor, ASoftware: string; AReload: boolean = true);</code></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#InitDefaultFileNameV2-string-string-boolean-">InitDefaultFileNameV2</a></strong>(const AEditor, ASoftware: string; AReload: boolean = true); overload;</code></td>
 </tr>
 <tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#InitDefaultFileNameV2-string-string-string-boolean-">InitDefaultFileNameV2</a></strong>(const AEditor, ASoftware, AFileName: string; AReload: boolean = true); overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#MoveToFilePath-string-boolean-boolean-">MoveToFilePath</a></strong>(ANewFilePath: string; ASave: boolean = true; ACreateFolder: boolean = False);</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="Olf.RTL.Params.TParams.html#getFilePath">getFilePath</a></strong>: string;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="Olf.RTL.Params.TParams.html#ToJSON">ToJSON</a></strong>: string;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="Olf.RTL.Params.TParams.html#AsJSONObject">AsJSONObject</a></strong>: TJSONObject;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#Remove-string-">Remove</a></strong>(key: string);</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="Olf.RTL.Params.TParams.html#HasChanged">HasChanged</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#BeginUpdate">BeginUpdate</a></strong>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="Olf.RTL.Params.TParams.html#EndUpdate-boolean-">EndUpdate</a></strong>(const AutoSaveChanges: boolean = true);</code></td>
 </tr>
@@ -415,7 +419,7 @@
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="setValue-string-TDateTime-"></span><code>class procedure <strong>setValue</strong>(key: string; Value: TDateTime); overload;</code></td>
+<td class="itemcode"><span id="setValue-string-TDateTime-TDateTimeStorrageFormat-"></span><code>class procedure <strong>setValue</strong>(key: string; Value: TDateTime; DateFormat: <a href="Olf.RTL.Params.html#TDateTimeStorrageFormat">TDateTimeStorrageFormat</a> = <a href="Olf.RTL.Params.html#Delphi">TDateTimeStorrageFormat.Delphi</a>); overload;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -458,13 +462,15 @@
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="setFilePath-string-boolean-"></span><code>class procedure <strong>setFilePath</strong>(AFilePath: string; AReload: boolean = true);</code></td>
+<td class="itemcode"><span id="setFilePath-string-boolean-boolean-"></span><code>class procedure <strong>setFilePath</strong>(AFilePath: string; AReload: boolean = true; AExceptionIfFolderNotExist: boolean = true);</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
- Change the folder where is the parameter file. </p>
+ Change the file path (folder + filename) of the parameter file. </p>
 <p>
  
+
+<p>
 
 <p>
 
@@ -475,17 +481,29 @@
 <dd>Absolute file path (drive+folder+file name+extension) to the parameter file you want to use.</dd>
 <dt>AReload</dt>
 <dd>If set to True (by default), call Load procedure after changing the file path.</dd>
+<dt>AExceptionIfFolderNotExist</dt>
+<dd>Check if the folder of the new path exists. If not, an exception is raized. On iOS and Android, if an exception is sent before the GUI has started, it will crash the app.</dd>
 </dl>
 </td></tr>
 </table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="InitDefaultFileNameV2-string-string-boolean-"></span><code>class procedure <strong>InitDefaultFileNameV2</strong>(const AEditor, ASoftware: string; AReload: boolean = true);</code></td>
+<td class="itemcode"><span id="InitDefaultFileNameV2-string-string-boolean-"></span><code>class procedure <strong>InitDefaultFileNameV2</strong>(const AEditor, ASoftware: string; AReload: boolean = true); overload;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
- Initialise the folder and the filename with a new default tree: =&gt; &quot;Documents / Editor / Software&quot; for DEBUG and iOS =&gt; &quot;AppData (HomePath) / Editor / Software&quot; in RELEASE (except iOS) </p>
+ Initialize the folder with a new default tree: =&gt; &quot;Documents / Editor / Software&quot; for DEBUG and iOS =&gt; &quot;AppData (HomePath) / Editor / Software&quot; in RELEASE (except iOS) </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="InitDefaultFileNameV2-string-string-string-boolean-"></span><code>class procedure <strong>InitDefaultFileNameV2</strong>(const AEditor, ASoftware, AFileName: string; AReload: boolean = true); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Initialize the folder and the filename with a new default tree: =&gt; &quot;Documents / Editor / Software&quot; for DEBUG and iOS =&gt; &quot;AppData (HomePath) / Editor / Software&quot; in RELEASE (except iOS) </p>
 </td></tr>
 </table>
 <table class="detail visibility-public wide_list">
