@@ -61,6 +61,7 @@
     <Source>.\Skia.SVGToBitmap\VCL_SVGList_CreateImagesByCode\CreateImagesByCodeSampleProject.dpr</Source>
     <Source>.\Skia.SVGToBitmap\VCL_With_SVGList\VCLShowSVGFromBitmapSample.dpr</Source>
     <Source>.\RTL.GenRandomID\RandomPassword\RandomPasswordSample.dpr</Source>
+    <Source>.\RTL.Params\IntegerDoubleAndSingle\IntegerDoubleAndSingleSample.dpr</Source>
   </Sources>
   <Outputs>
     <Output Type="HTML">
