@@ -52,8 +52,8 @@ unit USVGGameControllerSVGSamples;
 // * C:\Users\patrickpremartin\Documents\Embarcadero\Studio\Projets\___librairies-et-composants\librairies\samples\Skia.SVGToBitmap\_GameControllerSVGSamples\uSVGGameControllerSVGSamples.pas
 // ****************************************
 //
-// This file contains a list of contants and 
-// an enumeration to access to SVG source codes 
+// This file contains a list of contants and
+// an enumeration to access to SVG source codes
 // from the generated array of strings.
 //
 // ****************************************
@@ -75,37 +75,40 @@ type
 {$SCOPEDENUMS ON}
   TSVGGameControllerSVGSamplesIndex = (
     ControllerDisconnected = CSVGControllerDisconnected,
-    ControllerGeneric = CSVGControllerGeneric);
+    ControllerGeneric = CSVGControllerGeneric
+  );
 
   TSVGGameControllerSVGSamples = class
   private
-  class var
-    FTag: integer;
-    FTagBool: Boolean;
-    FTagFloat: Single;
-    FTagObject: TObject;
-    FTagString: string;
+    class var
+      FTag: integer;
+      FTagBool: Boolean;
+      FTagFloat: Single;
+      FTagObject: TObject;
+      FTagString: string;
     class procedure SetTag(const Value: integer); static;
     class procedure SetTagBool(const Value: Boolean); static;
     class procedure SetTagFloat(const Value: Single); static;
     class procedure SetTagObject(const Value: TObject); static;
     class procedure SetTagString(const Value: string); static;
-  public const
-    ControllerDisconnected = CSVGControllerDisconnected;
-    ControllerGeneric = CSVGControllerGeneric;
+  public
+    const
+      ControllerDisconnected = CSVGControllerDisconnected;
+      ControllerGeneric = CSVGControllerGeneric;
     class property Tag: integer read FTag write SetTag;
     class property TagBool: Boolean read FTagBool write SetTagBool;
     class property TagFloat: Single read FTagFloat write SetTagFloat;
     class property TagObject: TObject read FTagObject write SetTagObject;
     class property TagString: string read FTagString write SetTagString;
-    class function SVG(const Index: Integer): string; overload;
-    class function SVG(const Index: TSVGGameControllerSVGSamplesIndex) : string; overload;
-    class function Count : Integer;
+    class function SVG(const Index: integer): string; overload;
+    class function SVG(const Index: TSVGGameControllerSVGSamplesIndex): string;
+      overload;
+    class function Count: integer;
     class constructor Create;
   end;
 
 var
-  SVGGameControllerSVGSamples : array of String;
+  SVGGameControllerSVGSamples: array of string;
 
 implementation
 
@@ -149,7 +152,7 @@ begin
   FTagString := Value;
 end;
 
-class function TSVGGameControllerSVGSamples.SVG(const Index: Integer): string;
+class function TSVGGameControllerSVGSamples.SVG(const Index: integer): string;
 begin
   if (index < Count) then
     result := SVGGameControllerSVGSamples[index]
@@ -157,22 +160,23 @@ begin
     raise Exception.Create('SVG not found. Index out of range.');
 end;
 
-class function TSVGGameControllerSVGSamples.SVG(const Index : TSVGGameControllerSVGSamplesIndex): string;
+class function TSVGGameControllerSVGSamples.SVG(const Index:
+  TSVGGameControllerSVGSamplesIndex): string;
 begin
   result := SVG(ord(index));
 end;
 
-class function TSVGGameControllerSVGSamples.Count: Integer;
+class function TSVGGameControllerSVGSamples.Count: integer;
 begin
   result := length(SVGGameControllerSVGSamples);
 end;
 
 initialization
 
-SetLength(SVGGameControllerSVGSamples, 2);
+  SetLength(SVGGameControllerSVGSamples, 2);
 
 {$TEXTBLOCK NATIVE XML}
-SVGGameControllerSVGSamples[CSVGControllerDisconnected] := '''
+  SVGGameControllerSVGSamples[CSVGControllerDisconnected] := '''
 <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs/>
   <g>
@@ -183,7 +187,7 @@ SVGGameControllerSVGSamples[CSVGControllerDisconnected] := '''
   </g>
 </svg>
 ''';
-SVGGameControllerSVGSamples[CSVGControllerGeneric] := '''
+  SVGGameControllerSVGSamples[CSVGControllerGeneric] := '''
 <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs/>
   <g>
@@ -194,3 +198,4 @@ SVGGameControllerSVGSamples[CSVGControllerGeneric] := '''
 ''';
 
 end.
+

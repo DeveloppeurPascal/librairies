@@ -176,6 +176,7 @@ end;
 
 initialization
 
-randomize;
+  randomize;
 
 end.
+

@@ -53,14 +53,14 @@ interface
 /// Get current language code (like "fr-fr" or "en-gb")
 /// The result is lower cased.
 /// </summary>
-function GetCurrentLanguageCode: String;
+function GetCurrentLanguageCode: string;
 
 /// <summary>
 /// Get current language ISO code (like "fr" or "en")
 /// This function returns first 2 letters of GetcurrentLanguageCode.
 /// The result is lower cased.
 /// </summary>
-function GetCurrentLanguageISOCode: String;
+function GetCurrentLanguageISOCode: string;
 
 implementation
 
@@ -71,20 +71,30 @@ implementation
 
 {$IF Defined(MSWINDOWS)}
 
-uses Winapi.Windows, System.SysUtils;
+uses
+  Winapi.Windows,
+  System.SysUtils;
 {$ELSEIF Defined(IOS)}
 
-uses MacAPI.ObjectiveC, iOSapi.Foundation, System.SysUtils;
+uses
+  MacAPI.ObjectiveC,
+  iOSapi.Foundation,
+  System.SysUtils;
 {$ELSEIF Defined(MACOS)}
 
-uses MacAPI.ObjectiveC, MacAPI.Foundation, System.SysUtils;
+uses
+  MacAPI.ObjectiveC,
+  MacAPI.Foundation,
+  System.SysUtils;
 {$ELSE}
 
 // Android + Linux
-uses FMX.Platform, System.SysUtils;
+uses
+  FMX.Platform,
+  System.SysUtils;
 {$ENDIF}
 
-function GetCurrentLanguageCode: String;
+function GetCurrentLanguageCode: string;
 {$IF Defined(MSWINDOWS)}
 var
   buffer: PWideChar;
@@ -108,7 +118,8 @@ var
 begin
   Languages := TNSLocale.OCClass.preferredLanguages;
   // Result := String(TNSString.Wrap(Languages.objectAtIndex(0)).lowercaseString.UTF8String);
-  Result := string(TNSString.Wrap(Languages.objectAtIndex(0)).UTF8String).ToLower;
+  Result :=
+    string(TNSString.Wrap(Languages.objectAtIndex(0)).UTF8String).ToLower;
 end;
 {$ELSE}
 
@@ -121,9 +132,10 @@ begin
 end;
 {$ENDIF}
 
-function GetCurrentLanguageISOCode: String;
+function GetCurrentLanguageISOCode: string;
 begin
   Result := GetCurrentLanguageCode.Substring(0, 2);
 end;
 
 end.
+

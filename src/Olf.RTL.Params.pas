@@ -65,7 +65,9 @@ type
   /// <summary>
   /// Procedure signature for load/save events in TParamsFile
   /// </summary>
-  TParamsLoadSaveProc = reference to procedure(const AParamsFile: TParamsFile);
+  TParamsLoadSaveProc = reference to procedure(
+    const AParamsFile: TParamsFile
+  );
 
   /// <summary>
   /// Method signature for the crypt event in TParamsFile
@@ -74,7 +76,9 @@ type
   /// <summary>
   /// Procedure signature for the crypt event in TParamsFile
   /// </summary>
-  TParamsCryptProc = reference to function(const AParams: string): TStream;
+  TParamsCryptProc = reference to function(
+    const AParams: string
+  ): TStream;
 
   /// <summary>
   /// Method signature for the decrypt event in TParamsFile
@@ -83,9 +87,15 @@ type
   /// <summary>
   /// Procedure signature for the decrypt event in TParamsFile
   /// </summary>
-  TParamsDecryptProc = reference to function(const AStream: TStream): string;
+  TParamsDecryptProc = reference to function(
+    const AStream: TStream
+  ): string;
 
-  TDateTimeStorrageFormat = (Delphi, ISO8601, RFC822);
+  TDateTimeStorrageFormat = (
+    Delphi,
+    ISO8601,
+    RFC822
+  );
 
   /// <summary>
   /// TParamsFile work as an instance of a settings file.
@@ -209,7 +219,7 @@ type
 /// <remarks>
 ///   This function use TMonitor to lock the JSON storrage and can be used in multi threaded projects.
 /// </remarks>
-    function GetValue<T>(const key: string; const Default: T): T; overload;
+    function getValue<T>(const key: string; const Default: T): T; overload;
     /// <summary>
     /// Set the value for key parameter as string
     /// </summary>
@@ -719,7 +729,7 @@ begin
 {$ELSE IF Defined(RELEASE)}
     FileName := AppName + Extension;
 {$ELSE}
-{$MESSAGE FATAL 'not implemented'}
+  {$MESSAGE FATAL 'not implemented'}
 {$ENDIF}
   end
   else
@@ -810,7 +820,7 @@ end;
 
 function TParamsFile.getValue(key: string; default: integer): integer;
 var
-  s: Single;
+  s: single;
 begin
   try
     result := getValue<integer>(key, default);
@@ -875,7 +885,7 @@ end;
 procedure TParamsFile.BeginUpdate;
 begin
   if (FBeginUpdateLevel = FBeginUpdateLevel.MaxValue) then
-    raise exception.Create
+    raise Exception.Create
       ('Missing some EndUpdate. BeginUpdate is called too often.');
 
   inc(FBeginUpdateLevel);
@@ -884,7 +894,7 @@ end;
 procedure TParamsFile.Cancel;
 begin
   if (FBeginUpdateLevel > 0) then
-    raise exception.Create
+    raise Exception.Create
       ('Can''t cancel the settings in a BeginUpdate/EndUpdate block !');
 
   Load;
@@ -893,7 +903,7 @@ end;
 procedure TParamsFile.Clear;
 begin
   if (FBeginUpdateLevel > 0) then
-    raise exception.Create
+    raise Exception.Create
       ('Can''t clear the settings in a BeginUpdate/EndUpdate block !');
 
   System.TMonitor.Enter(Self);
@@ -914,7 +924,7 @@ end;
 procedure TParamsFile.Delete(const ClearMemoryToo: boolean);
 begin
   if (FBeginUpdateLevel > 0) then
-    raise exception.Create
+    raise Exception.Create
       ('Can''t delete the settings in a BeginUpdate/EndUpdate block !');
 
   if ClearMemoryToo then
@@ -935,7 +945,7 @@ end;
 procedure TParamsFile.EndUpdate(const AutoSaveChanges: boolean);
 begin
   if (FBeginUpdateLevel < 1) then
-    raise exception.Create
+    raise Exception.Create
       ('Missing some BeginUpdate. EndUpdate is called too often.');
 
   dec(FBeginUpdateLevel);
@@ -965,7 +975,7 @@ var
   JSON: string;
 begin
   if (FBeginUpdateLevel > 0) then
-    raise exception.Create
+    raise Exception.Create
       ('Can''t reload the settings in a BeginUpdate/EndUpdate block !');
 
   // Call the Before Load event if it exists
@@ -1027,7 +1037,7 @@ begin
       if ACreateFolder and (not FPortableMode) then
         tdirectory.CreateDirectory(NewPath)
       else
-        raise exception.Create('Folder "' + NewPath + '" doesn''t exist.');
+        raise Exception.Create('Folder "' + NewPath + '" doesn''t exist.');
     tfile.Move(oldFilePath, ANewFilePath);
     setFilePath(ANewFilePath, False);
     if ASave then
@@ -1132,7 +1142,7 @@ begin
     TDateTimeStorrageFormat.RFC822: jsonvalue :=
       TJSONString.Create(DateToRFC822(Value));
   else
-    raise Exception.create('Storrage date format unknown !');
+    raise Exception.Create('Storrage date format unknown !');
   end;
   try
     setParamValue(key, jsonvalue);
@@ -1202,7 +1212,7 @@ begin
   begin
     FFolderName := TPath.GetDirectoryName(AFilePath);
     if AExceptionIfFolderNotExist and (not tdirectory.Exists(FFolderName)) then
-      raise exception.Create('Folder "' + FFolderName + '" doesn''t exist.');
+      raise Exception.Create('Folder "' + FFolderName + '" doesn''t exist.');
     FFileName := TPath.GetFileName(AFilePath);
   end;
   if AReload then
@@ -1281,14 +1291,14 @@ begin
   result := getValue<TJSONValue>(key, default);
 end;
 
-function TParamsFile.GetValue<T>(const key: string; const Default: T): T;
+function TParamsFile.getValue<T>(const key: string; const Default: T): T;
 var
   JSV: TJSONValue;
 begin
   System.TMonitor.Enter(Self);
   try
-    jsv := FParamList.GetValue(key);
-    if (not assigned(jsv)) or (not jsv.TryGetValue<T>(Result)) then
+    JSV := FParamList.getValue(key);
+    if (not Assigned(JSV)) or (not JSV.TryGetValue<T>(result)) then
       result := default;
   finally
     System.TMonitor.Exit(Self);
@@ -1303,7 +1313,7 @@ end;
 procedure TParamsFile.InitDefaultFileNameV2(const AEditor, ASoftware,
   AFileName: string; AReload: boolean);
 begin
-  InitDefaultFileNameV2(AEditor, ASoftware, false);
+  InitDefaultFileNameV2(AEditor, ASoftware, False);
   FFileName := AFileName;
   if AReload then
     Load;
@@ -1315,14 +1325,14 @@ var
   Folder: string;
 begin
   if AEditor.IsEmpty and ASoftware.IsEmpty then
-    raise exception.Create('Needs at least an Editor or Software name.');
+    raise Exception.Create('Needs at least an Editor or Software name.');
 
 {$IF Defined(DEBUG) or Defined(IOS)}
   Folder := TPath.GetDocumentsPath;
 {$ELSE IF Defined(RELEASE)}
   Folder := TPath.GetHomePath;
 {$ELSE}
-{$MESSAGE FATAL 'not implemented'}
+  {$MESSAGE FATAL 'not implemented'}
 {$ENDIF}
   //
   if not AEditor.IsEmpty then
@@ -1344,7 +1354,7 @@ end;
 
 function TParamsFile.getValue(key: string; default: cardinal): cardinal;
 var
-  s: Single;
+  s: single;
 begin
   try
     result := getValue<cardinal>(key, default);

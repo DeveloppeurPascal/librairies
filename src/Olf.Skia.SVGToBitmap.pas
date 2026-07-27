@@ -58,7 +58,7 @@ uses
 uses
   FMX.Graphics;
 {$ELSE}
-{$MESSAGE FATAL 'Is it a VCL or FMX program ?'}
+  {$MESSAGE FATAL 'Is it a VCL or FMX program ?'}
 {$ENDIF}
 
 type
@@ -77,7 +77,7 @@ type
     /// <remarks>
     /// It doesn't change others lists indexes, it's internally stored in a dictionary, not a list.
     /// </remarks>
-    class procedure DeleteList(Const Index: word);
+    class procedure DeleteList(const Index: word);
 
     /// <summary>
     /// Add a SVG source to the list "ToList" at index "AtIndex"
@@ -86,7 +86,7 @@ type
     /// It doesn't change others SVG indexes, it's internally stored in a dictionary, not a list.
     /// If an item exists at this position, the AddItemAt() is refused.
     /// </remarks>
-    class function AddItemAt(Const ToList, AtIndex: word; const SVG: String)
+    class function AddItemAt(const ToList, AtIndex: word; const SVG: string)
       : boolean; overload;
 
     /// <summary>
@@ -102,14 +102,14 @@ type
     /// <summary>
     /// Add a SVG source to the list "ToList" and return it's index
     /// </summary>
-    class function AddItem(Const ToList: word; const SVG: string)
+    class function AddItem(const ToList: word; const SVG: string)
       : word; overload;
 
     /// <summary>
     /// Add all items from an array of SVG sources to the list "ToList" and
     /// return the index of the first added item
     /// </summary>
-    class function AddItem(Const ToList: word; const SVGArray: array of String)
+    class function AddItem(const ToList: word; const SVGArray: array of string)
       : word; overload;
 
     /// <summary>
@@ -129,7 +129,7 @@ type
     /// <remarks>
     /// It doesn't change others SVG indexes, it's internally stored in a dictionary, not a list.
     /// </remarks>
-    class procedure DeleteItem(Const FromList, AtIndex: word); overload;
+    class procedure DeleteItem(const FromList, AtIndex: word); overload;
 
     /// <summary>
     /// Remove the SVG "AtIndex" from the default list
@@ -137,7 +137,7 @@ type
     /// <remarks>
     /// It doesn't change others SVG indexes, it's internally stored in a dictionary, not a list.
     /// </remarks>
-    class procedure DeleteItem(Const AtIndex: word); overload;
+    class procedure DeleteItem(const AtIndex: word); overload;
 
     /// <summary>
     /// Get a bitmap from the SVG in "FromList" list at "AtIndex" with specified sizes.
@@ -146,7 +146,7 @@ type
     /// If the bitmap doesn't exist in the cache, it's added to it after drawing.
     /// If the bitmap already exists in the cache, you get a reference to it.
     /// </remarks>
-    class function Bitmap(Const FromList, AtIndex: word;
+    class function Bitmap(const FromList, AtIndex: word;
       const Width, Height: integer; const BitmapScale: single = 1)
       : TBitmap; overload;
 
@@ -159,7 +159,7 @@ type
     ///
     /// The margins values must be decimal values between 0 and 100 (as a percent).
     /// </remarks>
-    class function Bitmap(Const FromList, AtIndex: word;
+    class function Bitmap(const FromList, AtIndex: word;
       const Width, Height: integer; const MarginTop: single;
       const MarginRight: single; const MarginBottom: single;
       const MarginLeft: single; const BitmapScale: single = 1)
@@ -172,7 +172,7 @@ type
     /// If the bitmap doesn't exist in the cache, it's added to it after drawing.
     /// If the bitmap already exists in the cache, you get a reference to it.
     /// </remarks>
-    class function Bitmap(Const AtIndex: word; const Width, Height: integer;
+    class function Bitmap(const AtIndex: word; const Width, Height: integer;
       const BitmapScale: single = 1): TBitmap; overload;
 
     /// <summary>
@@ -184,7 +184,7 @@ type
     ///
     /// The margins values must be decimal values between 0 and 100 (as a percent).
     /// </remarks>
-    class function Bitmap(Const AtIndex: word; const Width, Height: integer;
+    class function Bitmap(const AtIndex: word; const Width, Height: integer;
       const MarginTop: single; const MarginRight: single;
       const MarginBottom: single; const MarginLeft: single;
       const BitmapScale: single = 1): TBitmap; overload;
@@ -248,42 +248,42 @@ type
     class function Count(const FromList: word = 0): NativeInt;
   end;
 
-  /// <summary>
-  /// Returns a transparent bitmap drawn by Skia4Delphi library from a SVG source.
-  /// </summary>
-  /// <param name="Width">
-  /// Logical width of the target bitmap. Its real width will be calculated ith the BitmapScale (in a FireMonkey project).
-  /// </param>
-  /// <param name="Height">
-  /// Logical height of the target bitmap. Its real height will be calculated ith the BitmapScale (in a FireMonkey project).
-  /// </param>
-  /// <param name="SVGSource">
-  /// XML source code of the SVG  as string.
-  /// No CSS content allowed. Check default Adobe Illustrator settings if you have exports problems.
-  /// </param>
-  /// <param name="BitmapScale">
-  /// Only used in FireMonkey projects. The BitmapScale is used to calculate the real bitmap size from logical given size.
-  /// Default value is 1.
-  /// </param>
-  /// <param name="MarginTop">
-  /// Margin top used to calculate the real SVG size and position in the final bitmap.
-  /// It's a decimal value between 0 and 100, used as a percent of the bitmap height.
-  /// </param>
-  /// <param name="MarginRight">
-  /// Margin right used to calculate the real SVG size and position in the final bitmap.
-  /// It's a decimal value between 0 and 100, used as a percent of the bitmap width.
-  /// </param>
-  /// <param name="MarginBottom">
-  /// Margin bottom used to calculate the real SVG size and position in the final bitmap.
-  /// It's a decimal value between 0 and 100, used as a percent of the bitmap height.
-  /// </param>
-  /// <param name="MarginLeft">
-  /// Margin left used to calculate the real SVG size and position in the final bitmap.
-  /// It's a decimal value between 0 and 100, used as a percent of the bitmap width.
-  /// </param>
-function SVGToBitmap(Const Width, Height: integer;
-  Const SVGSource: string{$IF Defined(FRAMEWORK_FMX)};
-  Const BitmapScale: single = 1{$ENDIF}; const MarginTop: single = 0;
+/// <summary>
+/// Returns a transparent bitmap drawn by Skia4Delphi library from a SVG source.
+/// </summary>
+/// <param name="Width">
+/// Logical width of the target bitmap. Its real width will be calculated ith the BitmapScale (in a FireMonkey project).
+/// </param>
+/// <param name="Height">
+/// Logical height of the target bitmap. Its real height will be calculated ith the BitmapScale (in a FireMonkey project).
+/// </param>
+/// <param name="SVGSource">
+/// XML source code of the SVG  as string.
+/// No CSS content allowed. Check default Adobe Illustrator settings if you have exports problems.
+/// </param>
+/// <param name="BitmapScale">
+/// Only used in FireMonkey projects. The BitmapScale is used to calculate the real bitmap size from logical given size.
+/// Default value is 1.
+/// </param>
+/// <param name="MarginTop">
+/// Margin top used to calculate the real SVG size and position in the final bitmap.
+/// It's a decimal value between 0 and 100, used as a percent of the bitmap height.
+/// </param>
+/// <param name="MarginRight">
+/// Margin right used to calculate the real SVG size and position in the final bitmap.
+/// It's a decimal value between 0 and 100, used as a percent of the bitmap width.
+/// </param>
+/// <param name="MarginBottom">
+/// Margin bottom used to calculate the real SVG size and position in the final bitmap.
+/// It's a decimal value between 0 and 100, used as a percent of the bitmap height.
+/// </param>
+/// <param name="MarginLeft">
+/// Margin left used to calculate the real SVG size and position in the final bitmap.
+/// It's a decimal value between 0 and 100, used as a percent of the bitmap width.
+/// </param>
+function SVGToBitmap(const Width, Height: integer;
+  const SVGSource: string{$IF Defined(FRAMEWORK_FMX)};
+  const BitmapScale: single = 1{$ENDIF}; const MarginTop: single = 0;
   const MarginRight: single = 0; const MarginBottom: single = 0;
   const MarginLeft: single = 0): TBitmap;
 
@@ -372,9 +372,9 @@ type
 var
   SVGList: TListsList;
 
-function SVGToBitmap(Const Width, Height: integer;
-  Const SVGSource: string{$IF Defined(FRAMEWORK_FMX)};
-  Const BitmapScale: single{$ENDIF}; const MarginTop: single;
+function SVGToBitmap(const Width, Height: integer;
+  const SVGSource: string{$IF Defined(FRAMEWORK_FMX)};
+  const BitmapScale: single{$ENDIF}; const MarginTop: single;
   const MarginRight: single; const MarginBottom: single;
   const MarginLeft: single): TBitmap;
 var
@@ -382,7 +382,8 @@ var
   bmp: TBitmap;
 begin
   result := nil;
-  SVGWidth := round(Width * (100 - MarginLeft - MarginRight) / 100);
+  SVGWidth := round
+    (Width * (100 - MarginLeft - MarginRight) / 100);
   SVGHeight := round(Height * (100 - MarginTop - MarginBottom) / 100);
 {$IF Defined(FRAMEWORK_FMX)}
   bmp := TBitmap.Create(trunc(SVGWidth * BitmapScale),
@@ -425,9 +426,9 @@ begin
         try
           result.canvas.DrawBitmap(bmp, bmp.BoundsF,
             trectf.Create((result.Width * MarginLeft / 100) / BitmapScale,
-            (result.Height * MarginTop / 100) / BitmapScale,
-            (bmp.Width + result.Width * MarginLeft / 100) / BitmapScale,
-            (bmp.Height + result.Height * MarginTop / 100) / BitmapScale), 1);
+              (result.Height * MarginTop / 100) / BitmapScale,
+              (bmp.Width + result.Width * MarginLeft / 100) / BitmapScale,
+              (bmp.Height + result.Height * MarginTop / 100) / BitmapScale), 1);
         finally
           result.canvas.EndScene;
         end;
@@ -441,9 +442,9 @@ begin
         result.transparent := true;
         result.canvas.CopyRect
           (trect.Create(round(result.Width * MarginLeft / 100),
-          round(result.Height * MarginTop / 100),
-          round(bmp.Width + result.Width * MarginLeft / 100),
-          round(bmp.Height + result.Height * MarginTop / 100)), bmp.canvas,
+            round(result.Height * MarginTop / 100),
+            round(bmp.Width + result.Width * MarginLeft / 100),
+            round(bmp.Height + result.Height * MarginTop / 100)), bmp.canvas,
           bmp.canvas.ClipRect);
       except
         result.Free;
@@ -471,14 +472,14 @@ begin
 end;
 
 class function TOlfSVGBitmapList.Bitmap(const FromList, AtIndex: word;
-const Width, Height: integer; const BitmapScale: single): TBitmap;
+  const Width, Height: integer; const BitmapScale: single): TBitmap;
 begin
   result := Bitmap(FromList, AtIndex, Width, Height, 0, 0, 0, 0, BitmapScale);
 end;
 
 class function TOlfSVGBitmapList.BitmapWithNoCache(const FromList,
   AtIndex: word; const Width, Height: integer;
-const BitmapScale: single): TBitmap;
+  const BitmapScale: single): TBitmap;
 begin
   result := BitmapWithNoCache(FromList, AtIndex, Width, Height, 0, 0, 0, 0,
     BitmapScale);
@@ -527,7 +528,7 @@ begin
 end;
 
 class function TOlfSVGBitmapList.AddItem(const ToList: word;
-const SVG: string): word;
+  const SVG: string): word;
 var
   i: word;
 begin
@@ -554,7 +555,7 @@ begin
 end;
 
 class function TOlfSVGBitmapList.AddItem(const ToList: word;
-const SVGArray: array of String): word;
+  const SVGArray: array of string): word;
 var
   i: integer;
 begin
@@ -567,13 +568,13 @@ begin
 end;
 
 class function TOlfSVGBitmapList.AddItemAt(AtIndex: word;
-const SVG: string): boolean;
+  const SVG: string): boolean;
 begin
   result := AddItemAt(CDefaultListIndex, AtIndex, SVG);
 end;
 
 class function TOlfSVGBitmapList.AddItemAt(const ToList, AtIndex: word;
-const SVG: string): boolean;
+  const SVG: string): boolean;
 begin
   if not SVGList.ContainsKey(ToList) then
     raise exception.Create('This list doesn''t exist.');
@@ -585,20 +586,20 @@ begin
 end;
 
 class function TOlfSVGBitmapList.Bitmap(const AtIndex: word;
-const Width, Height: integer; const BitmapScale: single): TBitmap;
+  const Width, Height: integer; const BitmapScale: single): TBitmap;
 begin
   result := Bitmap(CDefaultListIndex, AtIndex, Width, Height, BitmapScale);
 end;
 
 class function TOlfSVGBitmapList.BitmapWithNoCache(const AtIndex: word;
-const Width, Height: integer; const BitmapScale: single): TBitmap;
+  const Width, Height: integer; const BitmapScale: single): TBitmap;
 begin
   result := BitmapWithNoCache(CDefaultListIndex, AtIndex, Width, Height,
     BitmapScale);
 end;
 
 class function TOlfSVGBitmapList.Bitmap(const FromList, AtIndex: word;
-const Width, Height: integer; const MarginTop, MarginRight, MarginBottom,
+  const Width, Height: integer; const MarginTop, MarginRight, MarginBottom,
   MarginLeft, BitmapScale: single): TBitmap;
 begin
   if not SVGList.ContainsKey(FromList) then
@@ -612,7 +613,7 @@ begin
 end;
 
 class function TOlfSVGBitmapList.Bitmap(const AtIndex: word;
-const Width, Height: integer; const MarginTop, MarginRight, MarginBottom,
+  const Width, Height: integer; const MarginTop, MarginRight, MarginBottom,
   MarginLeft, BitmapScale: single): TBitmap;
 begin
   result := Bitmap(CDefaultListIndex, AtIndex, Width, Height, MarginTop,
@@ -634,7 +635,7 @@ begin
 end;
 
 class function TOlfSVGBitmapList.BitmapWithNoCache(const AtIndex: word;
-const Width, Height: integer; const MarginTop, MarginRight, MarginBottom,
+  const Width, Height: integer; const MarginTop, MarginRight, MarginBottom,
   MarginLeft, BitmapScale: single): TBitmap;
 begin
   result := BitmapWithNoCache(CDefaultListIndex, AtIndex, Width, Height,
@@ -665,9 +666,9 @@ end;
 { TBMPCache }
 
 function TBMPCache.Bitmap(const Width, Height: integer;
-const BitmapScale: single; const SVG: string; const MarginTop: single;
-const MarginRight: single; const MarginBottom: single;
-const MarginLeft: single): TBitmap;
+  const BitmapScale: single; const SVG: string; const MarginTop: single;
+  const MarginRight: single; const MarginBottom: single;
+  const MarginLeft: single): TBitmap;
 begin
   System.TMonitor.Enter(Self);
   try
@@ -710,7 +711,7 @@ end;
 { TItem }
 
 function TItem.Bitmap(const Width, Height: integer; const BitmapScale: single;
-const WithCache: boolean): TBitmap;
+  const WithCache: boolean): TBitmap;
 begin
   System.TMonitor.Enter(Self);
   try
@@ -721,8 +722,8 @@ begin
 end;
 
 function TItem.Bitmap(const Width, Height: integer;
-const MarginTop, MarginRight, MarginBottom, MarginLeft, BitmapScale: single;
-const WithCache: boolean): TBitmap;
+  const MarginTop, MarginRight, MarginBottom, MarginLeft, BitmapScale: single;
+  const WithCache: boolean): TBitmap;
 begin
   System.TMonitor.Enter(Self);
   try
@@ -734,7 +735,7 @@ begin
       result := SVGToBitmap(Width, Height, FSVG, MarginTop, MarginRight,
         MarginBottom, MarginLeft)
 {$ELSEIF Defined(FRAMEWORK_FMX)}
-        result := SVGToBitmap(Width, Height, FSVG, BitmapScale, MarginTop,
+      result := SVGToBitmap(Width, Height, FSVG, BitmapScale, MarginTop,
         MarginRight, MarginBottom, MarginLeft)
 {$ENDIF};
   finally
@@ -795,11 +796,12 @@ end;
 
 initialization
 
-SVGList := TListsList.Create;
-SVGList.Add(CDefaultListIndex, TItemsList.Create);
+  SVGList := TListsList.Create;
+  SVGList.Add(CDefaultListIndex, TItemsList.Create);
 
 finalization
 
-SVGList.Free;
+  SVGList.Free;
 
 end.
+

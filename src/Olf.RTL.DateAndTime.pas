@@ -57,27 +57,27 @@ function DateToString8: string; overload;
 /// <summary>
 /// Ressort la date passée en AAAAMMJJ
 /// </summary>
-function DateToString8(Const ADate: TDateTime): string; overload;
+function DateToString8(const ADate: TDateTime): string; overload;
 
 /// <summary>
 /// Get the TDate value of a YYYYMMDD string
 /// </summary>
-function Date8ToDate(Const Date8: string): tdate;
+function Date8ToDate(const Date8: string): tdate;
 
 /// <summary>
 /// Transforme une date AAAAMMJJ dans son format d'affichage JJ/MM/AAAA
 /// </summary>
-function Date8ToString(Const Date8AAfficher: string): string;
+function Date8ToString(const Date8AAfficher: string): string;
 
 /// <summary>
 /// Transforme une date AAAAMMJJ dans son format d'affichage AAAA-MM-JJ
 /// </summary>
-function Date8ToStringISO(Const Date8AAfficher: string): string;
+function Date8ToStringISO(const Date8AAfficher: string): string;
 
 /// <summary>
 /// Transforme une date AAAAMMJJ dans son format d'affichage RFC822
 /// </summary>
-function Date8ToStringRFC822(Const Date8AAfficher: string): string;
+function Date8ToStringRFC822(const Date8AAfficher: string): string;
 
 /// <summary>
 /// Ressort l'heure en cours en HHMMSS
@@ -87,12 +87,12 @@ function TimeToString6: string; overload;
 /// <summary>
 /// Ressort l'heure passée en HHMMSS
 /// </summary>
-function TimeToString6(Const ATime: TDateTime): string; overload;
+function TimeToString6(const ATime: TDateTime): string; overload;
 
 /// <summary>
 /// Transforme une heure HHMMSS dans son format d'affichage HH:MM:SS
 /// </summary>
-function Time6ToString(Const Time6AAfficher: string): string;
+function Time6ToString(const Time6AAfficher: string): string;
 
 /// <summary>
 /// Transforme la date et heure du moment en AAAAMMJJHHMMSS
@@ -104,30 +104,30 @@ function DateTimeToString14: string; overload;
 /// Transforme la date et heure passée en AAAAMMJJHHMMSS
 /// Ce format est utilisé dans le stockage d'infos de création et de modification dans la base de données et permettre des tris chronologiques sur l'ordre alphabétique.
 /// </summary>
-function DateTimeToString14(Const ADateTime: TDateTime): string; overload;
+function DateTimeToString14(const ADateTime: TDateTime): string; overload;
 
 /// <summary>
 /// Converti une valeur en secondes vers son équivalent en HMS
 /// </summary>
-function SecToHMS(Const Valeur_En_secondes: Integer): String; overload;
-procedure SecToHMS(Const Valeur_En_secondes: Integer;
+function SecToHMS(const Valeur_En_secondes: Integer): string; overload;
+procedure SecToHMS(const Valeur_En_secondes: Integer;
   var HH, MM, SS: Integer); overload;
-function SecToHMS(Const Valeur_En_secondes: Int64): String; overload;
-procedure SecToHMS(Const Valeur_En_secondes: Int64;
+function SecToHMS(const Valeur_En_secondes: Int64): string; overload;
+procedure SecToHMS(const Valeur_En_secondes: Int64;
   var HH, MM, SS: Int64); overload;
 
 /// <summary>
 /// Converti une valeur en secondes vers son équivalent en "HH:MM:SS"
 /// </summary>
-function SecToTime(Const Valeur_En_secondes: Integer): String; overload;
-function SecToTime(Const Valeur_En_secondes: Int64): String; overload;
+function SecToTime(const Valeur_En_secondes: Integer): string; overload;
+function SecToTime(const Valeur_En_secondes: Int64): string; overload;
 
 /// <summary>
 /// Converti une valeur HMS (xxH xxM xxS) en son équivalent en secondes
 /// </summary>
-function HMSToSec(Const HH, MM, SS: Integer): Integer; overload;
-function HMSToSec(Const Valeur_En_HMS: String): Int64; overload;
-function HMSToSec(Const HH, MM, SS: Int64): Int64; overload;
+function HMSToSec(const HH, MM, SS: Integer): Integer; overload;
+function HMSToSec(const Valeur_En_HMS: string): Int64; overload;
+function HMSToSec(const HH, MM, SS: Int64): Int64; overload;
 
 implementation
 
@@ -141,18 +141,18 @@ begin
   Result := DateToString8(Now);
 end;
 
-function DateToString8(Const ADate: TDateTime): string;
+function DateToString8(const ADate: TDateTime): string;
 begin
   Result := FormatDateTime('yyyymmdd', ADate);
 end;
 
-function Date8ToDate(Const Date8: string): tdate;
+function Date8ToDate(const Date8: string): tdate;
 begin
   Result := EncodeDate(Date8.Substring(0, 4).tointeger,
     Date8.Substring(4, 2).tointeger, Date8.Substring(6, 2).tointeger);
 end;
 
-function Date8ToString(Const Date8AAfficher: string): string;
+function Date8ToString(const Date8AAfficher: string): string;
 var
   MM, jj: string;
 begin
@@ -168,7 +168,7 @@ begin
       FormatSettings.DateSeparator + Date8AAfficher.Substring(0, 4);
 end;
 
-function Date8ToStringISO(Const Date8AAfficher: string): string;
+function Date8ToStringISO(const Date8AAfficher: string): string;
 var
   MM, jj: string;
 begin
@@ -183,7 +183,7 @@ begin
     Result := Date8AAfficher.Substring(0, 4) + '-' + MM + '-' + jj;
 end;
 
-function Date8ToStringRFC822(Const Date8AAfficher: string): string;
+function Date8ToStringRFC822(const Date8AAfficher: string): string;
 var
   x: Integer;
 begin
@@ -228,12 +228,12 @@ begin
   Result := TimeToString6(Now);
 end;
 
-function TimeToString6(Const ATime: TDateTime): string;
+function TimeToString6(const ATime: TDateTime): string;
 begin
   Result := FormatDateTime('hhnnss', ATime);
 end;
 
-function Time6ToString(Const Time6AAfficher: string): string;
+function Time6ToString(const Time6AAfficher: string): string;
 begin
   Result := Time6AAfficher.Substring(0, 2) + FormatSettings.TimeSeparator +
     Time6AAfficher.Substring(2, 2) + FormatSettings.TimeSeparator +
@@ -245,12 +245,12 @@ begin
   Result := DateTimeToString14(Now);
 end;
 
-function DateTimeToString14(Const ADateTime: TDateTime): string;
+function DateTimeToString14(const ADateTime: TDateTime): string;
 begin
   Result := DateToString8(ADateTime) + TimeToString6(ADateTime);
 end;
 
-function SecToHMS(Const Valeur_En_secondes: Integer): String;
+function SecToHMS(const Valeur_En_secondes: Integer): string;
 var
   h, m, s: Integer;
 begin
@@ -264,7 +264,7 @@ begin
     Result := Result + s.ToString + 'S ';
 end;
 
-function SecToHMS(Const Valeur_En_secondes: Int64): String;
+function SecToHMS(const Valeur_En_secondes: Int64): string;
 var
   h, m, s: Int64;
 begin
@@ -278,7 +278,7 @@ begin
     Result := Result + s.ToString + 'S ';
 end;
 
-procedure SecToHMS(Const Valeur_En_secondes: Integer; var HH, MM, SS: Integer);
+procedure SecToHMS(const Valeur_En_secondes: Integer; var HH, MM, SS: Integer);
 begin
   SS := Valeur_En_secondes;
   HH := SS div SecsPerHour;
@@ -287,7 +287,7 @@ begin
   SS := SS - MM * SecsPerMin;
 end;
 
-procedure SecToHMS(Const Valeur_En_secondes: Int64; var HH, MM, SS: Int64);
+procedure SecToHMS(const Valeur_En_secondes: Int64; var HH, MM, SS: Int64);
 begin
   SS := Valeur_En_secondes;
   HH := SS div SecsPerHour;
@@ -296,7 +296,7 @@ begin
   SS := SS - MM * SecsPerMin;
 end;
 
-function SecToTime(Const Valeur_En_secondes: Integer): String;
+function SecToTime(const Valeur_En_secondes: Integer): string;
 var
   h, m, s: Integer;
 begin
@@ -316,7 +316,7 @@ begin
     Result := Result + s.ToString;
 end;
 
-function SecToTime(Const Valeur_En_secondes: Int64): String;
+function SecToTime(const Valeur_En_secondes: Int64): string;
 var
   h, m, s: Int64;
 begin
@@ -336,7 +336,7 @@ begin
     Result := Result + s.ToString;
 end;
 
-function HMSToSec(Const Valeur_En_HMS: String): Int64;
+function HMSToSec(const Valeur_En_HMS: string): Int64;
 var
   ch: string;
   i: Integer;
@@ -360,14 +360,15 @@ begin
     Result := Result + ch.Substring(0, i).tointeger;
 end;
 
-function HMSToSec(Const HH, MM, SS: Integer): Integer;
+function HMSToSec(const HH, MM, SS: Integer): Integer;
 begin
   Result := HH * SecsPerHour + MM * SecsPerMin + SS;
 end;
 
-function HMSToSec(Const HH, MM, SS: Int64): Int64;
+function HMSToSec(const HH, MM, SS: Int64): Int64;
 begin
   Result := HH * SecsPerHour + MM * SecsPerMin + SS;
 end;
 
 end.
+

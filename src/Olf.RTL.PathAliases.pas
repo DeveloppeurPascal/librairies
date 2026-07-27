@@ -54,29 +54,31 @@ uses
 
 type
   TKeyValueList = TDictionary<string, string>;
-  TGetPathForAliasFunc = reference to function(Const AAlias: string): string;
-  TGetPathForAliasEvent = function(Const AAlias: string): string of object;
+  TGetPathForAliasFunc = reference to function(
+    const AAlias: string
+  ): string;
+  TGetPathForAliasEvent = function(const AAlias: string): string of object;
 
-  /// <summary>
-  /// Replace aliases in a path by their value and remove "../" parts.
-  /// </summary>
-  /// <remarks>
-  /// Alias are used by Delphi/C++Builder/RADStudio IDE in project options and
-  /// editor options. You can find $(BDS), $(PROJECTDIR) and others in your
-  /// paths.
-  ///
-  /// The replacement is done from the Key/Value list, the registry keys
-  /// (Delphi/C++Builder/RAD Studio is installed), the environment variables or
-  /// asked to the call by AGetAliasProc.
-  /// </remarks>
-function ReplaceAliasesInPath(Const ASourcePath: string;
-  Const AAliasList: TKeyValueList; Const AAllowEmptyAlias: boolean = false;
-  Const ABDSVersion: string = '23.0' { RAD Studio 12 Athens };
-  Const AGetPathForAliasFunc: TGetPathForAliasFunc = nil): string; overload;
+/// <summary>
+/// Replace aliases in a path by their value and remove "../" parts.
+/// </summary>
+/// <remarks>
+/// Alias are used by Delphi/C++Builder/RADStudio IDE in project options and
+/// editor options. You can find $(BDS), $(PROJECTDIR) and others in your
+/// paths.
+///
+/// The replacement is done from the Key/Value list, the registry keys
+/// (Delphi/C++Builder/RAD Studio is installed), the environment variables or
+/// asked to the call by AGetAliasProc.
+/// </remarks>
+function ReplaceAliasesInPath(const ASourcePath: string;
+  const AAliasList: TKeyValueList; const AAllowEmptyAlias: boolean = false;
+  const ABDSVersion: string = '23.0' { RAD Studio 12 Athens };
+  const AGetPathForAliasFunc: TGetPathForAliasFunc = nil): string; overload;
 
-function ReplaceAliasesInPath(Const ASourcePath: string;
-  Const AAliasList: TKeyValueList; Const AAllowEmptyAlias: boolean;
-  Const ABDSVersion: string; Const AGetPathForAliasEvent: TGetPathForAliasEvent)
+function ReplaceAliasesInPath(const ASourcePath: string;
+  const AAliasList: TKeyValueList; const AAllowEmptyAlias: boolean;
+  const ABDSVersion: string; const AGetPathForAliasEvent: TGetPathForAliasEvent)
   : string; overload;
 
 implementation
@@ -88,10 +90,10 @@ uses
   System.SysUtils,
   System.IOUtils;
 
-function ReplaceAliasesInPath(Const ASourcePath: string;
-  const AAliasList: TKeyValueList; Const AAllowEmptyAlias: boolean;
-  Const ABDSVersion: string;
-  Const AGetPathForAliasFunc: TGetPathForAliasFunc): string;
+function ReplaceAliasesInPath(const ASourcePath: string;
+  const AAliasList: TKeyValueList; const AAllowEmptyAlias: boolean;
+  const ABDSVersion: string;
+  const AGetPathForAliasFunc: TGetPathForAliasFunc): string;
 var
   AliasPosStart, AliasPosEnd: integer;
   Alias, AliasPath: string;
@@ -144,7 +146,7 @@ begin
   end;
   if (not result.IsEmpty) and tpath.IsRelativePath(result) then
     result := tpath.combine(ReplaceAliasesInPath('$(PROJECTDIR)', AAliasList,
-      AAllowEmptyAlias, ABDSVersion), result);
+        AAllowEmptyAlias, ABDSVersion), result);
   //
   // TODO : ok for "../" but not for "../../"
   // IdxDotDot := result.IndexOf(tpath.DirectorySeparatorChar + '..');
@@ -173,13 +175,13 @@ begin
   end;
 end;
 
-function ReplaceAliasesInPath(Const ASourcePath: string;
-  Const AAliasList: TKeyValueList; Const AAllowEmptyAlias: boolean;
-  Const ABDSVersion: string; Const AGetPathForAliasEvent
+function ReplaceAliasesInPath(const ASourcePath: string;
+  const AAliasList: TKeyValueList; const AAllowEmptyAlias: boolean;
+  const ABDSVersion: string; const AGetPathForAliasEvent
   : TGetPathForAliasEvent): string;
 begin
   ReplaceAliasesInPath(ASourcePath, AAliasList, AAllowEmptyAlias, ABDSVersion,
-    function(Const AAlias: string): string
+    function(const AAlias: string): string
     begin
       if assigned(AGetPathForAliasEvent) then
         result := AGetPathForAliasEvent(AAlias)
@@ -189,3 +191,4 @@ begin
 end;
 
 end.
+

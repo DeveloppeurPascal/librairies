@@ -56,7 +56,7 @@ interface
 /// Before Delphi 10 Seattle this function uses IdHashMessageDigest from Iny.
 /// Since Delphi 10 Seattle it uses System.Hash.THashMD5 from Embarcadero.
 /// </remarks>
-function MD5(const AString: String): String;
+function MD5(const AString: string): string;
 
 implementation
 
@@ -68,7 +68,7 @@ uses
 {$ENDIF}
   System.SysUtils;
 
-function MD5(const AString: String): String;
+function MD5(const AString: string): string;
 {$IF CompilerVersion>=30.0}
 {$ELSE}
 var
@@ -88,3 +88,4 @@ begin
 end;
 
 end.
+

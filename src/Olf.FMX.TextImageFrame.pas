@@ -636,9 +636,9 @@ begin
       end
       else if (Parent is TCustomForm) then
       begin
-        f := (Parent as TCustomForm);
-        ParentWidth := f.clientWidth - f.Padding.Left - f.Padding.Right;
-        ParentHeight := f.clientHeight - f.Padding.Top - f.Padding.Bottom;
+        F := (Parent as TCustomForm);
+        ParentWidth := F.clientWidth - F.Padding.Left - F.Padding.Right;
+        ParentHeight := F.clientHeight - F.Padding.Top - F.Padding.Bottom;
         Height := ParentHeight;
         DoRefresh;
         if (Width > ParentWidth) then

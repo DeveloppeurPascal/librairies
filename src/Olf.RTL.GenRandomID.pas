@@ -75,11 +75,17 @@ type
     /// <summary>
     ///   Generate a string like a password with different elements in it
     /// </summary>
-    class function getPassword(const Numbers, LowerCaseLetters, UpperCaseLetters: Boolean; const Symbols: TArray < Char >= []; const ASize: Cardinal = 0): string; overload;
+    class function getPassword(const Numbers, LowerCaseLetters,
+      UpperCaseLetters: Boolean; const Symbols: TArray < Char >= []; const
+      ASize:
+      Cardinal = 0): string; overload;
     /// <summary>
     ///   Generate a string like a password with different elements in it
     /// </summary>
-    class function getPassword(const Numbers, LowerCaseLetters, UpperCaseLetters: Boolean; const Symbols: string = ''; const ASize: Cardinal = 0): string; overload;
+    class function getPassword(const Numbers, LowerCaseLetters,
+      UpperCaseLetters: Boolean; const Symbols: string = ''; const ASize:
+      Cardinal
+      = 0): string; overload;
     /// <summary>
     /// Set the default size used by other methods of this class when no size is given when generating an ID.
     /// </summary>
@@ -96,33 +102,31 @@ var
 
   { TOlfRandomIDGenerator }
 
-  class function TOlfRandomIDGenerator.getID(const Base: Byte;
-    const ASize: Cardinal): string;
+class function TOlfRandomIDGenerator.getID(const Base: Byte;
+  const ASize: Cardinal): string;
 var
-  i,
-  n: Byte;
+  i, n: Byte;
   LSize: Cardinal;
 begin
   result := '';
 
-  if ASize > 0
-  then
+  if ASize > 0 then
     LSize := ASize
   else
     LSize := DefaultSize;
 
   for i := 1 to LSize do
-    begin
-      n := random(Base);
-      case n of
-        0 .. 9:
-          result := result + chr(ord('0') + n);
-        10 .. 35:
-          result := result + chr(ord('a') + n - 10);
-        36 .. 61:
-          result := result + chr(ord('A') + n - 36);
-      end;
+  begin
+    n := random(Base);
+    case n of
+      0..9:
+        result := result + chr(ord('0') + n);
+      10..35:
+        result := result + chr(ord('a') + n - 10);
+      36..61:
+        result := result + chr(ord('A') + n - 36);
     end;
+  end;
 end;
 
 class function TOlfRandomIDGenerator.getIDBase10(const Size: Cardinal): string;
@@ -148,75 +152,72 @@ end;
 class function TOlfRandomIDGenerator.getPassword(const Numbers,
   LowerCaseLetters, UpperCaseLetters: Boolean; const Symbols: string;
   const ASize: Cardinal): string;
-  var
-    SymbolsTab: TArray<Char>; i: Integer;
+var
+  SymbolsTab: TArray<Char>;
+  i: Integer;
 begin
-  setlength(symbolstab, symbols.Length);
-  for i := 0 to symbols.length - 1 do
-    symbolstab[i] := symbols.Chars[i];
-  result := getPassword(Numbers, LowerCaseLetters, UpperCaseLetters, SymbolsTab, ASize);
+  setlength(SymbolsTab, Symbols.Length);
+  for i := 0 to Symbols.Length - 1 do
+    SymbolsTab[i] := Symbols.Chars[i];
+  result := getPassword(Numbers, LowerCaseLetters, UpperCaseLetters, SymbolsTab,
+    ASize);
 end;
 
-class function TOlfRandomIDGenerator.getPassword(const Numbers, LowerCaseLetters,
-  UpperCaseLetters: Boolean; const Symbols: TArray<Char>;
-  const ASize: Cardinal): string;
-  var
-    Items: TArray<Char>;
-    i: Integer;
-    LSize: Cardinal;
+class function TOlfRandomIDGenerator.getPassword(const Numbers,
+  LowerCaseLetters, UpperCaseLetters: Boolean; const Symbols: TArray<Char>; const
+  ASize: Cardinal): string;
+var
+  Items: TArray<Char>;
+  i: Integer;
+  LSize: Cardinal;
 begin
   result := '';
 
-  if ASize > 0
-  then
+  if ASize > 0 then
     LSize := ASize
   else
     LSize := DefaultSize;
 
-  setLength(Items, 0);
+  setlength(Items, 0);
 
-  if numbers
-  then
-    begin
-      setLength(Items, Length(Items) + 10);
-      for i := 0 to 9 do
-        items[Length(Items) - i - 1] := chr(ord('0') + i);
-    end;
+  if Numbers then
+  begin
+    setlength(Items, Length(Items) + 10);
+    for i := 0 to 9 do
+      Items[Length(Items) - i - 1] := chr(ord('0') + i);
+  end;
 
-  if LowerCaseLetters
-  then
-    begin
-      setLength(Items, Length(Items) + 26);
-      for i := 0 to 25 do
-        items[Length(Items) - i - 1] := chr(ord('a') + i);
-    end;
+  if LowerCaseLetters then
+  begin
+    setlength(Items, Length(Items) + 26);
+    for i := 0 to 25 do
+      Items[Length(Items) - i - 1] := chr(ord('a') + i);
+  end;
 
-  if UpperCaseLetters
-  then
-    begin
-      setLength(Items, Length(Items) + 26);
-      for i := 0 to 25 do
-        items[Length(Items) - i - 1] := chr(ord('A') + i);
-    end;
+  if UpperCaseLetters then
+  begin
+    setlength(Items, Length(Items) + 26);
+    for i := 0 to 25 do
+      Items[Length(Items) - i - 1] := chr(ord('A') + i);
+  end;
 
-  setLength(Items, Length(Items) + length(symbols));
-  for i := 0 to                    length(symbols) - 1 do
-    items[Length(Items) - i - 1] := symbols[i];
+  setlength(Items, Length(Items) + Length(Symbols));
+  for i := 0 to Length(Symbols) - 1 do
+    Items[Length(Items) - i - 1] := Symbols[i];
 
-  if length(items) > 0
-  then
-    begin
-      result := '';
-      for i := 1 to LSize do
-        result := result + Items[random(length(items))];
-    end else
-      result := '';
+  if Length(Items) > 0 then
+  begin
+    result := '';
+    for i := 1 to LSize do
+      result := result + Items[random(Length(Items))];
+  end
+  else
+    result := '';
 end;
 
 class procedure TOlfRandomIDGenerator.SetDefaultSize(const Size: Cardinal);
 begin
-  if (Size < 1)
-  then
+  if (Size < 1) then
     raise exception.create('Size must be greater then 0.');
 
   DefaultSize := Size;
@@ -224,9 +225,8 @@ end;
 
 initialization
 
-randomize;
-DefaultSize := 10;
+  randomize;
+  DefaultSize := 10;
 
 end.
-
 

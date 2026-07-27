@@ -101,13 +101,13 @@ type
     property BDSVersion: string read FBDSVersion write SetBDSVersion;
     property onGetPathForAliasFunc: TGetPathForAliasFunc
       read FonGetPathForAliasFunc write SetonGetPathForAliasFunc;
-    constructor Create(Const ADPROJFileName: string);
+    constructor Create(const ADPROJFileName: string);
     destructor Destroy; override;
-    function GetProjectExecutable(Const APlatform: string;
-      Const AConfiguration: string = 'Release'): string;
-    function HasPlatform(Const APlatform: string): boolean;
-    function GetFilesToDeploy(Const APlatform: string;
-      Const AConfiguration: string = 'Release'): TOlfFilesToDeployList;
+    function GetProjectExecutable(const APlatform: string;
+      const AConfiguration: string = 'Release'): string;
+    function HasPlatform(const APlatform: string): boolean;
+    function GetFilesToDeploy(const APlatform: string;
+      const AConfiguration: string = 'Release'): TOlfFilesToDeployList;
   end;
 
 implementation
@@ -344,7 +344,7 @@ begin
           if assigned(DeploymentNode) and DeploymentNode.HasAttribute('Version')
             and ((DeploymentNode.Attributes['Version'] = 4) or
             (DeploymentNode.Attributes['Version'] = 5 (* Delphi 12.2 Athens *) ))
-          then
+              then
             // TODO : prendre en charge autres versions du déploiement en XE (bof, mais why not) et 10.x
             for i := 0 to DeploymentNode.ChildNodes.Count - 1 do
             begin
@@ -433,3 +433,4 @@ begin
 end;
 
 end.
+

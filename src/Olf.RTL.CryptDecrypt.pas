@@ -96,7 +96,7 @@ type
     /// You can use the program at https://xorkeysgenerator.olfsoftware.fr/ to
     /// generate a compatible XOR keys buffer.
     /// </remarks>
-    function XORCrypt(Const AStream: TStream): TMemoryStream; overload;
+    function XORCrypt(const AStream: TStream): TMemoryStream; overload;
 
     /// <summary>
     /// use XOR operand to crypt a buffer with a keys buffer
@@ -105,7 +105,7 @@ type
     /// You can use the program at https://xorkeysgenerator.olfsoftware.fr/ to
     /// generate a compatible XOR keys buffer.
     /// </remarks>
-    class function XORCrypt(Const AStream: TStream; Const AKeys: TByteDynArray)
+    class function XORCrypt(const AStream: TStream; const AKeys: TByteDynArray)
       : TMemoryStream; overload;
 
     /// <summary>
@@ -115,7 +115,7 @@ type
     /// You can use the program at https://xorkeysgenerator.olfsoftware.fr/ to
     /// generate a compatible XOR keys buffer.
     /// </remarks>
-    function XORDecrypt(Const AStream: TStream): TMemoryStream; overload;
+    function XORDecrypt(const AStream: TStream): TMemoryStream; overload;
 
     /// <summary>
     /// use XOR operand to decrypt a buffer with a keys buffer
@@ -124,13 +124,13 @@ type
     /// You can use the program at https://xorkeysgenerator.olfsoftware.fr/ to
     /// generate a compatible XOR keys buffer.
     /// </remarks>
-    class function XORDecrypt(Const AStream: TStream;
-      Const AKeys: TByteDynArray): TMemoryStream; overload;
+    class function XORDecrypt(const AStream: TStream;
+      const AKeys: TByteDynArray): TMemoryStream; overload;
 
     /// <summary>
     /// Export a key as an array of random bytes
     /// </summary>
-    class function GenXORKey(Const Size: word): TByteDynArray;
+    class function GenXORKey(const Size: word): TByteDynArray;
 
     /// <summary>
     /// exchange bytes between a buffer to crypt and the property key
@@ -139,7 +139,7 @@ type
     /// You can use the program at https://swapkeysgenerator.olfsoftware.fr/ to
     /// generate a compatible Swap keys buffer.
     /// </remarks>
-    function SwapCrypt(Const AStream: TStream): TMemoryStream; overload;
+    function SwapCrypt(const AStream: TStream): TMemoryStream; overload;
 
     /// <summary>
     /// exchange bytes between a buffer to crypt and the key parameter
@@ -148,7 +148,7 @@ type
     /// You can use the program at https://swapkeysgenerator.olfsoftware.fr/ to
     /// generate a compatible Swap keys buffer.
     /// </remarks>
-    class function SwapCrypt(Const AStream: TStream; Const AKeys: TByteDynArray)
+    class function SwapCrypt(const AStream: TStream; const AKeys: TByteDynArray)
       : TMemoryStream; overload;
 
     /// <summary>
@@ -158,7 +158,7 @@ type
     /// You can use the program at https://swapkeysgenerator.olfsoftware.fr/ to
     /// generate a compatible Swap keys buffer.
     /// </remarks>
-    function SwapDecrypt(Const AStream: TStream): TMemoryStream; overload;
+    function SwapDecrypt(const AStream: TStream): TMemoryStream; overload;
 
     /// <summary>
     /// exchange bytes between a buffer to uncrypt and the key parameter
@@ -167,29 +167,29 @@ type
     /// You can use the program at https://swapkeysgenerator.olfsoftware.fr/ to
     /// generate a compatible Swap keys buffer.
     /// </remarks>
-    class function SwapDecrypt(Const AStream: TStream;
-      Const AKeys: TByteDynArray): TMemoryStream; overload;
+    class function SwapDecrypt(const AStream: TStream;
+      const AKeys: TByteDynArray): TMemoryStream; overload;
 
     /// <summary>
     /// Export a key as an array of 256 random bytes
     /// </summary>
     class function GenSwapKey: TByteDynArray;
 
-    function ShiftCrypt(Const AStream: TStream): TMemoryStream; overload;
-    class function ShiftCrypt(Const AStream: TStream;
+    function ShiftCrypt(const AStream: TStream): TMemoryStream; overload;
+    class function ShiftCrypt(const AStream: TStream;
       const AKeys: TIntegerDynArray): TMemoryStream; overload;
-    function ShiftDecrypt(Const AStream: TStream): TMemoryStream; overload;
-    class function ShiftDecrypt(Const AStream: TStream;
+    function ShiftDecrypt(const AStream: TStream): TMemoryStream; overload;
+    class function ShiftDecrypt(const AStream: TStream;
       const AKeys: TIntegerDynArray): TMemoryStream; overload;
-    class function GenShiftKey(Const Size: word): TIntegerDynArray;
+    class function GenShiftKey(const Size: word): TIntegerDynArray;
 
-    function IDBCrypt(Const AStream: TStream): TMemoryStream; overload;
-    class function IDBCrypt(Const AStream: TStream;
+    function IDBCrypt(const AStream: TStream): TMemoryStream; overload;
+    class function IDBCrypt(const AStream: TStream;
       const AKeys: TIntegerDynArray): TMemoryStream; overload;
-    function IDBDecrypt(Const AStream: TStream): TMemoryStream; overload;
-    class function IDBDecrypt(Const AStream: TStream;
+    function IDBDecrypt(const AStream: TStream): TMemoryStream; overload;
+    class function IDBDecrypt(const AStream: TStream;
       const AKeys: TIntegerDynArray): TMemoryStream; overload;
-    class function GenIDBKey(Const Size: word): TIntegerDynArray;
+    class function GenIDBKey(const Size: word): TIntegerDynArray;
 
     /// <summary>
     /// Create an instance of TOlfCryptDecrypt class
@@ -199,35 +199,35 @@ type
     /// <summary>
     /// Create an instance of TOlfCryptDecrypt class and fill its key buffer as bytes
     /// </summary>
-    constructor Create(Const AKeys: TByteDynArray); overload;
+    constructor Create(const AKeys: TByteDynArray); overload;
 
     /// <summary>
     /// Create an instance of TOlfCryptDecrypt class and fill its key buffer as integers
     /// </summary>
-    constructor Create(Const AKeys: TIntegerDynArray); overload;
+    constructor Create(const AKeys: TIntegerDynArray); overload;
 
     /// <summary>
     /// DEPRECATED - internally use XORCrypt
     /// </summary>
-    function Crypt(Const AStream: TStream): TStream; overload;
+    function Crypt(const AStream: TStream): TStream; overload;
       deprecated 'Use XORCrypt()';
 
     /// <summary>
     /// DEPRECATED - internally use XORCrypt
     /// </summary>
-    class function Crypt(Const AStream: TStream; Const AKeys: TByteDynArray)
+    class function Crypt(const AStream: TStream; const AKeys: TByteDynArray)
       : TStream; overload; deprecated 'Use XORCrypt()';
 
     /// <summary>
     /// DEPRECATED - internally use XORDecrypt
     /// </summary>
-    function Decrypt(Const AStream: TStream): TStream; overload;
+    function Decrypt(const AStream: TStream): TStream; overload;
       deprecated 'Use XORDecrypt()';
 
     /// <summary>
     /// DEPRECATED - internally use XORDecrypt
     /// </summary>
-    class function Decrypt(Const AStream: TStream; Const AKeys: TByteDynArray)
+    class function Decrypt(const AStream: TStream; const AKeys: TByteDynArray)
       : TStream; overload; deprecated 'Use XORDecrypt()';
   end;
 
@@ -739,6 +739,7 @@ end;
 
 initialization
 
-randomize;
+  randomize;
 
 end.
+

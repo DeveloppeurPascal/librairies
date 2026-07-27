@@ -52,8 +52,8 @@ unit USVGCursorSVGSamples;
 // * C:\Users\patrickpremartin\Documents\Embarcadero\Studio\Projets\___librairies-et-composants\librairies\samples\Skia.SVGToBitmap\_CursorSVGSamples\USVGCursorSVGSamples.pas
 // ****************************************
 //
-// This file contains a list of contants and 
-// an enumeration to access to SVG source codes 
+// This file contains a list of contants and
+// an enumeration to access to SVG source codes
 // from the generated array of strings.
 //
 // ****************************************
@@ -87,43 +87,46 @@ type
     ArrowS = CSVGArrowS,
     ArrowSe = CSVGArrowSe,
     ArrowSw = CSVGArrowSw,
-    ArrowW = CSVGArrowW);
+    ArrowW = CSVGArrowW
+  );
 
   TSVGCursorSVGSamples = class
   private
-  class var
-    FTag: integer;
-    FTagBool: Boolean;
-    FTagFloat: Single;
-    FTagObject: TObject;
-    FTagString: string;
+    class var
+      FTag: integer;
+      FTagBool: Boolean;
+      FTagFloat: Single;
+      FTagObject: TObject;
+      FTagString: string;
     class procedure SetTag(const Value: integer); static;
     class procedure SetTagBool(const Value: Boolean); static;
     class procedure SetTagFloat(const Value: Single); static;
     class procedure SetTagObject(const Value: TObject); static;
     class procedure SetTagString(const Value: string); static;
-  public const
-    ArrowE = CSVGArrowE;
-    ArrowN = CSVGArrowN;
-    ArrowNe = CSVGArrowNe;
-    ArrowNw = CSVGArrowNw;
-    ArrowS = CSVGArrowS;
-    ArrowSe = CSVGArrowSe;
-    ArrowSw = CSVGArrowSw;
-    ArrowW = CSVGArrowW;
+  public
+    const
+      ArrowE = CSVGArrowE;
+      ArrowN = CSVGArrowN;
+      ArrowNe = CSVGArrowNe;
+      ArrowNw = CSVGArrowNw;
+      ArrowS = CSVGArrowS;
+      ArrowSe = CSVGArrowSe;
+      ArrowSw = CSVGArrowSw;
+      ArrowW = CSVGArrowW;
     class property Tag: integer read FTag write SetTag;
     class property TagBool: Boolean read FTagBool write SetTagBool;
     class property TagFloat: Single read FTagFloat write SetTagFloat;
     class property TagObject: TObject read FTagObject write SetTagObject;
     class property TagString: string read FTagString write SetTagString;
-    class function SVG(const Index: Integer): string; overload;
-    class function SVG(const Index: TSVGCursorSVGSamplesIndex) : string; overload;
-    class function Count : Integer;
+    class function SVG(const Index: integer): string; overload;
+    class function SVG(const Index: TSVGCursorSVGSamplesIndex): string;
+      overload;
+    class function Count: integer;
     class constructor Create;
   end;
 
 var
-  SVGCursorSVGSamples : array of String;
+  SVGCursorSVGSamples: array of string;
 
 implementation
 
@@ -167,7 +170,7 @@ begin
   FTagString := Value;
 end;
 
-class function TSVGCursorSVGSamples.SVG(const Index: Integer): string;
+class function TSVGCursorSVGSamples.SVG(const Index: integer): string;
 begin
   if (index < Count) then
     result := SVGCursorSVGSamples[index]
@@ -175,22 +178,23 @@ begin
     raise Exception.Create('SVG not found. Index out of range.');
 end;
 
-class function TSVGCursorSVGSamples.SVG(const Index : TSVGCursorSVGSamplesIndex): string;
+class function TSVGCursorSVGSamples.SVG(const Index: TSVGCursorSVGSamplesIndex):
+  string;
 begin
   result := SVG(ord(index));
 end;
 
-class function TSVGCursorSVGSamples.Count: Integer;
+class function TSVGCursorSVGSamples.Count: integer;
 begin
   result := length(SVGCursorSVGSamples);
 end;
 
 initialization
 
-SetLength(SVGCursorSVGSamples, 8);
+  SetLength(SVGCursorSVGSamples, 8);
 
 {$TEXTBLOCK NATIVE XML}
-SVGCursorSVGSamples[CSVGArrowE] := '''
+  SVGCursorSVGSamples[CSVGArrowE] := '''
 <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs/>
   <g>
@@ -199,7 +203,7 @@ SVGCursorSVGSamples[CSVGArrowE] := '''
   </g>
 </svg>
 ''';
-SVGCursorSVGSamples[CSVGArrowN] := '''
+  SVGCursorSVGSamples[CSVGArrowN] := '''
 <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs/>
   <g>
@@ -208,7 +212,7 @@ SVGCursorSVGSamples[CSVGArrowN] := '''
   </g>
 </svg>
 ''';
-SVGCursorSVGSamples[CSVGArrowNe] := '''
+  SVGCursorSVGSamples[CSVGArrowNe] := '''
 <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs/>
   <g>
@@ -217,7 +221,7 @@ SVGCursorSVGSamples[CSVGArrowNe] := '''
   </g>
 </svg>
 ''';
-SVGCursorSVGSamples[CSVGArrowNw] := '''
+  SVGCursorSVGSamples[CSVGArrowNw] := '''
 <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs/>
   <g>
@@ -226,7 +230,7 @@ SVGCursorSVGSamples[CSVGArrowNw] := '''
   </g>
 </svg>
 ''';
-SVGCursorSVGSamples[CSVGArrowS] := '''
+  SVGCursorSVGSamples[CSVGArrowS] := '''
 <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs/>
   <g>
@@ -235,7 +239,7 @@ SVGCursorSVGSamples[CSVGArrowS] := '''
   </g>
 </svg>
 ''';
-SVGCursorSVGSamples[CSVGArrowSe] := '''
+  SVGCursorSVGSamples[CSVGArrowSe] := '''
 <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs/>
   <g>
@@ -244,7 +248,7 @@ SVGCursorSVGSamples[CSVGArrowSe] := '''
   </g>
 </svg>
 ''';
-SVGCursorSVGSamples[CSVGArrowSw] := '''
+  SVGCursorSVGSamples[CSVGArrowSw] := '''
 <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs/>
   <g>
@@ -253,7 +257,7 @@ SVGCursorSVGSamples[CSVGArrowSw] := '''
   </g>
 </svg>
 ''';
-SVGCursorSVGSamples[CSVGArrowW] := '''
+  SVGCursorSVGSamples[CSVGArrowW] := '''
 <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs/>
   <g>
@@ -264,3 +268,4 @@ SVGCursorSVGSamples[CSVGArrowW] := '''
 ''';
 
 end.
+
