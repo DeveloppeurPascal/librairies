@@ -40,14 +40,16 @@
   https://github.com/DeveloppeurPascal/librairies
 
   ***************************************************************************
-  File last update : 2026-03-30T16:35:19.648+02:00
-  Signature : eca705cd6666da34b272a560f7e1bf13ffef57b1
+  File last update : 2026-08-02T21:08:04.000+02:00
+  Signature : dc13ac2c7122de1db74462a1ee72d1a54eb3fad9
   ***************************************************************************
 *)
 
 unit Olf.RTL.CryptDecrypt;
 
 interface
+
+// TODO : add missing XMLDoc comments
 
 uses
   System.Classes,
@@ -108,6 +110,9 @@ type
     class function XORCrypt(const AStream: TStream; const AKeys: TByteDynArray)
       : TMemoryStream; overload;
 
+    class function XORCrypt(const ASource: string; const AKeys: TByteDynArray):
+      string; overload;
+
     /// <summary>
     /// use XOR operand to decrypt a buffer with the keys buffer property
     /// </summary>
@@ -126,6 +131,9 @@ type
     /// </remarks>
     class function XORDecrypt(const AStream: TStream;
       const AKeys: TByteDynArray): TMemoryStream; overload;
+
+    class function XORDecrypt(const ASource: string; const AKeys:
+      TByteDynArray): string; overload;
 
     /// <summary>
     /// Export a key as an array of random bytes
@@ -151,6 +159,9 @@ type
     class function SwapCrypt(const AStream: TStream; const AKeys: TByteDynArray)
       : TMemoryStream; overload;
 
+    class function SwapCrypt(const ASource: string; const AKeys: TByteDynArray):
+      string; overload;
+
     /// <summary>
     /// exchange bytes between a buffer to uncrypt and the property key
     /// </summary>
@@ -170,25 +181,48 @@ type
     class function SwapDecrypt(const AStream: TStream;
       const AKeys: TByteDynArray): TMemoryStream; overload;
 
+    class function SwapDecrypt(const ASource: string; const AKeys:
+      TByteDynArray): string; overload;
+
     /// <summary>
     /// Export a key as an array of 256 random bytes
     /// </summary>
     class function GenSwapKey: TByteDynArray;
 
     function ShiftCrypt(const AStream: TStream): TMemoryStream; overload;
+
     class function ShiftCrypt(const AStream: TStream;
       const AKeys: TIntegerDynArray): TMemoryStream; overload;
+
+    class function ShiftCrypt(const ASource: string; const AKeys:
+      TIntegerDynArray): string; overload;
+
     function ShiftDecrypt(const AStream: TStream): TMemoryStream; overload;
+
     class function ShiftDecrypt(const AStream: TStream;
       const AKeys: TIntegerDynArray): TMemoryStream; overload;
+
+    class function ShiftDecrypt(const ASource: string; const AKeys:
+      TIntegerDynArray): string; overload;
+
     class function GenShiftKey(const Size: word): TIntegerDynArray;
 
     function IDBCrypt(const AStream: TStream): TMemoryStream; overload;
+
     class function IDBCrypt(const AStream: TStream;
       const AKeys: TIntegerDynArray): TMemoryStream; overload;
+
+    class function IDBCrypt(const ASource: string; const AKeys:
+      TIntegerDynArray): string; overload;
+
     function IDBDecrypt(const AStream: TStream): TMemoryStream; overload;
+
     class function IDBDecrypt(const AStream: TStream;
       const AKeys: TIntegerDynArray): TMemoryStream; overload;
+
+    class function IDBDecrypt(const ASource: string; const AKeys:
+      TIntegerDynArray): string; overload;
+
     class function GenIDBKey(const Size: word): TIntegerDynArray;
 
     /// <summary>
@@ -235,9 +269,8 @@ implementation
 
 uses
   System.Generics.Collections,
-  System.SysUtils;
-
-{ TOlfCryptDecrypt }
+  System.SysUtils,
+  System.NetEncoding;
 
 constructor TOlfCryptDecrypt.Create(const AKeys: TByteDynArray);
 var
@@ -734,6 +767,206 @@ begin
       Key1 := od;
       Key2 := AKeys[KeyIndex];
     end;
+  end;
+end;
+
+class function TOlfCryptDecrypt.IDBCrypt(const ASource: string;
+  const AKeys: TIntegerDynArray): string;
+var
+  ss: TStringStream;
+  ms: TMemoryStream;
+begin
+  result := '';
+  ss := TStringStream.Create(ASource);
+  try
+    ms := IDBCrypt(ss, AKeys);
+    try
+      result := TNetEncoding.Base64.EncodeBytesToString(ms.Memory, ms.Size);
+    finally
+      ms.free;
+    end;
+  finally
+    ss.free;
+  end;
+end;
+
+class function TOlfCryptDecrypt.IDBDecrypt(const ASource: string;
+  const AKeys: TIntegerDynArray): string;
+var
+  ss: TStringStream;
+  ms, ms2: TMemoryStream;
+  b: TBytes;
+begin
+  result := '';
+  ms := TMemoryStream.Create;
+  try
+    b := TNetEncoding.Base64.DecodeStringToBytes(ASource);
+    ms.write(b, length(b));
+    ms.position := 0;
+    ms2 := IDBDecrypt(ms, AKeys);
+    try
+      ss := TStringStream.Create;
+      try
+        ss.CopyFrom(ms2);
+        result := ss.DataString;
+      finally
+        ss.free;
+      end;
+    finally
+      ms2.free;
+    end;
+  finally
+    ms.free;
+  end;
+end;
+
+class function TOlfCryptDecrypt.ShiftCrypt(const ASource: string;
+  const AKeys: TIntegerDynArray): string;
+var
+  ss: TStringStream;
+  ms: TMemoryStream;
+begin
+  result := '';
+  ss := TStringStream.Create(ASource);
+  try
+    ms := ShiftCrypt(ss, AKeys);
+    try
+      result := TNetEncoding.Base64.EncodeBytesToString(ms.Memory, ms.Size);
+    finally
+      ms.free;
+    end;
+  finally
+    ss.free;
+  end;
+end;
+
+class function TOlfCryptDecrypt.ShiftDecrypt(const ASource: string;
+  const AKeys: TIntegerDynArray): string;
+var
+  ss: TStringStream;
+  ms, ms2: TMemoryStream;
+  b: TBytes;
+begin
+  result := '';
+  ms := TMemoryStream.Create;
+  try
+    b := TNetEncoding.Base64.DecodeStringToBytes(ASource);
+    ms.write(b, length(b));
+    ms.position := 0;
+    ms2 := ShiftDecrypt(ms, AKeys);
+    try
+      ss := TStringStream.Create;
+      try
+        ss.CopyFrom(ms2);
+        result := ss.DataString;
+      finally
+        ss.free;
+      end;
+    finally
+      ms2.free;
+    end;
+  finally
+    ms.free;
+  end;
+end;
+
+class function TOlfCryptDecrypt.SwapCrypt(const ASource: string;
+  const AKeys: TByteDynArray): string;
+var
+  ss: TStringStream;
+  ms: TMemoryStream;
+begin
+  result := '';
+  ss := TStringStream.Create(ASource);
+  try
+    ms := SwapCrypt(ss, AKeys);
+    try
+      result := TNetEncoding.Base64.EncodeBytesToString(ms.Memory, ms.Size);
+    finally
+      ms.free;
+    end;
+  finally
+    ss.free;
+  end;
+end;
+
+class function TOlfCryptDecrypt.SwapDecrypt(const ASource: string;
+  const AKeys: TByteDynArray): string;
+var
+  ss: TStringStream;
+  ms, ms2: TMemoryStream;
+  b: TBytes;
+begin
+  result := '';
+  ms := TMemoryStream.Create;
+  try
+    b := TNetEncoding.Base64.DecodeStringToBytes(ASource);
+    ms.write(b, length(b));
+    ms.position := 0;
+    ms2 := SwapDecrypt(ms, AKeys);
+    try
+      ss := TStringStream.Create;
+      try
+        ss.CopyFrom(ms2);
+        result := ss.DataString;
+      finally
+        ss.free;
+      end;
+    finally
+      ms2.free;
+    end;
+  finally
+    ms.free;
+  end;
+end;
+
+class function TOlfCryptDecrypt.XORCrypt(const ASource: string;
+  const AKeys: TByteDynArray): string;
+var
+  ss: TStringStream;
+  ms: TMemoryStream;
+begin
+  result := '';
+  ss := TStringStream.Create(ASource);
+  try
+    ms := XORCrypt(ss, AKeys);
+    try
+      result := TNetEncoding.Base64.EncodeBytesToString(ms.Memory, ms.Size);
+    finally
+      ms.free;
+    end;
+  finally
+    ss.free;
+  end;
+end;
+
+class function TOlfCryptDecrypt.XORDecrypt(const ASource: string;
+  const AKeys: TByteDynArray): string;
+var
+  ss: TStringStream;
+  ms, ms2: TMemoryStream;
+  b: TBytes;
+begin
+  result := '';
+  ms := TMemoryStream.Create;
+  try
+    b := TNetEncoding.Base64.DecodeStringToBytes(ASource);
+    ms.write(b, length(b));
+    ms.position := 0;
+    ms2 := XORDecrypt(ms, AKeys);
+    try
+      ss := TStringStream.Create;
+      try
+        ss.CopyFrom(ms2);
+        result := ss.DataString;
+      finally
+        ss.free;
+      end;
+    finally
+      ms2.free;
+    end;
+  finally
+    ms.free;
   end;
 end;
 
