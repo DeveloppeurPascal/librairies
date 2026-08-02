@@ -166,5 +166,9 @@ window.DocInsight.toc["toc-packages"] =   [
         id: "IntegerDoubleAndSingleSample",
         title: "IntegerDoubleAndSingleSample",
           href: "IntegerDoubleAndSingleSample.html",
+      },      {
+        id: "StringCryptDecryptSample",
+        title: "StringCryptDecryptSample",
+          href: "StringCryptDecryptSample.html",
       }  ]
 ;

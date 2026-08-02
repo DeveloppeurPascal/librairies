@@ -363,10 +363,6 @@ window.DocInsight.toc["Olf.RTL.Params"] =   [
         title: "EndUpdate",
           href: "Olf.RTL.Params.TParamsFile.EndUpdate.html",
       },      {
-        id: "M:Olf.RTL.Params.TParamsFile.GetValue",
-        title: "GetValue",
-          href: "Olf.RTL.Params.TParamsFile.GetValue(T).html",
-      },      {
         id: "Olf.RTL.Params.TParamsFile.HasChanged",
         title: "HasChanged",
           href: "Olf.RTL.Params.TParamsFile.HasChanged.html",
@@ -458,6 +454,10 @@ window.DocInsight.toc["Olf.RTL.Params"] =   [
         id: "Olf.RTL.Params.TParamsFile.getParamsFileName",
         title: "getParamsFileName",
           href: "Olf.RTL.Params.TParamsFile.getParamsFileName.html",
+      },      {
+        id: "M:Olf.RTL.Params.TParamsFile.getValue",
+        title: "getValue",
+          href: "Olf.RTL.Params.TParamsFile.getValue(T).html",
       },      {
         id: "Olf.RTL.Params.TParamsFile.setFilePath",
         title: "setFilePath",
