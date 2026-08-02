@@ -62,6 +62,7 @@
     <Source>.\Skia.SVGToBitmap\VCL_With_SVGList\VCLShowSVGFromBitmapSample.dpr</Source>
     <Source>.\RTL.GenRandomID\RandomPassword\RandomPasswordSample.dpr</Source>
     <Source>.\RTL.Params\IntegerDoubleAndSingle\IntegerDoubleAndSingleSample.dpr</Source>
+    <Source>.\RTL.CryptDecrypt\StringCryptDecryptSample\StringCryptDecryptSample.dpr</Source>
   </Sources>
   <Outputs>
     <Output Type="HTML">
