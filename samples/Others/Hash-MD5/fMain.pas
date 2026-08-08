@@ -40,8 +40,8 @@
   https://github.com/DeveloppeurPascal/librairies
 
   ***************************************************************************
-  File last update : 2026-03-30T16:35:19.528+02:00
-  Signature : c54d26f104e081f6d1055996cb371af0a8a9e5d3
+  File last update : 2026-08-08T15:19:48.000+02:00
+  Signature : 990b551aa26978cd21ff140ff79961207cf2e7b1
   ***************************************************************************
 *)
 
@@ -88,23 +88,31 @@ implementation
 {$R *.fmx}
 
 uses
+{$IF CompilerVersion>=30.0}
+  System.Hash,
+{$ENDIF}
   IdHashMessageDigest,
   u_md5;
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
   Memo1.lines.Add(Edit1.text);
-  Memo1.lines.Add(md5(Edit1.text));
+  Memo1.lines.Add(md5(Edit1.text) + ' with u_md5.md5()');
+{$IF CompilerVersion>=30.0}
+  Memo1.lines.Add(THashMD5.GetHashString(Edit1.text) +
+    ' with System.Hash.THashMD5.GetHashString()');
+{$ENDIF}
   Memo1.lines.Add('--------------------');
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-  Edit1.text := 'A record that implements the MD5 hash type.';
+  Edit1.text := 'A function that implements the MD5 hash type.';
 end;
 
 initialization
 
-ReportMemoryLeaksOnShutdown := true;
+  ReportMemoryLeaksOnShutdown := true;
 
 end.
+
