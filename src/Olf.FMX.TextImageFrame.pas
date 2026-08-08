@@ -40,8 +40,8 @@
   https://github.com/DeveloppeurPascal/librairies
 
   ***************************************************************************
-  File last update : 2026-03-30T18:01:04.000+02:00
-  Signature : ece8abc15ec3afc47219a9d16a30f1d99c4920fd
+  File last update : 2026-08-08T15:59:08.000+02:00
+  Signature : d6f4b0b96bb028ef59266cb5bfaf6e5789b805a9
   ***************************************************************************
 *)
 
@@ -257,7 +257,7 @@ begin
     if result < 0 then
       result := getImageIndexOfChar('atilde');
   end;
-  // TODO : missing 'ạ'
+  // TODO -oDeveloppeurPascal : missing 'ạ'
   if (result < 0) and AChar.IsInArray(['â', 'à', 'ã', 'ạ']) then
     result := getImageIndexOfChar('a', true);
 
@@ -267,7 +267,7 @@ begin
     if (result < 0) then
       result := getImageIndexOfChar('ccedille');
   end;
-  // TODO : missing 'č'
+  // TODO -oDeveloppeurPascal : missing 'č'
   if (result < 0) and AChar.IsInArray(['ç', 'č']) then
     result := getImageIndexOfChar('c', true);
 
@@ -304,7 +304,7 @@ begin
     if result < 0 then
       result := getImageIndexOfChar('etrema');
   end;
-  // TODO : missing 'ě'
+  // TODO -oDeveloppeurPascal : missing 'ě'
   if (result < 0) and AChar.IsInArray(['é', 'è', 'ê', 'ë', 'ě']) then
     result := getImageIndexOfChar('e', true);
 
@@ -341,7 +341,7 @@ begin
     if result < 0 then
       result := getImageIndexOfChar('ntilde');
   end;
-  // TODO : missing 'ň'
+  // TODO -oDeveloppeurPascal : missing 'ň'
   if (result < 0) and AChar.IsInArray(['ñ', 'ň']) then
     result := getImageIndexOfChar('n', true);
 
@@ -370,7 +370,7 @@ begin
   // result := getImageIndexOfChar('_oe');
   // if (result < 0) and (AChar = 'OE') then
   // result := getImageIndexOfChar('OE');
-  // TODO : cf https://github.com/DeveloppeurPascal/librairies/issues/128
+  // TODO -oDeveloppeurPascal : cf https://github.com/DeveloppeurPascal/librairies/issues/128
 
   if (result < 0) and AChar.IsInArray(['ř']) then
     result := getImageIndexOfChar('r', true);
@@ -380,7 +380,7 @@ begin
 
   // if (result < 0) and (AChar = 'ß') then
   // result := getImageIndexOfChar('ss');
-  // TODO : https://github.com/DeveloppeurPascal/librairies/issues/127
+  // TODO -oDeveloppeurPascal : https://github.com/DeveloppeurPascal/librairies/issues/127
 
   if (result < 0) and (AChar = 'ť') then
   begin
@@ -409,7 +409,7 @@ begin
     if result < 0 then
       result := getImageIndexOfChar('ugrave');
   end;
-  // if (result < 0) and (AChar = '') then // TODO : ajouter u aigu
+  // if (result < 0) and (AChar = '') then // TODO -oDeveloppeurPascal : ajouter u aigu
   // result := getImageIndexOfChar('_uaigu');
   if (result < 0) and AChar.IsInArray(['û', 'ü', 'ù']) then
     result := getImageIndexOfChar('u', true);
@@ -457,10 +457,10 @@ begin
   end;
   // if (result < 0) and (AChar = '...') then
   // result := getImageIndexOfChar('suspension');
-  // TODO : récupérer "points de suspensions" en 1 caractère
+  // TODO -oDeveloppeurPascal : récupérer "points de suspensions" en 1 caractère
   // if (result < 0) and (AChar = '->') then
   // result := getImageIndexOfChar('fleche-droite');
-  // TODO : récupérer "flèche vers la droite" en 1 caractère
+  // TODO -oDeveloppeurPascal : récupérer "flèche vers la droite" en 1 caractère
   if (result < 0) and (AChar = '.') then
     result := getImageIndexOfChar('point');
   if (result < 0) and (AChar = '@') then

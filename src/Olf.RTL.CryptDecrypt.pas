@@ -40,8 +40,8 @@
   https://github.com/DeveloppeurPascal/librairies
 
   ***************************************************************************
-  File last update : 2026-08-02T21:08:04.000+02:00
-  Signature : dc13ac2c7122de1db74462a1ee72d1a54eb3fad9
+  File last update : 2026-08-08T15:59:40.000+02:00
+  Signature : b18cba823558a89843bb5a887efe04e09808079e
   ***************************************************************************
 *)
 
@@ -49,7 +49,7 @@ unit Olf.RTL.CryptDecrypt;
 
 interface
 
-// TODO : add missing XMLDoc comments
+// TODO -oDeveloppeurPascal : add missing XMLDoc comments
 
 uses
   System.Classes,

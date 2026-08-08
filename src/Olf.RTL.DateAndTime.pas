@@ -40,8 +40,8 @@
   https://github.com/DeveloppeurPascal/librairies
 
   ***************************************************************************
-  File last update : 2026-03-30T16:35:19.662+02:00
-  Signature : 9546057ee2276894490b9a6ab1927e89652a209b
+  File last update : 2026-08-08T16:01:06.000+02:00
+  Signature : ec48b429aee3f4282dd42f714273e8ad49287696
   ***************************************************************************
 *)
 
@@ -156,7 +156,7 @@ function Date8ToString(const Date8AAfficher: string): string;
 var
   MM, jj: string;
 begin
-  // TODO : gérer les formats de date non européens de l'ouest
+  // TODO -oDeveloppeurPascal : gérer les formats de date non européens de l'ouest
   MM := Date8AAfficher.Substring(4, 2);
   jj := Date8AAfficher.Substring(6, 2);
   if MM = '00' then
@@ -172,7 +172,7 @@ function Date8ToStringISO(const Date8AAfficher: string): string;
 var
   MM, jj: string;
 begin
-  // TODO : gérer les formats de date non européens de l'ouest
+  // TODO -oDeveloppeurPascal : gérer les formats de date non européens de l'ouest
   MM := Date8AAfficher.Substring(4, 2);
   jj := Date8AAfficher.Substring(6, 2);
   if MM = '00' then

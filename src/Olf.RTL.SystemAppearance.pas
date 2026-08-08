@@ -40,8 +40,8 @@
   https://github.com/DeveloppeurPascal/librairies
 
   ***************************************************************************
-  File last update : 2026-03-30T16:35:19.664+02:00
-  Signature : 8d312ae231f6fa1767b08a6dd812bb953f083862
+  File last update : 2026-08-08T16:01:34.000+02:00
+  Signature : 421fd9c503f32152919396906177c4d720afb66a
   ***************************************************************************
 *)
 
@@ -59,7 +59,7 @@ implementation
 uses
   FMX.Platform;
 {$ELSE}
-// TODO : intercepter le changement de couleur du système et le signaler sous forme de message à l'application en cours
+// TODO -oDeveloppeurPascal : intercepter le changement de couleur du système et le signaler sous forme de message à l'application en cours
 
 uses
   winapi.Windows,

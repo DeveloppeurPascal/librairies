@@ -40,8 +40,8 @@
   https://github.com/DeveloppeurPascal/librairies
 
   ***************************************************************************
-  File last update : 2026-03-30T16:35:19.664+02:00
-  Signature : 33247fecaa2cca4288fd48c157106c00862ca4fc
+  File last update : 2026-08-08T16:01:26.000+02:00
+  Signature : fb136d15c1e9efcbf1f4628f751fd023ed34d607
   ***************************************************************************
 *)
 
@@ -148,7 +148,7 @@ begin
     result := tpath.combine(ReplaceAliasesInPath('$(PROJECTDIR)', AAliasList,
         AAllowEmptyAlias, ABDSVersion), result);
   //
-  // TODO : ok for "../" but not for "../../"
+  // TODO -oDeveloppeurPascal : ok for "../" but not for "../../"
   // IdxDotDot := result.IndexOf(tpath.DirectorySeparatorChar + '..');
   // while (IdxDotDot >= 0) do
   // begin

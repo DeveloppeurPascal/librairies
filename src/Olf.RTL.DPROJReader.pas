@@ -40,8 +40,8 @@
   https://github.com/DeveloppeurPascal/librairies
 
   ***************************************************************************
-  File last update : 2026-03-30T16:35:19.648+02:00
-  Signature : 989a92b6bf41d7770fadc7a9413e54adb041edee
+  File last update : 2026-08-08T16:01:18.000+02:00
+  Signature : 7c9f70478092da1973446da873b4edc0390cbdf5
   ***************************************************************************
 *)
 
@@ -230,7 +230,7 @@ begin
               ('Version') and ((DeploymentNode.Attributes['Version'] = 4) or
               (DeploymentNode.Attributes['Version']
               = 5 (* Delphi 12.2 Athens *) )) then
-              // TODO : prendre en charge autres versions du déploiement en XE (bof, mais why not) et 10.x
+              // TODO -oDeveloppeurPascal : prendre en charge autres versions du déploiement en XE (bof, mais why not) et 10.x
               for i := 0 to DeploymentNode.ChildNodes.Count - 1 do
               begin
                 DeployFileNode := DeploymentNode.ChildNodes[i];
@@ -345,7 +345,7 @@ begin
             and ((DeploymentNode.Attributes['Version'] = 4) or
             (DeploymentNode.Attributes['Version'] = 5 (* Delphi 12.2 Athens *) ))
               then
-            // TODO : prendre en charge autres versions du déploiement en XE (bof, mais why not) et 10.x
+            // TODO -oDeveloppeurPascal : prendre en charge autres versions du déploiement en XE (bof, mais why not) et 10.x
             for i := 0 to DeploymentNode.ChildNodes.Count - 1 do
             begin
               DeployFileNode := DeploymentNode.ChildNodes[i];
