@@ -57,16 +57,16 @@ C2PP ***************************************************************************
 
 <p>Project site : <a href="https://github.com/DeveloppeurPascal/librairies">https://github.com/DeveloppeurPascal/librairies</a>
 
-<p>*************************************************************************** File last update : 2026-03-30T16:35:19.664+02:00 Signature : 33247fecaa2cca4288fd48c157106c00862ca4fc ***************************************************************************</p>
+<p>*************************************************************************** File last update : 2026-08-08T16:01:26.000+02:00 Signature : fb136d15c1e9efcbf1f4628f751fd023ed34d607 ***************************************************************************</p>
 <span id="PasDoc-Uses"></span><h2 class="uses">Uses</h2>
 <ul class="useslist"><li>System.Generics.Collections</li></ul><h2 class="overview">Overview</h2>
 <span id="PasDoc-FuncsProcs"></span><h3 class="summary">Functions and Procedures</h3>
 <table class="summary wide_list">
 <tr class="list visibility-published">
-<td class="itemcode"><code>function <strong><a href="Olf.RTL.PathAliases.html#ReplaceAliasesInPath-string-TKeyValueList-boolean-string-TGetPathForAliasFunc-">ReplaceAliasesInPath</a></strong>(Const ASourcePath: string; Const AAliasList: <a href="Olf.RTL.PathAliases.html#TKeyValueList">TKeyValueList</a>; Const AAllowEmptyAlias: boolean = false; Const ABDSVersion: string = '23.0' ; Const AGetPathForAliasFunc: <a href="Olf.RTL.PathAliases.html#TGetPathForAliasFunc">TGetPathForAliasFunc</a> = nil): string; overload;</code></td>
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.PathAliases.html#ReplaceAliasesInPath-string-TKeyValueList-boolean-string-TGetPathForAliasFunc-">ReplaceAliasesInPath</a></strong>(const ASourcePath: string; const AAliasList: <a href="Olf.RTL.PathAliases.html#TKeyValueList">TKeyValueList</a>; const AAllowEmptyAlias: boolean = false; const ABDSVersion: string = '23.0' ; const AGetPathForAliasFunc: <a href="Olf.RTL.PathAliases.html#TGetPathForAliasFunc">TGetPathForAliasFunc</a> = nil): string; overload;</code></td>
 </tr>
 <tr class="list2 visibility-published">
-<td class="itemcode"><code>function <strong><a href="Olf.RTL.PathAliases.html#ReplaceAliasesInPath-string-TKeyValueList-boolean-string-TGetPathForAliasEvent-">ReplaceAliasesInPath</a></strong>(Const ASourcePath: string; Const AAliasList: <a href="Olf.RTL.PathAliases.html#TKeyValueList">TKeyValueList</a>; Const AAllowEmptyAlias: boolean; Const ABDSVersion: string; Const AGetPathForAliasEvent: <a href="Olf.RTL.PathAliases.html#TGetPathForAliasEvent">TGetPathForAliasEvent</a>) : string; overload;</code></td>
+<td class="itemcode"><code>function <strong><a href="Olf.RTL.PathAliases.html#ReplaceAliasesInPath-string-TKeyValueList-boolean-string-TGetPathForAliasEvent-">ReplaceAliasesInPath</a></strong>(const ASourcePath: string; const AAliasList: <a href="Olf.RTL.PathAliases.html#TKeyValueList">TKeyValueList</a>; const AAllowEmptyAlias: boolean; const ABDSVersion: string; const AGetPathForAliasEvent: <a href="Olf.RTL.PathAliases.html#TGetPathForAliasEvent">TGetPathForAliasEvent</a>) : string; overload;</code></td>
 </tr>
 </table>
 <span id="PasDoc-Types"></span><h3 class="summary">Types</h3>
@@ -75,17 +75,19 @@ C2PP ***************************************************************************
 <td class="itemcode"><code><strong><a href="Olf.RTL.PathAliases.html#TKeyValueList">TKeyValueList</a></strong> = TDictionary&lt;string, string&gt;;</code></td>
 </tr>
 <tr class="list2 visibility-published">
-<td class="itemcode"><code><strong><a href="Olf.RTL.PathAliases.html#TGetPathForAliasFunc">TGetPathForAliasFunc</a></strong> = reference to function(Const AAlias: string): string;</code></td>
+<td class="itemcode"><code><strong><a href="Olf.RTL.PathAliases.html#TGetPathForAliasFunc">TGetPathForAliasFunc</a></strong> = reference to function(
+    const AAlias: string
+  ): string;</code></td>
 </tr>
 <tr class="list visibility-published">
-<td class="itemcode"><code><strong><a href="Olf.RTL.PathAliases.html#TGetPathForAliasEvent">TGetPathForAliasEvent</a></strong> = function(Const AAlias: string): string of object;</code></td>
+<td class="itemcode"><code><strong><a href="Olf.RTL.PathAliases.html#TGetPathForAliasEvent">TGetPathForAliasEvent</a></strong> = function(const AAlias: string): string of object;</code></td>
 </tr>
 </table>
 <h2 class="description">Description</h2>
 <h3 class="detail">Functions and Procedures</h3>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
-<td class="itemcode"><span id="ReplaceAliasesInPath-string-TKeyValueList-boolean-string-TGetPathForAliasFunc-"></span><code>function <strong>ReplaceAliasesInPath</strong>(Const ASourcePath: string; Const AAliasList: <a href="Olf.RTL.PathAliases.html#TKeyValueList">TKeyValueList</a>; Const AAllowEmptyAlias: boolean = false; Const ABDSVersion: string = '23.0' ; Const AGetPathForAliasFunc: <a href="Olf.RTL.PathAliases.html#TGetPathForAliasFunc">TGetPathForAliasFunc</a> = nil): string; overload;</code></td>
+<td class="itemcode"><span id="ReplaceAliasesInPath-string-TKeyValueList-boolean-string-TGetPathForAliasFunc-"></span><code>function <strong>ReplaceAliasesInPath</strong>(const ASourcePath: string; const AAliasList: <a href="Olf.RTL.PathAliases.html#TKeyValueList">TKeyValueList</a>; const AAllowEmptyAlias: boolean = false; const ABDSVersion: string = '23.0' ; const AGetPathForAliasFunc: <a href="Olf.RTL.PathAliases.html#TGetPathForAliasFunc">TGetPathForAliasFunc</a> = nil): string; overload;</code></td>
 </tr>
 <tr><td colspan="1">
 <p>
@@ -100,7 +102,7 @@ C2PP ***************************************************************************
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
-<td class="itemcode"><span id="ReplaceAliasesInPath-string-TKeyValueList-boolean-string-TGetPathForAliasEvent-"></span><code>function <strong>ReplaceAliasesInPath</strong>(Const ASourcePath: string; Const AAliasList: <a href="Olf.RTL.PathAliases.html#TKeyValueList">TKeyValueList</a>; Const AAllowEmptyAlias: boolean; Const ABDSVersion: string; Const AGetPathForAliasEvent: <a href="Olf.RTL.PathAliases.html#TGetPathForAliasEvent">TGetPathForAliasEvent</a>) : string; overload;</code></td>
+<td class="itemcode"><span id="ReplaceAliasesInPath-string-TKeyValueList-boolean-string-TGetPathForAliasEvent-"></span><code>function <strong>ReplaceAliasesInPath</strong>(const ASourcePath: string; const AAliasList: <a href="Olf.RTL.PathAliases.html#TKeyValueList">TKeyValueList</a>; const AAllowEmptyAlias: boolean; const ABDSVersion: string; const AGetPathForAliasEvent: <a href="Olf.RTL.PathAliases.html#TGetPathForAliasEvent">TGetPathForAliasEvent</a>) : string; overload;</code></td>
 </tr>
 <tr><td colspan="1">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -115,14 +117,16 @@ C2PP ***************************************************************************
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
-<td class="itemcode"><span id="TGetPathForAliasFunc"></span><code><strong>TGetPathForAliasFunc</strong> = reference to function(Const AAlias: string): string;</code></td>
+<td class="itemcode"><span id="TGetPathForAliasFunc"></span><code><strong>TGetPathForAliasFunc</strong> = reference to function(
+    const AAlias: string
+  ): string;</code></td>
 </tr>
 <tr><td colspan="1">
 <p class="nodescription">This item has no description.</p></td></tr>
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
-<td class="itemcode"><span id="TGetPathForAliasEvent"></span><code><strong>TGetPathForAliasEvent</strong> = function(Const AAlias: string): string of object;</code></td>
+<td class="itemcode"><span id="TGetPathForAliasEvent"></span><code><strong>TGetPathForAliasEvent</strong> = function(const AAlias: string): string of object;</code></td>
 </tr>
 <tr><td colspan="1">
 <p class="nodescription">This item has no description.</p></td></tr>

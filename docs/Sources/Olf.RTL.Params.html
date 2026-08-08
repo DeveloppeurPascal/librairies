@@ -57,7 +57,7 @@ C2PP ***************************************************************************
 
 <p>Project site : <a href="https://github.com/DeveloppeurPascal/librairies">https://github.com/DeveloppeurPascal/librairies</a>
 
-<p>*************************************************************************** File last update : 2026-03-30T18:19:18.000+02:00 Signature : af95eac40f2c25686f908d1e909c83bb7905504e ***************************************************************************</p>
+<p>*************************************************************************** File last update : 2026-07-27T09:36:14.000+02:00 Signature : bbe223665a37527a1d64d946d94bb132b57ac1df ***************************************************************************</p>
 <span id="PasDoc-Uses"></span><h2 class="uses">Uses</h2>
 <ul class="useslist"><li>System.Classes</li><li>System.JSON</li></ul><h2 class="overview">Overview</h2>
 <span id="PasDoc-Classes"></span><h3 class="cio">Classes, Interfaces, Objects and Records</h3>
@@ -81,19 +81,25 @@ C2PP ***************************************************************************
 <td class="itemcode"><code><strong><a href="Olf.RTL.Params.html#TParamsLoadSaveEvent">TParamsLoadSaveEvent</a></strong> = procedure(const AParamsFile: <a href="Olf.RTL.Params.TParamsFile.html">TParamsFile</a>) of object;</code></td>
 </tr>
 <tr class="list2 visibility-published">
-<td class="itemcode"><code><strong><a href="Olf.RTL.Params.html#TParamsLoadSaveProc">TParamsLoadSaveProc</a></strong> = reference to procedure(const AParamsFile: <a href="Olf.RTL.Params.TParamsFile.html">TParamsFile</a>);</code></td>
+<td class="itemcode"><code><strong><a href="Olf.RTL.Params.html#TParamsLoadSaveProc">TParamsLoadSaveProc</a></strong> = reference to procedure(
+    const AParamsFile: <a href="Olf.RTL.Params.TParamsFile.html">TParamsFile</a>
+  );</code></td>
 </tr>
 <tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="Olf.RTL.Params.html#TParamsCryptEvent">TParamsCryptEvent</a></strong> = function(const AParams: string): TStream of object;</code></td>
 </tr>
 <tr class="list2 visibility-published">
-<td class="itemcode"><code><strong><a href="Olf.RTL.Params.html#TParamsCryptProc">TParamsCryptProc</a></strong> = reference to function(const AParams: string): TStream;</code></td>
+<td class="itemcode"><code><strong><a href="Olf.RTL.Params.html#TParamsCryptProc">TParamsCryptProc</a></strong> = reference to function(
+    const AParams: string
+  ): TStream;</code></td>
 </tr>
 <tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="Olf.RTL.Params.html#TParamsDecryptEvent">TParamsDecryptEvent</a></strong> = function(const AStream: TStream): string of object;</code></td>
 </tr>
 <tr class="list2 visibility-published">
-<td class="itemcode"><code><strong><a href="Olf.RTL.Params.html#TParamsDecryptProc">TParamsDecryptProc</a></strong> = reference to function(const AStream: TStream): string;</code></td>
+<td class="itemcode"><code><strong><a href="Olf.RTL.Params.html#TParamsDecryptProc">TParamsDecryptProc</a></strong> = reference to function(
+    const AStream: TStream
+  ): string;</code></td>
 </tr>
 <tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="Olf.RTL.Params.html#TDateTimeStorrageFormat">TDateTimeStorrageFormat</a></strong> = (...);</code></td>
@@ -112,7 +118,9 @@ C2PP ***************************************************************************
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
-<td class="itemcode"><span id="TParamsLoadSaveProc"></span><code><strong>TParamsLoadSaveProc</strong> = reference to procedure(const AParamsFile: <a href="Olf.RTL.Params.TParamsFile.html">TParamsFile</a>);</code></td>
+<td class="itemcode"><span id="TParamsLoadSaveProc"></span><code><strong>TParamsLoadSaveProc</strong> = reference to procedure(
+    const AParamsFile: <a href="Olf.RTL.Params.TParamsFile.html">TParamsFile</a>
+  );</code></td>
 </tr>
 <tr><td colspan="1">
 <p>
@@ -130,7 +138,9 @@ C2PP ***************************************************************************
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
-<td class="itemcode"><span id="TParamsCryptProc"></span><code><strong>TParamsCryptProc</strong> = reference to function(const AParams: string): TStream;</code></td>
+<td class="itemcode"><span id="TParamsCryptProc"></span><code><strong>TParamsCryptProc</strong> = reference to function(
+    const AParams: string
+  ): TStream;</code></td>
 </tr>
 <tr><td colspan="1">
 <p>
@@ -148,7 +158,9 @@ C2PP ***************************************************************************
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
-<td class="itemcode"><span id="TParamsDecryptProc"></span><code><strong>TParamsDecryptProc</strong> = reference to function(const AStream: TStream): string;</code></td>
+<td class="itemcode"><span id="TParamsDecryptProc"></span><code><strong>TParamsDecryptProc</strong> = reference to function(
+    const AStream: TStream
+  ): string;</code></td>
 </tr>
 <tr><td colspan="1">
 <p>
