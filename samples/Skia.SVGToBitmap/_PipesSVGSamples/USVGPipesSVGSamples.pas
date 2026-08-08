@@ -40,8 +40,8 @@
   https://github.com/DeveloppeurPascal/librairies
 
   ***************************************************************************
-  File last update : 2026-03-30T16:35:19.648+02:00
-  Signature : bb581d19182184080afdf5604fe1fdd2c112cdcb
+  File last update : 2026-07-27T10:15:24.000+02:00
+  Signature : c1ade2e970048a83f792302e90fdc9b2bb36fdb6
   ***************************************************************************
 *)
 
