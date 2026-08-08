@@ -40,8 +40,8 @@
   https://github.com/DeveloppeurPascal/librairies
 
   ***************************************************************************
-  File last update : 2026-03-30T18:46:58.000+02:00
-  Signature : 4b76ebb2f8833e31b2ba1387050e8d32e9809bf3
+  File last update : 2026-08-08T15:59:30.000+02:00
+  Signature : bddfe934cafedfb61639a702a65712992580ac2a
   ***************************************************************************
 *)
 
@@ -146,7 +146,7 @@ var
   s: string;
   o: byte;
 begin
-  // TODO : if not assigned(astream) then raise
+  // TODO -oDeveloppeurPascal : if not assigned(astream) then raise
   s := Txt + ' :';
   Stream.Position := 0;
   for i := 1 to Stream.size do
