@@ -40,8 +40,8 @@
   https://github.com/DeveloppeurPascal/librairies
 
   ***************************************************************************
-  File last update : 2026-03-30T16:35:19.648+02:00
-  Signature : 63bc780f94e44896bb2694a4e6941095c1e16e60
+  File last update : 2026-08-08T15:57:18.000+02:00
+  Signature : 009ac2b69c112f7086968cc9ade430c8e80a7c67
   ***************************************************************************
 *)
 
@@ -60,31 +60,43 @@ interface
 // https://trucs-de-developpeur-web.fr/calculer-et-verifier-un-checksum-pour-dialoguer-avec-l-exterieur.html
 
 uses
-  system.classes;
+  System.Classes,
+  System.Types;
 
 type
-  TOlfChecksumVerifParamList = class(TStrings)
+  TOlfChecksumVerifParamList = class(TStringList)
     function addParam(ch: string): TOlfChecksumVerifParamList;
   end;
 
+{$IF Not Declared(TStringDynArray)}
+  TStringDynArray = array of string;
+{$ENDIF}
+
   TOlfChecksumVerif = class
   private
-    class function get(param: string; key1: string; key2: string; key3: string;
-      key4: string; key5: string; isPublic: boolean): string; overload;
+    class function get(const params: TStringDynArray; const isPublic: boolean):
+      string; overload;
   public
-    class function get(param: TOlfChecksumVerifParamList; key1: string = '';
-      key2: string = ''; key3: string = ''; key4: string = '';
-      key5: string = ''): string; overload;
-    class function get(param: string; key1: string = ''; key2: string = '';
-      key3: string = ''; key4: string = ''; key5: string = ''): string;
-      overload;
-    class function check(verif: string; param: TOlfChecksumVerifParamList;
-      key1: string = ''; key2: string = ''; key3: string = '';
-      key4: string = ''; key5: string = ''): boolean; overload;
-    class function check(verif: string; param: string; key1: string = '';
-      key2: string = ''; key3: string = ''; key4: string = '';
-      key5: string = ''): boolean; overload;
+    class function get(const params: TStringDynArray): string; overload;
+    class function get(const param: TOlfChecksumVerifParamList; const key1:
+      string = ''; const key2: string = ''; const key3: string = ''; const key4:
+      string = ''; const key5: string = ''; const FreeParam: boolean = true):
+      string; overload;
+    class function get(const param: string; const key1: string = ''; const key2:
+      string = ''; const key3: string = ''; const key4: string = ''; const key5:
+      string = ''): string; overload;
+    class function check(const verif: string; const param:
+      TOlfChecksumVerifParamList; const key1: string = ''; const key2: string =
+      ''; const key3: string = ''; const key4: string = ''; const key5: string =
+      ''; const FreeParam: boolean = true): boolean; overload;
+    class function check(const verif: string; const param: string; const key1:
+      string = ''; const key2: string = ''; const key3: string = ''; const key4:
+      string = ''; const key5: string = ''): boolean; overload;
+    class function check(const verif: string; const params: TStringDynArray):
+      boolean; overload;
   end;
+
+  // TODO -oDeveloppeurPascal : add XMLDoc comments
 
   /// <summary>
   /// For compatibility with existing code only. Use "TOlfChecksumVerifParamList" instead.
@@ -97,24 +109,41 @@ type
 
 implementation
 
+{$IF CompilerVersion>=30.0}
+uses
+  System.SysUtils,
+  System.Hash;
+
+{$ELSE}
 uses
   u_md5;
+{$ENDIF}
 
-class function TOlfChecksumVerif.get(param: string; key1: string; key2: string;
-  key3: string; key4: string; key5: string; isPublic: boolean): string;
+class function TOlfChecksumVerif.get(const params: TStringDynArray; const
+  isPublic: boolean): string;
 var
   verif: string;
+  i: integer;
+  key: string;
 begin
-  verif := MD5(param + key1 + key2 + key3 + key4 + key5);
+  key := '';
+  for i := 0 to length(params) - 1 do
+    key := key + params[i];
+
+{$IF CompilerVersion>=30.0}
+  verif := THashMD5.GetHashString(key);
+{$ELSE}
+  verif := MD5(key);
+{$ENDIF}
+
   if isPublic then
-    result := copy(verif, 1 + random(Length(verif) - 10), 10)
+    result := copy(verif, 1 + random(length(verif) - 10), 10)
   else
     result := verif;
 end;
 
-class function TOlfChecksumVerif.get(param: TOlfChecksumVerifParamList;
-  key1: string = ''; key2: string = ''; key3: string = ''; key4: string = '';
-  key5: string = ''): string;
+class function TOlfChecksumVerif.get(const param: TOlfChecksumVerifParamList;
+  const key1, key2, key3, key4, key5: string; const FreeParam: boolean): string;
 var
   i: integer;
   ch: string;
@@ -124,20 +153,39 @@ begin
   begin
     ch := ch + param[i];
   end;
-  result := get(ch, key1, key2, key3, key4, key5, true);
-  param.Free;
+  result := get([ch, key1, key2, key3, key4, key5], true);
+  if FreeParam then
+    param.Free;
 end;
 
-class function TOlfChecksumVerif.get(param: string; key1: string = '';
-  key2: string = ''; key3: string = ''; key4: string = '';
-  key5: string = ''): string;
+class function TOlfChecksumVerif.check(const verif: string;
+  const params: TStringDynArray): boolean;
+var
+  verif_: string;
 begin
-  result := get(param, key1, key2, key3, key4, key5, true);
+  if '' = verif then
+    result := false
+  else
+  begin
+    verif_ := get(params, false);
+    result := 0 < pos(verif, verif_);
+  end;
 end;
 
-class function TOlfChecksumVerif.check(verif: string;
-  param: TOlfChecksumVerifParamList; key1: string = ''; key2: string = '';
-  key3: string = ''; key4: string = ''; key5: string = ''): boolean;
+class function TOlfChecksumVerif.get(const param: string; const key1, key2,
+  key3, key4, key5: string): string;
+begin
+  result := get([param, key1, key2, key3, key4, key5], true);
+end;
+
+class function TOlfChecksumVerif.get(const params: TStringDynArray): string;
+begin
+  result := get(params, true);
+end;
+
+class function TOlfChecksumVerif.check(const verif: string; const param:
+  TOlfChecksumVerifParamList; const key1, key2, key3, key4, key5: string; const
+  FreeParam: boolean): boolean;
 var
   i: integer;
   ch: string;
@@ -148,11 +196,12 @@ begin
     ch := ch + param[i];
   end;
   result := check(verif, ch, key1, key2, key3, key4, key5);
+  if FreeParam then
+    param.Free;
 end;
 
-class function TOlfChecksumVerif.check(verif: string; param: string;
-  key1: string = ''; key2: string = ''; key3: string = ''; key4: string = '';
-  key5: string = ''): boolean;
+class function TOlfChecksumVerif.check(const verif: string; const param, key1,
+  key2, key3, key4, key5: string): boolean;
 var
   verif_: string;
 begin
@@ -160,7 +209,7 @@ begin
     result := false
   else
   begin
-    verif_ := get(param, key1, key2, key3, key4, key5, false);
+    verif_ := get([param, key1, key2, key3, key4, key5], false);
     result := 0 < pos(verif, verif_);
   end;
 end;
