@@ -40,14 +40,19 @@
   https://github.com/DeveloppeurPascal/librairies
 
   ***************************************************************************
-  File last update : 2026-03-30T16:35:19.678+02:00
-  Signature : c8d6acff10a8095fefd5237e292b79075d171813
+  File last update : 2026-08-08T15:13:48.000+02:00
+  Signature : 2ed681e917ba8c0b223883ed88ed91e28c683077
   ***************************************************************************
 *)
 
 unit u_md5;
 
 interface
+
+{$IF CompilerVersion>=30.0}
+{$MESSAGE HINT 'This unit can be removed from your project id you replaced its md5() function by the THashMD5 class from System.Hash.'}
+{$ENDIF}
+
 
 /// <summary>Get MD5 code from a string</summary>
 /// <param name="AString">String to encode</param>
@@ -57,6 +62,9 @@ interface
 /// Since Delphi 10 Seattle it uses System.Hash.THashMD5 from Embarcadero.
 /// </remarks>
 function MD5(const AString: string): string;
+{$IF CompilerVersion>=30.0}
+deprecated 'use THashMD5.GetHashString() from unit System.Hash';
+{$ENDIF}
 
 implementation
 
