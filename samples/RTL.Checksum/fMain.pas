@@ -40,8 +40,8 @@
   https://github.com/DeveloppeurPascal/librairies
 
   ***************************************************************************
-  File last update : 2026-03-30T16:35:19.535+02:00
-  Signature : e23a85e55046d87dff3d2eea554d3f1e0c4b07ee
+  File last update : 2026-08-08T15:51:02.000+02:00
+  Signature : d5deecc4009b40375f7d2b5b3b7a56c5bafe0334
   ***************************************************************************
 *)
 
@@ -50,10 +50,22 @@ unit fMain;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes,
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
   System.Variants,
-  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Memo.Types,
-  FMX.Edit, FMX.ScrollBox, FMX.Memo, FMX.Controls.Presentation, FMX.StdCtrls,
+  FMX.Types,
+  FMX.Controls,
+  FMX.Forms,
+  FMX.Graphics,
+  FMX.Dialogs,
+  FMX.Memo.Types,
+  FMX.Edit,
+  FMX.ScrollBox,
+  FMX.Memo,
+  FMX.Controls.Presentation,
+  FMX.StdCtrls,
   FMX.Layouts;
 
 type
@@ -70,9 +82,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure btnCalculateChecksumAndCheckItClick(Sender: TObject);
   private
-    { Déclarations privées }
   public
-    { Déclarations publiques }
   end;
 
 var
@@ -137,10 +147,28 @@ begin
     Memo1.lines.Add('"' + cs + '" ok for 5 key')
   else
     Memo1.lines.Add('"' + cs + '" KO for 5 key');
+
+  cs :=
+    TOlfChecksumVerif.get(TOlfChecksumVerifParamList.Create.addParam(edtParam.Text).addParam(edtKey1.Text).addParam(edtKey2.Text).addParam(edtKey3.Text).addParam(edtKey4.Text).addParam(edtKey5.Text));
+  if TOlfChecksumVerif.check(cs,
+    TOlfChecksumVerifParamList.Create.addParam(edtParam.Text).addParam(edtKey1.Text).addParam(edtKey2.Text).addParam(edtKey3.Text).addParam(edtKey4.Text).addParam(edtKey5.Text)) then
+    Memo1.lines.Add('"' + cs + '" ok for 5 key')
+  else
+    Memo1.lines.Add('"' + cs + '" KO for 5 key');
+
+  cs := TOlfChecksumVerif.get([edtParam.Text, edtKey1.Text, edtKey2.Text,
+    edtKey3.Text, edtKey4.Text, edtKey5.Text]);
+  if TOlfChecksumVerif.check(cs, [edtParam.Text, edtKey1.Text, edtKey2.Text,
+    edtKey3.Text, edtKey4.Text, edtKey5.Text]) then
+    Memo1.lines.Add('"' + cs + '" ok for 5 key')
+  else
+    Memo1.lines.Add('"' + cs + '" KO for 5 key');
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
+  // Texte extrait de la chanson "LA FIÈVRE DU SAMEDI SOIR" de JOK'AIR
+  // source : https://paroles2chansons.lemonde.fr/paroles-jok-air/paroles-la-fievre-du-samedi-soir.html
   edtParam.Text :=
     'J''suis défoncé comme un enfant-soldat qui ride comme BMX. J''suis dans la matrice, j''suis dans la XXX. J''roule un stick et j''la fiste, en naviguant sur les rivières du Styx. J''y vais fort pour mon fils, j''contrôle le terrain comme Ryan Giggs.';
   edtKey1.Text := tguid.NewGuid.ToString;
@@ -150,4 +178,9 @@ begin
   edtKey5.Text := tguid.NewGuid.ToString;
 end;
 
+initialization
+{$IFDEF DEBUG}
+  ReportMemoryLeaksOnShutdown := true;
+{$ENDIF}
 end.
+
