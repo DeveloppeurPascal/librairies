@@ -63,6 +63,7 @@
     <Source>.\RTL.GenRandomID\RandomPassword\RandomPasswordSample.dpr</Source>
     <Source>.\RTL.Params\IntegerDoubleAndSingle\IntegerDoubleAndSingleSample.dpr</Source>
     <Source>.\RTL.CryptDecrypt\StringCryptDecryptSample\StringCryptDecryptSample.dpr</Source>
+    <Source>.\RTL.DeviceName\ShowDeviceNameSample.dpr</Source>
   </Sources>
   <Outputs>
     <Output Type="HTML">
