@@ -170,5 +170,9 @@ window.DocInsight.toc["toc-packages"] =   [
         id: "StringCryptDecryptSample",
         title: "StringCryptDecryptSample",
           href: "StringCryptDecryptSample.html",
+      },      {
+        id: "ShowDeviceNameSample",
+        title: "ShowDeviceNameSample",
+          href: "ShowDeviceNameSample.html",
       }  ]
 ;
