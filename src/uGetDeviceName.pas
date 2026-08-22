@@ -55,11 +55,15 @@ implementation
 
 {$IF Defined(MSWINDOWS)}
 
-uses system.sysutils;
+uses
+  system.sysutils;
 {$ELSEIF Defined(IOS)}
 
 uses
-  iOSapi.CocoaTypes, iOSapi.Foundation, Macapi.ObjectiveC, Macapi.helpers;
+  iOSapi.CocoaTypes,
+  iOSapi.Foundation,
+  Macapi.ObjectiveC,
+  Macapi.helpers;
 
 type
   UIDeviceClass = interface(NSObjectClass)
@@ -81,10 +85,17 @@ type
   end;
 {$ELSEIF Defined(MACOS)}
 
-uses Macapi.Foundation, Macapi.helpers;
+uses
+  Macapi.Foundation,
+  Macapi.helpers;
 {$ELSEIF Defined(ANDROID)}
 
-uses Androidapi.JNI.Os, Androidapi.JNI.Provider, Androidapi.helpers;
+uses
+  system.sysutils,
+  Androidapi.JNI.Os,
+  Androidapi.JNI.Provider,
+  Androidapi.JNI.JavaTypes,
+  Androidapi.helpers;
 {$ENDIF}
 
 function getDeviceName: string;
@@ -107,8 +118,11 @@ begin
   hote := tnshost.Create;
   Result := NSStrToStr(hote.localizedName);
 {$ELSEIF Defined(ANDROID)}
-  Result := JStringToString(TJSettings_Secure.JavaClass.getString
-    (TAndroidHelper.ContentResolver, StringToJString('bluetooth_name')));
+  if tosversion.Major < 12 then // SDK 31 d'après https://apilevels.com
+    Result := JStringToString(TJSettings_Secure.JavaClass.getString
+      (TAndroidHelper.ContentResolver, StringToJString('bluetooth_name')))
+  else
+    Result := '';
   if ('' = Result) then
     Result := JStringToString(TJSettings_Global.JavaClass.getString
       (TAndroidHelper.ContentResolver, StringToJString('device_name')));
